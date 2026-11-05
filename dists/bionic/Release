@@ -1,20 +1,20 @@
 Architectures: amd64
 Codename: bionic
 Components: main
-Date: Thu, 05 Nov 2026 13:29:55 +0000
+Date: Thu, 05 Nov 2026 15:55:51 +0000
 Description: Patched PHP rebuilds for Ubuntu bionic
 Label: php-legacy-ubuntu
 Origin: php-legacy-ubuntu
 Suite: bionic
 MD5Sum:
- b42aaf1269fc5bc7a15052cbfcb8c117            96959 main/binary-amd64/Packages
- 447dae5943d9789aa98f9a418585e46d            21948 main/binary-amd64/Packages.gz
+ 9eff3887d15a2b3899b903e6c4f2ace4           100938 main/binary-amd64/Packages
+ 43c5f12e0bc6f55dbedbcd9b3eb1d75a            23154 main/binary-amd64/Packages.gz
 SHA1:
- 9cec49cf01056e80174be13bebe4a19d0ae57a99            96959 main/binary-amd64/Packages
- 1450ead0372db2f9264d5cfb67ceb27caecfca5f            21948 main/binary-amd64/Packages.gz
+ 79fd3d4b3c459466e890c2f86d3c4a00e32b92c6           100938 main/binary-amd64/Packages
+ 761b05218bfaf2343d3f012ac9cc2c9f2bbf8308            23154 main/binary-amd64/Packages.gz
 SHA256:
- 8206fc08c88cd0d9f045b8492fa37e33be5b34c1e4c63b073d63ef41912fab4b            96959 main/binary-amd64/Packages
- 1572aefad6155686fc6968c7a786d193aee78d1170aae0196205d2380996ce63            21948 main/binary-amd64/Packages.gz
+ 03237b65c95f59cc58b4a4331e80c29ad2c231cf15ddac2345ac5eec4c1efdee           100938 main/binary-amd64/Packages
+ 03db19a6d5823cc18ebef4024e413b3b819b41aca7fd08c1dfb5dad9e2933457            23154 main/binary-amd64/Packages.gz
 SHA512:
- 9d9429c90f53cb46789c410252ed7e7ca6889973d32f7625d6f8695b93f1658060faecdb1887fd44f0a64db9dba0e5100276e9b84c281c451e8b5a6eb24edc55            96959 main/binary-amd64/Packages
- 5656463c845a33291c742be8fec69fc828096f65c9f2c8c9ef0dca5486ad16c75af06c9d9206f592668c806b72aa75b3725387b45b91db9af65e08adeb6523f7            21948 main/binary-amd64/Packages.gz
+ ac38ae648fc98a85ef2d7c4055cc47a6333682892627c24adcadeef82d115920452569c843bfa9b69d19de10af816d5286ee38aec6a75b33c2a2a1a37d673cf8           100938 main/binary-amd64/Packages
+ c52b8bf75b3922c375398c49142a3d2ddf7d1310b9075daad7e8547ba6992c42c77c4a4dfebc0f078cf3bc1e1d5830657c71031954523be7babf2c4cdb2c11b3            23154 main/binary-amd64/Packages.gz

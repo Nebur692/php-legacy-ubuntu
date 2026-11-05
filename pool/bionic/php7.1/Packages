@@ -1,20 +1,21 @@
 Package: libapache2-mod-php7.1
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: httpd
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 4361
-Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.1-cli, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), php7.1-json, php7.1-opcache, tzdata, ucf, apache2-api-20120211, apache2-bin (>= 2.4.16), libc6 (>= 2.27), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Provides: libapache2-mod-php, phpapi-20160303
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.1-cli, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), php7.1-json, php7.1-opcache, tzdata, ucf, apache2-api-20120211, apache2-bin (>= 2.4.16), libc6 (>= 2.27), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
 Recommends: apache2
 Suggests: php-pear
-Provides: libapache2-mod-php, phpapi-20160303
-Filename: ./libapache2-mod-php7.1_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 1285572
-MD5sum: d73d3149a4f28f48ad9d92ff4945214c
-SHA1: e4b50478538db6fce6eae5e32150d73756000476
-SHA256: 495e5b991ffcb94c27710f95a41d96234144774f8a11be39782db5097e2ef7ea
-Section: httpd
-Priority: optional
+Filename: ./libapache2-mod-php7.1_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 1285136
+MD5sum: 4fab2de3621f69629ab7349018d690f8
+SHA1: 04c46bdf06b23665b70d9b25d49d2b4deac27df2
+SHA256: 5c1a17d23c996f3a6e8e9956a904e99292571ce51db6f436d402c3f849444d6b
+SHA512: 3dae823879af888576aba6fda460d7c76afffd3a98e6bd767df3ab45ea4dba6bc69fe9751632b684e823e04eb094f036249b12b4de80124f391f2b96ba376c4f
 Homepage: http://www.php.net/
 Description: server-side, HTML-embedded scripting language (Apache 2 module)
  This package provides the PHP module for the Apache 2 webserver (as
@@ -29,21 +30,22 @@ Description: server-side, HTML-embedded scripting language (Apache 2 module)
  for web development and can be embedded into HTML.
 
 Package: libphp7.1-embed
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 4350
-Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.1-cli, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), php7.1-json, php7.1-opcache, tzdata, ucf, libc6 (>= 2.27), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
-Suggests: php-pear
 Provides: libphp-embed, phpapi-20160303
-Filename: ./libphp7.1-embed_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 1283344
-MD5sum: 5f0ab3708ef5d02eb5ff362c34c10a9e
-SHA1: 13075ce73a4d300fc583c17c1b3ac62fae413777
-SHA256: 7379b91a721b73e7c20b85fd16545a2433278b15d6ef306a0d127ff53ba06775
-Section: php
-Priority: optional
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.1-cli, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), php7.1-json, php7.1-opcache, tzdata, ucf, libc6 (>= 2.27), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Suggests: php-pear
+Filename: ./libphp7.1-embed_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 1283204
+MD5sum: a7f4f1fdb43937297b08e695c9cec91b
+SHA1: 3ecd491e442b163b3c60157c2ed42f93fca81877
+SHA256: 0bdc6aa7c4576f016a15e8915f753780499dbc4d1418689831246ea2ad0c326f
+SHA512: 5afcb91b638ac5ff5f8aa1cdd7fbebf46a0d6c228ebb4325b7c2e7a477716ee2679822fe4fd882bf246384078a406b2e45853bf4ee36a3b8c5fad441986c4f18
 Homepage: http://www.php.net/
 Description: HTML-embedded scripting language (Embedded SAPI library)
  This package provides the library /usr/lib/libphp7.1.so which can
@@ -60,46 +62,22 @@ Description: HTML-embedded scripting language (Embedded SAPI library)
  the API/ABI will be kept compatible even between minor releases.  You
  have been warned.
 
-Package: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
-Architecture: all
-Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 96
-Depends: libapache2-mod-php7.1 | php7.1-fpm | php7.1-cgi, php7.1-common
-Provides: php
-Filename: ./php7.1_7.1.33-80+ubuntu18.04.1+local1_all.deb
-Size: 72172
-MD5sum: d41c2f46fc1a5989b3b5396f65dfab9c
-SHA1: 8aba5e349a7e432078b03e093c9e5a93cf90b6cb
-SHA256: 569dc3247652bf70f34cdcb8eb81d8a464976a691e9bdb1f6ceabd1f77081867
-Section: php
-Priority: optional
-Homepage: http://www.php.net/
-Description: server-side, HTML-embedded scripting language (metapackage)
- This package is a metapackage that, when installed, guarantees that you
- have at least one of the four server-side versions of the PHP interpreter
- installed. Removing this package won't remove PHP from your system, however
- it may remove other packages that depend on this one.
- .
- PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
- open source general-purpose scripting language that is especially suited
- for web development and can be embedded into HTML.
-
 Package: php7.1-bcmath
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 64
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14)
 Provides: php-bcmath
-Filename: ./php7.1-bcmath_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 15900
-MD5sum: 41268191de1192360b3800123f9d3be1
-SHA1: a14fd74521cbd2140e4eefb095d67fceeb9e4c18
-SHA256: 125dc06858b1de3689c8c5683a902ee7ce515ba5e8185136d8ace99340c3a0ed
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.14)
+Filename: ./php7.1-bcmath_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 15912
+MD5sum: 04cb5a974c6ef02a0d4950c71b5cfc1d
+SHA1: 61c156e2e61f740f655c8093929e7099712cb516
+SHA256: eed5c5516c8b322c215bb318b148bbe9d37eba03f976166d7775a4ff8a19847c
+SHA512: 21aba20e1d9aa098c12294f57e5054a0a174b75e4edaa933f79e0fe5290ebcbef7aa91c2c29c0d0b89925c96642dd8a6119d211f284381eaddc031487cc4c3af
 Homepage: http://www.php.net/
 Description: Bcmath module for PHP
  This package provides the Bcmath module(s) for PHP.
@@ -109,20 +87,21 @@ Description: Bcmath module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-bz2
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 52
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libbz2-1.0, libc6 (>= 2.14)
 Provides: php-bz2
-Filename: ./php7.1-bz2_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libbz2-1.0, libc6 (>= 2.14)
+Filename: ./php7.1-bz2_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
 Size: 10452
-MD5sum: a7e7602cf05a3a8ffa20d55f46447a06
-SHA1: 28ee6d5a35dbb1839391576d930761d127078885
-SHA256: b15815c3a18cec4ee441b0b6dee6887b2ffcf93bc6cfe96745ec481b2ab6f7ea
-Section: php
-Priority: optional
+MD5sum: d220b48f4f26c46d591296f79cf496fc
+SHA1: 3564f58a7b8e3853a25327d1566893d2e4289dbd
+SHA256: ad9d868eb5ad979fa1ad2687b24da7188212192ec7172686836ca48ba895109b
+SHA512: aa9ffcb0dda8055bc9da9070969466a17ab6fbea874727fcc1c538b4547eef52d05cc121c46000e1767c45fdf8f74d84078410571e3bb54701daf34da687962d
 Homepage: http://www.php.net/
 Description: bzip2 module for PHP
  This package provides the bzip2 module(s) for PHP.
@@ -132,21 +111,22 @@ Description: bzip2 module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-cgi
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 8753
-Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.1-cli, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), php7.1-json, php7.1-opcache, tzdata, ucf, libc6 (>= 2.27), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
-Suggests: php-pear
 Provides: php-cgi, phpapi-20160303
-Filename: ./php7.1-cgi_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 1305240
-MD5sum: 7a1f97cdbe373679aa0dd8c13297b281
-SHA1: 4c9039c7c6cb69bd6a3458d4caf6941f670e0251
-SHA256: bcf765f09bfac530fab0d411c0577a7728611c8a281d3a72bb8d375391780c88
-Section: php
-Priority: optional
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.1-cli, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), php7.1-json, php7.1-opcache, tzdata, ucf, libc6 (>= 2.27), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Suggests: php-pear
+Filename: ./php7.1-cgi_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 1306028
+MD5sum: 35ffb31032019edc7671717246b97bbb
+SHA1: fad8a1357740667eb60e19ff06ab69bdac9ffb4f
+SHA256: 4c649d221282acfa50ac35b649d2ff0421a476b1466cdd86d8f2731db29d2e88
+SHA512: ef04b7e02564aa099727c67a412e3eefc31a37b733d166b9823942e8c3a26f1cf1a91854d656b1862e77d145289ebabc45d8c684db946ca8a0d104a586c73a20
 Homepage: http://www.php.net/
 Description: server-side, HTML-embedded scripting language (CGI binary)
  This package provides the /usr/lib/cgi-bin/php CGI interpreter built
@@ -162,21 +142,22 @@ Description: server-side, HTML-embedded scripting language (CGI binary)
  for web development and can be embedded into HTML.
 
 Package: php7.1-cli
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 4517
-Depends: libedit2 (>= 2.11-20080614-4), libpcre3 (>= 2:8.35), media-types | mime-support, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), php7.1-json, php7.1-opcache, php7.1-readline, tzdata, ucf, libc6 (>= 2.27), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
-Suggests: php-pear
 Provides: php-cli, phpapi-20160303
-Filename: ./php7.1-cli_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 1343464
-MD5sum: d2d655c2c94ae30ed2926cea2379da02
-SHA1: f8cf13a2e67e0bc4c8d9b9f1b3fb19f8a5147455
-SHA256: ad5b83c21bcbc53b5b709782ec8b5344a0309ae5ecb0b6d279cddb38110c5038
-Section: php
-Priority: optional
+Depends: libedit2 (>= 2.11-20080614-4), libpcre3 (>= 2:8.35), media-types | mime-support, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), php7.1-json, php7.1-opcache, php7.1-readline, tzdata, ucf, libc6 (>= 2.27), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Suggests: php-pear
+Filename: ./php7.1-cli_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 1344024
+MD5sum: 316a11826f4d503d0ed802c27c45289c
+SHA1: c8450c7a55082e77ed807e4cfe35ee3913e8980c
+SHA256: 17ccb84e55e41725ce00004c898f1bf1f339c11eab397e3c83b5ba3e084f614f
+SHA512: 46b73e10b8b5fb8035ad284548cefdc0f3d5659b29d0a42e8b74df7097f53a3d077aa4739b00af7af53ec1b9ae7a715239a709e9f4cd983865f1b2d024279e4c
 Homepage: http://www.php.net/
 Description: command-line interpreter for the PHP scripting language
  This package provides the /usr/bin/php7.1 command interpreter, useful for
@@ -190,20 +171,21 @@ Description: command-line interpreter for the PHP scripting language
  for web development and can be embedded into HTML.
 
 Package: php7.1-common
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 4293
-Depends: php-common (>= 1:81~), ucf, libc6 (>= 2.15), libssl1.1 (>= 1.1.0)
 Provides: php-calendar, php-ctype, php-exif, php-fileinfo, php-ftp, php-iconv, php-pdo, php-phar, php-posix, php-shmop, php-sockets, php-sysvmsg, php-sysvsem, php-sysvshm, php-tokenizer, php7.1-calendar, php7.1-ctype, php7.1-exif, php7.1-fileinfo, php7.1-ftp, php7.1-gettext, php7.1-iconv, php7.1-pdo, php7.1-phar, php7.1-posix, php7.1-shmop, php7.1-sockets, php7.1-sysvmsg, php7.1-sysvsem, php7.1-sysvshm, php7.1-tokenizer
-Filename: ./php7.1-common_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 549564
-MD5sum: 698a038dc296f673215cdd785318f6bc
-SHA1: ec34f64ea7bd0237481f5b1eefe573f579826c45
-SHA256: 13bfa70977425471faa2657757aa7513bedd9ab47c6d8d199193c77556123ff2
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, libc6 (>= 2.15), libssl1.1 (>= 1.1.0)
+Filename: ./php7.1-common_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 549936
+MD5sum: 2f4374374e9b34801f33d2e868c06a90
+SHA1: 7ec148405bff536a8f249ffd5f1767468deb2f91
+SHA256: 50a61c7cae598a85cecc5e22fc7cb86e6ab76b66419e5b025e98e4027960c32e
+SHA512: 7c5ddf1a8e4fde06924b8607bd4fcf091fa2eb8a608c32a0d10f2bb54d2401d5718b82d50dea9ff12b9e3489a8cf1d46afb8508b59adae1027e5af592dc5512e
 Homepage: http://www.php.net/
 Description: documentation, examples and common module for PHP
  This package provides the documentation, examples and common module(s) for PHP.
@@ -213,20 +195,21 @@ Description: documentation, examples and common module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-curl
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 120
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libcurl4 (>= 7.44.0)
 Provides: php-curl
-Filename: ./php7.1-curl_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 28712
-MD5sum: 6c8b98f443e30ce7a0916ad52129746c
-SHA1: dda00c297a066b9898100178e4b3eafefc927d6d
-SHA256: 5558d5f74c2cdd579fedcaef4537f6d3f0427d857149cfa622159550dca80989
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.14), libcurl4 (>= 7.44.0)
+Filename: ./php7.1-curl_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 28748
+MD5sum: a4624b5980a919cdc76efbb5318b68c5
+SHA1: e15f3a47cc07085e9b8a0c5fe64cc35272bcb25c
+SHA256: 820bdac578710b8b77c2038f4951494e1d346bc8946f78dbfb1caca36d96f499
+SHA512: a5a3d37d1fcf536c4cf1b561276b307e903f7832fe005f388e0370d6495836b98b63e1c4236d91398f6d638d8e888d109cc27ee9c7d0913e9063541778f43bce
 Homepage: http://www.php.net/
 Description: CURL module for PHP
  This package provides the CURL module(s) for PHP.
@@ -236,20 +219,21 @@ Description: CURL module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-dba
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 88
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libdb5.3, libqdbm14 (>= 1.8.74)
 Provides: php-dba
-Filename: ./php7.1-dba_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 23612
-MD5sum: 70029d1cc1f4fbd1fe9e39b997e0ffc2
-SHA1: 122eef3ec5be105aeaabf9441dd5367a373b6ba7
-SHA256: f583e96629ae95a8894eb63aa1e2284211ce613932954ccbb307920495bc3c58
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.14), libdb5.3, libqdbm14 (>= 1.8.74)
+Filename: ./php7.1-dba_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 23660
+MD5sum: 9cfe7eeab309ac7c418b577d17a60854
+SHA1: fd6972c05d790d6b0672a2ce8360e9d6ef0c8bf5
+SHA256: 895d210f2a35ede7e634f0557a1ad65c95313f445ad078aecc22236eb80c492e
+SHA512: 100b9b15f783f1473c187be3fb939465a04732de05b67a5c7d6037a1d943fb2e91a0d40431e803eb69f58a550255a6df26b9fc8926cbd4cd41ca1fd4b8b8f5bf
 Homepage: http://www.php.net/
 Description: DBA module for PHP
  This package provides the DBA module(s) for PHP.
@@ -259,21 +243,22 @@ Description: DBA module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-dev
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 4507
-Depends: autoconf (>= 2.63), automake (>= 1.11), libpcre3-dev (>= 2:8.35), libssl-dev, php7.1-cli (>= 7.1.33-80+ubuntu18.04.1+local1), php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), pkg-config, shtool, libtool (>= 2.4.6-0.1~)
+Depends: autoconf (>= 2.63), automake (>= 1.11), libpcre3-dev (>= 2:8.35), libssl-dev, php7.1-cli (>= 7.1.33-80+ubuntu18.04.1+local2), php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), pkg-config, shtool, libtool (>= 2.4.6-0.1~)
 Recommends: pkg-php-tools
 Suggests: dh-php
-Filename: ./php7.1-dev_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 399484
-MD5sum: 5a5c8ed0b3f77531c38baab58be5c4f4
-SHA1: f26cda6fbe23f2715328c7fcf29855f3656ce1c8
-SHA256: 8457545e14416088dc11fec978f929a83aa9198337b7338a3c1dde93ab15c2a4
-Section: php
-Priority: optional
+Filename: ./php7.1-dev_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 399520
+MD5sum: 757a28aa133801d5cb6168659142dcf3
+SHA1: c21649ce2ae7a5229cf7f92bafa8ffe37828ac0f
+SHA256: aa66e8b2bb82ebf81a49435fbaf4096c3246b157028b95a053ddbf2177a834a9
+SHA512: 48cbd0b78c1c32fad64f2c7c4dfa57288cc59dbd5563a15a9548fd176e7f0d6106eba13fa4e7fcc15d4a70529df9a9b1194388a545d2f64dddef9cc0df2c0d91
 Homepage: http://www.php.net/
 Description: Files for PHP7.1 module development
  This package provides the files from the PHP7.1 source needed for compiling
@@ -284,20 +269,21 @@ Description: Files for PHP7.1 module development
  for web development and can be embedded into HTML.
 
 Package: php7.1-enchant
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 56
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libenchant1c2a (>= 1.6.0)
 Provides: php-enchant
-Filename: ./php7.1-enchant_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 9560
-MD5sum: 57172838a01098c93d69cf22ce07b37d
-SHA1: fcb1f6e7b87711120b0698ebb400ad0a10ba7ac3
-SHA256: 3ff1acc844d1f618503ff340c970ad6fa75aeff8bd73cf128726a8ff7d16a01d
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.14), libenchant1c2a (>= 1.6.0)
+Filename: ./php7.1-enchant_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 9572
+MD5sum: 3e4dd74f197e95484dd2af8b618e4c0a
+SHA1: b09213a6574ccbfaf0a9cad495efbe5dc8a0fdad
+SHA256: a1bf0c7dfd50d9786ae1330a94acc1a485ea1e41b66fed4757724a92e255838b
+SHA512: dbd232e7a086e98ff12224275d3dd73cb31f1ed14ea60c05e09be2048b8b73adc78dca01c21c42c1d2e146c8ca58904bd7144a4a13d5669037bc61ef9dbe5ef5
 Homepage: http://www.php.net/
 Description: Enchant module for PHP
  This package provides the Enchant module(s) for PHP.
@@ -307,21 +293,22 @@ Description: Enchant module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-fpm
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 4538
-Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.1-cli, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), php7.1-json, php7.1-opcache, procps, systemd | systemd-tmpfiles, tzdata, ucf, libacl1 (>= 2.2.51-8), libapparmor1 (>= 2.7.0~beta1+bzr1772), libc6 (>= 2.27), libssl1.1 (>= 1.1.0), libsystemd0, libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
-Suggests: php-pear
 Provides: php-fpm, phpapi-20160303
-Filename: ./php7.1-fpm_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 1352088
-MD5sum: 27da4e61768fb29419842ca88cf720fb
-SHA1: 32abcfef320fb961325f861627f84d99740312c5
-SHA256: c1d8ead5c1a049f8d89aecb8e6bed61f00b73732ddec9153230ddc84e434fbd3
-Section: php
-Priority: optional
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.1-cli, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), php7.1-json, php7.1-opcache, procps, systemd | systemd-tmpfiles, tzdata, ucf, libacl1 (>= 2.2.51-8), libapparmor1 (>= 2.7.0~beta1+bzr1772), libc6 (>= 2.27), libssl1.1 (>= 1.1.0), libsystemd0, libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Suggests: php-pear
+Filename: ./php7.1-fpm_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 1352444
+MD5sum: 821629b6a8d2378c76a1379dc8f6de6a
+SHA1: 2d3b6fcaf6ccb07bb6aebd600b9e2252b01b49ca
+SHA256: 51a6e88793e50e0afdff485f5d579f5c1c284262cfa39be352a24d8f16c44802
+SHA512: 4a8d87bb22eec0646c3487d2fb2cb2a024cd136134a76eb311eb718924140236fc1f63e361921260cafc35cedc22c345a56b3c33a2a91864515aa8df4ed4bbb4
 Homepage: http://www.php.net/
 Description: server-side, HTML-embedded scripting language (FPM-CGI binary)
  This package provides the Fast Process Manager interpreter that runs
@@ -336,20 +323,21 @@ Description: server-side, HTML-embedded scripting language (FPM-CGI binary)
  for web development and can be embedded into HTML.
 
 Package: php7.1-gd
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 132
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.4), libgd3 (>= 2.1.1), libxpm4
 Provides: php-gd
-Filename: ./php7.1-gd_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 27708
-MD5sum: e4d1289d3d1296b2359e503dc02810b0
-SHA1: 762d6649182485dccdf09faba243c6227c197ab7
-SHA256: ad3b72ad639525d83844a947c60817b533e3c90b7b6ea46ba3d562d7cb838626
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.4), libgd3 (>= 2.1.1), libxpm4
+Filename: ./php7.1-gd_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 27848
+MD5sum: fa18d51ffeed41ceca169862d665af6e
+SHA1: 8d732844e0b12df90986525c2ddbe2ac512c79e9
+SHA256: f45e83e0f6d905031e534d817782336de2c8ca0c080140a66f4d4e0fcbf061f2
+SHA512: 05d9f599309bb84f8d56582fc87b630f6138a46992359a9969cc96ee7975c963328122a6d0610fd2e7e7996ffc406503736170252d1740826858a8df5446aefa
 Homepage: http://www.php.net/
 Description: GD module for PHP
  This package provides the GD module(s) for PHP.
@@ -359,20 +347,21 @@ Description: GD module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-gmp
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 100
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.4), libgmp10
 Provides: php-gmp
-Filename: ./php7.1-gmp_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 21288
-MD5sum: 6364a5b4a503d22c8fc9467fe091cc4e
-SHA1: bc3337c2988dfa9283a5b4bd168013f19d152c43
-SHA256: de043af6916f79f8c164cb2e01b81011d14c282997346b5d8e549b241064d683
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.4), libgmp10
+Filename: ./php7.1-gmp_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 21260
+MD5sum: f827ce1d2e6db35b82b7743ce48d575c
+SHA1: ce77046f1e984968e43cf265f8fe13750709c7da
+SHA256: d0244f9ad454177ad4fabee932537c695f64c05151e96a6cdbda3d88215e8489
+SHA512: 319399fe8cca3dd0313ef53a76055b045a4f57425ecd4cbc9ed0be37cf373f9d0eae2ea9dae3b67fb5fc94d488882fbc5eb967861c183e9cac59381da10bfdcf
 Homepage: http://www.php.net/
 Description: GMP module for PHP
  This package provides the GMP module(s) for PHP.
@@ -382,20 +371,21 @@ Description: GMP module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-imap
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 128
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc-client2007e, libc6 (>= 2.14)
 Provides: php-imap
-Filename: ./php7.1-imap_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 31260
-MD5sum: a773e4995189fb102a8f15494900fc0d
-SHA1: ad5a974eeeb7ea481007c8088fe03c9ed5b1e321
-SHA256: 9daeb6bcedad386dcb8626a4fb4ba18ed20bb7c972d06057e2a4c64846be6130
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc-client2007e, libc6 (>= 2.14)
+Filename: ./php7.1-imap_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 31064
+MD5sum: b513e76e94eefe19f0cadfd4008dae48
+SHA1: 98385c48b6f82fa59f07566d4f149375f1a994d7
+SHA256: 8c38f1a42721186acf3328d2518e5485f14bb360811c5a6c8e0941cafd44e7c9
+SHA512: 09b4619e1bddd1841127de00af33c26cc0e8a8f2e2d5c9c0ca8f3c0d0a4e4dd4e7b2693935311f0570dfb23d94f5d33eeb83ac4eb41d9e27c7fc68000b816466
 Homepage: http://www.php.net/
 Description: IMAP module for PHP
  This package provides the IMAP module(s) for PHP.
@@ -405,20 +395,21 @@ Description: IMAP module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-interbase
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 152
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libfbclient2 (>= 2.5.0.25784~ReleaseCandidate1.ds2)
 Provides: php-interbase, php-pdo-firebird, php7.1-pdo-firebird
-Filename: ./php7.1-interbase_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 41600
-MD5sum: ea878a9a9bd8c97b1e83a123d6c53465
-SHA1: 950434d042d77e5a82e44e843254e4791ea6dca6
-SHA256: 284288ebf5f426949133e191a3f6ece5c598cee8530fb904c68d20a3e401f8f4
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.14), libfbclient2 (>= 2.5.0.25784~ReleaseCandidate1.ds2)
+Filename: ./php7.1-interbase_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 41596
+MD5sum: cbcde1e17b7128e9b956ca625fdb42d9
+SHA1: 4cdbe6d1cedc32670faa21e553dbaf4163a51fef
+SHA256: 1bdd8b00665051c01feced4fa5221b63bed681f32d93fb43de46e0a7e5dea02d
+SHA512: 2f301a4e25c16af2ea860f065458cbc4f7768e160a64844fec34cd5714c6bd5ad44b5e0f2c94575cca197ed4f14346cc1a17b655ae31e8e40a1ed18279c6d87b
 Homepage: http://www.php.net/
 Description: Interbase module for PHP
  This package provides the Interbase module(s) for PHP.
@@ -428,20 +419,21 @@ Description: Interbase module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-intl
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 517
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libgcc1 (>= 1:3.0), libicu60 (>= 60.1-1~), libstdc++6 (>= 4.9)
 Provides: php-intl
-Filename: ./php7.1-intl_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 128696
-MD5sum: 32805a90346f0d07cfbb802430ba23a6
-SHA1: 2d5d8d06c09b8dfc8eac4b16328d01dd832f82e9
-SHA256: 8a964ee5e05763f765e12a93b365669ef3813b3608a65c052bee9f87a063c1c2
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.14), libgcc1 (>= 1:3.0), libicu60 (>= 60.1-1~), libstdc++6 (>= 4.9)
+Filename: ./php7.1-intl_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 129060
+MD5sum: 9f6ac07fe669577ecbd42b954b9552a5
+SHA1: 6317c4c2ae9ea09d0be5eddf1be56c4b41eb0b41
+SHA256: 1caa5f0c21a55fd108c7c05f0ebf57c5137e6febb30ddeaf118443dce10f6a31
+SHA512: ea018694ba9ddd43ff951fdd6d5f410d1ec874b19b9452240fa1b84052e0af0707fa6102dd97db59880167e0c5aa7b1fe2334df4b2482a1f6afeae433bd9797e
 Homepage: http://www.php.net/
 Description: Internationalisation module for PHP
  This package provides the Internationalisation module(s) for PHP.
@@ -451,20 +443,21 @@ Description: Internationalisation module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-json
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 68
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14)
 Provides: php-json
-Filename: ./php7.1-json_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 17488
-MD5sum: 27d2a579da0bc37d823ca4da7a4c8d43
-SHA1: 32427d3e4df0f7dc228e0cf323e45ab69fc3c5b5
-SHA256: 9cd8e57d2aac9424338efbb6c5ebbbe66f46768ac382862792dd394076901b1e
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.14)
+Filename: ./php7.1-json_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 17504
+MD5sum: d744e5e76e1ce4026fd2a12c5dfca8c3
+SHA1: dcbaa14112b146bd2ab5f518e3b084d8904badae
+SHA256: cc227af852732e53d9708634bf0da9c34908715d39bb375c30a6d203eb3d327d
+SHA512: 2c0ed2006934a827f1975b3891def45aacd11f6aad957278743921b17f6b7fc468769db532c297c18e03c47863734a8bb70b8a7269d1158358a0ce6c79d0842c
 Homepage: http://www.php.net/
 Description: JSON module for PHP
  This package provides the JSON module(s) for PHP.
@@ -474,20 +467,21 @@ Description: JSON module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-ldap
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 96
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libldap-2.4-2 (>= 2.4.7)
 Provides: php-ldap
-Filename: ./php7.1-ldap_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 22368
-MD5sum: 72aa628fc085c127c227f0146ffe6a83
-SHA1: fd2d95463b5907c0f97e638cf7df45a0e689c30b
-SHA256: 562f5feb81003aa3783399fa2c029118062c2123b808fd2d346f11d874995a56
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.14), libldap-2.4-2 (>= 2.4.7)
+Filename: ./php7.1-ldap_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 22312
+MD5sum: ef6d55107957c336c25910a33b38735e
+SHA1: e5d91dbe37668ca52593563f519ea1c126d244e4
+SHA256: a8679db9d07bb7f63e48e20361ff555a08993fa80e619e0dfef338afb8deb5a4
+SHA512: 3f9309afaa941c740f7097b1daf3cf29fd13c447d0ecdfb8df07c9bb31c0846a37aa0384898084d3892646216068482ab81f9338664f99f0d76cbb90f9cb83d1
 Homepage: http://www.php.net/
 Description: LDAP module for PHP
  This package provides the LDAP module(s) for PHP.
@@ -497,21 +491,22 @@ Description: LDAP module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-litespeed
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
-Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 4388
-Depends: media-types | mime-support, php7.1-cli, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), procps, systemd | systemd-tmpfiles, tzdata, ucf, libc6 (>= 2.27), libpcre3, libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
-Suggests: php-pear
-Provides: php-json, php-litespeed, php7.1-json, phpapi-20160303
-Filename: ./php7.1-litespeed_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 1305628
-MD5sum: a8b6931bc56461f874d94c26f9724e75
-SHA1: 1b263e68ef1b90846ddeb7141b950c4cc9e4eeaf
-SHA256: 01d72cbe77d2f6f93e2368ad21f46463e93f3e3994832d775988f565b4860b17
-Section: php
+Version: 7.1.33-80+ubuntu18.04.1+local2
 Priority: optional
+Section: php
+Source: php7.1
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 4392
+Provides: php-json, php-litespeed, php7.1-json, phpapi-20160303
+Depends: media-types | mime-support, php7.1-cli, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), procps, systemd | systemd-tmpfiles, tzdata, ucf, libc6 (>= 2.27), libpcre3, libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Suggests: php-pear
+Filename: ./php7.1-litespeed_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 1306468
+MD5sum: c271579e1d51eed351de610c8b54b6c3
+SHA1: 4a42ed7da10295a8123b18a1c47f36c0a16a1846
+SHA256: f5fbe7983d7471651c56d64371ed84d4ceb73569fc35430d7ef88feb3daf29e8
+SHA512: 4c7afb08f424fc316586878b4f9c63fb6533f7532cc341c399e9b308fb2c44927796e45ad77c6f294b02df025fa6b51ae9163d0739e7d8dbee43615aa6fa3f41
 Homepage: http://www.php.net/
 Description: server-side, HTML-embedded scripting language (LiteSpeed binary)
  This package provides the LiteSpeed SAPI module that provides a dedicated
@@ -525,20 +520,21 @@ Description: server-side, HTML-embedded scripting language (LiteSpeed binary)
  for web development and can be embedded into HTML.
 
 Package: php7.1-mbstring
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 1475
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14)
 Provides: php-mbstring
-Filename: ./php7.1-mbstring_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 468412
-MD5sum: 356d77f589d94f360790a0078699060c
-SHA1: a6d056bbc5e0ea3d1f028fa733190361ff5406f5
-SHA256: 66c2be00a52580b1960e0777c60367adc66445771218e5377196e819367ced52
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.14)
+Filename: ./php7.1-mbstring_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 467124
+MD5sum: 29e0e1d816112909dd3fdeee4f087768
+SHA1: 7717b6de2cb64a80565700caca413e5e221dc0cf
+SHA256: bface079c25225a903853ce488237c053045127bc7b5b5bea3b2fb11e6e14382
+SHA512: 5c272f679a714bd19ae71c80e87325c982c93b6937556d28ec7f3d70037841e2578562998ff1323c93bb1329956a02b335ffdd9c484d456fe534caa529ea3688
 Homepage: http://www.php.net/
 Description: MBSTRING module for PHP
  This package provides the MBSTRING module(s) for PHP.
@@ -548,20 +544,21 @@ Description: MBSTRING module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-mcrypt
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 72
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libmcrypt4
 Provides: php-mcrypt
-Filename: ./php7.1-mcrypt_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 14988
-MD5sum: d7dd30b05d1da63ac975425f61995317
-SHA1: ce85eb9e88511a36116bfd11f37806609ed6fbf8
-SHA256: abe8b5c73950be3653825782dc781a30763a2a899f5b4bb809261f95acde0ec4
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.14), libmcrypt4
+Filename: ./php7.1-mcrypt_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 15060
+MD5sum: bda15399fb4d3fa4288e83a63ac85ac1
+SHA1: 86d5ed4021ab8720d1d9a182b542bf46ab264609
+SHA256: 7de5aa50f58878a6cc3b6cafcac06b6e826a24ff3a90e28157d6b266597bc5b9
+SHA512: 41ac40517193126b9980086d1ded2644b3f62e8ab6baa8c805c7048964ced39bbf549bfd884128b87b0e8e77f968c006296039504e9edb5b66e9c663ea5f3bd8
 Homepage: http://www.php.net/
 Description: libmcrypt module for PHP
  This package provides the libmcrypt module(s) for PHP.
@@ -571,20 +568,21 @@ Description: libmcrypt module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-mysql
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 447
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.15)
 Provides: php-mysqli, php-mysqlnd, php-pdo-mysql, php7.1-mysqli, php7.1-mysqlnd, php7.1-pdo-mysql
-Filename: ./php7.1-mysql_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 120392
-MD5sum: b030ad592ae05204e80acb9016536120
-SHA1: 5749b37fff8a2f3ec775d766bc526d49b8125c48
-SHA256: e03c17b939ca1334cc1a12127c8283e14a9f1f959795390381b40c3eae1c7e9c
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.15)
+Filename: ./php7.1-mysql_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 120432
+MD5sum: 3ab7b4ff2858bc536738a8ae46d80c7d
+SHA1: 0ee69d091910cf538fba5d4d1edacf7e2c8c078b
+SHA256: 49e5696b25f6ef73b642cfd3077a6035382274982d389cc49ca8abf3d0b8972e
+SHA512: 0a039ab33875e2b51b26516135dccb815bad186ac796cb231bda8ff7db5f3b4820d9621ffd00a214c8cf5adc565a84b5b2177d82b645cb9d8c09617465f3bdd9
 Homepage: http://www.php.net/
 Description: MySQL module for PHP
  This package provides the MySQL module(s) for PHP.
@@ -594,20 +592,21 @@ Description: MySQL module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-odbc
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 128
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libodbc1 (>= 2.3.1)
 Provides: php-odbc, php-pdo-odbc, php7.1-pdo-odbc
-Filename: ./php7.1-odbc_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 31672
-MD5sum: bb5f66358eb421e8be4cb6ca194c1b08
-SHA1: 416d720ae51aab8e375ffb87e0fb397c01572bca
-SHA256: 01526e846c2c5d760ff7ccd398d095bab17340ebc0f874df23ec1bd94037397b
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.14), libodbc1 (>= 2.3.1)
+Filename: ./php7.1-odbc_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 31676
+MD5sum: a3f8300ebfd26b299baf390def3d743d
+SHA1: 70efb0529014e8faeeec19e414f5c3f685b7f9a7
+SHA256: ae03d669b812dc340333cd05ed898bc9922566e6cc3be8921828b0e6d08ff9d4
+SHA512: ca9514ceae3de681865402f1392810208950b3431e668a640dcb37d727c8db0530dc8eeba965f221eebdc93fc52bffb70bead7c1ecabe677a7afa5371ee8adf4
 Homepage: http://www.php.net/
 Description: ODBC module for PHP
  This package provides the ODBC module(s) for PHP.
@@ -617,20 +616,21 @@ Description: ODBC module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-opcache
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 424
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.27)
 Provides: php-opcache
-Filename: ./php7.1-opcache_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 147284
-MD5sum: 1ae1b3ba59e00d1bfd00288e155c3bc2
-SHA1: 86299cd8dfe9bf3c6238d7ae685ac0d302af4501
-SHA256: 0508380dd6a26d2cfe0056585b2e5e4a085bf6915b26a7486ad64c3ea5861ed9
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.27)
+Filename: ./php7.1-opcache_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 147076
+MD5sum: 5916f481582d5637eccc08e7bf72a559
+SHA1: c6e5209303e35af46941efb661a8dee5a1e463e6
+SHA256: 1ece44578e331b9a547c1862dcfa700f9d70626134ecb0d2d9ec7993a0a32b0a
+SHA512: 1a750820d62ee8fa67d025413173f7aaacbde32200fba75d1d89bdf08aa099671290e620978c8d36dcb2c798013bf368c1eeb54668f1d692b4b3aec81eb6783f
 Homepage: http://www.php.net/
 Description: Zend OpCache module for PHP
  This package provides the Zend OpCache module(s) for PHP.
@@ -640,20 +640,21 @@ Description: Zend OpCache module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-pgsql
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 212
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libpq5 (>= 9.3~)
 Provides: php-pdo-pgsql, php-pgsql, php7.1-pdo-pgsql
-Filename: ./php7.1-pgsql_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 57780
-MD5sum: 21da382d1a3f28e43573659228bb27b8
-SHA1: 81ffc6b4b461c027661ec3087cd4c31b9f64bee6
-SHA256: 333ab020473e46f7a0b6282abb64b9f7d37b1d0c5f679a160f06c44451daff6c
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.14), libpq5 (>= 9.3~)
+Filename: ./php7.1-pgsql_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 57528
+MD5sum: 6982312038adafb2a111ae509ab7619b
+SHA1: 5240e7882291bb263ac665844cef0d4846a2000e
+SHA256: 2ab00b3e43b196e5b9f10a1a6fcbbdc3e84fd229a54fcae6d2233a97216c714d
+SHA512: f2e1504838b2adee09b6555d6ba53aaa4a0e8561e51c0d7d1c093e900a371fe01823fb7e304ebddbb41b9f5f7e8ae462b8c96551900cd285807fb06302e2a8c1
 Homepage: http://www.php.net/
 Description: PostgreSQL module for PHP
  This package provides the PostgreSQL module(s) for PHP.
@@ -663,21 +664,22 @@ Description: PostgreSQL module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-phpdbg
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 4628
-Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.1-cli, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), php7.1-json, php7.1-opcache, tzdata, ucf, libc6 (>= 2.27), libedit2 (>= 2.11-20080614), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
-Recommends: php-readline
 Provides: php-phpdbg, phpapi-20160303
-Filename: ./php7.1-phpdbg_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 1388380
-MD5sum: b46e3c475b514c657bd7709c62f92741
-SHA1: f0fd6925ce6110f825c80ac82fd0a119176de29f
-SHA256: 637c55993689a7bac91bc3aea105fdcea242803914dd8dfde1bcf4c71e7a1454
-Section: php
-Priority: optional
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.1-cli, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), php7.1-json, php7.1-opcache, tzdata, ucf, libc6 (>= 2.27), libedit2 (>= 2.11-20080614), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Recommends: php-readline
+Filename: ./php7.1-phpdbg_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 1388256
+MD5sum: 1e89365db4772f3683e0f7e0fd6cad2d
+SHA1: b6408039996d139ab6234a3290f65f630b765bfb
+SHA256: 8ee1d13d9202ada7bcc025da6f92102af16e54fb1782d2093da9ce3d83d5e370
+SHA512: 4d67cb78c528e97f88b1a61dfa3a5b431f236db11268017931b037f3dc81ead1c021184484a162457d84bb0406c58e18676f3c854e5a2429e8ceea524c46fea4
 Homepage: http://www.php.net/
 Description: server-side, HTML-embedded scripting language (PHPDBG binary)
  This package provides the /usr/bin/phpdbg command interpreter, useful for
@@ -691,20 +693,21 @@ Description: server-side, HTML-embedded scripting language (PHPDBG binary)
  for web development and can be embedded into HTML.
 
 Package: php7.1-pspell
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 52
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libaspell15 (>= 0.60.7~20110707), libc6 (>= 2.4)
 Provides: php-pspell
-Filename: ./php7.1-pspell_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 8528
-MD5sum: c21ade8ca1f4cb2f670cf5c188ab8263
-SHA1: 1f90f93696d3bef50c9dee91b98dbf71ac732231
-SHA256: b9d8f66058f1d8154f4d7d536c35d5407bdfd2c12294a78ba1e84eae1ddff1c3
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libaspell15 (>= 0.60.7~20110707), libc6 (>= 2.4)
+Filename: ./php7.1-pspell_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 8532
+MD5sum: 210bacdcd7ad6d094afc35a4c59b692b
+SHA1: 38a8de883bdf9c78dd80a88829d0710d22d960a4
+SHA256: 7a1d684cb22562940c7ec50a2e675e61af02aef7c0596f8b79bbb5efd39b91c5
+SHA512: 9a8388718e787091f80d473ada0e53cbc0d406ac15af4855a5f666d28bdc095b1d6832069be19c1908deafda6e072d7c8d9dce8fec29ba03244c214afaa6befc
 Homepage: http://www.php.net/
 Description: pspell module for PHP
  This package provides the pspell module(s) for PHP.
@@ -714,20 +717,21 @@ Description: pspell module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-readline
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 60
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libedit2 (>= 3.1-20130611)
 Provides: php-readline
-Filename: ./php7.1-readline_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 12512
-MD5sum: 3ef87cf0b69acbd3a67280cc706ba3d5
-SHA1: e1251d67f7c7917f07344fc70d34e8b2b1ef3f79
-SHA256: 738f158eb699fecae778bd1d1740a9369d766216ee10b0bb924d1fecef3eff11
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.14), libedit2 (>= 3.1-20130611)
+Filename: ./php7.1-readline_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 12524
+MD5sum: 2fd57b7c6f70101b36b815f0f5bafd7f
+SHA1: f6067745ddaa485bfdaa5ca62012403d0226ca09
+SHA256: ca2cf29c53c9d4ea34ab4e9c1fc79e4196ffc7a94c21f610d1cd306713f33b5d
+SHA512: ddc8101843a23ac19cecbbab205fa200737dc9432565918d93f2ea7bfe56a36000bb13527a79962c88fdd9c73ccf908ddc69d5b2957fbe170cac55db433fb031
 Homepage: http://www.php.net/
 Description: readline module for PHP
  This package provides the readline module(s) for PHP.
@@ -737,20 +741,21 @@ Description: readline module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-recode
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 40
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), librecode0 (>= 3.6)
 Provides: php-recode
-Filename: ./php7.1-recode_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 5784
-MD5sum: a7874bbedd05db6c239616f20232cc4e
-SHA1: b8dbfa2b2b2199a9008a22d6f112889a1d0a3481
-SHA256: 88e1011c3a9c06a1cafe6831980e72cc20cf93a3960189fac95d8f1ee4c65ecb
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.14), librecode0 (>= 3.6)
+Filename: ./php7.1-recode_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 5792
+MD5sum: 3d1006aa017a487db6ff957cc1749c33
+SHA1: 651b09cf61d72b57a373d3d651c84e3d91050904
+SHA256: c73e74db219d2eb72c75982e2c790c93e14b67a3de0022e8e7c6525732dcf427
+SHA512: b7d2b68180c60694dfa10b07e96a107681e7ec053adab8ad443cd4eb25217964ef7ebfdf55d32da02c1443343c5221b9be493e52f00b7a46b233059b633f9f93
 Homepage: http://www.php.net/
 Description: recode module for PHP
  This package provides the recode module(s) for PHP.
@@ -760,21 +765,22 @@ Description: recode module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-snmp
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 84
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libsnmp30 (>= 5.7.3+dfsg-1.8ubuntu3.8~dfsg)
-Recommends: snmp
 Provides: php-snmp
-Filename: ./php7.1-snmp_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 19352
-MD5sum: 66199e8b90eb6ab2eca0f9ce5be3a317
-SHA1: 05db2884143fd105b16090a88345071516222f1e
-SHA256: f4c8f2b986c8a2572b556821fc4bf10f4f2a1d690a772f3cdd71a5c30f9b4cd6
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.14), libsnmp30 (>= 5.7.3+dfsg-1.8ubuntu3.8~dfsg)
+Recommends: snmp
+Filename: ./php7.1-snmp_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 19340
+MD5sum: 17e6ee76c176ad7fadc39916cd09462c
+SHA1: 242b7587abc9eed1bd011b6a06096b29d3734994
+SHA256: e4ad00206674fd81916889831c8c22353b8e03d884e604fc46627a718d72cb64
+SHA512: a0c3520493616f99b09adbe2fcc256dd1dc116815e1d7fd583d0bef2c939b68ec07c70b5fe62284323c6f2b37dc8146e8a5030d03d50600c495a41fbbae8dee4
 Homepage: http://www.php.net/
 Description: SNMP module for PHP
  This package provides the SNMP module(s) for PHP.
@@ -784,20 +790,21 @@ Description: SNMP module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-soap
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 336
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libxml2 (>= 2.7.4)
 Provides: php-soap
-Filename: ./php7.1-soap_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 115008
-MD5sum: 2a5f5e30a59ee275dabb89343cc98f04
-SHA1: 9a10937cd3d3a3fe0f8523719f821bc0e09c57fb
-SHA256: d8652a925e1b10f93200da465571046639641dceb50d47426f84df5307bf1002
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.14), libxml2 (>= 2.7.4)
+Filename: ./php7.1-soap_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 115056
+MD5sum: e7976d8b30d5005f840993f1d7e0d907
+SHA1: 4b5b9bac9a6a7dafb3b443705b697a7036bd78ce
+SHA256: 1c0a5e60bd57a1179d8c54436856e4302f1ee308cbe7f6a5e39638b19d44cd5c
+SHA512: 343ec4ce59f57fb2d93992f10e6d3ff0b2fca34afc812acc7e0762368c7d4e487105905d4b01741d45c3009cded95f5f78f93aca2e5c5d9bb9aff31f594aee4d
 Homepage: http://www.php.net/
 Description: SOAP module for PHP
  This package provides the SOAP module(s) for PHP.
@@ -807,20 +814,21 @@ Description: SOAP module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-sqlite3
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 109
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libsqlite3-0 (>= 3.7.15)
 Provides: php-pdo-sqlite, php-sqlite3, php7.1-pdo-sqlite
-Filename: ./php7.1-sqlite3_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 26068
-MD5sum: fe742a7e712c5e9e275658abb4db6bf7
-SHA1: 24eeeb1a998e535d33aaa3472b44f989f88abd7f
-SHA256: 279e1701e89185bda36f69cfbaa88fb2352cd0d9ce572d6f1d687441389cd506
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.14), libsqlite3-0 (>= 3.7.15)
+Filename: ./php7.1-sqlite3_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 26108
+MD5sum: d164d281fc3b26a550f10df832415268
+SHA1: 44ed0c4c2d431fd81aac3206def695e74c770a4f
+SHA256: 4e576224bae22ef3cc93258c228bf0431db83d8d1a618238e55828ffc0e84489
+SHA512: 992ebbbf2359173d1eb53ec7739540777dd1b7523742b2e9db6ce312018ef80e5f6858e3089ef57c971c88507ab0b9528f6b96fd7a1947896fd78cf54c1dc890
 Homepage: http://www.php.net/
 Description: SQLite3 module for PHP
  This package provides the SQLite3 module(s) for PHP.
@@ -830,20 +838,21 @@ Description: SQLite3 module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-sybase
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 56
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libsybdb5 (>= 0.63)
 Provides: php-pdo-dblib, php7.1-pdo-dblib
-Filename: ./php7.1-sybase_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 11344
-MD5sum: abb0797e02a43f79f87061280a95ed95
-SHA1: c161f924a59cdfd20b8e156eadb2f7eb189bdb71
-SHA256: a05259301d523aa02fc78524438a1b1e0c0db87cf6d2da63912ed5093a082d25
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.14), libsybdb5 (>= 0.63)
+Filename: ./php7.1-sybase_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 11352
+MD5sum: f0433081344a2e7529b97619ea15ca1e
+SHA1: 888b1993733640802c8d4d06e7f0b5b2a3ec4d18
+SHA256: d1775104476f6cbc2068fd8d3fde30f7ad7d89f5252ccd670242595ff280b3f8
+SHA512: f7bf2d5844d2750fafdf174588d85fba17ed89000af81fdb9b20fc990b520ed23f8d0cdcd872ccceacc891ccc920bc4299366c73ebed9d7b24893ae3f2012444
 Homepage: http://www.php.net/
 Description: Sybase module for PHP
  This package provides the Sybase module(s) for PHP.
@@ -853,20 +862,21 @@ Description: Sybase module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-tidy
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 80
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libtidy5 (>= 5.2.0)
 Provides: php-tidy
-Filename: ./php7.1-tidy_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 16964
-MD5sum: ddfe54f51a07ca26310749bfeb463c0a
-SHA1: 71c6dad33a52ab3e3601a74d03cbfca987f1c344
-SHA256: d8a14d9f73139d54e7a4a311772e2f43781098fe5d48d2f954e69d43ba24924d
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.14), libtidy5 (>= 5.2.0)
+Filename: ./php7.1-tidy_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 16956
+MD5sum: 927d21bc9e966dea51c657cc8c407aac
+SHA1: e416c5dec2b40ea6f46d62644e6b9d541b3058c2
+SHA256: c2ace8feb64a93140455a13b8b4308c8b599988b4a840f48d58e2fa16e4dbec5
+SHA512: 31ecbd2e2996f67c13eae02b76731b69e192e23af304efeb769fd14596c4263e957b67a804184ea7974e6133bfeb3402f4e8c2d0f99e32328f266e735de4a1bf
 Homepage: http://www.php.net/
 Description: tidy module for PHP
  This package provides the tidy module(s) for PHP.
@@ -876,22 +886,23 @@ Description: tidy module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-xml
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 485
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libxml2 (>= 2.9.0), libxslt1.1 (>= 1.1.25)
+Provides: php-dom, php-simplexml, php-wddx, php-xml, php-xmlreader, php-xmlwriter, php-xsl, php7.1-dom, php7.1-simplexml, php7.1-wddx, php7.1-xmlreader, php7.1-xmlwriter, php7.1-xsl
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.14), libxml2 (>= 2.9.0), libxslt1.1 (>= 1.1.25)
 Breaks: php7.1-xsl (<< 7.0.3-6~)
 Replaces: php7.1-xsl (<< 7.0.3-6~)
-Provides: php-dom, php-simplexml, php-wddx, php-xml, php-xmlreader, php-xmlwriter, php-xsl, php7.1-dom, php7.1-simplexml, php7.1-wddx, php7.1-xmlreader, php7.1-xmlwriter, php7.1-xsl
-Filename: ./php7.1-xml_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 116400
-MD5sum: 5741b5ab933d2abcf1a24e431614216e
-SHA1: 1cb4cd38641e5207eb9321096f637f7ce3ff27d7
-SHA256: b309e97f4ca60ef1c912b9352c9f69311913a35ed328ba82f60ee8fe85e12223
-Section: php
-Priority: optional
+Filename: ./php7.1-xml_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 116552
+MD5sum: c0e7554fc826ca836404dc45c10373d5
+SHA1: 99ed45050ae244d59e003ee5b16a93bc720c617a
+SHA256: fb7fba9a0cd7dda2fc65445deb11254f074852e2f02ced5dd076983848ba8d37
+SHA512: 1eeb61b1f2d3e50d997fe001e6b933088b748aace8f42e9d3efb283f6776ae62d503fa2849b4b0f6c6988baa1a3b92350687c12db98ba94fc55d13303130cf29
 Homepage: http://www.php.net/
 Description: DOM, SimpleXML, WDDX, XML, and XSL module for PHP
  This package provides the DOM, SimpleXML, WDDX, XML, and XSL module(s) for PHP.
@@ -901,20 +912,21 @@ Description: DOM, SimpleXML, WDDX, XML, and XSL module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-xmlrpc
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 64
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libxmlrpc-epi0
 Provides: php-xmlrpc
-Filename: ./php7.1-xmlrpc_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 13224
-MD5sum: b1a880d96d85efa49124a0edde82c8cb
-SHA1: 6b159f3e82f1545d88e7c3b76c4bc8980f1758e4
-SHA256: 63899cd06abede3c21bbaeca296186939a696aa15e56bcc06c069e514e53f048
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.14), libxmlrpc-epi0
+Filename: ./php7.1-xmlrpc_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 13284
+MD5sum: 179ad80afa1b8edb502563ebbf6b1f4a
+SHA1: e9821a7af4a3eb03c1ed2b118e452771356f0452
+SHA256: 972fb0e843dcb7c06582c39d02bb66849ad898566e904b00d97a242c63c04ff8
+SHA512: b4a50cc8368230a335c5a3d746be5ebaf535745aed26a3ce991b5de7c3d2b43181b74b30891689f7939c6a7d9fb04b7bdfe503c31d674c8992f3107dc1c5c262
 Homepage: http://www.php.net/
 Description: XMLRPC-EPI module for PHP
  This package provides the XMLRPC-EPI module(s) for PHP.
@@ -924,42 +936,70 @@ Description: XMLRPC-EPI module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.1-xsl
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: all
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 93
 Depends: php7.1-common, php7.1-xml
-Filename: ./php7.1-xsl_7.1.33-80+ubuntu18.04.1+local1_all.deb
-Size: 71824
-MD5sum: 3a6df624da84bc5b822b4da68c1512b4
-SHA1: 7142bce301e2bd593fb05e4d06f3599b3879f31f
-SHA256: 57c14d6562c13281c76fba43ac4cc0fee97b1ed8f1cb38842b083ec50d707e2a
-Section: php
-Priority: optional
+Filename: ./php7.1-xsl_7.1.33-80+ubuntu18.04.1+local2_all.deb
+Size: 72092
+MD5sum: fcbb977318a99c6537ad6090ba0e7c79
+SHA1: 4853d33552394aca445c3b6ab5eed40cd7be110c
+SHA256: ffc52d863ee2cc02d57793412f394caf2d62f95a8587dc22c44869d9129c59b3
+SHA512: a2beac015c61286a46e4c23fceaf33aa3d0371ecc5b4f2028cb488523659e108645e557ab62ea1ec38dc64f5b6d42d9179c8f1862ca45d122b44cf0b5827ce3a
 Homepage: http://www.php.net/
 Description: XSL module for PHP (dummy)
  This package is a transitional dummy package and can be safely
  removed.
 
 Package: php7.1-zip
-Source: php7.1
-Version: 7.1.33-80+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Source: php7.1
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 88
-Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.27), libzip4 (>= 1.0)
 Provides: php-zip
-Filename: ./php7.1-zip_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
-Size: 20156
-MD5sum: 793cace1726e08ea24c23457ddf1f12e
-SHA1: b8519dec554b6772aaae6c3f8468f045f3a46cf4
-SHA256: 55327c0bd1ea19abfd94d4cafd6da8447b533009baf7765fbbe4219a6286cfa5
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local2), libc6 (>= 2.27), libzip4 (>= 1.0)
+Filename: ./php7.1-zip_7.1.33-80+ubuntu18.04.1+local2_amd64.deb
+Size: 20188
+MD5sum: a9c7243ba6c57fba3ee20e674fc280a5
+SHA1: 00485011164bc598a8e3f764cc1071c36f8a5bd8
+SHA256: d8ab882f2b67e1fd3f26c1c9690bdc15b10e9559869bbfd919cef6ec0220c81d
+SHA512: c2ce543be033e89133c3ff1f642a3f3fd7b96df07e07541934b8e010c77283086b9d56704766c47cde46811078a51b82684f0ce1af960e226bd03b6c69658580
 Homepage: http://www.php.net/
 Description: Zip module for PHP
  This package provides the Zip module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1
+Architecture: all
+Version: 7.1.33-80+ubuntu18.04.1+local2
+Priority: optional
+Section: php
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 96
+Provides: php
+Depends: libapache2-mod-php7.1 | php7.1-fpm | php7.1-cgi, php7.1-common
+Filename: ./php7.1_7.1.33-80+ubuntu18.04.1+local2_all.deb
+Size: 72444
+MD5sum: ab468aa1700f5f536001e3885531d04b
+SHA1: c28947fb452d251463762392b2d1ac40263f5540
+SHA256: 49f4162c19b181d76e31dc4ddba1712607145b2b4cb2c63111024e57b23ec8f4
+SHA512: be6be4f3734f236ff719f3d11f748f51b29e5ae4de5d3d653b12e0d98929c8c58214abc0732a4e3f99305bc8b9288484a979c529cf6694379432ca0e1b6d81c3
+Homepage: http://www.php.net/
+Description: server-side, HTML-embedded scripting language (metapackage)
+ This package is a metapackage that, when installed, guarantees that you
+ have at least one of the four server-side versions of the PHP interpreter
+ installed. Removing this package won't remove PHP from your system, however
+ it may remove other packages that depend on this one.
  .
  PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
  open source general-purpose scripting language that is especially suited

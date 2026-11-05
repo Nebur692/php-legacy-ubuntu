@@ -24,17 +24,23 @@ still run them can get the latest fixes, including **PHP2Shell (CVE-2026-109618 
 
 | Ubuntu | Branch | Version |
 |---|---|---|
-| 18.04 bionic | php7.1 | `7.1.33-80+ubuntu18.04.1+local1` |
+| 18.04 bionic | php7.1 | `7.1.33-80+ubuntu18.04.1+local2` |
 | 18.04 bionic | php7.2 | `7.2.34-66+ubuntu18.04.1+local1` |
-| 20.04 focal | php5.6 | `5.6.40-105+ubuntu20.04.1+local1` |
-| 20.04 focal | php7.0 | `7.0.33-92+ubuntu20.04.1+local1` |
-| 20.04 focal | php7.1 | `7.1.33-80+ubuntu20.04.1+local1` |
+| 18.04 bionic | libgd3 | `2.2.5-4ubuntu0.5+local1` |
+| 20.04 focal | php5.6 | `5.6.40-105+ubuntu20.04.1+local2` |
+| 20.04 focal | php7.0 | `7.0.33-92+ubuntu20.04.1+local2` |
+| 20.04 focal | php7.1 | `7.1.33-80+ubuntu20.04.1+local2` |
 | 20.04 focal | php7.3 | `7.3.33-35+ubuntu20.04.1+local1` |
 | 20.04 focal | php8.2 | `8.2.35-1+ubuntu20.04.1+local1` (with `php8.2-imagick` 3.8.1) |
+| 20.04 focal | libgd3 | `2.2.5-5.2ubuntu2.4+local1` |
 
-- The source is the PPA's, unchanged: the `.dsc`, `.orig` and `.debian.tar.xz` files sit next to each
-  build in `pool/<ubuntu>/<branch>/fuente/` and match the PPA's signed index byte for byte. The only change
-  is the version suffix (`+ubuntuXX.04.1+local1`).
+- The source is the PPA's: the `.dsc`, `.orig` and `.debian.tar.xz` files sit next to each build in
+  `pool/<ubuntu>/<branch>/fuente/`. The `+local1` builds are the PPA's source unchanged, byte for byte.
+- The `+local2` builds (php5.6, php7.0, php7.1) add the fixes the PPA ships for php7.2 and newer but not
+  for these branches: CVE-2026-17543 (pgsql), CVE-2026-7260 (phar) and, for php5.6, CVE-2026-6722 (soap).
+  The pgsql, phar and soap fixes for php5.6 are adapted to its engine. The extra patches are in `patches/`.
+- **`libgd3`** is the system GD library: every `php*-gd` uses it (and so do other programs). It is
+  Ubuntu's own package with Debian's fix for CVE-2026-9672 (GIF reader) added; `apt-get upgrade` installs it.
 - Each branch folder also has its `SHA256SUMS` and the gzipped build log.
 - The repository is **signed** with its own key. apt checks every index against it.
 - **amd64 only.**
@@ -87,7 +93,7 @@ New installs work as usual, for example `apt-get install php8.2-fpm php8.2-mysql
 ### 🧭 Checking it
 
 ```bash
-dpkg -l 'php*' | awk '/^ii/ && /local1/ {print $2, $3}'
+dpkg -l 'php*' 'libgd3' | awk '/^ii/ && /local[0-9]/ {print $2, $3}'
 zgrep -c 'CVE-2026-109618' /usr/share/doc/php7.1-common/changelog.Debian.gz   # >= 1 (use your branch)
 ```
 
@@ -109,6 +115,9 @@ shows `(deleted)`: restart it.
 
 - `tools/php-bionic.sh` and `tools/php-focal.sh` rebuild a branch on the target release
   (`prep` → `build` → `sim` → `install` → `export`). `prep` checks the PPA's signature and sha256 sums.
+- **php5.6, php7.0 and php7.1:** after `prep`, copy `patches/<ubuntu>-<branch>/*.patch` into the source's
+  `debian/patches/` and append their names to `debian/patches/series`; otherwise the build goes back to the
+  PPA's source without the extra fixes. Drop a patch once the PPA ships that fix for the branch.
 - Copy the exported folder to `pool/<bionic|focal>/<branch>/` and run
   `tools/publish-repo.sh <private-key.asc>`. It rebuilds `dists/` and signs it in a throwaway
   `ubuntu:24.04` container. Then commit and push.
@@ -148,17 +157,23 @@ CVE-2026-109619)**.
 
 | Ubuntu | Rama | Versión |
 |---|---|---|
-| 18.04 bionic | php7.1 | `7.1.33-80+ubuntu18.04.1+local1` |
+| 18.04 bionic | php7.1 | `7.1.33-80+ubuntu18.04.1+local2` |
 | 18.04 bionic | php7.2 | `7.2.34-66+ubuntu18.04.1+local1` |
-| 20.04 focal | php5.6 | `5.6.40-105+ubuntu20.04.1+local1` |
-| 20.04 focal | php7.0 | `7.0.33-92+ubuntu20.04.1+local1` |
-| 20.04 focal | php7.1 | `7.1.33-80+ubuntu20.04.1+local1` |
+| 18.04 bionic | libgd3 | `2.2.5-4ubuntu0.5+local1` |
+| 20.04 focal | php5.6 | `5.6.40-105+ubuntu20.04.1+local2` |
+| 20.04 focal | php7.0 | `7.0.33-92+ubuntu20.04.1+local2` |
+| 20.04 focal | php7.1 | `7.1.33-80+ubuntu20.04.1+local2` |
 | 20.04 focal | php7.3 | `7.3.33-35+ubuntu20.04.1+local1` |
 | 20.04 focal | php8.2 | `8.2.35-1+ubuntu20.04.1+local1` (con `php8.2-imagick` 3.8.1) |
+| 20.04 focal | libgd3 | `2.2.5-5.2ubuntu2.4+local1` |
 
-- El código es el del PPA, sin cambios: los `.dsc`, `.orig` y `.debian.tar.xz` están junto a cada compilación
-  en `pool/<ubuntu>/<rama>/fuente/` y coinciden byte a byte con el índice firmado del PPA. Lo único que cambia
-  es el sufijo de la versión (`+ubuntuXX.04.1+local1`).
+- El código es el del PPA: los `.dsc`, `.orig` y `.debian.tar.xz` están junto a cada compilación en
+  `pool/<ubuntu>/<rama>/fuente/`. Las compilaciones `+local1` son el código del PPA sin cambios, byte a byte.
+- Las `+local2` (php5.6, php7.0, php7.1) añaden los arreglos que el PPA publica para php7.2 y posteriores pero
+  no para estas ramas: CVE-2026-17543 (pgsql), CVE-2026-7260 (phar) y, en php5.6, CVE-2026-6722 (soap). Los
+  de pgsql, phar y soap de php5.6 están adaptados a su motor. Los parches añadidos están en `patches/`.
+- **`libgd3`** es la librería GD del sistema: la usan todos los `php*-gd` (y otros programas). Es el paquete de
+  Ubuntu con el arreglo de Debian para CVE-2026-9672 (lector GIF); `apt-get upgrade` la instala.
 - Cada carpeta de rama lleva también su `SHA256SUMS` y el registro de compilación comprimido.
 - El repositorio está **firmado** con una clave propia y apt comprueba con ella cada índice.
 - **Solo amd64.**
@@ -211,7 +226,7 @@ Las instalaciones nuevas funcionan como siempre, por ejemplo `apt-get install ph
 ### 🧭 Comprobarlo
 
 ```bash
-dpkg -l 'php*' | awk '/^ii/ && /local1/ {print $2, $3}'
+dpkg -l 'php*' 'libgd3' | awk '/^ii/ && /local[0-9]/ {print $2, $3}'
 zgrep -c 'CVE-2026-109618' /usr/share/doc/php7.1-common/changelog.Debian.gz   # >= 1 (con tu rama)
 ```
 
@@ -233,6 +248,9 @@ muestra `(deleted)`: reinícialo.
 
 - `tools/php-bionic.sh` y `tools/php-focal.sh` recompilan una rama en la versión de destino
   (`prep` → `build` → `sim` → `install` → `export`). `prep` comprueba la firma y los sha256 del PPA.
+- **php5.6, php7.0 y php7.1:** después de `prep`, copia `patches/<ubuntu>-<rama>/*.patch` a `debian/patches/`
+  del código y añade sus nombres al final de `debian/patches/series`; si no, la compilación vuelve al código del
+  PPA sin los arreglos añadidos. Quita un parche cuando el PPA publique ese arreglo para la rama.
 - La carpeta exportada se copia a `pool/<bionic|focal>/<rama>/` y se ejecuta
   `tools/publish-repo.sh <clave-privada.asc>`, que regenera `dists/` y lo firma en un contenedor
   `ubuntu:24.04` de usar y tirar. Después, commit y push.

@@ -1,0 +1,83 @@
+Package: libgd-dev
+Architecture: amd64
+Version: 2.2.5-5.2ubuntu2.4+local1
+Multi-Arch: same
+Priority: optional
+Section: libdevel
+Source: libgd2
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: GD Team <team+gd@tracker.debian.org>
+Installed-Size: 827
+Depends: libgd3 (= 2.2.5-5.2ubuntu2.4+local1), libpng-dev, libz-dev, libjpeg-dev, libfreetype6-dev, libxpm-dev, libx11-dev, libxt-dev, libfontconfig-dev, libvpx-dev, libtiff-dev
+Filename: ./libgd-dev_2.2.5-5.2ubuntu2.4+local1_amd64.deb
+Size: 273188
+MD5sum: 96c357f24f75dc7189bffeddb4cb885a
+SHA1: 5e57cff77398042beb626b7574de7b8a1a89eb97
+SHA256: d3ab6ad86709f65c3f222d7b3877e7b6d64a9c0b11fbf2898a9b2477a34344b6
+SHA512: 2fcddb590f7aa75f7864f8f20dcdf63e674944e23d50900b35cd2ae64996b98a98bc593497b8c34eda63fb36232c074369bf1f6d08f858612a58dbbe72bf2978
+Homepage: http://www.libgd.org/
+Description: GD Graphics Library (development version)
+ GD is a graphics library. It allows your code to quickly draw images
+ complete with lines, arcs, text, multiple colours, cut and paste from
+ other images, flood fills, and write out the result as a PNG file.
+ This is particularly useful in World Wide Web applications, where PNG is
+ one of the formats accepted for inline images by most browsers.
+ .
+ This is the full development version of the library.
+
+Package: libgd-tools
+Architecture: amd64
+Version: 2.2.5-5.2ubuntu2.4+local1
+Priority: optional
+Section: graphics
+Source: libgd2
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: GD Team <team+gd@tracker.debian.org>
+Installed-Size: 217
+Depends: libc6 (>= 2.14), libgd3 (>= 2.1.0~alpha~), perl:any
+Suggests: libgd-dev
+Filename: ./libgd-tools_2.2.5-5.2ubuntu2.4+local1_amd64.deb
+Size: 36196
+MD5sum: 3b8da3e62f09b4f2204af23f652d08b5
+SHA1: 0ae0ad265b5c769db159968569105380b6a93cee
+SHA256: efe0fb5356fc090967d97df41d8a5b6799d0ebe2841e6d36842d6d8581ab8444
+SHA512: 59bc1dc945cbb53a32f4e304a8cf37b06900d1321155bb808e94ebf5da72365a20ddc46bc46a2f85cdd3f892a6ac794f5ba734cae96b71c957c942e6add0b543
+Homepage: http://www.libgd.org/
+Description: GD command line tools and example code
+ GD is a graphics library. It allows your code to quickly draw images
+ complete with lines, arcs, text, multiple colours, cut and paste from
+ other images, flood fills, and write out the result as a PNG file.
+ This is particularly useful in World Wide Web applications, where PNG is
+ one of the formats accepted for inline images by most browsers.
+ .
+ This is some simple command line tools and example code that use the GD
+ graphics library.
+
+Package: libgd3
+Architecture: amd64
+Version: 2.2.5-5.2ubuntu2.4+local1
+Multi-Arch: same
+Priority: optional
+Section: libs
+Source: libgd2
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: GD Team <team+gd@tracker.debian.org>
+Installed-Size: 453
+Depends: libc6 (>= 2.29), libfontconfig1 (>= 2.12.6), libfreetype6 (>= 2.2.1), libjpeg8 (>= 8c), libpng16-16 (>= 1.6.2-1), libtiff5 (>= 4.0.3), libwebp6 (>= 0.5.1), libxpm4, zlib1g (>= 1:1.1.4)
+Suggests: libgd-tools
+Filename: ./libgd3_2.2.5-5.2ubuntu2.4+local1_amd64.deb
+Size: 134612
+MD5sum: 4c02a54cd250e3793467b352822971d3
+SHA1: 6c533c75860a183f8a9ff12c4a53023b176107b9
+SHA256: 384011b0fc83b74aba95999ef8492745cf2a3d8f6ee98eed0a7a8278d2557ca9
+SHA512: b4bb18de88832df8f6ebbe928cb6274e5c0b7790926c56eaa34cdeae9e74ccbb1523c64e6f4bfcaae87e3ef195fb0caedc4f15f368248de70b20832f089fbff7
+Homepage: http://www.libgd.org/
+Description: GD Graphics Library
+ GD is a graphics library. It allows your code to quickly draw images
+ complete with lines, arcs, text, multiple colours, cut and paste from
+ other images, flood fills, and write out the result as a PNG file.
+ This is particularly useful in World Wide Web applications, where PNG is
+ one of the formats accepted for inline images by most browsers.
+ .
+ This is the runtime package of the library.
+

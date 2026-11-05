@@ -4,36 +4,36 @@ Hash: SHA512
 Architectures: amd64
 Codename: bionic
 Components: main
-Date: Thu, 05 Nov 2026 13:29:55 +0000
+Date: Thu, 05 Nov 2026 15:55:51 +0000
 Description: Patched PHP rebuilds for Ubuntu bionic
 Label: php-legacy-ubuntu
 Origin: php-legacy-ubuntu
 Suite: bionic
 MD5Sum:
- b42aaf1269fc5bc7a15052cbfcb8c117            96959 main/binary-amd64/Packages
- 447dae5943d9789aa98f9a418585e46d            21948 main/binary-amd64/Packages.gz
+ 9eff3887d15a2b3899b903e6c4f2ace4           100938 main/binary-amd64/Packages
+ 43c5f12e0bc6f55dbedbcd9b3eb1d75a            23154 main/binary-amd64/Packages.gz
 SHA1:
- 9cec49cf01056e80174be13bebe4a19d0ae57a99            96959 main/binary-amd64/Packages
- 1450ead0372db2f9264d5cfb67ceb27caecfca5f            21948 main/binary-amd64/Packages.gz
+ 79fd3d4b3c459466e890c2f86d3c4a00e32b92c6           100938 main/binary-amd64/Packages
+ 761b05218bfaf2343d3f012ac9cc2c9f2bbf8308            23154 main/binary-amd64/Packages.gz
 SHA256:
- 8206fc08c88cd0d9f045b8492fa37e33be5b34c1e4c63b073d63ef41912fab4b            96959 main/binary-amd64/Packages
- 1572aefad6155686fc6968c7a786d193aee78d1170aae0196205d2380996ce63            21948 main/binary-amd64/Packages.gz
+ 03237b65c95f59cc58b4a4331e80c29ad2c231cf15ddac2345ac5eec4c1efdee           100938 main/binary-amd64/Packages
+ 03db19a6d5823cc18ebef4024e413b3b819b41aca7fd08c1dfb5dad9e2933457            23154 main/binary-amd64/Packages.gz
 SHA512:
- 9d9429c90f53cb46789c410252ed7e7ca6889973d32f7625d6f8695b93f1658060faecdb1887fd44f0a64db9dba0e5100276e9b84c281c451e8b5a6eb24edc55            96959 main/binary-amd64/Packages
- 5656463c845a33291c742be8fec69fc828096f65c9f2c8c9ef0dca5486ad16c75af06c9d9206f592668c806b72aa75b3725387b45b91db9af65e08adeb6523f7            21948 main/binary-amd64/Packages.gz
+ ac38ae648fc98a85ef2d7c4055cc47a6333682892627c24adcadeef82d115920452569c843bfa9b69d19de10af816d5286ee38aec6a75b33c2a2a1a37d673cf8           100938 main/binary-amd64/Packages
+ c52b8bf75b3922c375398c49142a3d2ddf7d1310b9075daad7e8547ba6992c42c77c4a4dfebc0f078cf3bc1e1d5830657c71031954523be7babf2c4cdb2c11b3            23154 main/binary-amd64/Packages.gz
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEE/V3pK4hvgRROyxTShcyiTJiQ1ScFAmrshNMACgkQhcyiTJiQ
-1ScZQw//f1BIcWnjovPmYEzapkhKRs7RRAuceMcHeX27UHsTahzNuVGhN0wurKO4
-lkYJ6KDkmRhNxgO1YmWAQ7Zioqq/RqFV87p6n5Emp7vrV/B/DLSCMTsY411QuQQY
-WIABHB47N/77JE0hW3f0Q70e36/9W9XqAdj1BhuOL4t0Per5F2UX82abXsptp2He
-i55DfHrTR+/Tn6mGPsGv69f5BySbBlrVdqojteDbejz2+b5CwW4ysqAChgX6l4K+
-ryh6l9mAeHmNU+ilAR76Qo6yHC0i/zrVKHNhu5UALD5nw98g/x09bpgzqG7Z2Ccd
-ppZKu5LBaIfofdnOwfgov+zNgVRRfaXl/9V6WfZjJm8MO+m9Cp+47wmDfHcFuaxi
-H2Utn7kUFkWtKBVUBZE7I1Ld7sA4x0GZ29q2zBYND2kVerfsT2BuPOOeEqwKeN5t
-Fwq+E4QYjZxSoabFMhky2xD7xHwuZClbdwOOu44oJSvCLALqOxTjblT93vqShG70
-ub1fjrYksE3wWqwKVAGyFrJzzfbwfISUAgoq+8pVZd/Lg41MrojLIlxfqhRFg5/4
-wbrXykw+NXFCcXwBWAjNYlpL/xyzynrPV1M2vatPQYTf/pgylYYdPkgfE6j01qf+
-7u4oXnXXC/5FJ00w8Q5KkoFh8AapJHPl2AS4rLslMEEDTjIBRas=
-=XkSA
+iQIzBAEBCgAdFiEE/V3pK4hvgRROyxTShcyiTJiQ1ScFAmrspwcACgkQhcyiTJiQ
+1ScG8A/8C63pGntbaoEbgbK8sH8Mm3MIyej57bFgrsenqo4R2QU03hXYOiJIS75V
+J9xFPgVvqZYOI5DV44g0G9EBymcYfC49Wf8yVKQjttQ01jNC/lpbgs3aYxGsrWE1
+vODrOI03bjP/zzVRsWROXP2Q+qwWz8pLK7860tQUSaAHxQwz/2ZzWsTSaaRqS+Oq
+v3u++GFEmVeDm1/ZsC+ov4DxQDQOXoLLd8cAJMU/tVZvEjFrO8kE8RS+/4O38eTz
+FWD0Eb6WCtUXeztQxoRZ/MF8ea0L5qxwRQ7YQ4S6bhwQEAqygsckgSYn6uRrRFp/
+3DTPDyPK6CCf6YGHyVQQgYXrq54aGx8YeE0rKc0QoXGi9g9bASTKVDTJB/aYSyL+
+vgQRoxY/EC0INSnibSnGfZDYtmuuUhSPMtIOHZbiZporIVQCqQ1uKwPF/0/0cTxq
+EqTwx/e8jKWdQfVefavq37xJDSD+YU4RMbvSVgpCgiGsTeuNahtE/Eyx61HIGnH1
+/rPJm5ghskN44DV7c5m5KkRmiWWxQa7DIMQ86S6MZ4o+cOAd6ETzzFMgstLCES6Q
+RWvtsBKWujKSeymCHgBcj5KJd/siX9req6JYdHhmtRhYR/Zh2tFmLkRIqKKF6Doe
+70nT202f2y1H/+5pij5fA7oKrawt3KbQsUJlJwWwy6TZmOJ7CdI=
+=ESlX
 -----END PGP SIGNATURE-----
