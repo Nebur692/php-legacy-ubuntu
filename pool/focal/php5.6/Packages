@@ -1,0 +1,967 @@
+Package: libapache2-mod-php5.6
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 4286
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php5.6-cli, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), php5.6-json, php5.6-opcache, tzdata, ucf, apache2-api-20120211, apache2-bin (>= 2.4.16), libc6 (>= 2.29), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Recommends: apache2
+Suggests: php-pear
+Provides: libapache2-mod-php, phpapi-20131226
+Filename: ./libapache2-mod-php5.6_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 1219652
+MD5sum: 14464c34f4f8783f7a69e84f71d6732b
+SHA1: 16702487e7eff06c3158c2182a068f9e802c76e1
+SHA256: 817e4f1b3219a7ed86b6694c624cd77a30a2c1c507b3c80c86dffa67de15ae90
+Section: httpd
+Priority: optional
+Homepage: http://www.php.net/
+Description: server-side, HTML-embedded scripting language (Apache 2 module)
+ This package provides the PHP module for the Apache 2 webserver (as
+ found in the apache2-mpm-prefork package).  Please note that this package
+ ONLY works with Apache's prefork MPM, as it is not compiled thread-safe.
+ .
+ The following extensions are built in: Core date ereg filter hash libxml
+ mhash openssl pcre Reflection session SPL standard zlib.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: libphp5.6-embed
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 4275
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php5.6-cli, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), php5.6-json, php5.6-opcache, tzdata, ucf, libc6 (>= 2.29), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Suggests: php-pear
+Provides: libphp-embed, phpapi-20131226
+Filename: ./libphp5.6-embed_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 1216256
+MD5sum: 60b0cbaac99a7802623e88e85b68bde7
+SHA1: 163658d37daded223590a2ce61a3d4e7ea14285d
+SHA256: 3b4b88441c43e37bba8c4bd4caa95c696f5a5000f78530cacbed03f00a5f0f1d
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: HTML-embedded scripting language (Embedded SAPI library)
+ This package provides the library /usr/lib/libphp5.6.so which can
+ be used by application developers to embed PHP scripting functionality.
+ .
+ The following extensions are built in: Core date ereg filter hash libxml
+ mhash openssl pcntl pcre Reflection session SPL standard zlib.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+ .
+ WARNING: The embed SAPI is experimental and there's no guarantee that
+ the API/ABI will be kept compatible even between minor releases.  You
+ have been warned.
+
+Package: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: all
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 291
+Depends: libapache2-mod-php5.6 | php5.6-fpm | php5.6-cgi, php5.6-common
+Provides: php
+Filename: ./php5.6_5.6.40-105+ubuntu20.04.1+local1_all.deb
+Size: 273528
+MD5sum: 29119e9894fccc94d9fc62e3b2dc48b6
+SHA1: 4e6397f31e2e48bdf94adaea9e931b89b01c5543
+SHA256: a46c50a966f32dd3ec8f1677399fb095a5f714f3e519db97aa79197c61e9e4e9
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: server-side, HTML-embedded scripting language (metapackage)
+ This package is a metapackage that, when installed, guarantees that you
+ have at least one of the four server-side versions of the PHP interpreter
+ installed. Removing this package won't remove PHP from your system, however
+ it may remove other packages that depend on this one.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-bcmath
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 68
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.14)
+Provides: php-bcmath
+Filename: ./php5.6-bcmath_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 14836
+MD5sum: 7e06095ae5ce97bf382059c4a3c3289f
+SHA1: 817b8c1be4fcd2eef84108c13e14411ccda6caaf
+SHA256: c0a17ac03af07faf831a732e9a3a7ec08fd2d25757490a37d003347847c679da
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: Bcmath module for PHP
+ This package provides the Bcmath module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-bz2
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 60
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libbz2-1.0, libc6 (>= 2.14)
+Provides: php-bz2
+Filename: ./php5.6-bz2_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 10664
+MD5sum: 52eb36981510d99c27fd43614ab5f2c7
+SHA1: 5cdb26d5330659525a230cc75c1015a6e2a9cf55
+SHA256: 1da7d2f46cf9606b3bd8b52b1ad09c83cca6f7744fe55ee1a8daa36f27b975c9
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: bzip2 module for PHP
+ This package provides the bzip2 module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-cgi
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 8601
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php5.6-cli, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), php5.6-json, php5.6-opcache, tzdata, ucf, libc6 (>= 2.29), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Suggests: php-pear
+Provides: php-cgi, phpapi-20131226
+Filename: ./php5.6-cgi_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 1236500
+MD5sum: 9151360aad9801b6bc469a5e22eff744
+SHA1: 105908c9c003300fe4699dc475f3aa4e03f194be
+SHA256: 78b104d75234796587581cb35fb773a9b65264ff8c26febaf21c125f99397ce1
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: server-side, HTML-embedded scripting language (CGI binary)
+ This package provides the /usr/lib/cgi-bin/php CGI interpreter built
+ for use in Apache 2 with mod_actions, or any other CGI httpd that
+ supports a similar mechanism.  Note that MOST users probably
+ want the php5.6-fpm package.
+ .
+ The following extensions are built in: Core date ereg filter hash libxml
+ mhash openssl pcntl pcre Reflection session SPL standard zlib.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-cli
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 4364
+Depends: libedit2 (>= 2.11-20080614-4), libpcre3 (>= 2:8.35), media-types | mime-support, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), php5.6-json, php5.6-opcache, php5.6-readline, tzdata, ucf, libc6 (>= 2.29), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Suggests: php-pear
+Provides: php-cli, phpapi-20131226
+Filename: ./php5.6-cli_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 1262672
+MD5sum: aa66807a2fb0ade506d8534fd6355035
+SHA1: 600559b7d126caee030b665c6372b181bdd82632
+SHA256: 6755dde4445a88611e552685343b43adfd0dd826d20a963d4537015e8d784481
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: command-line interpreter for the PHP scripting language
+ This package provides the /usr/bin/php5.6 command interpreter, useful for
+ testing PHP scripts from a shell or performing general shell scripting tasks.
+ .
+ The following extensions are built in: Core date ereg filter hash libxml
+ mhash openssl pcntl pcre Reflection session SPL standard zlib.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-common
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 4269
+Depends: php-common (>= 1:81~), ucf, libc6 (>= 2.15), libssl1.1 (>= 1.1.0)
+Provides: php-calendar, php-ctype, php-exif, php-fileinfo, php-ftp, php-iconv, php-pdo, php-phar, php-posix, php-shmop, php-sockets, php-sysvmsg, php-sysvsem, php-sysvshm, php-tokenizer, php5.6-calendar, php5.6-ctype, php5.6-exif, php5.6-fileinfo, php5.6-ftp, php5.6-gettext, php5.6-iconv, php5.6-pdo, php5.6-phar, php5.6-posix, php5.6-shmop, php5.6-sockets, php5.6-sysvmsg, php5.6-sysvsem, php5.6-sysvshm, php5.6-tokenizer
+Filename: ./php5.6-common_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 727360
+MD5sum: 1a39d3e6c9fc35bbf76afd27ebcc68e5
+SHA1: 78faee5dcf932807a4f9f6ca27135066f2b800f7
+SHA256: 391d02741f08d1629ffd357f8730d94263c1e2c95308419ff4a3607f739534b7
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: documentation, examples and common module for PHP
+ This package provides the documentation, examples and common module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-curl
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 120
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.14), libcurl4 (>= 7.18.0)
+Provides: php-curl
+Filename: ./php5.6-curl_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 27156
+MD5sum: bcd3a96ebeea08c82e1358c03313182b
+SHA1: 6df55d56732034df02ec3046b35dd9cfbe721b50
+SHA256: 1249d328d7a79ad8b97665a5b02604c32db4ffb93a3885e435df548e4b42ca21
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: CURL module for PHP
+ This package provides the CURL module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-dba
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 88
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.14), libdb5.3, libqdbm14 (>= 1.8.74)
+Provides: php-dba
+Filename: ./php5.6-dba_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 22192
+MD5sum: 50c1514f3c5024c3497fc07341cec070
+SHA1: 8edb926508dd70f5ee9dfa6a061f2d551a994a20
+SHA256: 15d2fff74955101095bb302d352a55573f480e5b299163c57bd48a640dafeed4
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: DBA module for PHP
+ This package provides the DBA module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-dev
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 3682
+Depends: autoconf (>= 2.63), automake (>= 1.11), libpcre3-dev (>= 2:8.35), libssl-dev, php5.6-cli (>= 5.6.40-105+ubuntu20.04.1+local1), php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), pkg-config, shtool, libtool (>= 2.4.6-0.1~)
+Recommends: pkg-php-tools
+Suggests: dh-php
+Filename: ./php5.6-dev_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 359664
+MD5sum: 26df30cbab3ef262f54d303f37774d75
+SHA1: 9a58b48aa0d557e5ae666604da66ee0dbb8a386a
+SHA256: 54700ecf8360beab595daa7787a4510017a5547f66f0edda018d428f363345fa
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: Files for PHP5.6 module development
+ This package provides the files from the PHP5.6 source needed for compiling
+ additional modules.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-enchant
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 60
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.4), libenchant-2-2 (>= 2.2.3)
+Provides: php-enchant
+Filename: ./php5.6-enchant_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 8952
+MD5sum: 340fdf24b42f4179b3dcf0a86ce7b357
+SHA1: f2060c9e118cf9348fdaf220b5843b92de4b299d
+SHA256: 1350884caeb4089d98c97a96845f6dc6a1e2b326a04de8f1c17c7cbdf54a1cd7
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: Enchant module for PHP
+ This package provides the Enchant module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-fpm
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 4458
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php5.6-cli, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), php5.6-json, php5.6-opcache, procps, systemd | systemd-tmpfiles, tzdata, ucf, libacl1 (>= 2.2.23), libapparmor1 (>= 2.7.0~beta1+bzr1772), libc6 (>= 2.29), libssl1.1 (>= 1.1.0), libsystemd0, libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Suggests: php-pear
+Provides: php-fpm, phpapi-20131226
+Filename: ./php5.6-fpm_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 1278936
+MD5sum: a387e50b4274e7b5c02104f86d0707bc
+SHA1: f67803936cd7b1de036ce2e82084dfad1444de84
+SHA256: 4934c33bff997b3075bc8bd5cf1905ac6ba0209c58aff1a6eaaad3fcd304ba04
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: server-side, HTML-embedded scripting language (FPM-CGI binary)
+ This package provides the Fast Process Manager interpreter that runs
+ as a daemon and receives Fast/CGI requests.  Note that MOST Apache users
+ probably want the libapache2-mod-php5.6 package.
+ .
+ The following extensions are built in: Core date ereg filter hash libxml
+ mhash openssl pcre Reflection session SPL standard zlib.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-gd
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 144
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.4), libgd3 (>= 2.1.1), libxpm4
+Provides: php-gd
+Filename: ./php5.6-gd_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 27192
+MD5sum: 95d2ddfc7891084db7576ab729c4b6f8
+SHA1: 9bafd9898c406e7579999cbbc9049dda6755fcfa
+SHA256: fa8281ccf9ed0a43a2864cb168d73d880b1d1a4629ab05c945a7ed0886b98d01
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: GD module for PHP
+ This package provides the GD module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-gmp
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 100
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.4), libgmp10
+Provides: php-gmp
+Filename: ./php5.6-gmp_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 21164
+MD5sum: aaf180857f6565f371b5327b19c3194f
+SHA1: 3707af4d28a21ccb76d835403e686ac54e878147
+SHA256: 502c321fcd9c893266c8798bff3b27011d603e7e73670fd971b805bb46a6b459
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: GMP module for PHP
+ This package provides the GMP module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-imap
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 140
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc-client2007e, libc6 (>= 2.14)
+Provides: php-imap
+Filename: ./php5.6-imap_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 31624
+MD5sum: ac39809d180ad5f80bba0bdc4c5bc726
+SHA1: 8c8ff046487a45eba84e9d773bc1d1d5b9946bde
+SHA256: a824783c1e0f4b16cddd1799ec0c90540fd1d3c755d6c93d662b795dad69c456
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: IMAP module for PHP
+ This package provides the IMAP module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-interbase
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 164
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.14), libfbclient2 (>= 2.5.0.25784~ReleaseCandidate1.ds2)
+Provides: php-interbase, php-pdo-firebird, php5.6-pdo-firebird
+Filename: ./php5.6-interbase_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 41536
+MD5sum: 7b1a22b588d507f96a8f506227fb2fd8
+SHA1: d6e37715db7b378d776ba812635647eeefc89dcc
+SHA256: 9d8d1c251e01b3daa57b24ba2f2f2a3925dc671a9ebd2dcffb1f1155477561f6
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: Interbase module for PHP
+ This package provides the Interbase module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-intl
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 427
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.14), libgcc-s1 (>= 3.0), libicu66 (>= 66.1-1~)
+Provides: php-intl
+Filename: ./php5.6-intl_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 111088
+MD5sum: 5e152aa1f3c8157dc4e38a5446d78952
+SHA1: ae4cb915b1407316de6b6336a41dd0114493363c
+SHA256: 4483e219632cfad0ba90ba86d46b47f02b6bd9af4fcd5ba88197e29cdd4dc6ed
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: Internationalisation module for PHP
+ This package provides the Internationalisation module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-json
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 84
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.14)
+Provides: php-json
+Filename: ./php5.6-json_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 17948
+MD5sum: 88c04a7830adb63799cd50d0578ee16b
+SHA1: f337e3292443b107e8bb7831111da8a921f88daa
+SHA256: b66addacd51f4a66d7624dca4e3d8483ecda3d620796ae9987a2196e241d59b7
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: JSON module for PHP
+ This package provides the JSON module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-ldap
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 100
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.4), libldap-2.4-2 (>= 2.4.7)
+Provides: php-ldap
+Filename: ./php5.6-ldap_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 22004
+MD5sum: cac1c4c1c1f1bc6e20036441adef49b7
+SHA1: f415d6f31e59808a792631acd2856df485212e5d
+SHA256: 3a711c0bf8fdf318699278d6f3917696fb4da5019740d1448ed1e0cbd8d9afe9
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: LDAP module for PHP
+ This package provides the LDAP module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-litespeed
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 4309
+Depends: media-types | mime-support, php5.6-cli, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), procps, systemd | systemd-tmpfiles, tzdata, ucf, libc6 (>= 2.29), libpcre3, libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Suggests: php-pear
+Provides: php-json, php-litespeed, php5.6-json, phpapi-20131226
+Filename: ./php5.6-litespeed_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 1233624
+MD5sum: 3b14b09403fea63d359cf9ae81b66462
+SHA1: af46aa38930072004d2d8606818b31553f823e8c
+SHA256: 9ef3ec53b9da072d58ab2c18f3070b6263c803bb250cd98116b057c5499185a7
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: server-side, HTML-embedded scripting language (LiteSpeed binary)
+ This package provides the LiteSpeed SAPI module that provides a dedicated
+ interface for PHP integration with OpenLiteSpeed or LiteSpeed Web Server.
+ .
+ The following extensions are built in: Core date ereg filter hash libxml
+ mhash openssl pcre Reflection session SPL standard zlib.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-mbstring
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 1415
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.14)
+Provides: php-mbstring
+Filename: ./php5.6-mbstring_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 452228
+MD5sum: 726d5efa07754b753137d303a2580406
+SHA1: cfa10816ad61f680e01d3d019b62093719073457
+SHA256: 36d6d4c78a467971c6522e8091f252d71d54b3d60cbd731be5cd59465e13de82
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: MBSTRING module for PHP
+ This package provides the MBSTRING module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-mcrypt
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 80
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.14), libmcrypt4
+Provides: php-mcrypt
+Filename: ./php5.6-mcrypt_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 15180
+MD5sum: b04f2eb64f0d6e629e1c62f480a60c99
+SHA1: f1a948ef7e75c3f1036798b5081eff98c13e9e89
+SHA256: 1e6764002a88487d0770d82da4e2a46e911cce7390b43120c7b68ee7b5881d86
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: libmcrypt module for PHP
+ This package provides the libmcrypt module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-mysql
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 543
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.15)
+Provides: php-mysql, php-mysqli, php-mysqlnd, php-pdo-mysql, php5.6-mysqli, php5.6-mysqlnd, php5.6-pdo-mysql
+Filename: ./php5.6-mysql_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 137804
+MD5sum: c5e493a8b334cfd320f120a8cce05660
+SHA1: a16033622b5ea1d628bf77d0de735e5ebc4b94d0
+SHA256: 790f7a1bbb101ae5c4b7a0aeb843b914c64ec15d2f9ac844006acb89651edb9d
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: MySQL module for PHP
+ This package provides the MySQL module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-odbc
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 132
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.14), libodbc1 (>= 2.3.1)
+Provides: php-odbc, php-pdo-odbc, php5.6-pdo-odbc
+Filename: ./php5.6-odbc_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 30832
+MD5sum: 6ea9d48f722ce88e4c30a01227c7d9f8
+SHA1: 0e9aa6ce6dd38c3ca063ce71f3cbc85879cac73e
+SHA256: d502f08649e5f1a5be80a7e0ae0a31e6747a0ab3ab860076d72fe20652f695a5
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: ODBC module for PHP
+ This package provides the ODBC module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-opcache
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 188
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.27)
+Provides: php-opcache
+Filename: ./php5.6-opcache_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 62572
+MD5sum: f8aea4457a7ee0a2027ccfb4136136b0
+SHA1: e739e22b9927d1bff3a252ff0d44be0ba3e2ef62
+SHA256: 08ae902c703c640f5c7ec3303ba7a048857135de36c28167e8a6054a8ec7756e
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: Zend OpCache module for PHP
+ This package provides the Zend OpCache module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-pgsql
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 220
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.14), libpq5 (>= 9.3~)
+Provides: php-pdo-pgsql, php-pgsql, php5.6-pdo-pgsql
+Filename: ./php5.6-pgsql_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 56736
+MD5sum: cd2e992db210c3d01929f9e594069c03
+SHA1: 74ba871d557b3621b8811d9659811b14fca09716
+SHA256: 9e2fe37c76d0e5bd9c08a785bd06e2fc0b3fc4b0c259a117c43b1ac4ba89be4c
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: PostgreSQL module for PHP
+ This package provides the PostgreSQL module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-phpdbg
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 4436
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php5.6-cli, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), php5.6-json, php5.6-opcache, tzdata, ucf, libc6 (>= 2.29), libedit2 (>= 2.11-20080614-0), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Recommends: php-readline
+Provides: php-phpdbg, phpapi-20131226
+Filename: ./php5.6-phpdbg_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 1274028
+MD5sum: 1caa5f14476615c7265fcec95ffa5ab0
+SHA1: 6bb180f60af8045b5c348be55069e4dcf50217b8
+SHA256: 94f6124a5a9bb0be63db839c755d9993e8ed3a5151b6d5d07459c8308570f371
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: server-side, HTML-embedded scripting language (PHPDBG binary)
+ This package provides the /usr/bin/phpdbg command interpreter, useful for
+ stepthrough debugging of PHP code.
+ .
+ The following extensions are built in: Core date ereg filter hash libxml
+ mhash openssl pcntl pcre Reflection session SPL standard zlib.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-pspell
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 56
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libaspell15 (>= 0.60.8), libc6 (>= 2.4)
+Provides: php-pspell
+Filename: ./php5.6-pspell_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 8380
+MD5sum: 5a14bdd8e6a5649c695a35d2af71fc13
+SHA1: 37ea8d35efe5b5e1017634af80516ae39e28ce3e
+SHA256: 7e792df6a1687726ef6c7c3e7ac8ae44cbc9e7162abcdfb1a9b581fe55ae56ac
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: pspell module for PHP
+ This package provides the pspell module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-readline
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 68
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.14), libedit2 (>= 3.1-20130611-0)
+Provides: php-readline
+Filename: ./php5.6-readline_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 12836
+MD5sum: 4d52e0fcef3d69b50876faff0e83e58f
+SHA1: f423a6bc7b7c7d2252e979dfcee72cae9dbbdd15
+SHA256: 4471ab7eaddf25a935a59ae968b772b9885d4a4649a578b2a205d0a1db711597
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: readline module for PHP
+ This package provides the readline module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-recode
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 44
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.4), librecode0 (>= 3.6)
+Provides: php-recode
+Filename: ./php5.6-recode_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 5620
+MD5sum: 0bbb7d0b86d472771fcbe5c17cf7ba8f
+SHA1: 30682db1d2f828c639aa267309f8d588442e6e5b
+SHA256: feb53d5c1b0887b4c9dc36c7007b2921977249332189ab34ef09b488b9e03cac
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: recode module for PHP
+ This package provides the recode module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-snmp
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 92
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.4), libsnmp35 (>= 5.8+dfsg)
+Recommends: snmp
+Provides: php-snmp
+Filename: ./php5.6-snmp_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 19392
+MD5sum: 8cf0de3cb38bf482a2affd27d250c6b1
+SHA1: 69aef016d7ef6d113636c698d84c7c1704746686
+SHA256: 8d7c12765afcc9c9a474b15ff2c1d75f295470575b27a33533d32b0a12233ed2
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: SNMP module for PHP
+ This package provides the SNMP module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-soap
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 396
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.14), libxml2 (>= 2.7.4)
+Provides: php-soap
+Filename: ./php5.6-soap_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 129676
+MD5sum: f34176bb537e1c26075dc12655831d97
+SHA1: 06ad49248113093ef7c1dd54ab45f50e69db0fbc
+SHA256: b8eb18265c714662b3139942be216a4694a758225a35004cb9db45f8dc13a556
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: SOAP module for PHP
+ This package provides the SOAP module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-sqlite3
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 125
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.4), libsqlite3-0 (>= 3.7.4)
+Provides: php-pdo-sqlite, php-sqlite3, php5.6-pdo-sqlite
+Filename: ./php5.6-sqlite3_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 24536
+MD5sum: 0d0402957822797de6e12c89aceb3867
+SHA1: afc962ee469231d7011c8f01101ce38e3010b5e5
+SHA256: 0d45b8393712b438cf3eae12f0e6a87c4a41c34886e70297123b36388347cb93
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: SQLite3 module for PHP
+ This package provides the SQLite3 module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-sybase
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 116
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.14), libsybdb5 (>= 0.63)
+Provides: php-mssql, php-pdo-dblib, php5.6-mssql, php5.6-pdo-dblib
+Filename: ./php5.6-sybase_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 23632
+MD5sum: 70955ca94a5a0ad7e52322c6c92d1a2b
+SHA1: 078d5c5737f2de7051c509666206cb8fabfcae16
+SHA256: 100dd6a0ec26f606005a305a6c03719c96cd30a8f8ee5d64bbef67168033084b
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: Sybase module for PHP
+ This package provides the Sybase module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-tidy
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 92
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.4), libtidy5deb1 (>= 1:5.2.0)
+Provides: php-tidy
+Filename: ./php5.6-tidy_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 17036
+MD5sum: c7ddd0139fd16496b77dd35dc10bb911
+SHA1: 8fccdbbc62af8684ff0518f17340c58cea6f3113
+SHA256: d1edf01ab96d7264c6308e7ded349a4f1c41c1ac838ee4c481a3d0c14fe2031c
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: tidy module for PHP
+ This package provides the tidy module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-xml
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 509
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.14), libxml2 (>= 2.9.0), libxslt1.1 (>= 1.1.25)
+Breaks: php5.6-xsl (<< 5.6.18+dfsg-5~)
+Replaces: php5.6-xsl (<< 5.6.18+dfsg-5~)
+Provides: php-dom, php-simplexml, php-wddx, php-xml, php-xmlreader, php-xmlwriter, php-xsl, php5.6-dom, php5.6-simplexml, php5.6-wddx, php5.6-xmlreader, php5.6-xmlwriter, php5.6-xsl
+Filename: ./php5.6-xml_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 112676
+MD5sum: d72dfd35dec5a3a14f302d78f76d9c0d
+SHA1: f81881f22e59910f0a168cf53ccf4ff1cddc6c36
+SHA256: c87857a0a81e4ab082d68ed44fbd46e2ff3efc27ef2a04189e147704b745f5f5
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: DOM, SimpleXML, WDDX, XML, and XSL module for PHP
+ This package provides the DOM, SimpleXML, WDDX, XML, and XSL module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-xmlrpc
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 68
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.4), libxmlrpc-epi0
+Provides: php-xmlrpc
+Filename: ./php5.6-xmlrpc_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 13500
+MD5sum: 788bb6dd8bafbd367d2f8492cd086ea7
+SHA1: 2eedf05eec21ecca21906b704182fafa4827f6c9
+SHA256: fef60f0bba42cf7cdc3950c4e25fd35c61e3428ae7162a76be2b8ff8351153d0
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: XMLRPC-EPI module for PHP
+ This package provides the XMLRPC-EPI module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php5.6-xsl
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: all
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 288
+Depends: php5.6-common, php5.6-xml
+Filename: ./php5.6-xsl_5.6.40-105+ubuntu20.04.1+local1_all.deb
+Size: 273172
+MD5sum: 0d5868b15bb8b9049f6a36f5db91f338
+SHA1: 65864d3b5ecc3e0c8ae58a0dea2d460dfe9dbf3e
+SHA256: 3450aa437028ab277f19230e5ff60df693c1587dbf3aa5a7e904c544c640e448
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: XSL module for PHP (dummy)
+ This package is a transitional dummy package and can be safely
+ removed.
+
+Package: php5.6-zip
+Source: php5.6
+Version: 5.6.40-105+ubuntu20.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 92
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local1), libc6 (>= 2.27), libzip5 (>= 0.11.2)
+Provides: php-zip
+Filename: ./php5.6-zip_5.6.40-105+ubuntu20.04.1+local1_amd64.deb
+Size: 20312
+MD5sum: 425e56341315b81494cfd4aafcd7fe99
+SHA1: eda84224a296e464839dfb01c199f131fad34c75
+SHA256: 04c715af9fe1d010662256aae1222873629ca39cd806fc8b52ee3712425cf650
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: Zip module for PHP
+ This package provides the Zip module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+

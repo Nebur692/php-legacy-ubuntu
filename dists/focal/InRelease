@@ -1,0 +1,39 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Architectures: amd64
+Codename: focal
+Components: main
+Date: Thu, 05 Nov 2026 13:29:56 +0000
+Description: Patched PHP rebuilds for Ubuntu focal
+Label: php-legacy-ubuntu
+Origin: php-legacy-ubuntu
+Suite: focal
+MD5Sum:
+ ac31971d6c0f817519418da5b4b42532           237390 main/binary-amd64/Packages
+ d1f4581c2b027e196dcc4be57e9c7d4f            52141 main/binary-amd64/Packages.gz
+SHA1:
+ 07bb95b9037345c1a840fd2d309df5dc389ec813           237390 main/binary-amd64/Packages
+ b5fdd1615a2f89061bc4e4a7615f804c941874b5            52141 main/binary-amd64/Packages.gz
+SHA256:
+ e70858abad23a7275e02775462d4b6debd37c32b6fd745a82f17202b1f6bdcde           237390 main/binary-amd64/Packages
+ eb45020fb8c3fd0ca8b224eaa44edbe0be29e8cb26c90ec694804826aba005f0            52141 main/binary-amd64/Packages.gz
+SHA512:
+ 9dc78ecbae13e73960fa19d6eb678cb58990e9c300b992ced84b71e1a12f6c4b3e61dd20a3ec0176711b99a21f411f93971b682e8f93ce19c2b0e6c5303076d9           237390 main/binary-amd64/Packages
+ 12d83443aad2929cb9217653dfa8050c131416a6e47d1bd3302e66bb51faf1fddcdc63edc69938502d392d127675e9badef3e61b6e7fb2bf5dc5cc67fa34cd7b            52141 main/binary-amd64/Packages.gz
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEE/V3pK4hvgRROyxTShcyiTJiQ1ScFAmrshNQACgkQhcyiTJiQ
+1SeqIBAAyt+IyYmRZDcST2MwRrusekjwF2c6vzyMjWkqRJ/QAQIy/Ah+I6OSOgeK
+rz329NJJKtHHaH70DE0TGlyy3BLRypqbQr783pwIDSYlL6f+yQFSApjKUwFpfoSB
+Zi6+QRLFhiKJ4aODhOBsux+07d4TWuu13fgWFLvhN3q+EORD7bF+q/6p6xkRUQoT
+/Rls0tNz4qaTofUGP88Yj0yufZ9eyh+T8cnmEBIgGH+lMiYMM5B6CIvYmCVQ2deM
+8+0lRrHXI52BRiH/34yKB06c6TFiBsaUSsc5uL24qHpVlHcS1ynfv8ds0S3/q188
+6FdZXEpysPG40FVuiikAOwiyaHXAUf/+68O8Io82r9hY0mlFic3T1UWE1DdslFPd
+gpgKnRRhEcUQhz205Bch/MfJblyxw4MACqVc1riJG+Mv1sxKUbapmWqWX9LE+WCR
+M1wQ+GU8unJzF33qcVacwfwKLbyNf7l4tfOv3xZhJhyB8WVfZS+ZUBjAbqIsy3zy
+UMryAvuJVlqrMS+xSFI54rqZrUp+j3pL1ZLcX5ioUUEeMt21JARmufS614ezdPYx
+PgHHaV/e9SxzyZykoXMyu86efog48N2EF6PFc0/gisht9RvgR/RNL7hN/zybepte
+uJ+8YTKFOD4RuyvSOJlqPsGL2PAuuQmkmfr6GbSwRuVNvidLdNs=
+=VNMx
+-----END PGP SIGNATURE-----

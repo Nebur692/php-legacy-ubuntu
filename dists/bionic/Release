@@ -1,0 +1,20 @@
+Architectures: amd64
+Codename: bionic
+Components: main
+Date: Thu, 05 Nov 2026 13:29:55 +0000
+Description: Patched PHP rebuilds for Ubuntu bionic
+Label: php-legacy-ubuntu
+Origin: php-legacy-ubuntu
+Suite: bionic
+MD5Sum:
+ b42aaf1269fc5bc7a15052cbfcb8c117            96959 main/binary-amd64/Packages
+ 447dae5943d9789aa98f9a418585e46d            21948 main/binary-amd64/Packages.gz
+SHA1:
+ 9cec49cf01056e80174be13bebe4a19d0ae57a99            96959 main/binary-amd64/Packages
+ 1450ead0372db2f9264d5cfb67ceb27caecfca5f            21948 main/binary-amd64/Packages.gz
+SHA256:
+ 8206fc08c88cd0d9f045b8492fa37e33be5b34c1e4c63b073d63ef41912fab4b            96959 main/binary-amd64/Packages
+ 1572aefad6155686fc6968c7a786d193aee78d1170aae0196205d2380996ce63            21948 main/binary-amd64/Packages.gz
+SHA512:
+ 9d9429c90f53cb46789c410252ed7e7ca6889973d32f7625d6f8695b93f1658060faecdb1887fd44f0a64db9dba0e5100276e9b84c281c451e8b5a6eb24edc55            96959 main/binary-amd64/Packages
+ 5656463c845a33291c742be8fec69fc828096f65c9f2c8c9ef0dca5486ad16c75af06c9d9206f592668c806b72aa75b3725387b45b91db9af65e08adeb6523f7            21948 main/binary-amd64/Packages.gz

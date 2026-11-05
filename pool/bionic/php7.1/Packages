@@ -1,0 +1,967 @@
+Package: libapache2-mod-php7.1
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 4361
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.1-cli, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), php7.1-json, php7.1-opcache, tzdata, ucf, apache2-api-20120211, apache2-bin (>= 2.4.16), libc6 (>= 2.27), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Recommends: apache2
+Suggests: php-pear
+Provides: libapache2-mod-php, phpapi-20160303
+Filename: ./libapache2-mod-php7.1_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 1285572
+MD5sum: d73d3149a4f28f48ad9d92ff4945214c
+SHA1: e4b50478538db6fce6eae5e32150d73756000476
+SHA256: 495e5b991ffcb94c27710f95a41d96234144774f8a11be39782db5097e2ef7ea
+Section: httpd
+Priority: optional
+Homepage: http://www.php.net/
+Description: server-side, HTML-embedded scripting language (Apache 2 module)
+ This package provides the PHP module for the Apache 2 webserver (as
+ found in the apache2-mpm-prefork package).  Please note that this package
+ ONLY works with Apache's prefork MPM, as it is not compiled thread-safe.
+ .
+ The following extensions are built in: Core date filter hash libxml openssl
+ pcre Reflection session SPL standard zlib.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: libphp7.1-embed
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 4350
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.1-cli, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), php7.1-json, php7.1-opcache, tzdata, ucf, libc6 (>= 2.27), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Suggests: php-pear
+Provides: libphp-embed, phpapi-20160303
+Filename: ./libphp7.1-embed_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 1283344
+MD5sum: 5f0ab3708ef5d02eb5ff362c34c10a9e
+SHA1: 13075ce73a4d300fc583c17c1b3ac62fae413777
+SHA256: 7379b91a721b73e7c20b85fd16545a2433278b15d6ef306a0d127ff53ba06775
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: HTML-embedded scripting language (Embedded SAPI library)
+ This package provides the library /usr/lib/libphp7.1.so which can
+ be used by application developers to embed PHP scripting functionality.
+ .
+ The following extensions are built in: Core date filter hash libxml openssl
+ pcntl pcre Reflection session SPL standard zlib.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+ .
+ WARNING: The embed SAPI is experimental and there's no guarantee that
+ the API/ABI will be kept compatible even between minor releases.  You
+ have been warned.
+
+Package: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: all
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 96
+Depends: libapache2-mod-php7.1 | php7.1-fpm | php7.1-cgi, php7.1-common
+Provides: php
+Filename: ./php7.1_7.1.33-80+ubuntu18.04.1+local1_all.deb
+Size: 72172
+MD5sum: d41c2f46fc1a5989b3b5396f65dfab9c
+SHA1: 8aba5e349a7e432078b03e093c9e5a93cf90b6cb
+SHA256: 569dc3247652bf70f34cdcb8eb81d8a464976a691e9bdb1f6ceabd1f77081867
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: server-side, HTML-embedded scripting language (metapackage)
+ This package is a metapackage that, when installed, guarantees that you
+ have at least one of the four server-side versions of the PHP interpreter
+ installed. Removing this package won't remove PHP from your system, however
+ it may remove other packages that depend on this one.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-bcmath
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 64
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14)
+Provides: php-bcmath
+Filename: ./php7.1-bcmath_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 15900
+MD5sum: 41268191de1192360b3800123f9d3be1
+SHA1: a14fd74521cbd2140e4eefb095d67fceeb9e4c18
+SHA256: 125dc06858b1de3689c8c5683a902ee7ce515ba5e8185136d8ace99340c3a0ed
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: Bcmath module for PHP
+ This package provides the Bcmath module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-bz2
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 52
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libbz2-1.0, libc6 (>= 2.14)
+Provides: php-bz2
+Filename: ./php7.1-bz2_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 10452
+MD5sum: a7e7602cf05a3a8ffa20d55f46447a06
+SHA1: 28ee6d5a35dbb1839391576d930761d127078885
+SHA256: b15815c3a18cec4ee441b0b6dee6887b2ffcf93bc6cfe96745ec481b2ab6f7ea
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: bzip2 module for PHP
+ This package provides the bzip2 module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-cgi
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 8753
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.1-cli, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), php7.1-json, php7.1-opcache, tzdata, ucf, libc6 (>= 2.27), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Suggests: php-pear
+Provides: php-cgi, phpapi-20160303
+Filename: ./php7.1-cgi_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 1305240
+MD5sum: 7a1f97cdbe373679aa0dd8c13297b281
+SHA1: 4c9039c7c6cb69bd6a3458d4caf6941f670e0251
+SHA256: bcf765f09bfac530fab0d411c0577a7728611c8a281d3a72bb8d375391780c88
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: server-side, HTML-embedded scripting language (CGI binary)
+ This package provides the /usr/lib/cgi-bin/php CGI interpreter built
+ for use in Apache 2 with mod_actions, or any other CGI httpd that
+ supports a similar mechanism.  Note that MOST users probably
+ want the php7.1-fpm package.
+ .
+ The following extensions are built in: Core date filter hash libxml openssl
+ pcntl pcre Reflection session SPL standard zlib.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-cli
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 4517
+Depends: libedit2 (>= 2.11-20080614-4), libpcre3 (>= 2:8.35), media-types | mime-support, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), php7.1-json, php7.1-opcache, php7.1-readline, tzdata, ucf, libc6 (>= 2.27), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Suggests: php-pear
+Provides: php-cli, phpapi-20160303
+Filename: ./php7.1-cli_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 1343464
+MD5sum: d2d655c2c94ae30ed2926cea2379da02
+SHA1: f8cf13a2e67e0bc4c8d9b9f1b3fb19f8a5147455
+SHA256: ad5b83c21bcbc53b5b709782ec8b5344a0309ae5ecb0b6d279cddb38110c5038
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: command-line interpreter for the PHP scripting language
+ This package provides the /usr/bin/php7.1 command interpreter, useful for
+ testing PHP scripts from a shell or performing general shell scripting tasks.
+ .
+ The following extensions are built in: Core date filter hash libxml openssl
+ pcntl pcre Reflection session SPL standard zlib.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-common
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 4293
+Depends: php-common (>= 1:81~), ucf, libc6 (>= 2.15), libssl1.1 (>= 1.1.0)
+Provides: php-calendar, php-ctype, php-exif, php-fileinfo, php-ftp, php-iconv, php-pdo, php-phar, php-posix, php-shmop, php-sockets, php-sysvmsg, php-sysvsem, php-sysvshm, php-tokenizer, php7.1-calendar, php7.1-ctype, php7.1-exif, php7.1-fileinfo, php7.1-ftp, php7.1-gettext, php7.1-iconv, php7.1-pdo, php7.1-phar, php7.1-posix, php7.1-shmop, php7.1-sockets, php7.1-sysvmsg, php7.1-sysvsem, php7.1-sysvshm, php7.1-tokenizer
+Filename: ./php7.1-common_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 549564
+MD5sum: 698a038dc296f673215cdd785318f6bc
+SHA1: ec34f64ea7bd0237481f5b1eefe573f579826c45
+SHA256: 13bfa70977425471faa2657757aa7513bedd9ab47c6d8d199193c77556123ff2
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: documentation, examples and common module for PHP
+ This package provides the documentation, examples and common module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-curl
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 120
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libcurl4 (>= 7.44.0)
+Provides: php-curl
+Filename: ./php7.1-curl_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 28712
+MD5sum: 6c8b98f443e30ce7a0916ad52129746c
+SHA1: dda00c297a066b9898100178e4b3eafefc927d6d
+SHA256: 5558d5f74c2cdd579fedcaef4537f6d3f0427d857149cfa622159550dca80989
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: CURL module for PHP
+ This package provides the CURL module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-dba
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 88
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libdb5.3, libqdbm14 (>= 1.8.74)
+Provides: php-dba
+Filename: ./php7.1-dba_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 23612
+MD5sum: 70029d1cc1f4fbd1fe9e39b997e0ffc2
+SHA1: 122eef3ec5be105aeaabf9441dd5367a373b6ba7
+SHA256: f583e96629ae95a8894eb63aa1e2284211ce613932954ccbb307920495bc3c58
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: DBA module for PHP
+ This package provides the DBA module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-dev
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 4507
+Depends: autoconf (>= 2.63), automake (>= 1.11), libpcre3-dev (>= 2:8.35), libssl-dev, php7.1-cli (>= 7.1.33-80+ubuntu18.04.1+local1), php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), pkg-config, shtool, libtool (>= 2.4.6-0.1~)
+Recommends: pkg-php-tools
+Suggests: dh-php
+Filename: ./php7.1-dev_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 399484
+MD5sum: 5a5c8ed0b3f77531c38baab58be5c4f4
+SHA1: f26cda6fbe23f2715328c7fcf29855f3656ce1c8
+SHA256: 8457545e14416088dc11fec978f929a83aa9198337b7338a3c1dde93ab15c2a4
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: Files for PHP7.1 module development
+ This package provides the files from the PHP7.1 source needed for compiling
+ additional modules.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-enchant
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 56
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libenchant1c2a (>= 1.6.0)
+Provides: php-enchant
+Filename: ./php7.1-enchant_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 9560
+MD5sum: 57172838a01098c93d69cf22ce07b37d
+SHA1: fcb1f6e7b87711120b0698ebb400ad0a10ba7ac3
+SHA256: 3ff1acc844d1f618503ff340c970ad6fa75aeff8bd73cf128726a8ff7d16a01d
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: Enchant module for PHP
+ This package provides the Enchant module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-fpm
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 4538
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.1-cli, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), php7.1-json, php7.1-opcache, procps, systemd | systemd-tmpfiles, tzdata, ucf, libacl1 (>= 2.2.51-8), libapparmor1 (>= 2.7.0~beta1+bzr1772), libc6 (>= 2.27), libssl1.1 (>= 1.1.0), libsystemd0, libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Suggests: php-pear
+Provides: php-fpm, phpapi-20160303
+Filename: ./php7.1-fpm_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 1352088
+MD5sum: 27da4e61768fb29419842ca88cf720fb
+SHA1: 32abcfef320fb961325f861627f84d99740312c5
+SHA256: c1d8ead5c1a049f8d89aecb8e6bed61f00b73732ddec9153230ddc84e434fbd3
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: server-side, HTML-embedded scripting language (FPM-CGI binary)
+ This package provides the Fast Process Manager interpreter that runs
+ as a daemon and receives Fast/CGI requests.  Note that MOST Apache users
+ probably want the libapache2-mod-php7.1 package.
+ .
+ The following extensions are built in: Core date filter hash libxml openssl
+ pcre Reflection session SPL standard zlib.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-gd
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 132
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.4), libgd3 (>= 2.1.1), libxpm4
+Provides: php-gd
+Filename: ./php7.1-gd_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 27708
+MD5sum: e4d1289d3d1296b2359e503dc02810b0
+SHA1: 762d6649182485dccdf09faba243c6227c197ab7
+SHA256: ad3b72ad639525d83844a947c60817b533e3c90b7b6ea46ba3d562d7cb838626
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: GD module for PHP
+ This package provides the GD module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-gmp
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 100
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.4), libgmp10
+Provides: php-gmp
+Filename: ./php7.1-gmp_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 21288
+MD5sum: 6364a5b4a503d22c8fc9467fe091cc4e
+SHA1: bc3337c2988dfa9283a5b4bd168013f19d152c43
+SHA256: de043af6916f79f8c164cb2e01b81011d14c282997346b5d8e549b241064d683
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: GMP module for PHP
+ This package provides the GMP module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-imap
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 128
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc-client2007e, libc6 (>= 2.14)
+Provides: php-imap
+Filename: ./php7.1-imap_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 31260
+MD5sum: a773e4995189fb102a8f15494900fc0d
+SHA1: ad5a974eeeb7ea481007c8088fe03c9ed5b1e321
+SHA256: 9daeb6bcedad386dcb8626a4fb4ba18ed20bb7c972d06057e2a4c64846be6130
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: IMAP module for PHP
+ This package provides the IMAP module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-interbase
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 152
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libfbclient2 (>= 2.5.0.25784~ReleaseCandidate1.ds2)
+Provides: php-interbase, php-pdo-firebird, php7.1-pdo-firebird
+Filename: ./php7.1-interbase_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 41600
+MD5sum: ea878a9a9bd8c97b1e83a123d6c53465
+SHA1: 950434d042d77e5a82e44e843254e4791ea6dca6
+SHA256: 284288ebf5f426949133e191a3f6ece5c598cee8530fb904c68d20a3e401f8f4
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: Interbase module for PHP
+ This package provides the Interbase module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-intl
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 517
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libgcc1 (>= 1:3.0), libicu60 (>= 60.1-1~), libstdc++6 (>= 4.9)
+Provides: php-intl
+Filename: ./php7.1-intl_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 128696
+MD5sum: 32805a90346f0d07cfbb802430ba23a6
+SHA1: 2d5d8d06c09b8dfc8eac4b16328d01dd832f82e9
+SHA256: 8a964ee5e05763f765e12a93b365669ef3813b3608a65c052bee9f87a063c1c2
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: Internationalisation module for PHP
+ This package provides the Internationalisation module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-json
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 68
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14)
+Provides: php-json
+Filename: ./php7.1-json_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 17488
+MD5sum: 27d2a579da0bc37d823ca4da7a4c8d43
+SHA1: 32427d3e4df0f7dc228e0cf323e45ab69fc3c5b5
+SHA256: 9cd8e57d2aac9424338efbb6c5ebbbe66f46768ac382862792dd394076901b1e
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: JSON module for PHP
+ This package provides the JSON module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-ldap
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 96
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libldap-2.4-2 (>= 2.4.7)
+Provides: php-ldap
+Filename: ./php7.1-ldap_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 22368
+MD5sum: 72aa628fc085c127c227f0146ffe6a83
+SHA1: fd2d95463b5907c0f97e638cf7df45a0e689c30b
+SHA256: 562f5feb81003aa3783399fa2c029118062c2123b808fd2d346f11d874995a56
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: LDAP module for PHP
+ This package provides the LDAP module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-litespeed
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 4388
+Depends: media-types | mime-support, php7.1-cli, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), procps, systemd | systemd-tmpfiles, tzdata, ucf, libc6 (>= 2.27), libpcre3, libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Suggests: php-pear
+Provides: php-json, php-litespeed, php7.1-json, phpapi-20160303
+Filename: ./php7.1-litespeed_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 1305628
+MD5sum: a8b6931bc56461f874d94c26f9724e75
+SHA1: 1b263e68ef1b90846ddeb7141b950c4cc9e4eeaf
+SHA256: 01d72cbe77d2f6f93e2368ad21f46463e93f3e3994832d775988f565b4860b17
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: server-side, HTML-embedded scripting language (LiteSpeed binary)
+ This package provides the LiteSpeed SAPI module that provides a dedicated
+ interface for PHP integration with OpenLiteSpeed or LiteSpeed Web Server.
+ .
+ The following extensions are built in: Core date filter hash libxml openssl
+ pcre Reflection session SPL standard zlib.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-mbstring
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 1475
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14)
+Provides: php-mbstring
+Filename: ./php7.1-mbstring_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 468412
+MD5sum: 356d77f589d94f360790a0078699060c
+SHA1: a6d056bbc5e0ea3d1f028fa733190361ff5406f5
+SHA256: 66c2be00a52580b1960e0777c60367adc66445771218e5377196e819367ced52
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: MBSTRING module for PHP
+ This package provides the MBSTRING module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-mcrypt
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 72
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libmcrypt4
+Provides: php-mcrypt
+Filename: ./php7.1-mcrypt_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 14988
+MD5sum: d7dd30b05d1da63ac975425f61995317
+SHA1: ce85eb9e88511a36116bfd11f37806609ed6fbf8
+SHA256: abe8b5c73950be3653825782dc781a30763a2a899f5b4bb809261f95acde0ec4
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: libmcrypt module for PHP
+ This package provides the libmcrypt module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-mysql
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 447
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.15)
+Provides: php-mysqli, php-mysqlnd, php-pdo-mysql, php7.1-mysqli, php7.1-mysqlnd, php7.1-pdo-mysql
+Filename: ./php7.1-mysql_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 120392
+MD5sum: b030ad592ae05204e80acb9016536120
+SHA1: 5749b37fff8a2f3ec775d766bc526d49b8125c48
+SHA256: e03c17b939ca1334cc1a12127c8283e14a9f1f959795390381b40c3eae1c7e9c
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: MySQL module for PHP
+ This package provides the MySQL module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-odbc
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 128
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libodbc1 (>= 2.3.1)
+Provides: php-odbc, php-pdo-odbc, php7.1-pdo-odbc
+Filename: ./php7.1-odbc_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 31672
+MD5sum: bb5f66358eb421e8be4cb6ca194c1b08
+SHA1: 416d720ae51aab8e375ffb87e0fb397c01572bca
+SHA256: 01526e846c2c5d760ff7ccd398d095bab17340ebc0f874df23ec1bd94037397b
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: ODBC module for PHP
+ This package provides the ODBC module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-opcache
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 424
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.27)
+Provides: php-opcache
+Filename: ./php7.1-opcache_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 147284
+MD5sum: 1ae1b3ba59e00d1bfd00288e155c3bc2
+SHA1: 86299cd8dfe9bf3c6238d7ae685ac0d302af4501
+SHA256: 0508380dd6a26d2cfe0056585b2e5e4a085bf6915b26a7486ad64c3ea5861ed9
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: Zend OpCache module for PHP
+ This package provides the Zend OpCache module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-pgsql
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 212
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libpq5 (>= 9.3~)
+Provides: php-pdo-pgsql, php-pgsql, php7.1-pdo-pgsql
+Filename: ./php7.1-pgsql_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 57780
+MD5sum: 21da382d1a3f28e43573659228bb27b8
+SHA1: 81ffc6b4b461c027661ec3087cd4c31b9f64bee6
+SHA256: 333ab020473e46f7a0b6282abb64b9f7d37b1d0c5f679a160f06c44451daff6c
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: PostgreSQL module for PHP
+ This package provides the PostgreSQL module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-phpdbg
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 4628
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.1-cli, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), php7.1-json, php7.1-opcache, tzdata, ucf, libc6 (>= 2.27), libedit2 (>= 2.11-20080614), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Recommends: php-readline
+Provides: php-phpdbg, phpapi-20160303
+Filename: ./php7.1-phpdbg_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 1388380
+MD5sum: b46e3c475b514c657bd7709c62f92741
+SHA1: f0fd6925ce6110f825c80ac82fd0a119176de29f
+SHA256: 637c55993689a7bac91bc3aea105fdcea242803914dd8dfde1bcf4c71e7a1454
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: server-side, HTML-embedded scripting language (PHPDBG binary)
+ This package provides the /usr/bin/phpdbg command interpreter, useful for
+ stepthrough debugging of PHP code.
+ .
+ The following extensions are built in: Core date filter hash libxml openssl
+ pcntl pcre Reflection session SPL standard zlib.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-pspell
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 52
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libaspell15 (>= 0.60.7~20110707), libc6 (>= 2.4)
+Provides: php-pspell
+Filename: ./php7.1-pspell_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 8528
+MD5sum: c21ade8ca1f4cb2f670cf5c188ab8263
+SHA1: 1f90f93696d3bef50c9dee91b98dbf71ac732231
+SHA256: b9d8f66058f1d8154f4d7d536c35d5407bdfd2c12294a78ba1e84eae1ddff1c3
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: pspell module for PHP
+ This package provides the pspell module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-readline
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 60
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libedit2 (>= 3.1-20130611)
+Provides: php-readline
+Filename: ./php7.1-readline_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 12512
+MD5sum: 3ef87cf0b69acbd3a67280cc706ba3d5
+SHA1: e1251d67f7c7917f07344fc70d34e8b2b1ef3f79
+SHA256: 738f158eb699fecae778bd1d1740a9369d766216ee10b0bb924d1fecef3eff11
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: readline module for PHP
+ This package provides the readline module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-recode
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 40
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), librecode0 (>= 3.6)
+Provides: php-recode
+Filename: ./php7.1-recode_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 5784
+MD5sum: a7874bbedd05db6c239616f20232cc4e
+SHA1: b8dbfa2b2b2199a9008a22d6f112889a1d0a3481
+SHA256: 88e1011c3a9c06a1cafe6831980e72cc20cf93a3960189fac95d8f1ee4c65ecb
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: recode module for PHP
+ This package provides the recode module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-snmp
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 84
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libsnmp30 (>= 5.7.3+dfsg-1.8ubuntu3.8~dfsg)
+Recommends: snmp
+Provides: php-snmp
+Filename: ./php7.1-snmp_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 19352
+MD5sum: 66199e8b90eb6ab2eca0f9ce5be3a317
+SHA1: 05db2884143fd105b16090a88345071516222f1e
+SHA256: f4c8f2b986c8a2572b556821fc4bf10f4f2a1d690a772f3cdd71a5c30f9b4cd6
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: SNMP module for PHP
+ This package provides the SNMP module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-soap
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 336
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libxml2 (>= 2.7.4)
+Provides: php-soap
+Filename: ./php7.1-soap_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 115008
+MD5sum: 2a5f5e30a59ee275dabb89343cc98f04
+SHA1: 9a10937cd3d3a3fe0f8523719f821bc0e09c57fb
+SHA256: d8652a925e1b10f93200da465571046639641dceb50d47426f84df5307bf1002
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: SOAP module for PHP
+ This package provides the SOAP module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-sqlite3
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 109
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libsqlite3-0 (>= 3.7.15)
+Provides: php-pdo-sqlite, php-sqlite3, php7.1-pdo-sqlite
+Filename: ./php7.1-sqlite3_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 26068
+MD5sum: fe742a7e712c5e9e275658abb4db6bf7
+SHA1: 24eeeb1a998e535d33aaa3472b44f989f88abd7f
+SHA256: 279e1701e89185bda36f69cfbaa88fb2352cd0d9ce572d6f1d687441389cd506
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: SQLite3 module for PHP
+ This package provides the SQLite3 module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-sybase
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 56
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libsybdb5 (>= 0.63)
+Provides: php-pdo-dblib, php7.1-pdo-dblib
+Filename: ./php7.1-sybase_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 11344
+MD5sum: abb0797e02a43f79f87061280a95ed95
+SHA1: c161f924a59cdfd20b8e156eadb2f7eb189bdb71
+SHA256: a05259301d523aa02fc78524438a1b1e0c0db87cf6d2da63912ed5093a082d25
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: Sybase module for PHP
+ This package provides the Sybase module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-tidy
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 80
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libtidy5 (>= 5.2.0)
+Provides: php-tidy
+Filename: ./php7.1-tidy_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 16964
+MD5sum: ddfe54f51a07ca26310749bfeb463c0a
+SHA1: 71c6dad33a52ab3e3601a74d03cbfca987f1c344
+SHA256: d8a14d9f73139d54e7a4a311772e2f43781098fe5d48d2f954e69d43ba24924d
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: tidy module for PHP
+ This package provides the tidy module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-xml
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 485
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libxml2 (>= 2.9.0), libxslt1.1 (>= 1.1.25)
+Breaks: php7.1-xsl (<< 7.0.3-6~)
+Replaces: php7.1-xsl (<< 7.0.3-6~)
+Provides: php-dom, php-simplexml, php-wddx, php-xml, php-xmlreader, php-xmlwriter, php-xsl, php7.1-dom, php7.1-simplexml, php7.1-wddx, php7.1-xmlreader, php7.1-xmlwriter, php7.1-xsl
+Filename: ./php7.1-xml_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 116400
+MD5sum: 5741b5ab933d2abcf1a24e431614216e
+SHA1: 1cb4cd38641e5207eb9321096f637f7ce3ff27d7
+SHA256: b309e97f4ca60ef1c912b9352c9f69311913a35ed328ba82f60ee8fe85e12223
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: DOM, SimpleXML, WDDX, XML, and XSL module for PHP
+ This package provides the DOM, SimpleXML, WDDX, XML, and XSL module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-xmlrpc
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 64
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.14), libxmlrpc-epi0
+Provides: php-xmlrpc
+Filename: ./php7.1-xmlrpc_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 13224
+MD5sum: b1a880d96d85efa49124a0edde82c8cb
+SHA1: 6b159f3e82f1545d88e7c3b76c4bc8980f1758e4
+SHA256: 63899cd06abede3c21bbaeca296186939a696aa15e56bcc06c069e514e53f048
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: XMLRPC-EPI module for PHP
+ This package provides the XMLRPC-EPI module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.1-xsl
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: all
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 93
+Depends: php7.1-common, php7.1-xml
+Filename: ./php7.1-xsl_7.1.33-80+ubuntu18.04.1+local1_all.deb
+Size: 71824
+MD5sum: 3a6df624da84bc5b822b4da68c1512b4
+SHA1: 7142bce301e2bd593fb05e4d06f3599b3879f31f
+SHA256: 57c14d6562c13281c76fba43ac4cc0fee97b1ed8f1cb38842b083ec50d707e2a
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: XSL module for PHP (dummy)
+ This package is a transitional dummy package and can be safely
+ removed.
+
+Package: php7.1-zip
+Source: php7.1
+Version: 7.1.33-80+ubuntu18.04.1+local1
+Architecture: amd64
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 88
+Depends: php-common (>= 1:81~), ucf, php7.1-common (= 7.1.33-80+ubuntu18.04.1+local1), libc6 (>= 2.27), libzip4 (>= 1.0)
+Provides: php-zip
+Filename: ./php7.1-zip_7.1.33-80+ubuntu18.04.1+local1_amd64.deb
+Size: 20156
+MD5sum: 793cace1726e08ea24c23457ddf1f12e
+SHA1: b8519dec554b6772aaae6c3f8468f045f3a46cf4
+SHA256: 55327c0bd1ea19abfd94d4cafd6da8447b533009baf7765fbbe4219a6286cfa5
+Section: php
+Priority: optional
+Homepage: http://www.php.net/
+Description: Zip module for PHP
+ This package provides the Zip module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
