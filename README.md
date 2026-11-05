@@ -121,6 +121,12 @@ shows `(deleted)`: restart it.
 - Copy the exported folder to `pool/<bionic|focal>/<branch>/` and run
   `tools/publish-repo.sh <private-key.asc>`. It rebuilds `dists/` and signs it in a throwaway
   `ubuntu:24.04` container. Then commit and push.
+- **Before relying on a rebuild**, push it and check it behaves like the previous commit:
+  `tools/verify/run.sh ubuntu:20.04 php5.6 <previous-commit> main`. In throwaway Docker containers it installs
+  both versions from this repository and compares the build fingerprint (modules, ini defaults, linked
+  libraries), PHP's full test suite with real MariaDB and PostgreSQL, test by test, and a real website
+  (phpMyAdmin under mod_php and PHP-FPM), page by page. It takes about 2 hours per branch. Only the tests of
+  the fixes you added should change; rerun anything else with `tools/verify/repeat.sh` on both commits.
 
 ### 🗑️ Removing it
 
@@ -254,6 +260,13 @@ muestra `(deleted)`: reinícialo.
 - La carpeta exportada se copia a `pool/<bionic|focal>/<rama>/` y se ejecuta
   `tools/publish-repo.sh <clave-privada.asc>`, que regenera `dists/` y lo firma en un contenedor
   `ubuntu:24.04` de usar y tirar. Después, commit y push.
+- **Antes de fiarte de una recompilación**, súbela y comprueba que se comporta como el commit anterior:
+  `tools/verify/run.sh ubuntu:20.04 php5.6 <commit-anterior> main`. En contenedores Docker de usar y tirar
+  instala las dos versiones desde este repositorio y compara la huella de compilación (módulos, valores de
+  ini, librerías enlazadas), la suite completa de PHP con MariaDB y PostgreSQL de verdad, prueba a prueba, y
+  una web de verdad (phpMyAdmin con mod_php y con PHP-FPM), página a página. Tarda unas 2 horas por rama. Solo
+  deben cambiar las pruebas de los arreglos que hayas añadido; lo demás, repítelo con `tools/verify/repeat.sh`
+  en los dos commits.
 
 ### 🗑️ Quitarlo
 

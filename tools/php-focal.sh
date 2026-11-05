@@ -1,35 +1,45 @@
 #!/usr/bin/env bash
-# php-focal.sh - Recompila para Ubuntu 20.04 (focal) el codigo de Sury publicado para jammy
-# e instala el resultado conservando la configuracion. Procedimiento validado con php7.1.
+# php-focal.sh
+# EN: Rebuilds for Ubuntu 20.04 (focal) the Sury source published for jammy and installs the
+#     result keeping the existing configuration. Procedure validated with php7.1.
+# ES: Recompila para Ubuntu 20.04 (focal) el código de Sury publicado para jammy e instala el
+#     resultado conservando la configuración. Procedimiento validado con php7.1.
 #
-# Uso:  php-focal.sh <fase> <rama> <revision>
-#   fases (en este orden):
-#     prep     descarga, verifica firma y sha256, extrae, dependencias y version local
-#     build    compila en el chroot (log en /root/build-<rama>.log)
-#     sim      repo local + simulacion apt (NO instala)
-#     install  copias + instalacion + restaura php-fpm.conf + comprobaciones
-#     check    solo comprobaciones
-#     export   copia .deb + Packages + fuente + log + SHA256SUMS a /root/php-focal-paquetes/<rama>
-#              y regenera /root/php-focal-paquetes.tar (para llevarlo al PC / repo git)
-#   ejemplos: php-focal.sh prep php7.0 7.0.33-92
-#             php-focal.sh prep php5.6 5.6.40-105
+# Usage / Uso:  php-focal.sh <phase|fase> <branch|rama> <revision|revisión>
+#   phases, in this order / fases, en este orden:
+#     prep     EN: download, verify signature and sha256, extract, build deps and local version
+#              ES: descarga, verifica firma y sha256, extrae, dependencias y versión local
+#     build    EN: build in the chroot (log in /root/build-<branch>.log)
+#              ES: compila en el chroot (log en /root/build-<rama>.log)
+#     sim      EN: local repo + apt simulation (does NOT install)
+#              ES: repo local + simulación apt (NO instala)
+#     install  EN: backups + install + restore php-fpm.conf + checks
+#              ES: copias + instalación + restaura php-fpm.conf + comprobaciones
+#     check    EN: checks only / ES: solo comprobaciones
+#     export   EN: copy .deb + Packages + sources + log + SHA256SUMS to /root/php-focal-paquetes/<branch>
+#              and rebuild /root/php-focal-paquetes.tar (to publish it in the apt repo)
+#              ES: copia .deb + Packages + fuente + log + SHA256SUMS a /root/php-focal-paquetes/<rama>
+#              y regenera /root/php-focal-paquetes.tar (para publicarlo en el repo apt)
+#   examples / ejemplos: php-focal.sh prep php7.0 7.0.33-92
+#                        php-focal.sh prep php5.6 5.6.40-105
 set -euo pipefail
 
 FASE=${1:?fase}; B=${2:?rama (php7.0)}; V=${3:?revision (7.0.33-92)}
 X=${B#php}                                   # 7.0
 CH=/srv/chroot-focal; BD=$CH/build
 PPA=http://ppa.launchpad.net/ondrej/php/ubuntu
-F=${B}_${V}+ubuntu22.04.1+deb.sury.org+1     # nombre base en el PPA
-LV=${V}+ubuntu20.04.1+local1                 # version que instalaremos
+F=${B}_${V}+ubuntu22.04.1+deb.sury.org+1     # EN: base name in the PPA / ES: nombre base en el PPA
+LV=${V}+ubuntu20.04.1+local1                 # EN: version we install / ES: versión que instalaremos
 SRC=src-${B}
 REPO=/srv/repo-local-${B}
-BK=/root/${B}-antes                          # prefijo de copias
+BK=/root/${B}-antes                          # EN: backup prefix / ES: prefijo de copias
 LOG=/root/build-${B}.log
 
 ok()  { echo "OK   $*"; }
 die() { echo "PARA $*" >&2; exit 1; }
 
-# Paquetes instalados cuyo paquete fuente es esta rama (excluye PECL: apcu, xdebug...)
+# EN: installed packages whose source package is this branch (excludes PECL: apcu, xdebug...)
+# ES: paquetes instalados cuyo paquete fuente es esta rama (excluye PECL: apcu, xdebug...)
 pkgs() {
   dpkg-query -W -f='${db:Status-Abbrev} ${Package} ${source:Package}\n' 2>/dev/null \
     | awk -v s="$B" '$1=="ii" && $3==s {print $2}'
@@ -49,7 +59,7 @@ prep)
   done
   [ $good = 1 ] && ok "firma InRelease" || die "firma InRelease"
   grep -q "$(sha256sum Sources.xz | cut -d' ' -f1)" InRelease && ok "Sources.xz" || die "Sources.xz"
-  xz -dc Sources.xz > Sources   # descomprimido aparte: "xz | grep -q" falla con pipefail (SIGPIPE)
+  xz -dc Sources.xz > Sources   # EN: decompressed apart, "xz | grep -q" fails with pipefail (SIGPIPE) / ES: descomprimido aparte: "xz | grep -q" falla con pipefail (SIGPIPE)
   curl -fsSLO "$PPA/pool/main/p/$B/$F.dsc" || die "no existe $F.dsc en el PPA"
   awk '/^Checksums-Sha256:/{s=1;next} /^[A-Z]/{s=0} s{print $3}' "$F.dsc" \
     | while read -r x; do [ -f "$x" ] || curl -fsSLO "$PPA/pool/main/p/$B/$x"; done
@@ -107,7 +117,8 @@ install)
   P=$(pkgs)
   UCF_FORCE_CONFFOLD=1 DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     -o Dpkg::Options::=--force-confold -o Dpkg::Options::=--force-confdef $P
-  # Leccion 7.1: el php-fpm.conf nuevo trae "pid" comentado con un placeholder sin sustituir
+  # EN: lesson from 7.1, the new php-fpm.conf ships "pid" commented out with an unreplaced placeholder
+  # ES: lección de la 7.1: el php-fpm.conf nuevo trae "pid" comentado con un marcador sin sustituir
   if [ -f "$BK-etc/fpm/php-fpm.conf" ] && ! cmp -s "$BK-etc/fpm/php-fpm.conf" /etc/php/$X/fpm/php-fpm.conf; then
     cp -a "$BK-etc/fpm/php-fpm.conf" /etc/php/$X/fpm/php-fpm.conf; ok "php-fpm.conf original restaurado"
   fi
