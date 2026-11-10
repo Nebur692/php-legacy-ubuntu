@@ -31,6 +31,7 @@ still run them can get the latest fixes, including **PHP2Shell (CVE-2026-109618 
 | 20.04 focal | php7.0 | `7.0.33-92+ubuntu20.04.1+local2` |
 | 20.04 focal | php7.1 | `7.1.33-80+ubuntu20.04.1+local2` |
 | 20.04 focal | php7.3 | `7.3.33-35+ubuntu20.04.1+local1` |
+| 20.04 focal | php7.4 | `1:7.4.33-31+ubuntu20.04.1+local1` (replaces Ubuntu's own 7.4.3, see below) |
 | 20.04 focal | php8.2 | `8.2.35-1+ubuntu20.04.1+local1` (with `php8.2-imagick` 3.8.1) |
 | 20.04 focal | libgd3 | `2.2.5-5.2ubuntu2.4+local1` |
 
@@ -119,7 +120,13 @@ shows `(deleted)`: restart it.
 - **Ubuntu 18.04 with Ubuntu's own PHP 7.2** (`7.2.24-0ubuntu0.18.04.x`): `apt-get upgrade` keeps it back
   because it needs the newer `php-common`. Installing it (step 3) **removes Ubuntu's `php-apcu` and
   `php-apcu-bc`**. Check it with `apt-get -s` first.
-- **Ubuntu 20.04's own PHP 7.4** is not in this repository and is not touched.
+- **Ubuntu 20.04's own PHP 7.4** (`7.4.3-4ubuntu2.x`, no longer fixed without Ubuntu Pro) **is replaced by this
+  repository's 7.4.33** on the next `apt-get upgrade`: the PPA's source, which already has every fix of the 7.4
+  branch. Tested from a stock 20.04 with Apache (PHP-FPM and mod_php) and Ubuntu's own PECL extensions (xdebug,
+  apcu, redis, igbinary, memcached, imagick, msgpack, memcache): nothing removed, every extension loads, and
+  1300 requests with xdebug on gave no crash. Restart Apache and PHP-FPM afterwards (`systemctl restart`, not
+  `reload`: Apache keeps the old `libphp7.4.so` loaded otherwise). To stay on Ubuntu's 7.4, pin it before upgrading:
+  `printf 'Package: php7.4* libapache2-mod-php7.4 libphp7.4-embed\nPin: release o=php-legacy-ubuntu\nPin-Priority: 99\n' > /etc/apt/preferences.d/php-legacy-ubuntu-74`.
 - **PECL extensions** (apcu, redis, xdebug…) already installed from the old PPA keep working: they are not
   replaced, and the PHP API of each branch does not change.
 - `NO_PUBKEY` or `is not signed` in `apt-get update`: the key is missing or is not the one in
@@ -277,6 +284,7 @@ CVE-2026-109619)**.
 | 20.04 focal | php7.0 | `7.0.33-92+ubuntu20.04.1+local2` |
 | 20.04 focal | php7.1 | `7.1.33-80+ubuntu20.04.1+local2` |
 | 20.04 focal | php7.3 | `7.3.33-35+ubuntu20.04.1+local1` |
+| 20.04 focal | php7.4 | `1:7.4.33-31+ubuntu20.04.1+local1` (sustituye a la 7.4.3 del propio Ubuntu, ver abajo) |
 | 20.04 focal | php8.2 | `8.2.35-1+ubuntu20.04.1+local1` (con `php8.2-imagick` 3.8.1) |
 | 20.04 focal | libgd3 | `2.2.5-5.2ubuntu2.4+local1` |
 
@@ -365,7 +373,14 @@ muestra `(deleted)`: reinícialo.
 - **Ubuntu 18.04 con el PHP 7.2 del propio Ubuntu** (`7.2.24-0ubuntu0.18.04.x`): `apt-get upgrade` lo retiene
   porque necesita el `php-common` nuevo. Instalarlo (paso 3) **desinstala `php-apcu` y `php-apcu-bc` de
   Ubuntu**. Compruébalo antes con `apt-get -s`.
-- **El PHP 7.4 del propio Ubuntu 20.04** no está en este repositorio y no se toca.
+- **El PHP 7.4 del propio Ubuntu 20.04** (`7.4.3-4ubuntu2.x`, sin arreglos si no se tiene Ubuntu Pro) **lo sustituye
+  la 7.4.33 de este repositorio** en el siguiente `apt-get upgrade`: el código del PPA, que ya trae todos los arreglos
+  de la rama 7.4. Probado desde un 20.04 de serie con Apache (PHP-FPM y mod_php) y las extensiones PECL del propio
+  Ubuntu (xdebug, apcu, redis, igbinary, memcached, imagick, msgpack, memcache): no se quita nada, cargan todas y
+  1300 peticiones con xdebug activo no dieron ningún fallo. Después, reinicia Apache y PHP-FPM (`systemctl restart`, no
+  `reload`: si no, Apache sigue con la `libphp7.4.so` antigua cargada). Para quedarte con la 7.4 de Ubuntu, fíjala antes
+  de actualizar:
+  `printf 'Package: php7.4* libapache2-mod-php7.4 libphp7.4-embed\nPin: release o=php-legacy-ubuntu\nPin-Priority: 99\n' > /etc/apt/preferences.d/php-legacy-ubuntu-74`.
 - **Las extensiones PECL** (apcu, redis, xdebug…) ya instaladas del PPA antiguo siguen funcionando: no se
   sustituyen y la API de PHP de cada rama no cambia.
 - `NO_PUBKEY` o `is not signed` en `apt-get update`: falta la clave o no es la de
