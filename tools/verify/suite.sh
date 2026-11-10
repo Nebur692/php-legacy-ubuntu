@@ -6,7 +6,9 @@
 # ES: Instala todos los paquetes de <rama> de este repositorio tal como estaba en <ref> (un commit o «main»),
 #     saca la huella de compilación y pasa la suite COMPLETA de PHP con MariaDB y PostgreSQL de verdad.
 # Env: TESTS="ext/pgsql ext/soap" limits the suite / limita la suite; SOLO_HUELLA=1 skips it / se la salta;
-#      JOBS=8 run-tests processes at once (shards.sh; 1 = serial) / procesos de run-tests a la vez (1 = en serie).
+#      JOBS=8 run-tests processes at once (shards.sh; 1 = serial) / procesos de run-tests a la vez (1 = en serie);
+#      /p mounted (run.sh PATCHES=<dir>): its *.patch go onto the test tree, so the fixes' own tests run on both refs
+#      / con /p montada, sus *.patch se aplican al árbol de pruebas y las pruebas de cada arreglo corren en las dos refs.
 set -uo pipefail
 REF=$1; R=$2; V=${R#php}
 . /etc/os-release; CN=$VERSION_CODENAME
@@ -15,7 +17,7 @@ mkdir -p /out; O=/out/$CN-$R-$REF
 mal() { echo "MAL $*"; exit 1; }
 G=${REPO_RAW:-https://raw.githubusercontent.com/Nebur692/php-legacy-ubuntu}
 apt-get update -qq >/dev/null 2>&1
-apt-get install -y -qq --no-install-recommends curl ca-certificates xz-utils mariadb-server postgresql locales tzdata >/dev/null 2>&1 || mal base
+apt-get install -y -qq --no-install-recommends curl ca-certificates xz-utils mariadb-server postgresql locales tzdata patch >/dev/null 2>&1 || mal base
 curl -fsSL $G/main/php-legacy-ubuntu.gpg -o /usr/share/keyrings/p.gpg || mal "clave del repo"
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/p.gpg] $G/$REF $CN main" > /etc/apt/sources.list.d/p.list
 printf 'Package: php-common\nPin: release o=php-legacy-ubuntu\nPin-Priority: 99\n' > /etc/apt/preferences.d/p
@@ -75,6 +77,10 @@ curl -fsSL "$G/$REF/pool/$CN/$R/fuente/${R}_${UP}.orig.tar.xz" -o /tmp/orig.tar.
 T=/t; mkdir -p $T; find $T -mindepth 1 -delete; tar -xJf /tmp/orig.tar.xz -C $T --strip-components=1 || mal "orig.tar.xz"
 chown -R postgres $T 2>/dev/null; chmod -R a+rwX $T
 cd $T
+# EN: only the tests matter here (PHP is the installed package): hunks that do not fit the bare upstream tree are dropped
+# ES: aquí solo cuentan las pruebas (PHP es el paquete instalado): lo que no entra en el árbol original se descarta
+if [ -d /p ]; then n=0; for p in /p/*.patch; do patch -p1 -N -f -s --no-backup-if-mismatch -r - < "$p" >/dev/null 2>&1; n=$((n+1)); done
+  echo "  parches de prueba / test patches: $n"; fi
 # EN: phpdbg's run_* tests wait for a terminal that a container lacks: kill any phpdbg older than 2 min
 # ES: las pruebas run_* de phpdbg esperan una terminal que el contenedor no tiene: se corta todo phpdbg de más de 2 min
 ( while sleep 30; do ps -eo pid=,etimes=,comm= | awk '$3 ~ /^phpdbg/ && $2 > 120 {print $1}' | xargs -r kill -9; done ) &

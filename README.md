@@ -24,26 +24,30 @@ still run them can get the latest fixes, including **PHP2Shell (CVE-2026-109618 
 
 | Ubuntu | Branch | Version |
 |---|---|---|
-| 18.04 bionic | php7.1 | `7.1.33-80+ubuntu18.04.1+local2` |
-| 18.04 bionic | php7.2 | `7.2.34-66+ubuntu18.04.1+local1` |
+| 18.04 bionic | php7.1 | `7.1.33-80+ubuntu18.04.1+local3` |
+| 18.04 bionic | php7.2 | `7.2.34-66+ubuntu18.04.1+local2` |
 | 18.04 bionic | libgd3 | `2.2.5-4ubuntu0.5+local1` |
-| 20.04 focal | php5.6 | `5.6.40-105+ubuntu20.04.1+local2` |
-| 20.04 focal | php7.0 | `7.0.33-92+ubuntu20.04.1+local2` |
-| 20.04 focal | php7.1 | `7.1.33-80+ubuntu20.04.1+local2` |
-| 20.04 focal | php7.3 | `7.3.33-35+ubuntu20.04.1+local2` |
+| 20.04 focal | php5.6 | `5.6.40-105+ubuntu20.04.1+local3` |
+| 20.04 focal | php7.0 | `7.0.33-92+ubuntu20.04.1+local3` |
+| 20.04 focal | php7.1 | `7.1.33-80+ubuntu20.04.1+local3` |
+| 20.04 focal | php7.3 | `7.3.33-35+ubuntu20.04.1+local3` |
 | 20.04 focal | php7.4 | `1:7.4.33-31+ubuntu20.04.1+local2` (replaces Ubuntu's own 7.4.3, see below) |
 | 20.04 focal | php8.2 | `8.2.35-1+ubuntu20.04.1+local1` (with `php8.2-imagick` 3.8.1) |
 | 20.04 focal | libgd3 | `2.2.5-5.2ubuntu2.4+local1` |
 
 - The source is the PPA's: the `.dsc`, `.orig` and `.debian.tar.xz` files sit next to each build in
   `pool/<ubuntu>/<branch>/fuente/`. The `+local1` builds are the PPA's source unchanged, byte for byte.
-- The `+local2` builds (php5.6, php7.0, php7.1) add the fixes the PPA ships for php7.2 and newer but not
+- From `+local2` on, php5.6, php7.0 and php7.1 add the fixes the PPA ships for php7.2 and newer but not
   for these branches: CVE-2026-17543 (pgsql), CVE-2026-7260 (phar) and, for php5.6, CVE-2026-6722 (soap).
   The pgsql, phar and soap fixes for php5.6 are adapted to its engine. The extra patches are in `patches/`.
-- **php7.3 and php7.4 `+local2`** keep one more patch on top of the PPA's source: the PHP2Shell fix empties PHP's object store before
+- **php7.3 and php7.4 (from `+local2` on)** keep one more patch on top of the PPA's source: the PHP2Shell fix empties PHP's object store before
   Xdebug 3.1 (the last release for PHP 7.x) releases the objects it keeps, so with Xdebug loaded every request that
   ended with `exit()` (Moodle's `redirect()`), a timeout or a destructor killed the PHP-FPM worker (SIGSEGV in
   `zend_objects_store_del`). The store is now emptied right after the extensions finish, before the memory is released.
+- **`+local3`** (php5.6, php7.0, php7.1 and php7.3; on bionic, php7.1 and php7.2 `+local2`) adds the fixes of the
+  2025-2026 PHP releases that the PPA's sources of these branches lack: the same 21-26 backports as the CentOS 8
+  packages below (pgsql, phar, soap, openssl, mysqlnd, sockets, http, libxml, filters, ctype…), adapted to each branch.
+  They are the `patches/<ubuntu>-<branch>/91NN-*.patch` files, applied after the PPA's own and the ones above.
 - **`libgd3`** is the system GD library: every `php*-gd` uses it (and so do other programs). It is
   Ubuntu's own package with Debian's fix for CVE-2026-9672 (GIF reader) added; `apt-get upgrade` installs it.
 - Each branch folder also has its `SHA256SUMS` and the gzipped build log.
@@ -152,6 +156,9 @@ shows `(deleted)`: restart it.
   libraries), PHP's full test suite with real MariaDB and PostgreSQL, test by test, and a real website
   (phpMyAdmin under mod_php and PHP-FPM), page by page. It takes about 2 hours per branch. Only the tests of
   the fixes you added should change; rerun anything else with `tools/verify/repeat.sh` on both commits.
+  With `PATCHES=patches/<ubuntu>-<branch>` the fixes' own tests run on both sides too (they should go from FAIL to
+  PASS), and `REPO_RAW=http://<host>:<port>` reads the repository from a local web server instead of GitHub, so a
+  rebuild can be checked before it is pushed.
 
 ### 🗑️ Removing it
 
@@ -290,27 +297,32 @@ CVE-2026-109619)**.
 
 | Ubuntu | Rama | Versión |
 |---|---|---|
-| 18.04 bionic | php7.1 | `7.1.33-80+ubuntu18.04.1+local2` |
-| 18.04 bionic | php7.2 | `7.2.34-66+ubuntu18.04.1+local1` |
+| 18.04 bionic | php7.1 | `7.1.33-80+ubuntu18.04.1+local3` |
+| 18.04 bionic | php7.2 | `7.2.34-66+ubuntu18.04.1+local2` |
 | 18.04 bionic | libgd3 | `2.2.5-4ubuntu0.5+local1` |
-| 20.04 focal | php5.6 | `5.6.40-105+ubuntu20.04.1+local2` |
-| 20.04 focal | php7.0 | `7.0.33-92+ubuntu20.04.1+local2` |
-| 20.04 focal | php7.1 | `7.1.33-80+ubuntu20.04.1+local2` |
-| 20.04 focal | php7.3 | `7.3.33-35+ubuntu20.04.1+local2` |
+| 20.04 focal | php5.6 | `5.6.40-105+ubuntu20.04.1+local3` |
+| 20.04 focal | php7.0 | `7.0.33-92+ubuntu20.04.1+local3` |
+| 20.04 focal | php7.1 | `7.1.33-80+ubuntu20.04.1+local3` |
+| 20.04 focal | php7.3 | `7.3.33-35+ubuntu20.04.1+local3` |
 | 20.04 focal | php7.4 | `1:7.4.33-31+ubuntu20.04.1+local2` (sustituye a la 7.4.3 del propio Ubuntu, ver abajo) |
 | 20.04 focal | php8.2 | `8.2.35-1+ubuntu20.04.1+local1` (con `php8.2-imagick` 3.8.1) |
 | 20.04 focal | libgd3 | `2.2.5-5.2ubuntu2.4+local1` |
 
 - El código es el del PPA: los `.dsc`, `.orig` y `.debian.tar.xz` están junto a cada compilación en
   `pool/<ubuntu>/<rama>/fuente/`. Las compilaciones `+local1` son el código del PPA sin cambios, byte a byte.
-- Las `+local2` (php5.6, php7.0, php7.1) añaden los arreglos que el PPA publica para php7.2 y posteriores pero
+- Desde la `+local2`, php5.6, php7.0 y php7.1 añaden los arreglos que el PPA publica para php7.2 y posteriores pero
   no para estas ramas: CVE-2026-17543 (pgsql), CVE-2026-7260 (phar) y, en php5.6, CVE-2026-6722 (soap). Los
   de pgsql, phar y soap de php5.6 están adaptados a su motor. Los parches añadidos están en `patches/`.
-- **Las php7.3 y php7.4 `+local2`** llevan un parche más sobre el código del PPA: el arreglo de PHP2Shell vacía la tabla de objetos
+- **Las php7.3 y php7.4 (desde la `+local2`)** llevan un parche más sobre el código del PPA: el arreglo de PHP2Shell vacía la tabla de objetos
   de PHP antes de que Xdebug 3.1 (el último para PHP 7.x) suelte los objetos que guarda, así que con Xdebug cargado
   cada petición que acababa con `exit()` (el `redirect()` de Moodle), por tiempo o en un destructor tumbaba al
   trabajador de PHP-FPM (SIGSEGV en `zend_objects_store_del`). Ahora la tabla se vacía justo después de que terminen
   las extensiones, antes de liberar la memoria.
+- **La `+local3`** (php5.6, php7.0, php7.1 y php7.3; en bionic, php7.1 y la `+local2` de php7.2) añade los arreglos
+  de las versiones de PHP de 2025-2026 que le faltan al código del PPA de estas ramas: los mismos 21-26 arreglos
+  portados que los paquetes de CentOS 8 de abajo (pgsql, phar, soap, openssl, mysqlnd, sockets, http, libxml,
+  filtros, ctype…), adaptados a cada rama. Son los `patches/<ubuntu>-<rama>/91NN-*.patch`, que se aplican después
+  de los del PPA y los de arriba.
 - **`libgd3`** es la librería GD del sistema: la usan todos los `php*-gd` (y otros programas). Es el paquete de
   Ubuntu con el arreglo de Debian para CVE-2026-9672 (lector GIF); `apt-get upgrade` la instala.
 - Cada carpeta de rama lleva también su `SHA256SUMS` y el registro de compilación comprimido.
@@ -420,7 +432,9 @@ muestra `(deleted)`: reinícialo.
   ini, librerías enlazadas), la suite completa de PHP con MariaDB y PostgreSQL de verdad, prueba a prueba, y
   una web de verdad (phpMyAdmin con mod_php y con PHP-FPM), página a página. Tarda unas 2 horas por rama. Solo
   deben cambiar las pruebas de los arreglos que hayas añadido; lo demás, repítelo con `tools/verify/repeat.sh`
-  en los dos commits.
+  en los dos commits. Con `PATCHES=patches/<ubuntu>-<rama>` también corren en los dos lados las pruebas de cada
+  arreglo (deben pasar de FAIL a PASS), y `REPO_RAW=http://<equipo>:<puerto>` lee el repositorio de un servidor web
+  local en vez de GitHub, para comprobar una recompilación antes de subirla.
 
 ### 🗑️ Quitarlo
 

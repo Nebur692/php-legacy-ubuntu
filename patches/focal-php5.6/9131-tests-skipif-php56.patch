@@ -1,0 +1,798 @@
+From 5d04f35ed504a359117c5d4a2d251f121438de14 Mon Sep 17 00:00:00 2001
+From: Nebur692 <nebur_692@hotmail.com>
+Date: Tue, 10 Nov 2026 12:45:30 +0100
+Subject: [PATCH] tests: use SKIPIF instead of EXTENSIONS in the new 5.6 tests
+
+The 5.6 run-tests resolves --EXTENSIONS-- with "php -n" and loads the extension again
+with -d extension=..., so on an installed PHP whose php.ini already loads it every new test
+fails with "Module already loaded". Use the 5.6 way: a SKIPIF with extension_loaded().
+---
+diff --git a/ext/filter/tests/filter_sanitize_encoded_0xff.phpt b/ext/filter/tests/filter_sanitize_encoded_0xff.phpt
+index 1ee61aba..ea5b1582 100644
+--- a/ext/filter/tests/filter_sanitize_encoded_0xff.phpt
++++ b/ext/filter/tests/filter_sanitize_encoded_0xff.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ FILTER_SANITIZE_ENCODED percent-encodes 0xFF
+---EXTENSIONS--
+-filter
++--SKIPIF--
++<?php if (!extension_loaded('filter')) die('skip filter extension not loaded'); ?>
+ --FILE--
+ <?php
+ var_dump(filter_var("\xFF", FILTER_SANITIZE_ENCODED));
+diff --git a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-auth-message.phpt b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-auth-message.phpt
+index 36d64c23..04faddcb 100644
+--- a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-auth-message.phpt
++++ b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-auth-message.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-h35g-vwh6-m678 (mysqlnd leaks partial content of the heap - auth message buffer over-read)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-def.phpt b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-def.phpt
+index 19cd98fb..93494e70 100644
+--- a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-def.phpt
++++ b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-def.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-h35g-vwh6-m678 (mysqlnd leaks partial content of the heap - tabular default)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-filename.phpt b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-filename.phpt
+index 79c8cec3..16b6ddb4 100644
+--- a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-filename.phpt
++++ b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-filename.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-h35g-vwh6-m678 (mysqlnd leaks partial content of the heap - upsert filename buffer over-read)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-query-len-overflow.phpt b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-query-len-overflow.phpt
+index 88fbe149..92c28fa3 100644
+--- a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-query-len-overflow.phpt
++++ b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-query-len-overflow.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-h35g-vwh6-m678 (mysqlnd leaks partial content of the heap - stmt row no space for the field)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-bit.phpt b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-bit.phpt
+index 4cd5a29e..27a11dd8 100644
+--- a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-bit.phpt
++++ b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-bit.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-h35g-vwh6-m678 (mysqlnd leaks partial content of the heap - stmt row bit buffer over-read)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-date.phpt b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-date.phpt
+index 5e51fd5a..98b79d17 100644
+--- a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-date.phpt
++++ b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-date.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-h35g-vwh6-m678 (mysqlnd leaks partial content of the heap - stmt row date buffer over-read)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-datetime.phpt b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-datetime.phpt
+index 9375f0a6..d421cf9e 100644
+--- a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-datetime.phpt
++++ b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-datetime.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-h35g-vwh6-m678 (mysqlnd leaks partial content of the heap - stmt row datetime buffer over-read)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-double.phpt b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-double.phpt
+index 374d402d..7721af7c 100644
+--- a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-double.phpt
++++ b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-double.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-h35g-vwh6-m678 (mysqlnd leaks partial content of the heap - stmt row double buffer over-read)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-float.phpt b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-float.phpt
+index f51e517e..6de23f3c 100644
+--- a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-float.phpt
++++ b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-float.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-h35g-vwh6-m678 (mysqlnd leaks partial content of the heap - stmt row int buffer over-read)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-int.phpt b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-int.phpt
+index 090432bc..4e245759 100644
+--- a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-int.phpt
++++ b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-int.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-h35g-vwh6-m678 (mysqlnd leaks partial content of the heap - stmt row int buffer over-read)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-no-space.phpt b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-no-space.phpt
+index 58b1994f..3abcfd1a 100644
+--- a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-no-space.phpt
++++ b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-no-space.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-h35g-vwh6-m678 (mysqlnd leaks partial content of the heap - stmt row no space for the field)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-string.phpt b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-string.phpt
+index 8f4c6ade..d1760fd6 100644
+--- a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-string.phpt
++++ b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-string.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-h35g-vwh6-m678 (mysqlnd leaks partial content of the heap - stmt row string buffer over-read)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-time.phpt b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-time.phpt
+index 557090b8..8c104ca0 100644
+--- a/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-time.phpt
++++ b/ext/mysqli/tests/ghsa-h35g-vwh6-m678-stmt-row-time.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-h35g-vwh6-m678 (mysqlnd leaks partial content of the heap - stmt row time buffer over-read)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-affected-rows-2-bytes.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-affected-rows-2-bytes.phpt
+index 67cc9799..10da247e 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-affected-rows-2-bytes.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-affected-rows-2-bytes.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - auth packet with affected rows on 2 bytes)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-affected-rows-8-bytes.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-affected-rows-8-bytes.phpt
+index 685f5298..d8eece63 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-affected-rows-8-bytes.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-affected-rows-8-bytes.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - auth packet with affected rows on 8 bytes)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-affected-rows-null-length.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-affected-rows-null-length.phpt
+index d24efb29..ece70f0a 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-affected-rows-null-length.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-affected-rows-null-length.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - auth packet with affected rows as NULL length)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-affected-rows.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-affected-rows.phpt
+index 2f7cac4c..ba03aa43 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-affected-rows.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-affected-rows.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - auth packet over-read in affected rows)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-last-insert-id-no-space.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-last-insert-id-no-space.phpt
+index 39ec24ec..ffea66fc 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-last-insert-id-no-space.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-last-insert-id-no-space.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - auth packet with no space for last inserted id)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-last-insert-id.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-last-insert-id.phpt
+index 39ab814c..77a0080c 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-last-insert-id.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-last-insert-id.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - auth packet over-read in last inserted id)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-warning-count.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-warning-count.phpt
+index 5f858980..72f0f20a 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-warning-count.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-packet-warning-count.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - auth packet over-read in warning count)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-switch-unterminated.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-switch-unterminated.phpt
+index 32f61664..87c6dfc6 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-switch-unterminated.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-auth-switch-unterminated.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - auth switch response with an unterminated plugin name)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-chg-user-empty.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-chg-user-empty.phpt
+index 0ccb4c8a..4adcb096 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-chg-user-empty.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-chg-user-empty.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - change user response with empty packet)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-chg-user-len.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-chg-user-len.phpt
+index f1e930fd..28904352 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-chg-user-len.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-chg-user-len.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - change user response shorter than expected)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-chg-user-switch-unterminated.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-chg-user-switch-unterminated.phpt
+index cd43e430..80fc898c 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-chg-user-switch-unterminated.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-chg-user-switch-unterminated.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - change user response with an unterminated plugin name)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-eof-warning-count.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-eof-warning-count.phpt
+index e432c946..47857f90 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-eof-warning-count.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-eof-warning-count.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - eof packet over-read in warning count)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-greet-packet-string.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-greet-packet-string.phpt
+index ca11e83e..4b06420b 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-greet-packet-string.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-greet-packet-string.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - greet packet over-read string)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-greet-packet.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-greet-packet.phpt
+index ea83ccf3..62fbe2f0 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-greet-packet.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-greet-packet.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - greet packet over-read)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-greet-scramble-len.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-greet-scramble-len.phpt
+index c0bcb638..96b27e08 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-greet-scramble-len.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-greet-scramble-len.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - greet packet scramble length over-read)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-ok-packet-affected-rows.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-ok-packet-affected-rows.phpt
+index f846edda..9d0e0ce4 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-ok-packet-affected-rows.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-ok-packet-affected-rows.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - ok packet over-read in affected rows)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-ok-packet-last-insert-id.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-ok-packet-last-insert-id.phpt
+index 4d5800b0..439a32eb 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-ok-packet-last-insert-id.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-ok-packet-last-insert-id.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - ok packet over-read in last inserted id)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-ok-packet-message-len.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-ok-packet-message-len.phpt
+index 3433c6b6..37170236 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-ok-packet-message-len.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-ok-packet-message-len.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - ok packet over-read in message length)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-ok-packet-warning-count.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-ok-packet-warning-count.phpt
+index 938255bd..c7e20f99 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-ok-packet-warning-count.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-ok-packet-warning-count.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - ok packet over-read in warning count)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-query-row-eof-short.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-query-row-eof-short.phpt
+index 32e8e899..9e744e0e 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-query-row-eof-short.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-query-row-eof-short.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - row packet with an EOF shorter than the status it announces)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-query-row-field-len-2-bytes.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-query-row-field-len-2-bytes.phpt
+index c83fd846..5edaa135 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-query-row-field-len-2-bytes.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-query-row-field-len-2-bytes.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - text protocol row field length on 2 bytes)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-query-row-field-len.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-query-row-field-len.phpt
+index fd1a7fd5..53d2db52 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-query-row-field-len.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-query-row-field-len.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - text protocol row field length prefix)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-query-row-field-null.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-query-row-field-null.phpt
+index c5f33d72..f070e8b5 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-query-row-field-null.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-query-row-field-null.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - text protocol row with a NULL field)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-rset-header-field-len.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-rset-header-field-len.phpt
+index 4da5466f..18b8d23d 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-rset-header-field-len.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-rset-header-field-len.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - rset header read field length)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-rset-header-upsert-affected-rows.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-rset-header-upsert-affected-rows.phpt
+index 96b2d89f..aa679cd7 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-rset-header-upsert-affected-rows.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-rset-header-upsert-affected-rows.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - rset header upsert affected_rows)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-rset-header-upsert-len.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-rset-header-upsert-len.phpt
+index fbd5768a..a31c6859 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-rset-header-upsert-len.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-rset-header-upsert-len.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - rset header upsert packet length)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-sha256-pk-empty.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-sha256-pk-empty.phpt
+index a8c972ed..3432688d 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-sha256-pk-empty.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-sha256-pk-empty.phpt
+@@ -1,8 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - sha256 public key response with empty packet)
+---EXTENSIONS--
+-mysqli
+ --SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ <?php
+ if (!extension_loaded("openssl"))
+     die("skip mysqlnd is built without SSL support, so the sha256_password plugin is not available");
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-sha256-pk-len.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-sha256-pk-len.phpt
+index ab7dd124..fd27abff 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-sha256-pk-len.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-sha256-pk-len.phpt
+@@ -1,8 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - sha256 public key response shorter than expected)
+---EXTENSIONS--
+-mysqli
+ --SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ <?php
+ if (!extension_loaded("openssl"))
+     die("skip mysqlnd is built without SSL support, so the sha256_password plugin is not available");
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-response-field-len-faulty.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-response-field-len-faulty.phpt
+index 9d63870f..c4cbfd09 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-response-field-len-faulty.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-response-field-len-faulty.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - stmt field length exceeding the packet)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-response-field-len-premature.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-response-field-len-premature.phpt
+index 59e2cb80..62359b1e 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-response-field-len-premature.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-response-field-len-premature.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - stmt field length over-reading into fixed block)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-response-row-status.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-response-row-status.phpt
+index 7cfb898c..b695a2cc 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-response-row-status.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-response-row-status.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - stmt response)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-row-short-length-date.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-row-short-length-date.phpt
+index 7b9b39d1..bd6c8ebb 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-row-short-length-date.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-row-short-length-date.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - stmt row date field length too short for the type)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-row-short-length-datetime.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-row-short-length-datetime.phpt
+index bd460b09..e13dbfbf 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-row-short-length-datetime.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-row-short-length-datetime.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - stmt row datetime field length too short for the type)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-row-short-length-time.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-row-short-length-time.phpt
+index dc64d669..62e6cb98 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-row-short-length-time.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-row-short-length-time.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-r6x9-5r99-36j7 (Various packet overreads in mysqlnd_writeprotocol.c - stmt row time field length too short for the type)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/protocol_query_row_fetch_data.phpt b/ext/mysqli/tests/protocol_query_row_fetch_data.phpt
+index c65a346e..5220bcfb 100644
+--- a/ext/mysqli/tests/protocol_query_row_fetch_data.phpt
++++ b/ext/mysqli/tests/protocol_query_row_fetch_data.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ MySQL protocol - statement row data fetch)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/protocol_stmt_row_fetch_data.phpt b/ext/mysqli/tests/protocol_stmt_row_fetch_data.phpt
+index 01bb83b9..6a74a1fb 100644
+--- a/ext/mysqli/tests/protocol_stmt_row_fetch_data.phpt
++++ b/ext/mysqli/tests/protocol_stmt_row_fetch_data.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ MySQL protocol - statement row data fetch)
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/pgsql/tests/ghsa-hrwm-9436-5mv3.phpt b/ext/pgsql/tests/ghsa-hrwm-9436-5mv3.phpt
+index 2ef47746..210c9428 100644
+--- a/ext/pgsql/tests/ghsa-hrwm-9436-5mv3.phpt
++++ b/ext/pgsql/tests/ghsa-hrwm-9436-5mv3.phpt
+@@ -1,8 +1,7 @@
+ --TEST--
+ #GHSA-hrwm-9436-5mv3: pgsql extension does not check for errors during escaping
+---EXTENSIONS--
+-pgsql
+ --SKIPIF--
++<?php if (!extension_loaded('pgsql')) die('skip pgsql extension not loaded'); ?>
+ <?php include("skipif.inc"); ?>
+ --FILE--
+ <?php
+diff --git a/ext/soap/tests/GHSA-85c2-q967-79q5.phpt b/ext/soap/tests/GHSA-85c2-q967-79q5.phpt
+index 8bcac26a..3e3e700a 100644
+--- a/ext/soap/tests/GHSA-85c2-q967-79q5.phpt
++++ b/ext/soap/tests/GHSA-85c2-q967-79q5.phpt
+@@ -1,9 +1,9 @@
+ --TEST--
+ GHSA-85c2-q967-79q5: Stale SOAP_GLOBAL(ref_map) pointer with Apache Map
++--SKIPIF--
++<?php if (!extension_loaded('soap')) die('skip soap extension not loaded'); ?>
+ --CREDITS--
+ brettgervasoni
+---EXTENSIONS--
+-soap
+ --FILE--
+ <?php
+ 
+diff --git a/ext/soap/tests/GHSA-rgrp-mwpx-f6rm-href-chain.phpt b/ext/soap/tests/GHSA-rgrp-mwpx-f6rm-href-chain.phpt
+index afb7870e..c1413d03 100644
+--- a/ext/soap/tests/GHSA-rgrp-mwpx-f6rm-href-chain.phpt
++++ b/ext/soap/tests/GHSA-rgrp-mwpx-f6rm-href-chain.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-rgrp-mwpx-f6rm: Stack overflow on a chain of href references
+---EXTENSIONS--
+-soap
++--SKIPIF--
++<?php if (!extension_loaded('soap')) die('skip soap extension not loaded'); ?>
+ --FILE--
+ <?php
+ 
+diff --git a/ext/soap/tests/GHSA-rgrp-mwpx-f6rm-href-cycle.phpt b/ext/soap/tests/GHSA-rgrp-mwpx-f6rm-href-cycle.phpt
+index 06f25b50..4b36f66f 100644
+--- a/ext/soap/tests/GHSA-rgrp-mwpx-f6rm-href-cycle.phpt
++++ b/ext/soap/tests/GHSA-rgrp-mwpx-f6rm-href-cycle.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-rgrp-mwpx-f6rm: Stack overflow on an array element referencing its own array
+---EXTENSIONS--
+-soap
++--SKIPIF--
++<?php if (!extension_loaded('soap')) die('skip soap extension not loaded'); ?>
+ --FILE--
+ <?php
+ 
+diff --git a/ext/soap/tests/GHSA-rgrp-mwpx-f6rm.phpt b/ext/soap/tests/GHSA-rgrp-mwpx-f6rm.phpt
+index 98f398bf..f0e23084 100644
+--- a/ext/soap/tests/GHSA-rgrp-mwpx-f6rm.phpt
++++ b/ext/soap/tests/GHSA-rgrp-mwpx-f6rm.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ GHSA-rgrp-mwpx-f6rm: Stack overflow on deeply nested XML
+---EXTENSIONS--
+-soap
++--SKIPIF--
++<?php if (!extension_loaded('soap')) die('skip soap extension not loaded'); ?>
+ --INI--
+ soap.wsdl_cache_enabled=0
+ --FILE--
+diff --git a/ext/soap/tests/bugs/GHSA-cj93-vc83-wgqv.phpt b/ext/soap/tests/bugs/GHSA-cj93-vc83-wgqv.phpt
+index 64252650..73594d6a 100644
+--- a/ext/soap/tests/bugs/GHSA-cj93-vc83-wgqv.phpt
++++ b/ext/soap/tests/bugs/GHSA-cj93-vc83-wgqv.phpt
+@@ -3,11 +3,10 @@ GHSA-cj93-vc83-wgqv
+ --INI--
+ soap.wsdl_cache_enabled=0
+ memory_limit=-1
+---EXTENSIONS--
+-soap
+ --CONFLICTS--
+ all
+ --SKIPIF--
++<?php if (!extension_loaded('soap')) die('skip soap extension not loaded'); ?>
+ <?php
+ require __DIR__.'/../../../standard/tests/http/server.inc';
+ http_server_skipif('tcp://127.0.0.1:0');

@@ -1,0 +1,159 @@
+From 64b9fa54a22a879937550fd0c9fe80db0e6090b5 Mon Sep 17 00:00:00 2001
+From: Nebur692 <nebur_692@hotmail.com>
+Date: Tue, 10 Nov 2026 00:41:45 +0100
+Subject: [PATCH] Fix GH-22643: leak on double DatePeriod::__construct() call
+ [backport to PHP 5.6]
+
+Free the start, current, end and interval of a DatePeriod that is
+constructed again, and refuse an uninitialized DateInterval instead of
+dereferencing its NULL diff.
+
+Origin: php-src 2d86f8cf489ea5410edd19d301c1aefe330599ab (Ilija Tovilo),
+via Remi Collet's 7.4 backport.
+Adaptation: in 5.6 the constructor runs under EH_THROW and the
+DATE_CHECK_INITIALIZED() macro only warns and returns, which would skip
+zend_restore_error_handling(); the check is written out so the handling is
+restored (the warning still becomes an exception). php_period_obj keeps
+the zend_object first in 5.6, so the reset clears the members that follow
+it instead of those that precede it.
+The leak is only reported by a debug build, so besides the upstream test
+a second test makes it visible through memory_get_usage() and VmRSS, and
+a third one covers the uninitialized DateInterval.
+The tests set date.timezone, which PHP 5.6 requires.
+---
+diff --git a/ext/date/php_date.c b/ext/date/php_date.c
+index 0fe549a9..f214271b 100644
+--- a/ext/date/php_date.c
++++ b/ext/date/php_date.c
+@@ -4429,6 +4429,23 @@ static int date_period_initialize(timelib_time **st, timelib_time **et, timelib_
+ 	return retval;
+ }
+ 
++static void date_period_reset(php_period_obj *period_obj)
++{
++	if (period_obj->start) {
++		timelib_time_dtor(period_obj->start);
++	}
++	if (period_obj->current) {
++		timelib_time_dtor(period_obj->current);
++	}
++	if (period_obj->end) {
++		timelib_time_dtor(period_obj->end);
++	}
++	if (period_obj->interval) {
++		timelib_rel_time_dtor(period_obj->interval);
++	}
++	memset(&period_obj->start, 0, sizeof(php_period_obj) - XtOffsetOf(php_period_obj, start));
++}
++
+ /* {{{ proto DatePeriod::__construct(DateTime $start, DateInterval $interval, int recurrences|DateTime $end)
+    Creates new DatePeriod object.
+ */
+@@ -4456,7 +4473,7 @@ PHP_METHOD(DatePeriod, __construct)
+ 	}
+ 
+ 	dpobj = zend_object_store_get_object(getThis() TSRMLS_CC);
+-	dpobj->current = NULL;
++	date_period_reset(dpobj);
+ 
+ 	if (isostr) {
+ 		date_period_initialize(&(dpobj->start), &(dpobj->end), &(dpobj->interval), &recurrences, isostr, isostr_len TSRMLS_CC);
+@@ -4480,6 +4497,11 @@ PHP_METHOD(DatePeriod, __construct)
+ 	} else {
+ 		/* init */
+ 		intobj  = (php_interval_obj *) zend_object_store_get_object(interval TSRMLS_CC);
++		if (!intobj->initialized) {
++			php_error_docref(NULL TSRMLS_CC, E_WARNING, "The DateInterval object has not been correctly initialized by its constructor");
++			zend_restore_error_handling(&error_handling TSRMLS_CC);
++			return;
++		}
+ 
+ 		/* start date */
+ 		dateobj = (php_date_obj *) zend_object_store_get_object(start TSRMLS_CC);
+diff --git a/ext/date/tests/DatePeriod_double_constructor_call.phpt b/ext/date/tests/DatePeriod_double_constructor_call.phpt
+new file mode 100644
+index 00000000..cd3ed44b
+--- /dev/null
++++ b/ext/date/tests/DatePeriod_double_constructor_call.phpt
+@@ -0,0 +1,16 @@
++--TEST--
++Double DatePeriod::__construct() call
++--INI--
++date.timezone=UTC
++--FILE--
++<?php
++
++$start = new \DateTime();
++$interval = new \DateInterval('P1D');
++$period = new \DatePeriod($start, $interval, 1);
++$period->__construct($start, $interval, 1);
++
++?>
++===DONE===
++--EXPECT--
++===DONE===
+diff --git a/ext/date/tests/DatePeriod_double_constructor_call_leak.phpt b/ext/date/tests/DatePeriod_double_constructor_call_leak.phpt
+new file mode 100644
+index 00000000..784ad6b9
+--- /dev/null
++++ b/ext/date/tests/DatePeriod_double_constructor_call_leak.phpt
+@@ -0,0 +1,35 @@
++--TEST--
++Double DatePeriod::__construct() call does not leak (visible without a debug build)
++--FILE--
++<?php
++/* timelib allocates through emalloc() in PHP 7 and through malloc() in PHP 5,
++ * so look at both the Zend heap and the resident set size of the process. */
++function rss_kb() {
++    if (!is_readable('/proc/self/status')) return 0;
++    preg_match('/^VmRSS:\s+(\d+) kB/m', file_get_contents('/proc/self/status'), $m);
++    return (int) $m[1];
++}
++
++$start = new DateTime('2020-01-01 00:00:00', new DateTimeZone('Europe/Madrid'));
++$end = new DateTime('2020-02-01 00:00:00', new DateTimeZone('Europe/Madrid'));
++$interval = new DateInterval('P1D');
++$period = new DatePeriod($start, $interval, $end);
++foreach ($period as $d) { }
++
++$heap = memory_get_usage();
++$rss = rss_kb();
++for ($i = 0; $i < 100000; $i++) {
++    $period->__construct($start, $interval, $end);
++}
++$growth = (int) ((memory_get_usage() - $heap) / 1024) + (rss_kb() - $rss);
++var_dump($growth < 16384);
++if ($growth >= 16384) echo "grew by $growth kB\n";
++
++/* the period is still usable after being constructed again */
++$n = 0;
++foreach ($period as $d) { $n++; }
++var_dump($n);
++?>
++--EXPECT--
++bool(true)
++int(31)
+diff --git a/ext/date/tests/DatePeriod_uninitialized_interval.phpt b/ext/date/tests/DatePeriod_uninitialized_interval.phpt
+new file mode 100644
+index 00000000..e4b78080
+--- /dev/null
++++ b/ext/date/tests/DatePeriod_uninitialized_interval.phpt
+@@ -0,0 +1,18 @@
++--TEST--
++DatePeriod::__construct() refuses an uninitialized DateInterval
++--INI--
++date.timezone=UTC
++--FILE--
++<?php
++class BrokenInterval extends DateInterval { function __construct() {} }
++try {
++    new DatePeriod(new DateTime('2020-01-01'), new BrokenInterval, 1);
++    echo "no exception\n";
++} catch (Exception $e) {
++    echo get_class($e), ": ", $e->getMessage(), "\n";
++}
++?>
++===DONE===
++--EXPECTF--
++Exception: %sThe DateInterval object has not been correctly initialized by its constructor
++===DONE===

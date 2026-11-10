@@ -7,7 +7,8 @@
 #       3. a real website (Apache + mod_php and PHP-FPM, MariaDB, phpMyAdmin 4.9.11 + mezcla.php), page by page.
 #     Example: tools/verify/run.sh ubuntu:20.04 php5.6 1174f7d main   (the suite runs split in JOBS=8 processes per ref, see shards.sh)
 #     Env: OUT (default ./verify-out), TESTS="ext/pgsql ext/soap" (subset), SKIP_SUITE=1, SKIP_WEB=1, JOBS (8), CPUS (8),
-#     WORK (host dir for the test trees, instead of the container layer).
+#     WORK (host dir for the test trees, instead of the container layer), PATCHES (a patches/<release>-<branch> dir:
+#     applied to the test tree of BOTH refs, so the fixes' own tests show up as FAIL -> PASS).
 #     Exit 0 = identical; 1 = differences listed above (a fix's own tests may change on purpose: check each one,
 #     and rerun anything unexpected with repeat.sh on both refs); 2 = a step failed or is incomplete.
 # ES: Comprueba que una rama recompilada se comporta exactamente igual que la anterior. Todo corre en
@@ -17,7 +18,8 @@
 #       3. una web de verdad (Apache + mod_php y PHP-FPM, MariaDB, phpMyAdmin 4.9.11 + mezcla.php), página a página.
 #     Ejemplo: tools/verify/run.sh ubuntu:20.04 php5.6 1174f7d main   (la suite va repartida en JOBS=8 procesos por ref, ver shards.sh)
 #     Entorno: OUT (por defecto ./verify-out), TESTS="ext/pgsql ext/soap" (una parte), SKIP_SUITE=1, SKIP_WEB=1, JOBS (8),
-#     CPUS (8), WORK (carpeta del host para los árboles de pruebas, en vez de la capa del contenedor).
+#     CPUS (8), WORK (carpeta del host para los árboles de pruebas, en vez de la capa del contenedor), PATCHES (una carpeta
+#     patches/<serie>-<rama>: se aplica al árbol de pruebas de LAS DOS refs, y las pruebas de cada arreglo salen FAIL -> PASS).
 #     Sale 0 = idéntico; 1 = diferencias, listadas arriba (las pruebas de un arreglo pueden cambiar a propósito:
 #     revisar cada una y repetir lo inesperado con repeat.sh en las dos refs); 2 = un paso falló o está incompleto.
 set -uo pipefail
@@ -38,6 +40,7 @@ if [ "${SKIP_SUITE:-}" != 1 ]; then
   for ref in "$A" "$D"; do
     # EN: WORK=<host dir>: the test tree goes there, not into the container layer / ES: el árbol de pruebas va ahí, no a la capa
     t=(); [ -n "${WORK:-}" ] && { mkdir -p "$WORK/suite-$ref"; t=(-v "$(realpath "$WORK")/suite-$ref":/t); }
+    [ -n "${PATCHES:-}" ] && t+=(-v "$(realpath "$PATCHES")":/p:ro)
     C=${CPUS:-8} M=4g corre suite-$ref -v "$H/suite.sh":/i.sh:ro "${t[@]}" -- bash /i.sh "$ref" "$R" > "$OUT/$CN-$R-$ref.run.txt" 2>&1 &
   done; wait
   for ref in "$A" "$D"; do sed "s/^/  /" "$OUT/$CN-$R-$ref.run.txt"; grep -q '^MAL' "$OUT/$CN-$R-$ref.run.txt" && roto=1; done

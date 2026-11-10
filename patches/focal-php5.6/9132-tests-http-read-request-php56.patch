@@ -1,0 +1,138 @@
+From 6014bbe7e7b55fbd456c66c5f4094d62051c377a Mon Sep 17 00:00:00 2001
+From: Nebur692 <nebur_692@hotmail.com>
+Date: Tue, 10 Nov 2026 13:27:10 +0100
+Subject: [PATCH] tests: read the whole HTTP request before answering in the
+ new 5.6 http tests
+
+The test servers answered and closed as soon as they accepted the connection. The 5.6 HTTP
+wrapper sends the final CRLF of the request in a separate write, so under load it sometimes
+found the connection already closed ("send of 2 bytes failed ... Connection reset by peer")
+and the test failed for a reason unrelated to the fix (1 in 40 runs). Reading the request
+first makes them deterministic (130/130 under load).
+---
+diff --git a/ext/standard/tests/http/ghsa-52jp-hrpf-2jff-001.phpt b/ext/standard/tests/http/ghsa-52jp-hrpf-2jff-001.phpt
+index f58c699e..38e01a91 100644
+--- a/ext/standard/tests/http/ghsa-52jp-hrpf-2jff-001.phpt
++++ b/ext/standard/tests/http/ghsa-52jp-hrpf-2jff-001.phpt
+@@ -14,6 +14,9 @@ $ctxt = stream_context_create([
+  phpt_notify_server_start($server);
+ 
+  $conn = stream_socket_accept($server);
++ /* Read the whole request before answering: the 5.6 client sends the final "\r\n" apart, and closing
++  * before it arrives resets the connection ("send of 2 bytes failed ... Connection reset by peer"). */
++ $req = ''; while (strpos($req, "\r\n\r\n") === false && !feof($conn) && ($b = fread($conn, 1024)) !== false && $b !== '') { $req .= $b; }
+ 
+  phpt_notify(WORKER_DEFAULT_NAME, "server-accepted");
+ 
+diff --git a/ext/standard/tests/http/ghsa-52jp-hrpf-2jff-002.phpt b/ext/standard/tests/http/ghsa-52jp-hrpf-2jff-002.phpt
+index d84ab77e..7b4ce4f5 100644
+--- a/ext/standard/tests/http/ghsa-52jp-hrpf-2jff-002.phpt
++++ b/ext/standard/tests/http/ghsa-52jp-hrpf-2jff-002.phpt
+@@ -14,6 +14,9 @@ $ctxt = stream_context_create([
+  phpt_notify_server_start($server);
+ 
+  $conn = stream_socket_accept($server);
++ /* Read the whole request before answering: the 5.6 client sends the final "\r\n" apart, and closing
++  * before it arrives resets the connection ("send of 2 bytes failed ... Connection reset by peer"). */
++ $req = ''; while (strpos($req, "\r\n\r\n") === false && !feof($conn) && ($b = fread($conn, 1024)) !== false && $b !== '') { $req .= $b; }
+ 
+  phpt_notify(WORKER_DEFAULT_NAME, "server-accepted");
+ 
+diff --git a/ext/standard/tests/http/ghsa-pcmh-g36c-qc44-001.phpt b/ext/standard/tests/http/ghsa-pcmh-g36c-qc44-001.phpt
+index 53baa1c9..b017a804 100644
+--- a/ext/standard/tests/http/ghsa-pcmh-g36c-qc44-001.phpt
++++ b/ext/standard/tests/http/ghsa-pcmh-g36c-qc44-001.phpt
+@@ -14,6 +14,9 @@ $serverCode = <<<'CODE'
+     phpt_notify_server_start($server);
+ 
+     $conn = stream_socket_accept($server);
++ /* Read the whole request before answering: the 5.6 client sends the final "\r\n" apart, and closing
++  * before it arrives resets the connection ("send of 2 bytes failed ... Connection reset by peer"). */
++ $req = ''; while (strpos($req, "\r\n\r\n") === false && !feof($conn) && ($b = fread($conn, 1024)) !== false && $b !== '') { $req .= $b; }
+ 
+     phpt_notify(WORKER_DEFAULT_NAME, "server-accepted");
+ 
+diff --git a/ext/standard/tests/http/ghsa-pcmh-g36c-qc44-002.phpt b/ext/standard/tests/http/ghsa-pcmh-g36c-qc44-002.phpt
+index 5aa0ee00..b3c9acdf 100644
+--- a/ext/standard/tests/http/ghsa-pcmh-g36c-qc44-002.phpt
++++ b/ext/standard/tests/http/ghsa-pcmh-g36c-qc44-002.phpt
+@@ -14,6 +14,9 @@ $serverCode = <<<'CODE'
+     phpt_notify_server_start($server);
+ 
+     $conn = stream_socket_accept($server);
++ /* Read the whole request before answering: the 5.6 client sends the final "\r\n" apart, and closing
++  * before it arrives resets the connection ("send of 2 bytes failed ... Connection reset by peer"). */
++ $req = ''; while (strpos($req, "\r\n\r\n") === false && !feof($conn) && ($b = fread($conn, 1024)) !== false && $b !== '') { $req .= $b; }
+ 
+     phpt_notify(WORKER_DEFAULT_NAME, "server-accepted");
+ 
+diff --git a/ext/standard/tests/http/ghsa-v8xr-gpvj-cx9g-001.phpt b/ext/standard/tests/http/ghsa-v8xr-gpvj-cx9g-001.phpt
+index 64904bfc..dc230764 100644
+--- a/ext/standard/tests/http/ghsa-v8xr-gpvj-cx9g-001.phpt
++++ b/ext/standard/tests/http/ghsa-v8xr-gpvj-cx9g-001.phpt
+@@ -14,6 +14,9 @@ $serverCode = <<<'CODE'
+     phpt_notify_server_start($server);
+ 
+     $conn = stream_socket_accept($server);
++ /* Read the whole request before answering: the 5.6 client sends the final "\r\n" apart, and closing
++  * before it arrives resets the connection ("send of 2 bytes failed ... Connection reset by peer"). */
++ $req = ''; while (strpos($req, "\r\n\r\n") === false && !feof($conn) && ($b = fread($conn, 1024)) !== false && $b !== '') { $req .= $b; }
+ 
+     phpt_notify(WORKER_DEFAULT_NAME, "server-accepted");
+ 
+diff --git a/ext/standard/tests/http/ghsa-v8xr-gpvj-cx9g-002.phpt b/ext/standard/tests/http/ghsa-v8xr-gpvj-cx9g-002.phpt
+index a6d9d00f..5948aa0c 100644
+--- a/ext/standard/tests/http/ghsa-v8xr-gpvj-cx9g-002.phpt
++++ b/ext/standard/tests/http/ghsa-v8xr-gpvj-cx9g-002.phpt
+@@ -14,6 +14,9 @@ $serverCode = <<<'CODE'
+     phpt_notify_server_start($server);
+ 
+     $conn = stream_socket_accept($server);
++ /* Read the whole request before answering: the 5.6 client sends the final "\r\n" apart, and closing
++  * before it arrives resets the connection ("send of 2 bytes failed ... Connection reset by peer"). */
++ $req = ''; while (strpos($req, "\r\n\r\n") === false && !feof($conn) && ($b = fread($conn, 1024)) !== false && $b !== '') { $req .= $b; }
+ 
+     phpt_notify(WORKER_DEFAULT_NAME, "server-accepted");
+ 
+diff --git a/ext/standard/tests/http/ghsa-v8xr-gpvj-cx9g-003.phpt b/ext/standard/tests/http/ghsa-v8xr-gpvj-cx9g-003.phpt
+index 4eff7fc6..ed17398d 100644
+--- a/ext/standard/tests/http/ghsa-v8xr-gpvj-cx9g-003.phpt
++++ b/ext/standard/tests/http/ghsa-v8xr-gpvj-cx9g-003.phpt
+@@ -14,6 +14,9 @@ $serverCode = <<<'CODE'
+     phpt_notify_server_start($server);
+ 
+     $conn = stream_socket_accept($server);
++ /* Read the whole request before answering: the 5.6 client sends the final "\r\n" apart, and closing
++  * before it arrives resets the connection ("send of 2 bytes failed ... Connection reset by peer"). */
++ $req = ''; while (strpos($req, "\r\n\r\n") === false && !feof($conn) && ($b = fread($conn, 1024)) !== false && $b !== '') { $req .= $b; }
+ 
+     phpt_notify(WORKER_DEFAULT_NAME, "server-accepted");
+ 
+diff --git a/ext/standard/tests/http/ghsa-v8xr-gpvj-cx9g-004.phpt b/ext/standard/tests/http/ghsa-v8xr-gpvj-cx9g-004.phpt
+index 71aed2fa..ed209cb2 100644
+--- a/ext/standard/tests/http/ghsa-v8xr-gpvj-cx9g-004.phpt
++++ b/ext/standard/tests/http/ghsa-v8xr-gpvj-cx9g-004.phpt
+@@ -14,6 +14,9 @@ $serverCode = <<<'CODE'
+     phpt_notify_server_start($server);
+ 
+     $conn = stream_socket_accept($server);
++ /* Read the whole request before answering: the 5.6 client sends the final "\r\n" apart, and closing
++  * before it arrives resets the connection ("send of 2 bytes failed ... Connection reset by peer"). */
++ $req = ''; while (strpos($req, "\r\n\r\n") === false && !feof($conn) && ($b = fread($conn, 1024)) !== false && $b !== '') { $req .= $b; }
+ 
+     phpt_notify(WORKER_DEFAULT_NAME, "server-accepted");
+ 
+diff --git a/ext/standard/tests/http/ghsa-v8xr-gpvj-cx9g-005.phpt b/ext/standard/tests/http/ghsa-v8xr-gpvj-cx9g-005.phpt
+index 49d845d8..d42932bf 100644
+--- a/ext/standard/tests/http/ghsa-v8xr-gpvj-cx9g-005.phpt
++++ b/ext/standard/tests/http/ghsa-v8xr-gpvj-cx9g-005.phpt
+@@ -14,6 +14,9 @@ $serverCode = <<<'CODE'
+     phpt_notify_server_start($server);
+ 
+     $conn = stream_socket_accept($server);
++ /* Read the whole request before answering: the 5.6 client sends the final "\r\n" apart, and closing
++  * before it arrives resets the connection ("send of 2 bytes failed ... Connection reset by peer"). */
++ $req = ''; while (strpos($req, "\r\n\r\n") === false && !feof($conn) && ($b = fread($conn, 1024)) !== false && $b !== '') { $req .= $b; }
+ 
+     phpt_notify(WORKER_DEFAULT_NAME, "server-accepted");
+ 

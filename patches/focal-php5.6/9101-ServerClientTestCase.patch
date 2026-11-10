@@ -1,0 +1,223 @@
+From 60d623dab7abd5e6b23a3955dd947071fbe8952a Mon Sep 17 00:00:00 2001
+From: Nebur692 <nebur_692@hotmail.com>
+Date: Tue, 10 Nov 2026 00:54:52 +0100
+Subject: [PATCH] tests: let ServerClientTestCase use ephemeral ports [backport
+ to PHP 5.6]
+
+Test infrastructure needed by the GHSA-v8xr-gpvj-cx9g, GHSA-pcmh-g36c-qc44,
+GHSA-hgf5-96fm-v528 and GHSA-52jp-hrpf-2jff tests: phpt_notify() can carry
+a message, phpt_wait() returns it, and phpt_notify_server_start() plus the
+{{ ADDR }} placeholder let workers listen on tcp://127.0.0.1:0.
+
+Taken from the ext/openssl/tests/ServerClientTestCase.inc hunk of
+d20b4c97a9f883b62b65b82d939c5af9a2028ef1 (GHSA-v8xr-gpvj-cx9g).
+
+Adapted: run() only switches to the ephemeral mode when the code uses the
+{{ ADDR }} placeholder (third argument defaults to null = auto), so the
+existing tests that use fixed ports and a bare phpt_notify() as the
+"server ready" signal keep working unchanged.
+
+In 5.6 the file still had the single worker version; it is replaced by
+the multi-worker version of 7.3 (with the change above), which keeps the
+old calls (phpt_notify(), phpt_wait(), run($client, $server)) working.
+The scalar, void and nullable type declarations are dropped (PHP 7.x syntax).
+---
+diff --git a/ext/openssl/tests/ServerClientTestCase.inc b/ext/openssl/tests/ServerClientTestCase.inc
+index 03e0c2de..b15abae0 100644
+--- a/ext/openssl/tests/ServerClientTestCase.inc
++++ b/ext/openssl/tests/ServerClientTestCase.inc
+@@ -2,14 +2,33 @@
+ 
+ const WORKER_ARGV_VALUE = 'RUN_WORKER';
+ 
+-function phpt_notify()
++const WORKER_DEFAULT_NAME = 'server';
++
++function phpt_notify($worker = WORKER_DEFAULT_NAME, $message = "")
++{
++    ServerClientTestCase::getInstance()->notify($worker, $message);
++}
++
++function phpt_wait($worker = WORKER_DEFAULT_NAME, $timeout = null)
+ {
+-    ServerClientTestCase::getInstance()->notify();
++    return ServerClientTestCase::getInstance()->wait($worker, $timeout);
+ }
+ 
+-function phpt_wait()
++function phpt_notify_server_start($server)
+ {
+-    ServerClientTestCase::getInstance()->wait();
++    ServerClientTestCase::getInstance()->notify_server_start($server);
++}
++
++function phpt_has_sslv3() {
++    static $result = null;
++    if (!is_null($result)) {
++        return $result;
++    }
++    $server = @stream_socket_server('sslv3://127.0.0.1:10013');
++    if ($result = !!$server) {
++        fclose($server);
++    }
++    return $result;
+ }
+ 
+ /**
+@@ -20,11 +39,11 @@ class ServerClientTestCase
+ {
+     private $isWorker = false;
+ 
+-    private $workerHandle;
++    private $workerHandle = [];
+ 
+-    private $workerStdIn;
++    private $workerStdIn = [];
+ 
+-    private $workerStdOut;
++    private $workerStdOut = [];
+ 
+     private static $instance;
+ 
+@@ -46,22 +65,41 @@ class ServerClientTestCase
+         $this->isWorker = $isWorker;
+     }
+ 
+-    private function spawnWorkerProcess($code)
++    private function spawnWorkerProcess($worker, $code)
+     {
+-        $cmd = sprintf('%s "%s" %s', PHP_BINARY, __FILE__, WORKER_ARGV_VALUE);
+-
+-        $this->workerHandle = proc_open($cmd, [['pipe', 'r'], ['pipe', 'w'], STDERR], $pipes);
+-        $this->workerStdIn = $pipes[0];
+-        $this->workerStdOut = $pipes[1];
+-
+-        fwrite($this->workerStdIn, $code . "\n---\n");
++        if (defined("PHP_WINDOWS_VERSION_MAJOR")) {
++            $ini = php_ini_loaded_file();
++            $cmd = sprintf(
++                '%s %s "%s" %s',
++                PHP_BINARY, $ini ? "-n -c $ini" : "",
++                __FILE__,
++                WORKER_ARGV_VALUE
++            );
++        } else {
++            $cmd = sprintf(
++                '%s "%s" %s %s',
++                PHP_BINARY,
++                __FILE__,
++                WORKER_ARGV_VALUE,
++                $worker
++            );
++        }
++        $this->workerHandle[$worker] = proc_open(
++            $cmd,
++            [['pipe', 'r'], ['pipe', 'w'], STDERR],
++            $pipes
++        );
++        $this->workerStdIn[$worker] = $pipes[0];
++        $this->workerStdOut[$worker] = $pipes[1];
++
++        fwrite($this->workerStdIn[$worker], $code . "\n---\n");
+     }
+ 
+-    private function cleanupWorkerProcess()
++    private function cleanupWorkerProcess($worker)
+     {
+-        fclose($this->workerStdIn);
+-        fclose($this->workerStdOut);
+-        proc_close($this->workerHandle);
++        fclose($this->workerStdIn[$worker]);
++        fclose($this->workerStdOut[$worker]);
++        proc_close($this->workerHandle[$worker]);
+     }
+ 
+     private function stripPhpTagsFromCode($code)
+@@ -86,21 +124,78 @@ class ServerClientTestCase
+         eval($code);
+     }
+ 
+-    public function run($proc1Code, $proc2Code)
++    /**
++     * Run client and all workers
++     *
++     * @param string       $clientCode The client PHP code
++     * @param string|array $workerCode
++     * @param bool|null    $ephemeral Select whether automatic port selection and automatic awaiting is used
++     *                                (null: only when the code uses the {{ ADDR }} placeholder, so the
++     *                                tests written for fixed ports and plain phpt_notify() keep working)
++     * @return void
++     * @throws Exception
++     */
++    public function run($clientCode, $workerCode, $ephemeral = null)
+     {
+-        $this->spawnWorkerProcess($this->stripPhpTagsFromCode($proc2Code));
+-        eval($this->stripPhpTagsFromCode($proc1Code));
+-        $this->cleanupWorkerProcess();
++        if (!is_array($workerCode)) {
++            $workerCode = [WORKER_DEFAULT_NAME => $workerCode];
++        }
++        if ($ephemeral === null) {
++            $ephemeral = (bool) preg_match('/{{\s*ADDR\s*}}/', $clientCode . implode("\n", $workerCode));
++        }
++        reset($workerCode);
++        $code = current($workerCode);
++        $worker = key($workerCode);
++        while ($worker != null) {
++            $this->spawnWorkerProcess($worker, $this->stripPhpTagsFromCode($code));
++            $code = next($workerCode);
++            if ($ephemeral) {
++                $addr = trim($this->wait($worker));
++                if (empty($addr)) {
++                    throw new \Exception("Failed server start");
++                }
++                if ($code === false) {
++                    $clientCode = preg_replace('/{{\s*ADDR\s*}}/', $addr, $clientCode);
++                } else {
++                    $code = preg_replace('/{{\s*ADDR\s*}}/', $addr, $code);
++                }
++            }
++            $worker = key($workerCode);
++        }
++
++        eval($this->stripPhpTagsFromCode($clientCode));
++        foreach ($workerCode as $worker => $code) {
++            $this->cleanupWorkerProcess($worker);
++        }
++    }
++
++    public function wait($worker, $timeout = null)
++    {
++        $handle = $this->isWorker ? STDIN : $this->workerStdOut[$worker];
++        if ($timeout === null) {
++            return fgets($handle);
++        }
++
++        stream_set_blocking($handle, false);
++        $read = [$handle];
++        $result = stream_select($read, $write, $except, $timeout);
++        if (!$result) {
++            return null;
++        }
++
++        $result = fgets($handle);
++        stream_set_blocking($handle, true);
++        return $result;
+     }
+-    
+-    public function wait()
++
++    public function notify($worker, $message = "")
+     {
+-        fgets($this->isWorker ? STDIN : $this->workerStdOut);
++        fwrite($this->isWorker ? STDOUT : $this->workerStdIn[$worker], "$message\n");
+     }
+ 
+-    public function notify()
++    public function notify_server_start($server)
+     {
+-        fwrite($this->isWorker ? STDOUT : $this->workerStdIn, "\n");
++        echo stream_socket_get_name($server, false) . "\n";
+     }
+ }
+ 
