@@ -1,0 +1,11 @@
+# EN: Tests left out of the EL8 suite, on both sides of every comparison. One path per line, then the reason.
+# ES: Pruebas que no entran en la suite de EL8, en los dos lados de cada comparación. Una ruta por línea y el motivo.
+#
+# EN: TLS 1.3 has no renegotiation and EL8's openssl s_client negotiates TLS 1.3: the test server spins forever and
+#     its output fills run-tests' memory (27 GB, then the kernel kills the whole suite). Upstream fixed the TEST in
+#     7.4 with 'max_proto_version' => TLSv1_2, an option that only exists since 7.4. Not a PHP code issue.
+# ES: TLS 1.3 no tiene renegociación y el openssl s_client de EL8 negocia TLS 1.3: el servidor de la prueba da
+#     vueltas para siempre y su salida llena la memoria de run-tests (27 GB, y el núcleo mata la suite entera).
+#     Upstream arregló la PRUEBA en 7.4 con 'max_proto_version' => TLSv1_2, opción que solo existe desde 7.4.
+#     No es un fallo del código de PHP.
+ext/openssl/tests/stream_server_reneg_limit.phpt

@@ -5,8 +5,13 @@
 # ES: Compara dos registros de run-tests prueba a prueba y lista cada prueba que cambia de resultado. Sale con 2
 #     si un registro está incompleto (menos de ${MIN_TESTS:-1000} resultados).
 resultados() { # "path status" per test, sorted / "ruta estado" por prueba, ordenado
-  tr '\r' '\n' < "$1" | grep -aE '^(PASS|FAIL|SKIP|BORK|LEAK|XFAIL|WARN|XLEAK)[ &].*\[[^]]+\.phpt\]' \
-    | sed -E 's/^([A-Z&]+) .*\[([^]]+\.phpt)\].*$/\2 \1/' | sort -u
+  # EN: a test whose title has several lines prints its result on one line and its path a few lines below: join them
+  # ES: una prueba con título de varias líneas imprime el resultado en una línea y la ruta unas líneas más abajo: se juntan
+  tr '\r' '\n' < "$1" | awk '/^(PASS|FAIL|SKIP|BORK|LEAK|XFAIL|WARN|XLEAK)[ &]/ { b = $0; n = 0; if (b ~ /\.phpt\]/) { print b; b = "" }; next }
+    b != "" { b = b " " $0; if (b ~ /\.phpt\]/ || ++n > 5) { print b; b = "" } }' \
+    | grep -aE '^(PASS|FAIL|SKIP|BORK|LEAK|XFAIL|WARN|XLEAK)[ &].*\[[^]]+\.phpt\]' \
+    | sed -E 's/^([A-Z&]+) .*\[([^]]+\.phpt)\].*$/\2 \1/' | sort -u \
+    | awk '{ if ($1 == p) s = s "," $2; else { if (p != "") print p, s; p = $1; s = $2 } } END { if (p != "") print p, s }'
 }
 a=$(mktemp); d=$(mktemp); c=$(mktemp); trap 'rm -f "$a" "$d" "$c"' EXIT
 resultados "$1" > "$a"; resultados "$2" > "$d"

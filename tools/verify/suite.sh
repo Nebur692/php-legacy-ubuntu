@@ -5,7 +5,8 @@
 #     Results: /out/<release>-<branch>-<ref>.{paquetes,modulos,ini,phpi,ldd,libs,suite.log,diffs/}
 # ES: Instala todos los paquetes de <rama> de este repositorio tal como estaba en <ref> (un commit o «main»),
 #     saca la huella de compilación y pasa la suite COMPLETA de PHP con MariaDB y PostgreSQL de verdad.
-# Env: TESTS="ext/pgsql ext/soap" limits the suite / limita la suite; SOLO_HUELLA=1 skips it / se la salta.
+# Env: TESTS="ext/pgsql ext/soap" limits the suite / limita la suite; SOLO_HUELLA=1 skips it / se la salta;
+#      JOBS=8 run-tests processes at once (shards.sh; 1 = serial) / procesos de run-tests a la vez (1 = en serie).
 set -uo pipefail
 REF=$1; R=$2; V=${R#php}
 . /etc/os-release; CN=$VERSION_CODENAME
@@ -41,7 +42,7 @@ echo "[$CN $R $REF] $(wc -l < $O.paquetes) paquetes; cli $(dpkg-query -W -f='${V
 # ---------- 1. Fingerprint / huella ----------
 php$V -m > $O.modulos
 php$V -r 'foreach (ini_get_all(null, false) as $k => $v) echo "$k=", var_export($v, true), "\n";' | sort > $O.ini
-php$V -i | grep -vE '^(Build Date|System|_SERVER|_ENV|\$_|PHP_SELF|REQUEST_TIME|SCRIPT_|PATH_TRANSLATED|DOCUMENT_ROOT|HOSTNAME|HOME|PWD|OLDPWD|SHLVL|PATH|TERM|LANG|TZ|_ =>|argv|argc)' \
+php$V -i | grep -vE '^(Build Date|System|_SERVER|_ENV|\$_|PHP_SELF|REQUEST_TIME|SCRIPT_|PATH_TRANSLATED|DOCUMENT_ROOT|HOSTNAME|HOME|PWD|OLDPWD|SHLVL|PATH|TERM|LANG|TZ|JOBS|TESTS|EXCLUDE|_ =>|argv|argc)' \
   | grep -vE 'PHP Version => |=> '"$(hostname)" | sed -E 's/\+local[0-9]+/+localN/g' > $O.phpi
 ED=$(php$V -r 'echo ini_get("extension_dir");')
 for f in /usr/bin/php$V /usr/sbin/php-fpm$V /usr/bin/php-cgi$V /usr/bin/phpdbg$V /usr/lib/apache2/modules/libphp$V.so /usr/lib/libphp$V.so $ED/*.so; do
@@ -71,7 +72,7 @@ echo "  PHP -> DB: $c"; echo "$c" | grep -q MAL && mal "PHP no conecta con las b
 # ---------- 3. Full suite / suite completa ----------
 UP=$(dpkg-query -W -f='${Version}' $R-cli | sed -E 's/^[0-9]+://; s/-.*//')
 curl -fsSL "$G/$REF/pool/$CN/$R/fuente/${R}_${UP}.orig.tar.xz" -o /tmp/orig.tar.xz || mal "no se pudo bajar ${R}_${UP}.orig.tar.xz"
-T=/t; rm -rf $T; mkdir -p $T; tar -xJf /tmp/orig.tar.xz -C $T --strip-components=1 || mal "orig.tar.xz"
+T=/t; mkdir -p $T; find $T -mindepth 1 -delete; tar -xJf /tmp/orig.tar.xz -C $T --strip-components=1 || mal "orig.tar.xz"
 chown -R postgres $T 2>/dev/null; chmod -R a+rwX $T
 cd $T
 # EN: phpdbg's run_* tests wait for a terminal that a container lacks: kill any phpdbg older than 2 min
@@ -82,9 +83,9 @@ VIGIA=$!
 #     --set-timeout 300: 60 s per test is too short for pgsql/01createdb on a busy host, and every later pgsql test fails with it
 # ES: variables_order con E: si no, el run-tests de 5.6/7.x no pasa el entorno (conexiones) a las pruebas
 #     --set-timeout 300: 60 s por prueba no le basta a pgsql/01createdb con la máquina cargada, y arrastra a las demás de pgsql
-timeout 14000 php$V -d variables_order=EGPCS -d memory_limit=-1 run-tests.php --set-timeout 300 ${TESTS:-} > $O.suite.log 2>&1
+bash /v/shards.sh "${JOBS:-8}" $O.suite.log -- timeout 14000 php$V -d variables_order=EGPCS -d memory_limit=-1 run-tests.php --set-timeout 300
 rc=$?; { kill $VIGIA; wait $VIGIA; } 2>/dev/null
 echo "  suite rc=$rc $(tr '\r' '\n' < $O.suite.log | grep -caE '^(PASS|FAIL|SKIP|BORK|LEAK|XFAIL|WARN) .*\.phpt\]') resultados"
-[ $rc = 124 ] && mal "la suite superó el tiempo máximo"
+[ $rc = 0 ] || mal "suite incompleta: alguna prueba sin resultado o fuera de tiempo (rc=$rc)"
 mkdir -p $O.diffs; find . -name '*.diff' -exec cp --parents {} $O.diffs/ \;
 exit 0

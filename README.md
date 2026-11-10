@@ -90,6 +90,20 @@ systemctl restart 'php*-fpm' apache2 2>/dev/null; true
 
 New installs work as usual, for example `apt-get install php8.2-fpm php8.2-mysql`.
 
+> ⚠️ **Installing a new branch can change the whole machine** (it is how the PPA's packages work, and these are
+> the same packages):
+> - **`/usr/bin/php`:** every `phpX.Y-cli` (and `phpX.Y-fpm` brings it) registers itself in `update-alternatives`,
+>   and the newest branch wins. Installing `php8.2-fpm` on a machine with PHP 7.4 turns `php` into 8.2 for cron
+>   jobs, composer and every script. Pin it back afterwards:
+>   `for b in php phar phar.phar; do update-alternatives --set $b /usr/bin/${b}7.4; done` (with your branch).
+> - **Apache:** never install the bare `phpX.Y` package on a web server. It brings `libapache2-mod-phpX.Y`, and if
+>   Apache was serving PHP with FPM it **switches Apache to the prefork MPM and enables mod_php for every site**
+>   (tested: Apache did not come back up and no site answered). Install `phpX.Y-fpm` and the extensions you need by name, and check
+>   first with `apt-get -s install …` that `libapache2-mod-php` is not in the list. If it already happened:
+>   `a2dismod phpX.Y mpm_prefork && a2enmod mpm_event && systemctl restart apache2`.
+> - The FPM of the new branch starts on its own but is **not** wired into Apache: `a2enconf phpX.Y-fpm` does it
+>   for every site, or set its socket (`/run/php/phpX.Y-fpm.sock`) in each vhost.
+
 ### 🧭 Checking it
 
 ```bash
@@ -146,16 +160,41 @@ the missing fixes added, or Remi's latest builds unchanged where they already ha
 | Package | Version | What it is |
 |---|---|---|
 | `php73-php-*` (SCL, `/opt/remi/php73`) | `7.3.33-24.1.el8.legacy` | Remi's 7.3.33-24 plus 24 backported fixes (pgsql, phar, soap, openssl, mysqlnd, sockets, http, libxml, filters, ctype…) |
-| `php74-php-*` (SCL) | `7.4.33-31.el8.remi` | Remi's build, unchanged |
+| `php74-php-*` (SCL) | `7.4.33-31.el8.remi` | Remi's build, unchanged: it already has all those fixes |
 | `php82-php-*` (SCL) | `8.2.35-1.el8.remi` | Remi's build, unchanged |
-| `gd3php` | `2.3.3-8.1.el8.legacy` | the GD library every `phpXX-php-gd` uses, with the fix for CVE-2026-9672 (GIF reader) |
+| `gd3php` | `2.3.3-8.1.el8.legacy` | the GD library that every `php-gd` from Remi uses (SCL **and** the `php:remi-7.4` / `php:remi-8.2` modules), with the fix for CVE-2026-9672 (GIF reader) |
 | `libicu69`, `libicu74`, `oniguruma5php`, `qdbm` | Remi's | libraries the branches above need |
 
 - Every package is **signed** with the same key as the apt repository, and so is the metadata.
-- The sources (`.src.rpm`) are in `el8/SRPMS/`; the build log, with PHP's full test suite, is next to the
-  packages in `el8/x86_64/<branch>/`.
-- The `oci8` extensions are not here (they need Oracle's client). If Remi's `php73-php-oci8` is installed, `dnf` cannot update php73 until it is removed.
-- The other branches (5.6, 7.0, 7.1, 7.2) and the modular `php:remi-7.x` streams are on their way.
+- The sources (`.src.rpm`) are in `el8/SRPMS/` and the build log is next to the packages, in `el8/x86_64/<branch>/`.
+- The `oci8` extensions are not here (they need Oracle's client). If Remi's `php73-php-oci8` is installed, `dnf`
+  cannot update php73 until it is removed.
+- The other branches (5.6, 7.0, 7.1, 7.2) and the modular `php:remi-7.2` / `php:remi-7.3` streams are on their way.
+
+**What you need, depending on what the machine runs:**
+
+| The machine runs… | Do this |
+|---|---|
+| PHP 7.4 or 8.2 from the **module** (`php:remi-7.4`, `php:remi-8.2`: `php-fpm`, `/etc/php.ini`) | Stay on the module. Add this repository and run `dnf upgrade gd3php`: the module already has every PHP fix, and GD is the only thing it lacks. **Do not install `php74-php-*` or `php82-php-*`** (see the warning below). |
+| PHP 7.3 from Remi's **SCL** (`php73-php-*`) | `dnf upgrade 'php73*' gd3php` |
+| PHP 7.4 or 8.2 from Remi's **SCL** | `dnf upgrade gd3php` (the `php74`/`php82` here are the same builds as Remi's) |
+| PHP 7.2 or 7.3 from the **module** | `dnf upgrade gd3php` for now; the patched modular streams are coming |
+
+**Before you start.** These packages are built and tested on **CentOS 8.5.2111**; they also work on CentOS Stream 8,
+which is newer. Both live in `vault.centos.org` now (`mirrorlist.centos.org` no longer resolves). On 8.0–8.4, first
+update to 8.5, `rpm` and `dnf` before the rest:
+
+```bash
+sed -i -e 's|^mirrorlist=|#mirrorlist=|' -e 's|^#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|' /etc/yum.repos.d/CentOS-*
+dnf upgrade --releasever=8.5.2111 rpm dnf && dnf upgrade --releasever=8.5.2111
+```
+
+Repeat the `sed` after any update that brings new `.repo` files with `mirrorlist=` back.
+
+The packages of this repository verify with the rpm of CentOS 8.0–8.2 too (their signature header is 4 KB; the
+`signature hdr data: BAD … out of range` error comes from CentOS Stream packages, not from these). Remi's
+`remi-release` asks for EL 8.10, which CentOS 8 never reached: if it is installed, add `excludepkgs=remi-release`
+to `/etc/dnf/dnf.conf` so `dnf upgrade` does not stop on it. This repository does not need Remi's.
 
 **Installation** (as root). It needs **EPEL**, like Remi:
 
@@ -163,20 +202,44 @@ the missing fixes added, or Remi's latest builds unchanged where they already ha
 dnf install -y epel-release
 curl -fsSL https://raw.githubusercontent.com/Nebur692/php-legacy-ubuntu/main/php-legacy-el8.repo \
   -o /etc/yum.repos.d/php-legacy-el8.repo
-dnf upgrade 'php73*' gd3php     # if you already have Remi's; it shows the key's fingerprint, accept it if it is
+dnf upgrade gd3php 'php73*'     # what the table above says; it shows the key's fingerprint, accept it only if it is
                                 # FD5D E92B 886F 8114 4ECB  14D2 85CC A24C 9890 D527
-dnf install php73-php-fpm php73-php-mysqlnd   # new installs work as usual
+systemctl restart php73-php-fpm httpd 2>/dev/null; true
 ```
 
-It can stay next to Remi's repository: the versions here are newer, so `dnf` takes them, and PECL extensions
-from Remi (`php73-php-pecl-*`) keep working. Restart PHP-FPM afterwards (`systemctl restart php73-php-fpm`).
+It can stay next to Remi's repository: the versions here are newer, so `dnf` takes them, and PECL extensions from
+Remi (`php73-php-pecl-*`) keep working.
 
-**Checking it:** `rpm -q php73-php-common gd3php` must end in `.el8.legacy`, and
-`rpm -q --changelog php73-php-common | head` lists the added fixes.
+> ⚠️ **Installing `phpXX-php-fpm` changes Apache for every site.** Like Remi's own packages, it adds
+> `/etc/httpd/conf.d/phpXX-php.conf`, which sends **every** `.php` to
+> `/var/opt/remi/phpXX/run/php-fpm/www.sock` as soon as Apache reloads, and it does **not** start that service.
+> On a machine that serves PHP from the module (`php.conf` → `/run/php-fpm/www.sock`) the sites answer 502/503.
+> Either move to the SCL first (below) and only then reload Apache, or keep the module for every site: comment
+> out the `<FilesMatch>` block of `phpXX-php.conf` and point each vhost that should use the SCL at its socket.
 
-**Maintaining it:** put the packages in `el8/x86_64/<branch>/` (sources in `el8/SRPMS/`) and run
-`tools/publish-el8.sh <private-key.asc>`. It signs whatever is not signed yet, checks every package against the
-published key and rebuilds and signs the metadata in a throwaway CentOS 8 container. Then commit and push.
+**A new SCL install** is not started for you: `systemctl enable --now php73-php-fpm`. Its commands are not in the
+`PATH`: use the full path (`/opt/remi/php73/root/usr/sbin/php-fpm -t`), `scl enable php73 -- php-fpm -t`, or the
+`php73` command for the CLI.
+
+**Moving a site from the module to the SCL** (only if you really need the SCL branch):
+- extensions: `diff <(php -m) <(php73 -m)` and install the missing `php73-php-<ext>`;
+- `php.ini` and `php.d/`: copy your changes (`memory_limit`, `max_execution_time`, `upload_max_filesize`…) to
+  `/etc/opt/remi/php73/php.ini` and `/etc/opt/remi/php73/php.d/`;
+- the pool: `/etc/php-fpm.d/www.conf` → `/etc/opt/remi/php73/php-fpm.d/www.conf` (`user`, `group`, `listen`,
+  `slowlog`, `php_admin_value[error_log]`, `php_value[session.save_path]`);
+- `systemctl enable --now php73-php-fpm`, then `systemctl reload httpd`, then `systemctl disable --now php-fpm`;
+- the sessions move to `/var/opt/remi/php73/lib/php/session`: logged-in users have to log in again.
+
+**Checking it:** `rpm -q php73-php-common gd3php` must end in `.el8.legacy` (`php74-*` and `php82-*` end in
+`.el8.remi`: they are Remi's builds, and that is right), and `rpm -q --changelog php73-php-common | head` lists the
+added fixes.
+
+**Maintaining it:** `tools/build-el8.sh <file.src.rpm> <scl> <out-dir>` rebuilds a branch in a throwaway CentOS 8.5
+container, and `tools/verify/run-el8.sh <before-dir> <after-dir> <scl>` installs both builds on a clean CentOS 8.5
+and compares them (fingerprint and PHP's full suite with MariaDB and PostgreSQL, test by test). Put the packages in
+`el8/x86_64/<branch>/` (sources in `el8/SRPMS/`) and run `tools/publish-el8.sh <private-key.asc>`. It signs whatever
+is not signed yet, checks every package against the published key and rebuilds and signs the metadata. Then
+commit and push.
 
 **Removing it:** `rm /etc/yum.repos.d/php-legacy-el8.repo`. The installed packages stay as they are.
 
@@ -272,6 +335,20 @@ systemctl restart 'php*-fpm' apache2 2>/dev/null; true
 
 Las instalaciones nuevas funcionan como siempre, por ejemplo `apt-get install php8.2-fpm php8.2-mysql`.
 
+> ⚠️ **Instalar una rama nueva puede cambiar toda la máquina** (así funcionan los paquetes del PPA, y estos son los
+> mismos paquetes):
+> - **`/usr/bin/php`:** cada `phpX.Y-cli` (y `phpX.Y-fpm` lo trae) se apunta en `update-alternatives`, y gana la
+>   rama más nueva. Instalar `php8.2-fpm` en una máquina con PHP 7.4 hace que `php` pase a ser la 8.2 para el cron,
+>   composer y todos los guiones. Después, déjalo fijo:
+>   `for b in php phar phar.phar; do update-alternatives --set $b /usr/bin/${b}7.4; done` (con tu rama).
+> - **Apache:** nunca instales el paquete `phpX.Y` a secas en un servidor web. Trae `libapache2-mod-phpX.Y` y, si
+>   Apache servía PHP con FPM, **cambia Apache al MPM prefork y activa mod_php para todas las webs** (probado: Apache
+>   no volvió a arrancar y ninguna web respondía). Instala `phpX.Y-fpm` y las extensiones que necesites por su nombre, y comprueba
+>   antes con `apt-get -s install …` que no aparece `libapache2-mod-php`. Si ya ha pasado:
+>   `a2dismod phpX.Y mpm_prefork && a2enmod mpm_event && systemctl restart apache2`.
+> - El FPM de la rama nueva arranca solo, pero **no** se engancha a Apache: `a2enconf phpX.Y-fpm` lo hace para
+>   todas las webs, o pon su socket (`/run/php/phpX.Y-fpm.sock`) en cada vhost.
+
 ### 🧭 Comprobarlo
 
 ```bash
@@ -330,16 +407,42 @@ cuando ya los tienen todos.
 | Paquete | Versión | Qué es |
 |---|---|---|
 | `php73-php-*` (SCL, `/opt/remi/php73`) | `7.3.33-24.1.el8.legacy` | el 7.3.33-24 de Remi con 24 arreglos portados (pgsql, phar, soap, openssl, mysqlnd, sockets, http, libxml, filtros, ctype…) |
-| `php74-php-*` (SCL) | `7.4.33-31.el8.remi` | la compilación de Remi, sin tocar |
+| `php74-php-*` (SCL) | `7.4.33-31.el8.remi` | la compilación de Remi, sin tocar: ya trae todos esos arreglos |
 | `php82-php-*` (SCL) | `8.2.35-1.el8.remi` | la compilación de Remi, sin tocar |
-| `gd3php` | `2.3.3-8.1.el8.legacy` | la librería GD que usan todos los `phpXX-php-gd`, con el arreglo de CVE-2026-9672 (lector GIF) |
+| `gd3php` | `2.3.3-8.1.el8.legacy` | la librería GD que usan todos los `php-gd` de Remi (los SCL **y** los módulos `php:remi-7.4` / `php:remi-8.2`), con el arreglo de CVE-2026-9672 (lector GIF) |
 | `libicu69`, `libicu74`, `oniguruma5php`, `qdbm` | las de Remi | librerías que necesitan las ramas de arriba |
 
 - Todos los paquetes están **firmados** con la misma clave que el repositorio apt, y los metadatos también.
-- El código (`.src.rpm`) está en `el8/SRPMS/`; el registro de la compilación, con la batería completa de
-  pruebas de PHP, está junto a los paquetes en `el8/x86_64/<rama>/`.
-- Las extensiones `oci8` no están (necesitan el cliente de Oracle). Si está instalado el `php73-php-oci8` de Remi, `dnf` no puede actualizar php73 hasta quitarlo.
-- Las demás ramas (5.6, 7.0, 7.1, 7.2) y los flujos modulares `php:remi-7.x` están en camino.
+- El código (`.src.rpm`) está en `el8/SRPMS/` y el registro de la compilación, junto a los paquetes, en
+  `el8/x86_64/<rama>/`.
+- Las extensiones `oci8` no están (necesitan el cliente de Oracle). Si está instalado el `php73-php-oci8` de Remi,
+  `dnf` no puede actualizar php73 hasta quitarlo.
+- Las demás ramas (5.6, 7.0, 7.1, 7.2) y los flujos modulares `php:remi-7.2` / `php:remi-7.3` están en camino.
+
+**Qué necesitas, según lo que tenga la máquina:**
+
+| La máquina usa… | Haz esto |
+|---|---|
+| PHP 7.4 u 8.2 del **módulo** (`php:remi-7.4`, `php:remi-8.2`: `php-fpm`, `/etc/php.ini`) | Sigue con el módulo. Añade este repositorio y haz `dnf upgrade gd3php`: el módulo ya tiene todos los arreglos de PHP y solo le falta el de GD. **No instales `php74-php-*` ni `php82-php-*`** (mira el aviso de abajo). |
+| PHP 7.3 del **SCL** de Remi (`php73-php-*`) | `dnf upgrade 'php73*' gd3php` |
+| PHP 7.4 u 8.2 del **SCL** de Remi | `dnf upgrade gd3php` (los `php74`/`php82` de aquí son las mismas compilaciones que las de Remi) |
+| PHP 7.2 o 7.3 del **módulo** | De momento `dnf upgrade gd3php`; los flujos modulares parcheados están en camino |
+
+**Antes de empezar.** Estos paquetes se compilan y se prueban en **CentOS 8.5.2111**; también funcionan en CentOS
+Stream 8, que es más nuevo. Los dos están ya en `vault.centos.org` (`mirrorlist.centos.org` ya no resuelve). En
+8.0–8.4, primero hay que subir a 8.5, `rpm` y `dnf` antes que lo demás:
+
+```bash
+sed -i -e 's|^mirrorlist=|#mirrorlist=|' -e 's|^#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|' /etc/yum.repos.d/CentOS-*
+dnf upgrade --releasever=8.5.2111 rpm dnf && dnf upgrade --releasever=8.5.2111
+```
+
+Repite el `sed` después de cualquier actualización que vuelva a traer ficheros `.repo` con `mirrorlist=`.
+
+Los paquetes de este repositorio también se verifican con el rpm de CentOS 8.0–8.2 (su cabecera de firma ocupa
+4 KB; el error `signature hdr data: BAD … out of range` viene de paquetes de CentOS Stream, no de estos). El
+`remi-release` de Remi pide EL 8.10, que CentOS 8 nunca tuvo: si está instalado, añade `excludepkgs=remi-release` a
+`/etc/dnf/dnf.conf` para que `dnf upgrade` no se pare en él. Este repositorio no necesita el de Remi.
 
 **Instalación** (como root). Necesita **EPEL**, igual que Remi:
 
@@ -347,22 +450,44 @@ cuando ya los tienen todos.
 dnf install -y epel-release
 curl -fsSL https://raw.githubusercontent.com/Nebur692/php-legacy-ubuntu/main/php-legacy-el8.repo \
   -o /etc/yum.repos.d/php-legacy-el8.repo
-dnf upgrade 'php73*' gd3php     # si ya tienes los de Remi; enseña la huella de la clave, acéptala si es
+dnf upgrade gd3php 'php73*'     # lo que diga la tabla de arriba; enseña la huella de la clave, acéptala solo si es
                                 # FD5D E92B 886F 8114 4ECB  14D2 85CC A24C 9890 D527
-dnf install php73-php-fpm php73-php-mysqlnd   # las instalaciones nuevas, como siempre
+systemctl restart php73-php-fpm httpd 2>/dev/null; true
 ```
 
-Puede convivir con el repositorio de Remi: las versiones de aquí son más nuevas, así que `dnf` elige estas, y
-las extensiones PECL de Remi (`php73-php-pecl-*`) siguen funcionando. Después, reinicia PHP-FPM
-(`systemctl restart php73-php-fpm`).
+Puede convivir con el repositorio de Remi: las versiones de aquí son más nuevas, así que `dnf` elige estas, y las
+extensiones PECL de Remi (`php73-php-pecl-*`) siguen funcionando.
 
-**Comprobarlo:** `rpm -q php73-php-common gd3php` tiene que acabar en `.el8.legacy`, y
-`rpm -q --changelog php73-php-common | head` enseña los arreglos añadidos.
+> ⚠️ **Instalar `phpXX-php-fpm` cambia Apache para todas las webs.** Igual que los paquetes de Remi, añade
+> `/etc/httpd/conf.d/phpXX-php.conf`, que manda **todos** los `.php` a
+> `/var/opt/remi/phpXX/run/php-fpm/www.sock` en cuanto Apache se recarga, y **no** arranca ese servicio. En una
+> máquina que sirve PHP con el módulo (`php.conf` → `/run/php-fpm/www.sock`) las webs dan 502/503. O pasas antes al
+> SCL (abajo) y solo entonces recargas Apache, o mantienes el módulo para todas las webs: comenta el bloque
+> `<FilesMatch>` de `phpXX-php.conf` y apunta al socket del SCL solo los vhost que lo vayan a usar.
 
-**Mantenerlo:** deja los paquetes en `el8/x86_64/<rama>/` (el código en `el8/SRPMS/`) y ejecuta
-`tools/publish-el8.sh <clave-privada.asc>`. Firma lo que aún no esté firmado, comprueba cada paquete contra la
-clave publicada y regenera y firma los metadatos en un contenedor CentOS 8 de usar y tirar. Después, commit y
-push.
+**Una instalación nueva del SCL** no se arranca sola: `systemctl enable --now php73-php-fpm`. Sus órdenes no están en
+el `PATH`: usa la ruta completa (`/opt/remi/php73/root/usr/sbin/php-fpm -t`), `scl enable php73 -- php-fpm -t`, o la
+orden `php73` para la línea de órdenes.
+
+**Pasar una web del módulo al SCL** (solo si de verdad necesitas la rama del SCL):
+- extensiones: `diff <(php -m) <(php73 -m)` e instala los `php73-php-<ext>` que falten;
+- `php.ini` y `php.d/`: copia tus cambios (`memory_limit`, `max_execution_time`, `upload_max_filesize`…) a
+  `/etc/opt/remi/php73/php.ini` y `/etc/opt/remi/php73/php.d/`;
+- el pool: `/etc/php-fpm.d/www.conf` → `/etc/opt/remi/php73/php-fpm.d/www.conf` (`user`, `group`, `listen`,
+  `slowlog`, `php_admin_value[error_log]`, `php_value[session.save_path]`);
+- `systemctl enable --now php73-php-fpm`, después `systemctl reload httpd` y después `systemctl disable --now php-fpm`;
+- las sesiones pasan a `/var/opt/remi/php73/lib/php/session`: quien estuviera conectado tendrá que volver a entrar.
+
+**Comprobarlo:** `rpm -q php73-php-common gd3php` tiene que acabar en `.el8.legacy` (`php74-*` y `php82-*` acaban en
+`.el8.remi`: son las compilaciones de Remi y está bien), y `rpm -q --changelog php73-php-common | head` enseña los
+arreglos añadidos.
+
+**Mantenerlo:** `tools/build-el8.sh <fichero.src.rpm> <scl> <carpeta-salida>` recompila una rama en un contenedor
+CentOS 8.5 de usar y tirar, y `tools/verify/run-el8.sh <carpeta-antes> <carpeta-después> <scl>` instala las dos
+compilaciones en un CentOS 8.5 limpio y las compara (huella y la suite completa de PHP con MariaDB y PostgreSQL,
+prueba a prueba). Deja los paquetes en `el8/x86_64/<rama>/` (el código en `el8/SRPMS/`) y ejecuta
+`tools/publish-el8.sh <clave-privada.asc>`. Firma lo que aún no esté firmado, comprueba cada paquete contra la clave
+publicada y regenera y firma los metadatos. Después, commit y push.
 
 **Quitarlo:** `rm /etc/yum.repos.d/php-legacy-el8.repo`. Los paquetes instalados se quedan como están.
 
