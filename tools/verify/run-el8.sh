@@ -5,7 +5,8 @@
 #     and compared: build fingerprint (modules, ini defaults, php -i, linked libraries) and PHP's full suite with
 #     real MariaDB and PostgreSQL, test by test. Tests listed in el8-exclude.txt are left out on both sides.
 #     Env: OUT (./verify-out), JOBS (8 run-tests processes per side), CPUS (8 per side), MEM (4g per side), TESTS (subset),
-#     WORK (host dir for the test trees, instead of the container layer), SERIE=1 (one side after the other, e.g. MEM=14g each).
+#     WORK (host dir for the test trees, instead of the container layer; on a disk, see work-en-disco.sh),
+#     SERIE=1 (one side after the other).
 #     Checking the split itself: run-el8.sh DIR DIR <scl> with JOBS_BEFORE=1 must be identical (serial vs split).
 #     Exit 0 = identical; 1 = differences (a fix's own tests may change on purpose: check each one); 2 = a step failed.
 # ES: Comprueba que una rama de EL8 recompilada se comporta como la compilación anterior. Cada carpeta tiene la
@@ -13,7 +14,8 @@
 #     y tirar y se comparan: huella de compilación (módulos, valores de ini, php -i, librerías enlazadas) y la suite
 #     completa de PHP con MariaDB y PostgreSQL de verdad, prueba a prueba. Lo de el8-exclude.txt queda fuera en los dos.
 #     Entorno: OUT (./verify-out), JOBS (8 procesos de run-tests por lado), CPUS (8 por lado), MEM (4g por lado), TESTS (una parte),
-#     WORK (carpeta del host para los árboles de pruebas, en vez de la capa del contenedor), SERIE=1 (un lado tras otro, p. ej. MEM=14g cada uno).
+#     WORK (carpeta del host para los árboles de pruebas, en vez de la capa del contenedor; en un disco, ver
+#     work-en-disco.sh), SERIE=1 (un lado tras otro).
 #     Para comprobar el propio reparto: run-el8.sh DIR DIR <scl> con JOBS_BEFORE=1 tiene que salir idéntico (serie frente a reparto).
 #     Sale 0 = idéntico; 1 = diferencias (las pruebas de un arreglo pueden cambiar a propósito: revisar cada una);
 #     2 = un paso falló.
@@ -21,6 +23,7 @@ set -uo pipefail
 A=$(realpath "${1:?before-dir}"); D=$(realpath "${2:?after-dir}"); SCL=${3:?scl}
 H=$(cd "$(dirname "$0")" && pwd)
 OUT=$(mkdir -p "${OUT:-./verify-out}" && cd "${OUT:-./verify-out}" && pwd)
+. "$H/work-en-disco.sh"
 L=${SCL//:/-}; na=$L-antes; nd=$L-despues; roto=0; mal=0
 for x in "$na:$A" "$nd:$D"; do
   n=${x%%:*}; dir=${x#*:}; j=${JOBS:-8}; [ "$n" = "$na" ] && j=${JOBS_BEFORE:-$j}

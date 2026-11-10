@@ -7,7 +7,7 @@
 #       3. a real website (Apache + mod_php and PHP-FPM, MariaDB, phpMyAdmin 4.9.11 + mezcla.php), page by page.
 #     Example: tools/verify/run.sh ubuntu:20.04 php5.6 1174f7d main   (the suite runs split in JOBS=8 processes per ref, see shards.sh)
 #     Env: OUT (default ./verify-out), TESTS="ext/pgsql ext/soap" (subset), SKIP_SUITE=1, SKIP_WEB=1, JOBS (8), CPUS (8),
-#     WORK (host dir for the test trees, instead of the container layer), PATCHES (a patches/<release>-<branch> dir:
+#     WORK (host dir for the test trees, instead of the container layer; on a disk, see work-en-disco.sh), PATCHES (a patches/<release>-<branch> dir:
 #     applied to the test tree of BOTH refs, so the fixes' own tests show up as FAIL -> PASS).
 #     Exit 0 = identical; 1 = differences listed above (a fix's own tests may change on purpose: check each one,
 #     and rerun anything unexpected with repeat.sh on both refs); 2 = a step failed or is incomplete.
@@ -18,7 +18,8 @@
 #       3. una web de verdad (Apache + mod_php y PHP-FPM, MariaDB, phpMyAdmin 4.9.11 + mezcla.php), página a página.
 #     Ejemplo: tools/verify/run.sh ubuntu:20.04 php5.6 1174f7d main   (la suite va repartida en JOBS=8 procesos por ref, ver shards.sh)
 #     Entorno: OUT (por defecto ./verify-out), TESTS="ext/pgsql ext/soap" (una parte), SKIP_SUITE=1, SKIP_WEB=1, JOBS (8),
-#     CPUS (8), WORK (carpeta del host para los árboles de pruebas, en vez de la capa del contenedor), PATCHES (una carpeta
+#     CPUS (8), WORK (carpeta del host para los árboles de pruebas, en vez de la capa del contenedor; en un disco,
+#     ver work-en-disco.sh), PATCHES (una carpeta
 #     patches/<serie>-<rama>: se aplica al árbol de pruebas de LAS DOS refs, y las pruebas de cada arreglo salen FAIL -> PASS).
 #     Sale 0 = idéntico; 1 = diferencias, listadas arriba (las pruebas de un arreglo pueden cambiar a propósito:
 #     revisar cada una y repetir lo inesperado con repeat.sh en las dos refs); 2 = un paso falló o está incompleto.
@@ -27,6 +28,7 @@ IMG=$1; R=$2; A=$3; D=$4
 case "$IMG" in *18.04) CN=bionic;; *20.04) CN=focal;; *) echo "imagen: ubuntu:18.04 o ubuntu:20.04"; exit 2;; esac
 H=$(cd "$(dirname "$0")" && pwd)
 OUT=$(mkdir -p "${OUT:-./verify-out}" && cd "${OUT:-./verify-out}" && pwd)
+. "$H/work-en-disco.sh"
 PMA=phpMyAdmin-4.9.11-english.tar.xz
 PMA_SHA=b20ea93022cba7735481c543faad573610d958daebbc0c3952d864e7cfa8acbf
 corre() { # name, extra docker args..., -- , command / nombre, args de docker..., --, orden

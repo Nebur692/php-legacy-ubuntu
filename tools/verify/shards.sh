@@ -8,7 +8,10 @@
 #         (sapi/cli, curl, opcache, soap, http, url, streams, tests/basic), fixed raw ports (openssl, sockets,
 #         network, file, fpm, cgi, ftp, ldap, snmp, imap, firebird), MariaDB (mysqli, pdo_mysql, mysql,
 #         mysqlnd) and PostgreSQL (pgsql, pdo_pgsql) get one process each;
-#       - each process has its own TMPDIR, so files in the temp folder never collide.
+#       - each process has its own TMPDIR, so files in the temp folder never collide;
+#       - tests that need gigabytes (memory_limit=-1 or in G in --INI--, a SKIPIF that checks the free RAM, or fallocate)
+#         run at the end, one after another, when nothing else is running: two of them at once can leave the
+#         container without memory, and the kernel then kills the biggest process, not the guilty one.
 #     With <jobs> 1 it is exactly the serial run (same list, same order): use it to check the split.
 #     Exit 2 if any listed test has no result (a process died, timed out or hung).
 #     Env: TESTS="ext/pgsql ext/soap" (only those paths), EXCLUDE=<file> (one test path per line, "#" comments).
@@ -19,7 +22,10 @@
 #         (sapi/cli, curl, opcache, soap, http, url, streams, tests/basic), los puertos fijos (openssl, sockets,
 #         network, file, fpm, cgi, ftp, ldap, snmp, imap, firebird), MariaDB (mysqli, pdo_mysql, mysql, mysqlnd)
 #         y PostgreSQL (pgsql, pdo_pgsql) tienen un proceso cada uno;
-#       - cada proceso tiene su propio TMPDIR: los ficheros temporales nunca chocan.
+#       - cada proceso tiene su propio TMPDIR: los ficheros temporales nunca chocan;
+#       - las que necesitan gigas (memory_limit=-1 o en G en --INI--, un SKIPIF que mira la RAM libre, o fallocate) van al
+#         final, una detrás de otra y sin nada más corriendo: dos a la vez pueden dejar sin memoria al
+#         contenedor, y entonces el sistema mata al proceso más grande, que no es el culpable.
 #     Con <trozos> 1 es exactamente la pasada en serie (misma lista, mismo orden): sirve para comprobar el reparto.
 #     Sale con 2 si alguna prueba de la lista no tiene resultado (un proceso murió, se pasó de tiempo o se colgó).
 #     Entorno: TESTS="ext/pgsql ext/soap" (solo esas rutas), EXCLUDE=<fichero> (una ruta por línea, «#» comenta).
@@ -42,6 +48,11 @@ if [ "$J" -lt 6 ]; then J=1; fi   # EN: 4 fixed groups + at least 2 general ones
 if [ "$J" = 1 ]; then
   cp "$W/todas" "$W/s1"
 else
+  # EN: the tests that need gigabytes leave the split and run alone at the end (see above)
+  # ES: las que necesitan gigas salen del reparto y van solas al final (ver arriba)
+  xargs -a "$W/todas" grep -lE -- '^memory_limit *= *(-1|[0-9]+ *[Gg])|free RAM|enough memory|/proc/meminfo|MemAvailable|MemFree|fallocate' 2>/dev/null \
+    | sed 's#^\./##' | sort > "$W/pesadas"
+  grep -vxF -f "$W/pesadas" "$W/todas" > "$W/reparto" || true
   awk -v J="$J" -v W="$W" '
     function grupo(p) {
       if (p ~ /^(sapi\/cli|ext\/curl|ext\/opcache|ext\/soap|ext\/standard\/tests\/(http|url|streams)|tests\/basic)\//) return 1
@@ -60,8 +71,9 @@ else
       for (i = 1; i <= m; i++) { b = 5; for (s = 6; s <= J; s++) if (carga[s] < carga[b]) b = s
         carga[b] += n[orden[i]]; printf "%s", l[orden[i]] > (W "/g" b) }
       for (s = 5; s <= J; s++) if ((W "/g" s) != "") close(W "/g" s)
-    }' "$W/todas"
+    }' "$W/reparto"
   for s in $(seq 5 "$J"); do [ -f "$W/g$s" ] && sort "$W/g$s" > "$W/s$s"; done
+  sed -i "s#^#$S/#" "$W/pesadas"
 fi
 # EN: absolute paths, so the list works from any working folder / ES: rutas absolutas, valen desde cualquier carpeta
 for f in "$W"/s*; do sed -i "s#^#$S/#" "$f"; done
@@ -71,6 +83,10 @@ i=0; for f in "$W"/s*; do
 done
 echo "  $N pruebas en $i procesos / tests in processes"
 wait
+if [ -s "$W/pesadas" ]; then
+  echo "  $(wc -l < "$W/pesadas") que necesitan gigas, solas al final / needing gigabytes, alone at the end"
+  mkdir -p "$W/tmpz"; ( cd "$S" && TMPDIR="$W/tmpz" "$@" -r "$W/pesadas" > "$W/logz" 2>&1 )
+fi
 cat "$W"/log* > "$LOG"
 # EN: every listed test must have a result / ES: cada prueba de la lista tiene que tener resultado
 # EN: titles of several lines: result and path come on different lines (same join as compare-suite.sh)
