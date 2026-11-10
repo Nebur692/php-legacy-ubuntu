@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# suite-el8.sh <name|nombre> <scl: php56|...>   (runs INSIDE a throwaway centos:8 container / corre DENTRO de un contenedor centos:8)
+# suite-el8.sh <name|nombre> <scl: php56|...|module stream: php:remi-7.3>   (runs INSIDE a throwaway centos:8 container / corre DENTRO de un contenedor centos:8)
+#     A module stream (name:stream) enables it first and checks the packages in /usr, not /opt/remi/<scl>.
+#     Un flujo de módulo (nombre:flujo) se activa antes y los paquetes se miran en /usr, no en /opt/remi/<scl>.
 # EN: Installs the RPMs in /rpms (from tools/build-el8.sh) on a clean CentOS 8.5, writes the build fingerprint and
 #     runs PHP's full test suite from /rpms/src.tar.gz against real MariaDB and PostgreSQL, split with shards.sh.
 #     Results: /out/<name>.{paquetes,modulos,ini,phpi,ldd,libs,suite.log}
@@ -9,12 +11,14 @@
 #     Entorno: JOBS (por defecto 8), TESTS (una parte), EXCLUDE (fichero, ver el8-exclude.txt), SOLO_HUELLA=1.
 set -uo pipefail
 N=$1; SCL=$2; O=/out/$N
+MOD=; case $SCL in *:*) MOD=$SCL; SCL=php;; esac
 export LANG=C.UTF-8 TZ=UTC
 mal() { echo "MAL $*"; exit 1; }
 sed -i -e "s|^mirrorlist=|#mirrorlist=|" -e "s|^#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|" /etc/yum.repos.d/CentOS-*
 dnf -q -y install epel-release >/dev/null 2>&1 || mal epel
 curl -fsSLo /tmp/r.rpm https://rpms.remirepo.net/enterprise/remi-release-8.rpm && rpm -i --nodeps /tmp/r.rpm >/dev/null 2>&1 || mal remi
 sed -i 's/\$releasever/8/g' /etc/yum.repos.d/remi*.repo
+[ -n "$MOD" ] && { dnf -q -y module enable "$MOD" >/dev/null 2>&1 || mal "module $MOD"; }
 dnf -q -y install mariadb-server postgresql-server procps-ng openssl which diffutils >/dev/null 2>&1 || mal "bases de datos"
 # EN: every package built but -devel (like the apt check, which leaves out -dev)
 # ES: todos los paquetes compilados salvo -devel (como la de apt, que deja fuera -dev)
@@ -23,9 +27,9 @@ dnf -q -y install $P >/tmp/i 2>&1 || { tail -5 /tmp/i; mal "instalar $N"; }
 rpm -qa --qf '%{NAME} %{VERSION}-%{RELEASE}\n' | grep -E "^($SCL|gd3php|libicu|oniguruma)" | sort > $O.paquetes
 n1=$(echo "$P" | wc -w); n2=$(rpm -q $(for f in $P; do rpm -qp --qf '%{NAME} ' "$f"; done) | grep -vc 'not installed')
 [ "$n1" = "$n2" ] || mal "pedidos $n1 paquetes y hay $n2 instalados"
-B=/opt/remi/$SCL/root/usr; PHP=$B/bin/php
+B=/opt/remi/$SCL/root/usr; CLI=$SCL-php-cli; [ -n "$MOD" ] && { B=/usr; CLI=php-cli; }; PHP=$B/bin/php
 [ "$($PHP -r 'echo 1;' 2>&1)" = 1 ] || mal "php escribe algo al arrancar: $($PHP -r 'echo 1;' 2>&1 | head -2)"
-echo "[$N] $(wc -l < $O.paquetes) paquetes; $($PHP -r 'echo PHP_VERSION;'); $(rpm -q --qf '%{VERSION}-%{RELEASE}' $SCL-php-cli)"
+echo "[$N] $(wc -l < $O.paquetes) paquetes; $($PHP -r 'echo PHP_VERSION;'); $(rpm -q --qf '%{VERSION}-%{RELEASE}' $CLI)"
 
 # ---------- 1. Fingerprint / huella ----------
 $PHP -m > $O.modulos
@@ -33,7 +37,7 @@ $PHP -r 'foreach (ini_get_all(null, false) as $k => $v) echo "$k=", var_export($
 $PHP -i | grep -vE '^(Build Date|System|_SERVER|_ENV|\$_|PHP_SELF|REQUEST_TIME|SCRIPT_|PATH_TRANSLATED|DOCUMENT_ROOT|HOSTNAME|HOME|PWD|OLDPWD|SHLVL|PATH|TERM|LANG|TZ|JOBS|TESTS|EXCLUDE|_ =>|argv|argc)' \
   | grep -vE 'PHP Version => |=> '"$(hostname)" > $O.phpi
 ED=$($PHP -r 'echo ini_get("extension_dir");')
-for f in $PHP $B/sbin/php-fpm $B/bin/php-cgi $B/bin/phpdbg $B/lib64/libphp*.so $ED/*.so; do
+for f in $PHP $B/sbin/php-fpm $B/bin/php-cgi $B/bin/phpdbg $B/lib64/libphp*.so $B/lib64/httpd/modules/libphp*.so $ED/*.so; do
   [ -f "$f" ] || continue
   echo "== $f"; ldd "$f" | awk '{print $1, ($3 ~ /^\// ? $3 : "")}' | sed 's/ (0x[0-9a-f]*)//' | sort
 done > $O.ldd

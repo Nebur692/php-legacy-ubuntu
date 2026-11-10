@@ -47,7 +47,7 @@ for d in x86_64 SRPMS; do
   [ -d "$d" ] || continue
   rm -rf "$d/repodata"
   createrepo_c -q --general-compress-type=gz "$d"
-  [ "$d" = x86_64 ] && [ -f modules.yaml ] && modifyrepo_c -q --mdtype=modules modules.yaml "$d/repodata"
+  [ "$d" = x86_64 ] && [ -f modules.yaml ] && modifyrepo_c --mdtype=modules modules.yaml "$d/repodata" >/dev/null
   gpg -q --batch --yes -u "$FPR" --digest-algo SHA512 --armor --detach-sign -o "$d/repodata/repomd.xml.asc" "$d/repodata/repomd.xml"
   gpg -q --batch --verify "$d/repodata/repomd.xml.asc" "$d/repodata/repomd.xml" 2>/dev/null \
     || { echo "STOP/PARA: repomd signature / firma de repomd ($d)"; exit 1; }

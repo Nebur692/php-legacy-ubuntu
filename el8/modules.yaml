@@ -1,0 +1,291 @@
+---
+document: modulemd
+version: 2
+data:
+  name: php
+  stream: remi-7.2
+  version: 20261110190000
+  context: 00000000
+  arch: x86_64
+  summary: PHP scripting language
+  description: >-
+    Alternative php 7.2 module.
+    The remi-7.2 stream provides more recent versions
+    and more packages than default 7.2 stream.
+    php-legacy-ubuntu: Remi's packages rebuilt for CentOS 8.5 with security backports
+    (they only add newer builds of the php-* packages; the rest of the stream stays Remi's).
+  license:
+    module:
+    - GPLv2+
+    content:
+    - BSD
+    - BSD and LGPLv3+
+    - PHP
+    - PHP and BSD
+    - PHP and LGPLv2 and OpenLDAP
+    - PHP and LGPLv2+
+    - PHP and Zend and BSD and MIT and ASL 1.0
+  dependencies:
+  - buildrequires:
+      platform: [el8]
+    requires:
+      platform: [el8]
+  references:
+    documentation: https://www.php.net/manual/
+    tracker: https://bugs.php.net/
+  profiles:
+    common:
+      rpms:
+      - php-cli
+      - php-common
+      - php-fpm
+      - php-mbstring
+      - php-xml
+    devel:
+      rpms:
+      - php-cli
+      - php-common
+      - php-devel
+      - php-fpm
+      - php-mbstring
+      - php-pear
+      - php-process
+      - php-xml
+    minimal:
+      rpms:
+      - php-cli
+      - php-common
+  api:
+    rpms:
+    - php-fpm
+  artifacts:
+    rpms:
+    - php-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-bcmath-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-cli-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-common-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-dba-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-dbg-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-devel-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-embedded-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-enchant-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-fpm-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-gd-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-gmp-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-imap-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-interbase-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-intl-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-json-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-ldap-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-litespeed-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-mbstring-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-mysqlnd-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-odbc-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-opcache-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-pdo-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-pdo-dblib-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-pgsql-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-process-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-pspell-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-recode-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-snmp-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-soap-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-sodium-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-tidy-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-xml-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+    - php-xmlrpc-0:7.2.34-31.1.module_php.7.2.el8.legacy.x86_64
+...
+---
+document: modulemd
+version: 2
+data:
+  name: php
+  stream: remi-7.3
+  version: 20261110190000
+  context: 00000000
+  arch: x86_64
+  summary: PHP scripting language
+  description: >-
+    Alternative php 7.3 module.
+    The remi-7.3 stream provides more recent versions
+    and more packages than default 7.3 stream.
+    php-legacy-ubuntu: Remi's packages rebuilt for CentOS 8.5 with security backports
+    (they only add newer builds of the php-* packages; the rest of the stream stays Remi's).
+  license:
+    module:
+    - GPLv2+
+    content:
+    - BSD
+    - BSD and LGPLv3+
+    - PHP
+    - PHP and BSD
+    - PHP and LGPLv2 and OpenLDAP
+    - PHP and LGPLv2+
+    - PHP and Zend and BSD and MIT and ASL 1.0
+  dependencies:
+  - buildrequires:
+      platform: [el8]
+    requires:
+      platform: [el8]
+  references:
+    documentation: https://www.php.net/manual/
+    tracker: https://bugs.php.net/
+  profiles:
+    common:
+      rpms:
+      - php-cli
+      - php-common
+      - php-fpm
+      - php-mbstring
+      - php-xml
+    devel:
+      rpms:
+      - php-cli
+      - php-common
+      - php-devel
+      - php-fpm
+      - php-mbstring
+      - php-pear
+      - php-process
+      - php-xml
+    minimal:
+      rpms:
+      - php-cli
+      - php-common
+  api:
+    rpms:
+    - php-fpm
+  artifacts:
+    rpms:
+    - php-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-bcmath-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-cli-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-common-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-dba-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-dbg-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-devel-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-embedded-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-enchant-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-fpm-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-gd-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-gmp-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-imap-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-interbase-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-intl-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-json-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-ldap-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-litespeed-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-mbstring-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-mysqlnd-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-odbc-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-opcache-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-pdo-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-pdo-dblib-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-pgsql-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-process-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-pspell-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-recode-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-snmp-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-soap-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-sodium-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-tidy-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-xml-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+    - php-xmlrpc-0:7.3.33-24.2.module_php.7.3.el8.legacy.x86_64
+...
+---
+document: modulemd
+version: 2
+data:
+  name: php
+  stream: remi-7.4
+  version: 20261110190000
+  context: 00000000
+  arch: x86_64
+  summary: PHP scripting language
+  description: >-
+    Alternative php 7.4 module.
+    The remi-7.4 stream provides more recent versions
+    and more packages than default 7.4 stream.
+    php-legacy-ubuntu: Remi's packages rebuilt for CentOS 8.5 with security backports
+    (they only add newer builds of the php-* packages; the rest of the stream stays Remi's).
+  license:
+    module:
+    - GPLv2+
+    content:
+    - BSD
+    - BSD and LGPLv3+
+    - PHP
+    - PHP and BSD
+    - PHP and LGPLv2 and OpenLDAP
+    - PHP and LGPLv2+
+    - PHP and Zend and BSD and MIT and ASL 1.0
+  dependencies:
+  - buildrequires:
+      platform: [el8]
+    requires:
+      platform: [el8]
+  references:
+    documentation: https://www.php.net/manual/
+    tracker: https://bugs.php.net/
+  profiles:
+    common:
+      rpms:
+      - php-cli
+      - php-common
+      - php-fpm
+      - php-mbstring
+      - php-xml
+    devel:
+      rpms:
+      - php-cli
+      - php-common
+      - php-devel
+      - php-fpm
+      - php-mbstring
+      - php-pear
+      - php-process
+      - php-xml
+    minimal:
+      rpms:
+      - php-cli
+      - php-common
+  api:
+    rpms:
+    - php-fpm
+  artifacts:
+    rpms:
+    - php-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-bcmath-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-cli-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-common-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-dba-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-dbg-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-devel-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-embedded-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-enchant-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-ffi-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-fpm-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-gd-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-gmp-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-imap-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-intl-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-json-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-ldap-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-litespeed-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-mbstring-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-mysqlnd-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-odbc-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-opcache-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-pdo-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-pdo-dblib-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-pdo-firebird-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-pgsql-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-process-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-pspell-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-snmp-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-soap-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-sodium-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-tidy-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-xml-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+    - php-xmlrpc-0:7.4.33-31.1.module_php.7.4.el8.legacy.x86_64
+...

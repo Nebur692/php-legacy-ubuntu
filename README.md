@@ -174,26 +174,29 @@ the missing fixes added, or Remi's latest builds unchanged where they already ha
 | `php72-php-*`, `php71-php-*`, `php70-php-*`, `php56-php-*` (SCL) | `7.2.34-31.1`, `7.1.33-34.1`, `7.0.33-47.1`, `5.6.40-47.1` (`.el8.legacy`) | Remi's last build of each branch plus 28-32 backported fixes: the same as php73, plus mysqlnd (CVE-2024-8929) and, in 7.1/7.0/5.6, PHP2Shell (CVE-2026-109618/109619), pgsql and phar (5.6 also soap) |
 | `php74-php-*` (SCL) | `7.4.33-31.1.el8.legacy` | Remi's 7.4.33-31 (it already had every other fix) plus the Xdebug 3.1 crash fix, built against ICU 74 like Remi's |
 | `php82-php-*` (SCL) | `8.2.35-1.el8.remi` | Remi's build, unchanged |
-| `gd3php` | `2.3.3-8.1.el8.legacy` | the GD library that every `php-gd` from Remi uses (SCL **and** the `php:remi-7.4` / `php:remi-8.2` modules), with the fix for CVE-2026-9672 (GIF reader) |
+| `php-*` from the `php:remi-7.2`, `php:remi-7.3`, `php:remi-7.4` **modules** (`/usr/bin/php`, `php-fpm`) | `7.2.34-31.1`, `7.3.33-24.2`, `7.4.33-31.1` (`.module_php.7.X.el8.legacy`) | the same sources and fixes as `php72`, `php73` and `php74` above, built as Remi's module packages |
+| `gd3php` | `2.3.3-8.1.el8.legacy` | the GD library that every `php-gd` from Remi uses (SCL **and** the `php:remi-*` modules), with the fix for CVE-2026-9672 (GIF reader) |
 | `libicu69`, `libicu74`, `oniguruma5php`, `qdbm` | Remi's | libraries the branches above need |
 
 - Every package is **signed** with the same key as the apt repository, and so is the metadata.
-- The sources (`.src.rpm`) are in `el8/SRPMS/` and the build log is next to the packages, in `el8/x86_64/<branch>/`.
-- The `oci8` extensions are not here (they need Oracle's client). If Remi's `php73-php-oci8` is installed, `dnf`
-  cannot update php73 until it is removed.
-- The modular `php:remi-7.2` / `php:remi-7.3` streams are on their way.
+- The sources (`.src.rpm`) are in `el8/SRPMS/` and the build log is next to the packages, in `el8/x86_64/<branch>/`
+  (`module-php-remi-7.X/` for the modules, whose source is `php-7.X…el8.legacy.src.rpm`).
+- **Modules:** the repository publishes its own `php:remi-7.X` module document (`el8/modules.yaml`) that lists only the
+  packages here. With the stream enabled, `dnf` sees them next to Remi's and installs the newer build; with the stream
+  disabled, or with another one, it does not see them at all. The rest of the stream (`php-pecl-*`, `php-pear`…) is still Remi's.
+- The `oci8` extensions are not here (they need Oracle's client). If Remi's `php73-php-oci8` (or the module's
+  `php-oci8`) is installed, `dnf` cannot update that branch until it is removed.
 - **Xdebug:** with Remi's own 7.3 and 7.4 builds (SCL and modules alike), Xdebug 3.1 kills the PHP-FPM worker when a
-  request ends through `exit()`, a timeout, a fatal error or an exception. The `php73-php-*` and `php74-php-*` here
-  carry the fix; on the `php:remi-7.3` / `php:remi-7.4` modules, keep Xdebug off in production for now.
+  request ends through `exit()`, a timeout, a fatal error or an exception. Every 7.3 and 7.4 package here carries the fix.
 
 **What you need, depending on what the machine runs:**
 
 | The machine runs… | Do this |
 |---|---|
-| PHP 7.4 or 8.2 from the **module** (`php:remi-7.4`, `php:remi-8.2`: `php-fpm`, `/etc/php.ini`) | Stay on the module. Add this repository and run `dnf upgrade gd3php`: the module already has every PHP fix, and GD is the only thing it lacks. **Do not install `php74-php-*` or `php82-php-*`** (see the warning below). |
+| PHP 7.2, 7.3 or 7.4 from the **module** (`php:remi-7.X`: `php-fpm`, `/etc/php.ini`) | Stay on the module. Add this repository and run `dnf upgrade 'php-*' gd3php`. **Do not install `php7X-php-*`** (see the warning below). |
+| PHP 8.2 from the **module** (`php:remi-8.2`) | Stay on the module and run `dnf upgrade gd3php`: the module already has every PHP fix, and GD is the only thing it lacks. **Do not install `php82-php-*`**. |
 | PHP 5.6, 7.0, 7.1, 7.2, 7.3 or 7.4 from Remi's **SCL** (`php56-php-*` … `php74-php-*`) | `dnf upgrade 'php56*' 'php7*' gd3php` |
 | PHP 8.2 from Remi's **SCL** | `dnf upgrade gd3php` (the `php82` here is the same build as Remi's) |
-| PHP 7.2 or 7.3 from the **module** | `dnf upgrade gd3php` for now; the patched modular streams are coming |
 
 **Before you start.** These packages are built and tested on **CentOS 8.5.2111**; they also work on CentOS Stream 8,
 which is newer. Both live in `vault.centos.org` now (`mirrorlist.centos.org` no longer resolves). On 8.0–8.4, first
@@ -254,7 +257,10 @@ container, and `tools/verify/run-el8.sh <before-dir> <after-dir> <scl>` installs
 and compares them (fingerprint and PHP's full suite with MariaDB and PostgreSQL, test by test). Put the packages in
 `el8/x86_64/<branch>/` (sources in `el8/SRPMS/`) and run `tools/publish-el8.sh <private-key.asc>`. It signs whatever
 is not signed yet, checks every package against the published key and rebuilds and signs the metadata. Then
-commit and push.
+commit and push. For a module, build Remi's non-SCL source with `-` as the SCL and
+`MOD=php:remi-7.X DIST=.module_php.7.X.el8.legacy`, with `IMG=` pointing at a CentOS 8.5 image that already has
+`lmdb-devel` (its repositories do not ship it), compare with `run-el8.sh <before> <after> php:remi-7.X`, put the packages in
+`el8/x86_64/module-php-remi-7.X/` and run `tools/modules-el8.sh` before `publish-el8.sh`.
 
 **Removing it:** `rm /etc/yum.repos.d/php-legacy-el8.repo`. The installed packages stay as they are.
 
@@ -438,28 +444,30 @@ cuando ya los tienen todos.
 | `php72-php-*`, `php71-php-*`, `php70-php-*`, `php56-php-*` (SCL) | `7.2.34-31.1`, `7.1.33-34.1`, `7.0.33-47.1`, `5.6.40-47.1` (`.el8.legacy`) | la última compilación de Remi de cada rama con 28-32 arreglos portados: los mismos que php73, más mysqlnd (CVE-2024-8929) y, en 7.1/7.0/5.6, PHP2Shell (CVE-2026-109618/109619), pgsql y phar (5.6, también soap) |
 | `php74-php-*` (SCL) | `7.4.33-31.1.el8.legacy` | el 7.4.33-31 de Remi (que ya traía todos los demás arreglos) con el de la caída con Xdebug 3.1, enlazado con ICU 74 como el de Remi |
 | `php82-php-*` (SCL) | `8.2.35-1.el8.remi` | la compilación de Remi, sin tocar |
-| `gd3php` | `2.3.3-8.1.el8.legacy` | la librería GD que usan todos los `php-gd` de Remi (los SCL **y** los módulos `php:remi-7.4` / `php:remi-8.2`), con el arreglo de CVE-2026-9672 (lector GIF) |
+| `php-*` de los **módulos** `php:remi-7.2`, `php:remi-7.3`, `php:remi-7.4` (`/usr/bin/php`, `php-fpm`) | `7.2.34-31.1`, `7.3.33-24.2`, `7.4.33-31.1` (`.module_php.7.X.el8.legacy`) | el mismo código y los mismos arreglos que `php72`, `php73` y `php74` de arriba, compilados como los paquetes del módulo de Remi |
+| `gd3php` | `2.3.3-8.1.el8.legacy` | la librería GD que usan todos los `php-gd` de Remi (los SCL **y** los módulos `php:remi-*`), con el arreglo de CVE-2026-9672 (lector GIF) |
 | `libicu69`, `libicu74`, `oniguruma5php`, `qdbm` | las de Remi | librerías que necesitan las ramas de arriba |
 
 - Todos los paquetes están **firmados** con la misma clave que el repositorio apt, y los metadatos también.
 - El código (`.src.rpm`) está en `el8/SRPMS/` y el registro de la compilación, junto a los paquetes, en
-  `el8/x86_64/<rama>/`.
-- Las extensiones `oci8` no están (necesitan el cliente de Oracle). Si está instalado el `php73-php-oci8` de Remi,
-  `dnf` no puede actualizar php73 hasta quitarlo.
-- Los flujos modulares `php:remi-7.2` / `php:remi-7.3` están en camino.
+  `el8/x86_64/<rama>/` (`module-php-remi-7.X/` en los módulos, cuyo código es `php-7.X…el8.legacy.src.rpm`).
+- **Módulos:** el repositorio publica su propio documento del módulo `php:remi-7.X` (`el8/modules.yaml`), que solo
+  lista los paquetes de aquí. Con el flujo activado, `dnf` los ve junto a los de Remi e instala la compilación más
+  nueva; con el flujo desactivado, o con otro, no los ve. El resto del flujo (`php-pecl-*`, `php-pear`…) sigue siendo de Remi.
+- Las extensiones `oci8` no están (necesitan el cliente de Oracle). Si está instalado el `php73-php-oci8` de Remi
+  (o el `php-oci8` del módulo), `dnf` no puede actualizar esa rama hasta quitarlo.
 - **Xdebug:** con las propias compilaciones 7.3 y 7.4 de Remi (SCL y módulos por igual), Xdebug 3.1 tumba el
-  trabajador de PHP-FPM cuando una petición acaba por `exit()`, por tiempo, por un error fatal o por una excepción. Los
-  `php73-php-*` y `php74-php-*` de aquí llevan el arreglo; con los módulos `php:remi-7.3` / `php:remi-7.4`, de momento,
-  mantén Xdebug apagado en producción.
+  trabajador de PHP-FPM cuando una petición acaba por `exit()`, por tiempo, por un error fatal o por una excepción.
+  Todos los paquetes 7.3 y 7.4 de aquí llevan el arreglo.
 
 **Qué necesitas, según lo que tenga la máquina:**
 
 | La máquina usa… | Haz esto |
 |---|---|
-| PHP 7.4 u 8.2 del **módulo** (`php:remi-7.4`, `php:remi-8.2`: `php-fpm`, `/etc/php.ini`) | Sigue con el módulo. Añade este repositorio y haz `dnf upgrade gd3php`: el módulo ya tiene todos los arreglos de PHP y solo le falta el de GD. **No instales `php74-php-*` ni `php82-php-*`** (mira el aviso de abajo). |
+| PHP 7.2, 7.3 o 7.4 del **módulo** (`php:remi-7.X`: `php-fpm`, `/etc/php.ini`) | Sigue con el módulo. Añade este repositorio y haz `dnf upgrade 'php-*' gd3php`. **No instales `php7X-php-*`** (mira el aviso de abajo). |
+| PHP 8.2 del **módulo** (`php:remi-8.2`) | Sigue con el módulo y haz `dnf upgrade gd3php`: el módulo ya tiene todos los arreglos de PHP y solo le falta el de GD. **No instales `php82-php-*`**. |
 | PHP 5.6, 7.0, 7.1, 7.2, 7.3 o 7.4 del **SCL** de Remi (`php56-php-*` … `php74-php-*`) | `dnf upgrade 'php56*' 'php7*' gd3php` |
 | PHP 8.2 del **SCL** de Remi | `dnf upgrade gd3php` (el `php82` de aquí es la misma compilación que la de Remi) |
-| PHP 7.2 o 7.3 del **módulo** | De momento `dnf upgrade gd3php`; los flujos modulares parcheados están en camino |
 
 **Antes de empezar.** Estos paquetes se compilan y se prueban en **CentOS 8.5.2111**; también funcionan en CentOS
 Stream 8, que es más nuevo. Los dos están ya en `vault.centos.org` (`mirrorlist.centos.org` ya no resuelve). En
@@ -520,7 +528,10 @@ CentOS 8.5 de usar y tirar, y `tools/verify/run-el8.sh <carpeta-antes> <carpeta-
 compilaciones en un CentOS 8.5 limpio y las compara (huella y la suite completa de PHP con MariaDB y PostgreSQL,
 prueba a prueba). Deja los paquetes en `el8/x86_64/<rama>/` (el código en `el8/SRPMS/`) y ejecuta
 `tools/publish-el8.sh <clave-privada.asc>`. Firma lo que aún no esté firmado, comprueba cada paquete contra la clave
-publicada y regenera y firma los metadatos. Después, commit y push.
+publicada y regenera y firma los metadatos. Después, commit y push. Para un módulo, compila el código no SCL de
+Remi con `-` como SCL y `MOD=php:remi-7.X DIST=.module_php.7.X.el8.legacy`, con `IMG=` apuntando a una imagen de
+CentOS 8.5 que ya tenga `lmdb-devel` (sus repositorios no lo traen), compara con `run-el8.sh <antes> <después> php:remi-7.X`, deja los paquetes en
+`el8/x86_64/module-php-remi-7.X/` y ejecuta `tools/modules-el8.sh` antes de `publish-el8.sh`.
 
 **Quitarlo:** `rm /etc/yum.repos.d/php-legacy-el8.repo`. Los paquetes instalados se quedan como están.
 

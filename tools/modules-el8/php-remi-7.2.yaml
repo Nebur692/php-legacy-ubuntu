@@ -1,0 +1,60 @@
+---
+document: modulemd
+version: 2
+data:
+  name: php
+  stream: remi-7.2
+  version: 20261110190000
+  context: 00000000
+  arch: x86_64
+  summary: PHP scripting language
+  description: >-
+    Alternative php 7.2 module.
+    The remi-7.2 stream provides more recent versions
+    and more packages than default 7.2 stream.
+    php-legacy-ubuntu: Remi's packages rebuilt for CentOS 8.5 with security backports
+    (they only add newer builds of the php-* packages; the rest of the stream stays Remi's).
+  license:
+    module:
+    - GPLv2+
+    content:
+    - BSD
+    - BSD and LGPLv3+
+    - PHP
+    - PHP and BSD
+    - PHP and LGPLv2 and OpenLDAP
+    - PHP and LGPLv2+
+    - PHP and Zend and BSD and MIT and ASL 1.0
+  dependencies:
+  - buildrequires:
+      platform: [el8]
+    requires:
+      platform: [el8]
+  references:
+    documentation: https://www.php.net/manual/
+    tracker: https://bugs.php.net/
+  profiles:
+    common:
+      rpms:
+      - php-cli
+      - php-common
+      - php-fpm
+      - php-mbstring
+      - php-xml
+    devel:
+      rpms:
+      - php-cli
+      - php-common
+      - php-devel
+      - php-fpm
+      - php-mbstring
+      - php-pear
+      - php-process
+      - php-xml
+    minimal:
+      rpms:
+      - php-cli
+      - php-common
+  api:
+    rpms:
+    - php-fpm
