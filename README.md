@@ -31,7 +31,7 @@ still run them can get the latest fixes, including **PHP2Shell (CVE-2026-109618 
 | 20.04 focal | php7.0 | `7.0.33-92+ubuntu20.04.1+local2` |
 | 20.04 focal | php7.1 | `7.1.33-80+ubuntu20.04.1+local2` |
 | 20.04 focal | php7.3 | `7.3.33-35+ubuntu20.04.1+local1` |
-| 20.04 focal | php7.4 | `1:7.4.33-31+ubuntu20.04.1+local1` (replaces Ubuntu's own 7.4.3, see below) |
+| 20.04 focal | php7.4 | `1:7.4.33-31+ubuntu20.04.1+local2` (replaces Ubuntu's own 7.4.3, see below) |
 | 20.04 focal | php8.2 | `8.2.35-1+ubuntu20.04.1+local1` (with `php8.2-imagick` 3.8.1) |
 | 20.04 focal | libgd3 | `2.2.5-5.2ubuntu2.4+local1` |
 
@@ -40,6 +40,10 @@ still run them can get the latest fixes, including **PHP2Shell (CVE-2026-109618 
 - The `+local2` builds (php5.6, php7.0, php7.1) add the fixes the PPA ships for php7.2 and newer but not
   for these branches: CVE-2026-17543 (pgsql), CVE-2026-7260 (phar) and, for php5.6, CVE-2026-6722 (soap).
   The pgsql, phar and soap fixes for php5.6 are adapted to its engine. The extra patches are in `patches/`.
+- **php7.4 `+local2`** keeps one more patch on top of the PPA's source: the PHP2Shell fix empties PHP's object store before
+  Xdebug 3.1 (the last release for PHP 7.x) releases the objects it keeps, so with Xdebug loaded every request that
+  ended with `exit()` (Moodle's `redirect()`), a timeout or a destructor killed the PHP-FPM worker (SIGSEGV in
+  `zend_objects_store_del`). The store is now emptied right after the extensions finish, before the memory is released.
 - **`libgd3`** is the system GD library: every `php*-gd` uses it (and so do other programs). It is
   Ubuntu's own package with Debian's fix for CVE-2026-9672 (GIF reader) added; `apt-get upgrade` installs it.
 - Each branch folder also has its `SHA256SUMS` and the gzipped build log.
@@ -284,7 +288,7 @@ CVE-2026-109619)**.
 | 20.04 focal | php7.0 | `7.0.33-92+ubuntu20.04.1+local2` |
 | 20.04 focal | php7.1 | `7.1.33-80+ubuntu20.04.1+local2` |
 | 20.04 focal | php7.3 | `7.3.33-35+ubuntu20.04.1+local1` |
-| 20.04 focal | php7.4 | `1:7.4.33-31+ubuntu20.04.1+local1` (sustituye a la 7.4.3 del propio Ubuntu, ver abajo) |
+| 20.04 focal | php7.4 | `1:7.4.33-31+ubuntu20.04.1+local2` (sustituye a la 7.4.3 del propio Ubuntu, ver abajo) |
 | 20.04 focal | php8.2 | `8.2.35-1+ubuntu20.04.1+local1` (con `php8.2-imagick` 3.8.1) |
 | 20.04 focal | libgd3 | `2.2.5-5.2ubuntu2.4+local1` |
 
@@ -293,6 +297,11 @@ CVE-2026-109619)**.
 - Las `+local2` (php5.6, php7.0, php7.1) añaden los arreglos que el PPA publica para php7.2 y posteriores pero
   no para estas ramas: CVE-2026-17543 (pgsql), CVE-2026-7260 (phar) y, en php5.6, CVE-2026-6722 (soap). Los
   de pgsql, phar y soap de php5.6 están adaptados a su motor. Los parches añadidos están en `patches/`.
+- **La php7.4 `+local2`** lleva un parche más sobre el código del PPA: el arreglo de PHP2Shell vacía la tabla de objetos
+  de PHP antes de que Xdebug 3.1 (el último para PHP 7.x) suelte los objetos que guarda, así que con Xdebug cargado
+  cada petición que acababa con `exit()` (el `redirect()` de Moodle), por tiempo o en un destructor tumbaba al
+  trabajador de PHP-FPM (SIGSEGV en `zend_objects_store_del`). Ahora la tabla se vacía justo después de que terminen
+  las extensiones, antes de liberar la memoria.
 - **`libgd3`** es la librería GD del sistema: la usan todos los `php*-gd` (y otros programas). Es el paquete de
   Ubuntu con el arreglo de Debian para CVE-2026-9672 (lector GIF); `apt-get upgrade` la instala.
 - Cada carpeta de rama lleva también su `SHA256SUMS` y el registro de compilación comprimido.

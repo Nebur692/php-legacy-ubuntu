@@ -1,0 +1,47 @@
+From: Nebur692 <nebur_692@hotmail.com>
+Date: Tue, 10 Nov 2026 15:30:00 +0100
+Subject: Keep the object store until the post-RSHUTDOWN hooks
+
+The bailout fix (0164) resets EG(objects_store) in the fast path of
+shutdown_executor(), which runs before zend_post_deactivate_modules(). Xdebug 3.1
+(the last release for PHP 7.x) frees the arguments it keeps on its function stack
+from its post-RSHUTDOWN hook; when a request ends with frames still on that stack
+(exit(), max_execution_time, a destructor or shutdown function that ends the
+request) and Xdebug holds the last reference to an object, zend_objects_store_del()
+writes into the NULL bucket array and the worker dies with SIGSEGV.
+
+Reset the store in php_request_shutdown() right after the post-RSHUTDOWN hooks
+instead: the next request still never sees the freed buckets, and the memory is
+only released afterwards by shutdown_memory_manager(), as before the fix.
+---
+--- a/Zend/zend_execute_API.c
++++ b/Zend/zend_execute_API.c
+@@ -368,8 +368,8 @@
+ 		zend_hash_discard(EG(function_table), EG(persistent_functions_count));
+ 		zend_hash_discard(EG(class_table), EG(persistent_classes_count));
+ 		zend_cleanup_internal_classes();
+-		EG(objects_store).object_buckets = NULL;
+-		EG(objects_store).top = 1;
++		/* The object store is reset in php_request_shutdown(), after the
++		 * post-RSHUTDOWN hooks: see the comment there. */
+ 	} else {
+ 		zend_vm_stack_destroy();
+ 
+--- a/main/main.c
++++ b/main/main.c
+@@ -1976,6 +1976,15 @@
+ 		zend_post_deactivate_modules();
+ 	} zend_end_try();
+ 
++	/* 11.5. Reset the object store, so that nothing reaches the freed buckets
++	 * before the next init_executor(). On fast shutdown, shutdown_executor()
++	 * leaves it in place, as it did before the bailout fix: extensions built for
++	 * PHP 7.x, such as Xdebug 3.1, release the objects they still hold from their
++	 * post-RSHUTDOWN hook, and an empty store there crashes in
++	 * zend_objects_store_del(). The memory is only released below. */
++	EG(objects_store).object_buckets = NULL;
++	EG(objects_store).top = 1;
++
+ 	/* 12. SAPI related shutdown (free stuff) */
+ 	zend_try {
+ 		sapi_deactivate();
