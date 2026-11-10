@@ -4,7 +4,7 @@
 #     tools/build-el8.sh (RPMs + src.tar.gz). Both are installed at the same time in throwaway centos:8 containers
 #     and compared: build fingerprint (modules, ini defaults, php -i, linked libraries) and PHP's full suite with
 #     real MariaDB and PostgreSQL, test by test. Tests listed in el8-exclude.txt are left out on both sides.
-#     Env: OUT (./verify-out), JOBS (8 run-tests processes per side), CPUS (8 per side), TESTS (subset),
+#     Env: OUT (./verify-out), JOBS (8 run-tests processes per side), CPUS (8 per side), MEM (4g per side), TESTS (subset),
 #     WORK (host dir for the test trees, instead of the container layer).
 #     Checking the split itself: run-el8.sh DIR DIR <scl> with JOBS_BEFORE=1 must be identical (serial vs split).
 #     Exit 0 = identical; 1 = differences (a fix's own tests may change on purpose: check each one); 2 = a step failed.
@@ -12,7 +12,7 @@
 #     salida de tools/build-el8.sh (RPM + src.tar.gz). Las dos se instalan a la vez en contenedores centos:8 de usar
 #     y tirar y se comparan: huella de compilación (módulos, valores de ini, php -i, librerías enlazadas) y la suite
 #     completa de PHP con MariaDB y PostgreSQL de verdad, prueba a prueba. Lo de el8-exclude.txt queda fuera en los dos.
-#     Entorno: OUT (./verify-out), JOBS (8 procesos de run-tests por lado), CPUS (8 por lado), TESTS (una parte),
+#     Entorno: OUT (./verify-out), JOBS (8 procesos de run-tests por lado), CPUS (8 por lado), MEM (4g por lado), TESTS (una parte),
 #     WORK (carpeta del host para los árboles de pruebas, en vez de la capa del contenedor).
 #     Para comprobar el propio reparto: run-el8.sh DIR DIR <scl> con JOBS_BEFORE=1 tiene que salir idéntico (serie frente a reparto).
 #     Sale 0 = idéntico; 1 = diferencias (las pruebas de un arreglo pueden cambiar a propósito: revisar cada una);
@@ -26,7 +26,7 @@ for x in "$na:$A" "$nd:$D"; do
   n=${x%%:*}; dir=${x#*:}; j=${JOBS:-8}; [ "$n" = "$na" ] && j=${JOBS_BEFORE:-$j}
   # EN: WORK=<host dir>: the test tree goes there, not into the container layer / ES: el árbol de pruebas va ahí, no a la capa
   t=(); [ -n "${WORK:-}" ] && { mkdir -p "$WORK/$n"; t=(-v "$(realpath "$WORK")/$n":/t); }
-  docker run --rm --name "verify-el8-$$-$n" --cpus "${CPUS:-8}" --memory 4g -e JOBS="$j" -e TESTS \
+  docker run --rm --name "verify-el8-$$-$n" --cpus "${CPUS:-8}" --memory "${MEM:-4g}" -e JOBS="$j" -e TESTS \
     -e EXCLUDE=/v/el8-exclude.txt -v "$dir":/rpms:ro -v "$H":/v:ro -v "$OUT":/out "${t[@]}" centos:8 \
     bash /v/suite-el8.sh "$n" "$SCL" > "$OUT/$n.run.txt" 2>&1 &
 done; wait

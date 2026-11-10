@@ -170,7 +170,7 @@ the missing fixes added, or Remi's latest builds unchanged where they already ha
 
 | Package | Version | What it is |
 |---|---|---|
-| `php73-php-*` (SCL, `/opt/remi/php73`) | `7.3.33-24.1.el8.legacy` | Remi's 7.3.33-24 plus 24 backported fixes (pgsql, phar, soap, openssl, mysqlnd, sockets, http, libxml, filters, ctype…) |
+| `php73-php-*` (SCL, `/opt/remi/php73`) | `7.3.33-24.2.el8.legacy` | Remi's 7.3.33-24 plus 24 backported fixes and the Xdebug 3.1 crash fix (see Ubuntu's php7.3/php7.4 `+local2`) (pgsql, phar, soap, openssl, mysqlnd, sockets, http, libxml, filters, ctype…) |
 | `php72-php-*`, `php71-php-*`, `php70-php-*`, `php56-php-*` (SCL) | `7.2.34-31.1`, `7.1.33-34.1`, `7.0.33-47.1`, `5.6.40-47.1` (`.el8.legacy`) | Remi's last build of each branch plus 28-32 backported fixes: the same as php73, plus mysqlnd (CVE-2024-8929) and, in 7.1/7.0/5.6, PHP2Shell (CVE-2026-109618/109619), pgsql and phar (5.6 also soap) |
 | `php74-php-*` (SCL) | `7.4.33-31.el8.remi` | Remi's build, unchanged: it already has all those fixes |
 | `php82-php-*` (SCL) | `8.2.35-1.el8.remi` | Remi's build, unchanged |
@@ -431,7 +431,7 @@ cuando ya los tienen todos.
 
 | Paquete | Versión | Qué es |
 |---|---|---|
-| `php73-php-*` (SCL, `/opt/remi/php73`) | `7.3.33-24.1.el8.legacy` | el 7.3.33-24 de Remi con 24 arreglos portados (pgsql, phar, soap, openssl, mysqlnd, sockets, http, libxml, filtros, ctype…) |
+| `php73-php-*` (SCL, `/opt/remi/php73`) | `7.3.33-24.2.el8.legacy` | el 7.3.33-24 de Remi con 24 arreglos portados y el de la caída con Xdebug 3.1 (ver las php7.3/php7.4 `+local2` de Ubuntu) (pgsql, phar, soap, openssl, mysqlnd, sockets, http, libxml, filtros, ctype…) |
 | `php72-php-*`, `php71-php-*`, `php70-php-*`, `php56-php-*` (SCL) | `7.2.34-31.1`, `7.1.33-34.1`, `7.0.33-47.1`, `5.6.40-47.1` (`.el8.legacy`) | la última compilación de Remi de cada rama con 28-32 arreglos portados: los mismos que php73, más mysqlnd (CVE-2024-8929) y, en 7.1/7.0/5.6, PHP2Shell (CVE-2026-109618/109619), pgsql y phar (5.6, también soap) |
 | `php74-php-*` (SCL) | `7.4.33-31.el8.remi` | la compilación de Remi, sin tocar: ya trae todos esos arreglos |
 | `php82-php-*` (SCL) | `8.2.35-1.el8.remi` | la compilación de Remi, sin tocar |
