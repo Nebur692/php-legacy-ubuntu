@@ -4,36 +4,36 @@ Hash: SHA512
 Architectures: amd64
 Codename: focal
 Components: main
-Date: Tue, 10 Nov 2026 13:36:37 +0000
+Date: Tue, 10 Nov 2026 14:19:30 +0000
 Description: Patched PHP rebuilds for Ubuntu focal
 Label: php-legacy-ubuntu
 Origin: php-legacy-ubuntu
 Suite: focal
 MD5Sum:
- 376f09c06a5161a3fec51813180ab677           287558 main/binary-amd64/Packages
- da1e78696303e549dcce1eef62577fd3            63304 main/binary-amd64/Packages.gz
+ 2d97f39f6d74a544f4e3650b91dc7928           287558 main/binary-amd64/Packages
+ 3fc4b1d22de68f413cd2792c78564fc7            63295 main/binary-amd64/Packages.gz
 SHA1:
- b3eab1ec5877eb2c936dfd71e15e8e979f8556f9           287558 main/binary-amd64/Packages
- 964c1f1c91edbb0794ab8561034060df4fdda216            63304 main/binary-amd64/Packages.gz
+ 650be1178882685940edcdd389a7b046714ab525           287558 main/binary-amd64/Packages
+ 2f5dfae44168f947778930a2adf25f524594c8ad            63295 main/binary-amd64/Packages.gz
 SHA256:
- cc65a68e054619d8735630e6ffb69f56943d3460e6908894bee81ee76919319d           287558 main/binary-amd64/Packages
- 289270e83ef305cd00017a649a7b3b2d5e8a5b11d47353ea06cc8850c90279f3            63304 main/binary-amd64/Packages.gz
+ 1fc078dcf7a5750c79b3188be705c8c515bdb82b88737bb6797c678f88eca28f           287558 main/binary-amd64/Packages
+ 7c0d43512439aa9beed4aa24f680c0c70330840acd7806e963fa8e4e2cf24e87            63295 main/binary-amd64/Packages.gz
 SHA512:
- 45b938500def077c6a0c10ec7f57114195931a84bc200b38f95e753cbeaf8aa3afdc2a5c36920453fabc29bac3c5c7733efca39742f4a689878c28867e16cc3c           287558 main/binary-amd64/Packages
- 03f5a74dba18a445851a06f54419b59cc453585307560ab48667e7d7c11ce33d0d80ef625c8b91ac9b3a83b81f42ef6476ca85232706bf2d30d0003cceacddbc            63304 main/binary-amd64/Packages.gz
+ 3167be9c4a337f84483d8995a49bd21e117d528d8ab058fa3df7819b7a447dcb3c1048aa4b43f91a1a8c3665f21f831fa3d154055b7585f4ba463b66f64aaf30           287558 main/binary-amd64/Packages
+ 5feadc292e4d12a38aed1913d11b3d5644f654b29eddf27df2cbb3c62aa670163a523960cd49285ed1d6eef67c8a11f76ee2d994130868298048bc9707a99724            63295 main/binary-amd64/Packages.gz
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEE/V3pK4hvgRROyxTShcyiTJiQ1ScFAmrzHeUACgkQhcyiTJiQ
-1ScyLQ/+I8e0DeFaQnCXoI3WGQmF2+DMXGw5Cj3oymZF+e0hUU5vXjN4FqjaXUic
-bAs0LqbMTKvaHRhp5FdbO73iKjj11OJOzTggg9gLIaoymHjSNIj+A+7e/R4StBz/
-7YhIaQESmemd/bOEApYjUHVuQSQfKjcYk68sWnyOGZ98Kv1n6zOv8obXujP9FQjW
-e+zZsruLB3y/X518YmDLyBDwm9p9bY3Ly8Cp/zAIiTywUqeT33ZndsyvkePbBeNr
-6iLlj1dYrqXnE0INBHcXZdU1J190Mb1RQsQfYoj4imWeU3BfZ+wjstZY4OxaTe/C
-m54D8i0DXOyMavqQN8Hw6XdHAXRoXm5AKGs8XFbWWrIiAsdOClGBbID67AQ1VmPo
-5DvgawijAuy22k83HZ9I2L+RurqDWEvV6B2InFKLtbsvw92XSALRM3y3kVV4Nq5u
-e4DkaYCOm9Cpv2qCpkYalJcFqAjVmSNTGLW4gJ8DapZMK3BMgoYxMpY2IxzUANXi
-7OeyPlJB9cx80C1h/W3wBpV3PUHbiV9tGrC33Pht7hrcK4hED5wI8+s5BE8spr9X
-oQ2XpYNsJR2+bI1ToxBhV1q0gVpv/uCoQCk3ZPi7nTQr4ExoDAxIUf1TbRZEq3Ps
-qqoxIwS7FKFXIKjm33DcrvE4x/9FdTu8NMtSobrdQ/hehwTX/dY=
-=KHTF
+iQIzBAEBCgAdFiEE/V3pK4hvgRROyxTShcyiTJiQ1ScFAmrzJ/IACgkQhcyiTJiQ
+1Sd+UxAAmH5SAZ5nsWF9MYLCj3bX5X7u03GFZc0m8wvyq2PJr2xzLaftKCy7XrgH
+S0VWkSHCm6hq39lUjM8uliwdnoZJiomMTWuJBspfvxzy69QDXM7b7/TVQmFhOgDa
+JKTFNxzCL8WG7NVie3i0U3oRGh2GCnAAkz7QP3h9t2yKwP8fpuw5xTCSM4FOT1V3
+HA197NL3L210L0SLIbO8mR6jc5bG2Fv72pqZsr11VHhlmaj3hNUpnOrwthXkvLRB
+y1QU0LI2X9aVTpNBdgAOLnRbPRD6XQpihMoZq8p4SNXrTKtsDASJiayOsCuGEkQb
+K5aS4EkkN2YmJE8cplBWFZYuE01SlvVMfZKbr0oO+UuDCb3fxyG+Kdwm+EnVGYEt
+7RjERYB9gRbxopyZd5+X0r9Lcx98WFAqvz0iBgPaXSPhSebXJqpyYgYehMQVk98k
+Yl1DyLU2ro0scKoeRfhWf1cV0GPDkHkBKk+yPiQAs+rFBxruDUrcZePkbMwDieEG
+ZowCVMv/zKn0hluuFm8apLOLh/Ut6BLdv45vH6/mDVoJ/yAQ5+sLz1HOcCGHyTAk
+Xdziqx45hBafS1lWMTbYwrF9g2QpZsEuybuy/Oxk3oW62iadsG840uhb7XqLWTn5
+GXOB0Qs71j/toDvstA8ccOcc8QgmHMH15VEz+lGbF+1QVsGbsVo=
+=9Qqv
 -----END PGP SIGNATURE-----

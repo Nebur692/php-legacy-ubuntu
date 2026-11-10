@@ -4,7 +4,7 @@ Hash: SHA512
 Architectures: amd64
 Codename: bionic
 Components: main
-Date: Tue, 10 Nov 2026 13:36:36 +0000
+Date: Tue, 10 Nov 2026 14:19:29 +0000
 Description: Patched PHP rebuilds for Ubuntu bionic
 Label: php-legacy-ubuntu
 Origin: php-legacy-ubuntu
@@ -23,17 +23,17 @@ SHA512:
  c52b8bf75b3922c375398c49142a3d2ddf7d1310b9075daad7e8547ba6992c42c77c4a4dfebc0f078cf3bc1e1d5830657c71031954523be7babf2c4cdb2c11b3            23154 main/binary-amd64/Packages.gz
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEE/V3pK4hvgRROyxTShcyiTJiQ1ScFAmrzHeQACgkQhcyiTJiQ
-1SeUQxAApjM1/36pz3vLlLjVwOT/Or1G2h9bhk9GLTnaXVsi042WHyE4KP9c5j4A
-k8Db/ZMariWNDHZCKxlgCmskLX9LP52Ixfar5ZpRm+a3VeSDP/+ozqmiILwlyRgi
-gQRkXazyTTSiBQlTSljxW5KyzUovo+UK4wECOPK37jFXMj1cMwXC+adLdTQJHAHg
-YjL55ZZLTj9fHK94A2wSMPlBxBe8RyC8KGQNnTBMX3EWFlgQ4Mnr2r15eDb1/vua
-Exdof2tmf5lXfmsg9FVcc3Cbv1z6wDgdb2KLT+XlIEsQGnG7tcinHTLRqY3uf22B
-ccrXFMw5YekTRPwXgqrWNlRPuRL0tUqrK2Z/+kpj8rnx2u3S+VQ7O9axZjdIMBOQ
-ZuXFc9xq9ze7gUau7jf01TYiwXkImKdEpJaaNEP6SukxIrNuhXXFFKp9jlW3eOcR
-X4u3FZ5JgYJW5RHPZbGTtVpihQS7IUPdxh8n56uuVp8BjJDrbubKcUUz0JKpEAAa
-1FY8T6yLVklBcN0m/D7yoiUJgS5GNQ5iKzi/9mpqo951Y2H0KQmFqBfIUlJNr55M
-QNpy7S+oi05S3Eu6uUHH9nWeMUkDJbCvrfRWo8P7oerrdGIk+y5PAhoujak3IUuU
-bMZP6cxDgQIlhXTAa89t5goooZ35xESsFCg+kXJbGmaNua0DjvM=
-=mu0i
+iQIzBAEBCgAdFiEE/V3pK4hvgRROyxTShcyiTJiQ1ScFAmrzJ/EACgkQhcyiTJiQ
+1SeqfRAAr9FTBuQWlVVOHDHENTdFgJ43lR9gkMcBAJGnY3lugHBQw6LQ4NkzorHM
+rUNtChxCbs+JK+3fdKYL+QsnBmLiwU2eyu0lWnnmd4mHOfr+lEPZRjdvIdTH5rMr
+t+zjtR4Eqj3P5AVX0DxDK0a631Y1SlRsdkgioVsP1EsKjQ3aA5QbCb2PCqlI5XZm
+ghm/kQnuzRDbznrTdKNPEwZPoaJpN3Hxlt0B8s/Mophsqb09/kEX3REbn+BdZG0G
+AgWXGr+t/UJHy3dzLnXDn0/1OVEjT2Mb40OTTSmc2KXLXPUglFKlB7EfwBNSFK/4
+h4ZIvlF7sqLctxlfSfev2EgUDojl6qITMhfC2VIq3/GMFc7/8I4LKgeb89jfPjSF
+NEqvxeAtMuGX5OJylBVIAwQItYjlca41z5F7i3ys/SZ15+gzNGkxut4Fpi2LX6U5
+qKYMZUj9dM/+ewuloaBzdkXM4dQfdtwrOyu059MXdp/niqqXosy6MsKGYk8PIw13
+4ufOtQ3KSEno6RkXaAbGRtwtBA70tpJXMr0HEBjvHWew1n6qsYGpkZXDY74Dq/6Y
+ns9dW+MeVko0Vg+bl0yWtitr5rb9wIsDbTZ60/TGwfLe1FoGRkjn6Pf/wCJIn/4y
+1xO93NujmIom1RaZG7vLxxzriMKF95nG9734Yk/A1M8LI13jWBc=
+=fTvy
 -----END PGP SIGNATURE-----

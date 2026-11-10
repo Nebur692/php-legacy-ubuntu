@@ -1,7 +1,7 @@
 Architectures: amd64
 Codename: bionic
 Components: main
-Date: Tue, 10 Nov 2026 13:36:36 +0000
+Date: Tue, 10 Nov 2026 14:19:29 +0000
 Description: Patched PHP rebuilds for Ubuntu bionic
 Label: php-legacy-ubuntu
 Origin: php-legacy-ubuntu
