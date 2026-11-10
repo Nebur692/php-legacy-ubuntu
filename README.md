@@ -167,7 +167,7 @@ the missing fixes added, or Remi's latest builds unchanged where they already ha
 | Package | Version | What it is |
 |---|---|---|
 | `php73-php-*` (SCL, `/opt/remi/php73`) | `7.3.33-24.1.el8.legacy` | Remi's 7.3.33-24 plus 24 backported fixes (pgsql, phar, soap, openssl, mysqlnd, sockets, http, libxml, filters, ctype…) |
-| `php72-php-*`, `php71-php-*`, `php70-php-*` (SCL) | `7.2.34-31.1`, `7.1.33-34.1`, `7.0.33-47.1` (`.el8.legacy`) | Remi's last build of each branch plus 28-32 backported fixes: the same as php73, plus mysqlnd (CVE-2024-8929) and, in 7.1/7.0, PHP2Shell (CVE-2026-109618/109619), pgsql and phar |
+| `php72-php-*`, `php71-php-*`, `php70-php-*`, `php56-php-*` (SCL) | `7.2.34-31.1`, `7.1.33-34.1`, `7.0.33-47.1`, `5.6.40-47.1` (`.el8.legacy`) | Remi's last build of each branch plus 28-32 backported fixes: the same as php73, plus mysqlnd (CVE-2024-8929) and, in 7.1/7.0/5.6, PHP2Shell (CVE-2026-109618/109619), pgsql and phar (5.6 also soap) |
 | `php74-php-*` (SCL) | `7.4.33-31.el8.remi` | Remi's build, unchanged: it already has all those fixes |
 | `php82-php-*` (SCL) | `8.2.35-1.el8.remi` | Remi's build, unchanged |
 | `gd3php` | `2.3.3-8.1.el8.legacy` | the GD library that every `php-gd` from Remi uses (SCL **and** the `php:remi-7.4` / `php:remi-8.2` modules), with the fix for CVE-2026-9672 (GIF reader) |
@@ -177,14 +177,14 @@ the missing fixes added, or Remi's latest builds unchanged where they already ha
 - The sources (`.src.rpm`) are in `el8/SRPMS/` and the build log is next to the packages, in `el8/x86_64/<branch>/`.
 - The `oci8` extensions are not here (they need Oracle's client). If Remi's `php73-php-oci8` is installed, `dnf`
   cannot update php73 until it is removed.
-- php56 and the modular `php:remi-7.2` / `php:remi-7.3` streams are on their way.
+- The modular `php:remi-7.2` / `php:remi-7.3` streams are on their way.
 
 **What you need, depending on what the machine runs:**
 
 | The machine runs… | Do this |
 |---|---|
 | PHP 7.4 or 8.2 from the **module** (`php:remi-7.4`, `php:remi-8.2`: `php-fpm`, `/etc/php.ini`) | Stay on the module. Add this repository and run `dnf upgrade gd3php`: the module already has every PHP fix, and GD is the only thing it lacks. **Do not install `php74-php-*` or `php82-php-*`** (see the warning below). |
-| PHP 7.0, 7.1, 7.2 or 7.3 from Remi's **SCL** (`php70-php-*` … `php73-php-*`) | `dnf upgrade 'php7*' gd3php` |
+| PHP 5.6, 7.0, 7.1, 7.2 or 7.3 from Remi's **SCL** (`php56-php-*` … `php73-php-*`) | `dnf upgrade 'php56*' 'php7*' gd3php` |
 | PHP 7.4 or 8.2 from Remi's **SCL** | `dnf upgrade gd3php` (the `php74`/`php82` here are the same builds as Remi's) |
 | PHP 7.2 or 7.3 from the **module** | `dnf upgrade gd3php` for now; the patched modular streams are coming |
 
@@ -238,7 +238,7 @@ Remi (`php73-php-pecl-*`) keep working.
 - `systemctl enable --now php73-php-fpm`, then `systemctl reload httpd`, then `systemctl disable --now php-fpm`;
 - the sessions move to `/var/opt/remi/php73/lib/php/session`: logged-in users have to log in again.
 
-**Checking it:** `rpm -q php73-php-common gd3php` (or `php70`/`php71`/`php72`) must end in `.el8.legacy` (`php74-*` and `php82-*` end in
+**Checking it:** `rpm -q php73-php-common gd3php` (or `php56`/`php70`/`php71`/`php72`) must end in `.el8.legacy` (`php74-*` and `php82-*` end in
 `.el8.remi`: they are Remi's builds, and that is right), and `rpm -q --changelog php73-php-common | head` lists the
 added fixes.
 
@@ -423,7 +423,7 @@ cuando ya los tienen todos.
 | Paquete | Versión | Qué es |
 |---|---|---|
 | `php73-php-*` (SCL, `/opt/remi/php73`) | `7.3.33-24.1.el8.legacy` | el 7.3.33-24 de Remi con 24 arreglos portados (pgsql, phar, soap, openssl, mysqlnd, sockets, http, libxml, filtros, ctype…) |
-| `php72-php-*`, `php71-php-*`, `php70-php-*` (SCL) | `7.2.34-31.1`, `7.1.33-34.1`, `7.0.33-47.1` (`.el8.legacy`) | la última compilación de Remi de cada rama con 28-32 arreglos portados: los mismos que php73, más mysqlnd (CVE-2024-8929) y, en 7.1/7.0, PHP2Shell (CVE-2026-109618/109619), pgsql y phar |
+| `php72-php-*`, `php71-php-*`, `php70-php-*`, `php56-php-*` (SCL) | `7.2.34-31.1`, `7.1.33-34.1`, `7.0.33-47.1`, `5.6.40-47.1` (`.el8.legacy`) | la última compilación de Remi de cada rama con 28-32 arreglos portados: los mismos que php73, más mysqlnd (CVE-2024-8929) y, en 7.1/7.0/5.6, PHP2Shell (CVE-2026-109618/109619), pgsql y phar (5.6, también soap) |
 | `php74-php-*` (SCL) | `7.4.33-31.el8.remi` | la compilación de Remi, sin tocar: ya trae todos esos arreglos |
 | `php82-php-*` (SCL) | `8.2.35-1.el8.remi` | la compilación de Remi, sin tocar |
 | `gd3php` | `2.3.3-8.1.el8.legacy` | la librería GD que usan todos los `php-gd` de Remi (los SCL **y** los módulos `php:remi-7.4` / `php:remi-8.2`), con el arreglo de CVE-2026-9672 (lector GIF) |
@@ -434,14 +434,14 @@ cuando ya los tienen todos.
   `el8/x86_64/<rama>/`.
 - Las extensiones `oci8` no están (necesitan el cliente de Oracle). Si está instalado el `php73-php-oci8` de Remi,
   `dnf` no puede actualizar php73 hasta quitarlo.
-- php56 y los flujos modulares `php:remi-7.2` / `php:remi-7.3` están en camino.
+- Los flujos modulares `php:remi-7.2` / `php:remi-7.3` están en camino.
 
 **Qué necesitas, según lo que tenga la máquina:**
 
 | La máquina usa… | Haz esto |
 |---|---|
 | PHP 7.4 u 8.2 del **módulo** (`php:remi-7.4`, `php:remi-8.2`: `php-fpm`, `/etc/php.ini`) | Sigue con el módulo. Añade este repositorio y haz `dnf upgrade gd3php`: el módulo ya tiene todos los arreglos de PHP y solo le falta el de GD. **No instales `php74-php-*` ni `php82-php-*`** (mira el aviso de abajo). |
-| PHP 7.0, 7.1, 7.2 o 7.3 del **SCL** de Remi (`php70-php-*` … `php73-php-*`) | `dnf upgrade 'php7*' gd3php` |
+| PHP 5.6, 7.0, 7.1, 7.2 o 7.3 del **SCL** de Remi (`php56-php-*` … `php73-php-*`) | `dnf upgrade 'php56*' 'php7*' gd3php` |
 | PHP 7.4 u 8.2 del **SCL** de Remi | `dnf upgrade gd3php` (los `php74`/`php82` de aquí son las mismas compilaciones que las de Remi) |
 | PHP 7.2 o 7.3 del **módulo** | De momento `dnf upgrade gd3php`; los flujos modulares parcheados están en camino |
 
@@ -495,7 +495,7 @@ orden `php73` para la línea de órdenes.
 - `systemctl enable --now php73-php-fpm`, después `systemctl reload httpd` y después `systemctl disable --now php-fpm`;
 - las sesiones pasan a `/var/opt/remi/php73/lib/php/session`: quien estuviera conectado tendrá que volver a entrar.
 
-**Comprobarlo:** `rpm -q php73-php-common gd3php` (o `php70`/`php71`/`php72`) tiene que acabar en `.el8.legacy` (`php74-*` y `php82-*` acaban en
+**Comprobarlo:** `rpm -q php73-php-common gd3php` (o `php56`/`php70`/`php71`/`php72`) tiene que acabar en `.el8.legacy` (`php74-*` y `php82-*` acaban en
 `.el8.remi`: son las compilaciones de Remi y está bien), y `rpm -q --changelog php73-php-common | head` enseña los
 arreglos añadidos.
 
