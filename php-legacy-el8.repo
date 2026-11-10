@@ -1,0 +1,17 @@
+# php-legacy-ubuntu: patched PHP for CentOS 8 / EL8 (x86_64)
+# https://github.com/Nebur692/php-legacy-ubuntu
+[php-legacy-el8]
+name=php-legacy-ubuntu - patched PHP for EL8 - $basearch
+baseurl=https://raw.githubusercontent.com/Nebur692/php-legacy-ubuntu/main/el8/$basearch/
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://raw.githubusercontent.com/Nebur692/php-legacy-ubuntu/main/php-legacy-ubuntu.asc
+
+[php-legacy-el8-source]
+name=php-legacy-ubuntu - patched PHP for EL8 - Source
+baseurl=https://raw.githubusercontent.com/Nebur692/php-legacy-ubuntu/main/el8/SRPMS/
+enabled=0
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://raw.githubusercontent.com/Nebur692/php-legacy-ubuntu/main/php-legacy-ubuntu.asc
