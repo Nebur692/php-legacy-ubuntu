@@ -51,13 +51,17 @@ case "$FASE" in
 prep)
   mount_proc; cd "$BD"
   curl -fsSLO "$PPA/dists/jammy/InRelease"; curl -fsSLO "$PPA/dists/jammy/main/source/Sources.xz"
-  good=0
-  for k in /etc/apt/trusted.gpg.d/*ondrej* /etc/apt/trusted.gpg; do
-    [ -f "$k" ] || continue
-    out=$(gpgv --keyring "$k" InRelease 2>&1 || true)
-    echo "$out" | grep -q 'Good signature from "Launchpad PPA for Ondřej Surý"' && { good=1; break; }
-  done
-  [ $good = 1 ] && ok "firma InRelease" || die "firma InRelease"
+  # EN: the PPA's signing key, by the fingerprint Launchpad publishes over HTTPS (Launchpad renewed it in 2026)
+  # ES: la clave de firma del PPA, por la huella que publica Launchpad por HTTPS (Launchpad la renovó en 2026)
+  KEY=$(curl -fsSL https://api.launchpad.net/1.0/~ondrej/+archive/ubuntu/php | grep -oE '"signing_key_fingerprint": "[0-9A-F]{40}"' | grep -oE '[0-9A-F]{40}')
+  [ ${#KEY} = 40 ] && ok "clave del PPA según Launchpad: $KEY" || die "huella de la clave en Launchpad"
+  G=$(mktemp -d); GNUPGHOME=$G gpg -q --keyserver hkps://keyserver.ubuntu.com --recv-keys "$KEY" || die "bajar la clave $KEY"
+  fp=$(GNUPGHOME=$G gpg --with-colons --fingerprint "$KEY"); echo "$fp" | grep -q "^fpr:::::::::$KEY:" || die "la clave bajada no es $KEY"
+  GNUPGHOME=$G gpg --export "$KEY" > "$G/ppa.gpg"
+  # EN: kept apart: "gpgv | grep -q" fails with pipefail (SIGPIPE); gpgv prints the name escaped, so check the key
+  # ES: guardado aparte: «gpgv | grep -q» falla con pipefail (SIGPIPE); gpgv escapa el nombre, así que se mira la clave
+  out=$(gpgv --keyring "$G/ppa.gpg" InRelease 2>&1 || true); rm -rf "$G"
+  echo "$out" | grep -q 'Good signature' && echo "$out" | grep -q "$KEY" && ok "firma InRelease" || die "firma InRelease"
   grep -q "$(sha256sum Sources.xz | cut -d' ' -f1)" InRelease && ok "Sources.xz" || die "Sources.xz"
   xz -dc Sources.xz > Sources   # EN: decompressed apart, "xz | grep -q" fails with pipefail (SIGPIPE) / ES: descomprimido aparte: "xz | grep -q" falla con pipefail (SIGPIPE)
   curl -fsSLO "$PPA/pool/main/p/$B/$F.dsc" || die "no existe $F.dsc en el PPA"
