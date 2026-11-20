@@ -1,6 +1,7 @@
+From f22c38257e20eae973f98d2b7cf84753f67843fc Mon Sep 17 00:00:00 2001
 From: Nebur692 <nebur_692@hotmail.com>
 Date: Tue, 10 Nov 2026 15:30:00 +0100
-Subject: Keep the object store until the post-RSHUTDOWN hooks
+Subject: [PATCH] Keep the object store until the post-RSHUTDOWN hooks
 
 The bailout fix (0164) resets EG(objects_store) in the fast path of
 shutdown_executor(), which runs before zend_post_deactivate_modules(). Xdebug 3.1
@@ -14,9 +15,15 @@ Reset the store in php_request_shutdown() right after the post-RSHUTDOWN hooks
 instead: the next request still never sees the freed buckets, and the memory is
 only released afterwards by shutdown_memory_manager(), as before the fix.
 ---
+ Zend/zend_execute_API.c | 4 ++--
+ main/main.c             | 9 +++++++++
+ 2 files changed, 11 insertions(+), 2 deletions(-)
+
+diff --git a/Zend/zend_execute_API.c b/Zend/zend_execute_API.c
+index 724b6e5c..228b9bc3 100644
 --- a/Zend/zend_execute_API.c
 +++ b/Zend/zend_execute_API.c
-@@ -368,8 +368,8 @@
+@@ -368,8 +368,8 @@ void shutdown_executor(void) /* {{{ */
  		zend_hash_discard(EG(function_table), EG(persistent_functions_count));
  		zend_hash_discard(EG(class_table), EG(persistent_classes_count));
  		zend_cleanup_internal_classes();
@@ -27,9 +34,11 @@ only released afterwards by shutdown_memory_manager(), as before the fix.
  	} else {
  		zend_vm_stack_destroy();
  
+diff --git a/main/main.c b/main/main.c
+index 61e65129..345951e7 100644
 --- a/main/main.c
 +++ b/main/main.c
-@@ -1976,6 +1976,15 @@
+@@ -1969,6 +1969,15 @@ void php_request_shutdown(void *dummy)
  		zend_post_deactivate_modules();
  	} zend_end_try();
  
@@ -45,3 +54,6 @@ only released afterwards by shutdown_memory_manager(), as before the fix.
  	/* 12. SAPI related shutdown (free stuff) */
  	zend_try {
  		sapi_deactivate();
+-- 
+2.55.0
+

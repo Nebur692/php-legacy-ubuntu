@@ -87,7 +87,9 @@ if [ -s "$W/pesadas" ]; then
   echo "  $(wc -l < "$W/pesadas") que necesitan gigas, solas al final / needing gigabytes, alone at the end"
   mkdir -p "$W/tmpz"; ( cd "$S" && TMPDIR="$W/tmpz" "$@" -r "$W/pesadas" > "$W/logz" 2>&1 )
 fi
-cat "$W"/log* > "$LOG"
+# EN: run-tests of PHP 8 colours the results (ESC[1;32mPASS ESC[0m): strip the codes, or no result is recognised
+# ES: el run-tests de PHP 8 colorea los resultados (ESC[1;32mPASS ESC[0m): se quitan los códigos o no se reconoce ninguno
+cat "$W"/log* | sed $'s/\x1b\[[0-9;]*m//g' > "$LOG"
 # EN: every listed test must have a result / ES: cada prueba de la lista tiene que tener resultado
 # EN: titles of several lines: result and path come on different lines (same join as compare-suite.sh)
 # ES: títulos de varias líneas: resultado y ruta salen en líneas distintas (la misma unión que compare-suite.sh)

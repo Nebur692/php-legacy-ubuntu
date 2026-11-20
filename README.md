@@ -31,7 +31,7 @@ still run them can get the latest fixes, including **PHP2Shell (CVE-2026-109618 
 | 20.04 focal | php7.0 | `7.0.33-97+ubuntu20.04.1+local1` |
 | 20.04 focal | php7.1 | `7.1.33-85+ubuntu20.04.1+local1` |
 | 20.04 focal | php7.3 | `7.3.33-41+ubuntu20.04.1+local1` |
-| 20.04 focal | php7.4 | `1:7.4.33-31+ubuntu20.04.1+local2` (replaces Ubuntu's own 7.4.3, see below) |
+| 20.04 focal | php7.4 | `1:7.4.33-37+ubuntu20.04.1+local1` (replaces Ubuntu's own 7.4.3, see below) |
 | 20.04 focal | php8.2 | `8.2.35-1+ubuntu20.04.1+local1` (with `php8.2-imagick` 3.8.1) |
 | 20.04 focal | libgd3 | `2.2.5-5.2ubuntu2.4+local1` |
 
@@ -48,14 +48,14 @@ still run them can get the latest fixes, including **PHP2Shell (CVE-2026-109618 
   2025-2026 PHP releases that the PPA's sources of these branches lack: the same 21-26 backports as the CentOS 8
   packages below (pgsql, phar, soap, openssl, mysqlnd, sockets, http, libxml, filters, ctype…), adapted to each branch.
   They are the `patches/<ubuntu>-<branch>/91NN-*.patch` files, applied after the PPA's own and the ones above.
-- **PHP security release of 19 November 2026:** focal php7.0, php7.1 and php7.3 and bionic php7.1 and php7.2 are built from
+- **PHP security release of 19 November 2026:** focal php7.0, php7.1, php7.3 and php7.4 and bionic php7.1 and php7.2 are built from
   the PPA's newest source, which carries it (and most of the backports below), plus only what that source still
   lacks, in `patches/<ubuntu>-<branch>/`: GH-11274, GH-22643, a mysqlnd statement leak, the bundled libgd fix (7.0/7.1),
-  the Xdebug fix (7.3) and one missing mysqlnd length check (7.2). The new source also brings **CVE-2023-0662**
+  the Xdebug fix (7.3/7.4) and one missing mysqlnd length check (7.2). The new source also brings **CVE-2023-0662**
   (DoS through a multipart request with too many parts, `max_multipart_body_parts`), which the previous php7.0 and
   php7.1 builds here lacked. focal php5.6 (`+local4`) keeps its previous base and adds the release's fixes from the
   PPA's 5.6 backports (`92NN` patches). `session.upload_progress.enabled` is off by default now (CVE-2026-115560
-  mitigation). php7.4 and php8.2 for focal follow.
+  mitigation). php8.2 for focal follows.
 - **`libgd3`** is the system GD library: every `php*-gd` uses it (and so do other programs). It is
   Ubuntu's own package with Debian's fix for CVE-2026-9672 (GIF reader) added; `apt-get upgrade` installs it.
 - Each branch folder also has its `SHA256SUMS` and the gzipped build log.
@@ -317,7 +317,7 @@ CVE-2026-109619)**.
 | 20.04 focal | php7.0 | `7.0.33-97+ubuntu20.04.1+local1` |
 | 20.04 focal | php7.1 | `7.1.33-85+ubuntu20.04.1+local1` |
 | 20.04 focal | php7.3 | `7.3.33-41+ubuntu20.04.1+local1` |
-| 20.04 focal | php7.4 | `1:7.4.33-31+ubuntu20.04.1+local2` (sustituye a la 7.4.3 del propio Ubuntu, ver abajo) |
+| 20.04 focal | php7.4 | `1:7.4.33-37+ubuntu20.04.1+local1` (sustituye a la 7.4.3 del propio Ubuntu, ver abajo) |
 | 20.04 focal | php8.2 | `8.2.35-1+ubuntu20.04.1+local1` (con `php8.2-imagick` 3.8.1) |
 | 20.04 focal | libgd3 | `2.2.5-5.2ubuntu2.4+local1` |
 
@@ -336,14 +336,14 @@ CVE-2026-109619)**.
   portados que los paquetes de CentOS 8 de abajo (pgsql, phar, soap, openssl, mysqlnd, sockets, http, libxml,
   filtros, ctype…), adaptados a cada rama. Son los `patches/<ubuntu>-<rama>/91NN-*.patch`, que se aplican después
   de los del PPA y los de arriba.
-- **Tanda de seguridad de PHP del 19 de noviembre de 2026:** las php7.0, php7.1 y php7.3 de focal y las php7.1 y php7.2 de bionic salen
+- **Tanda de seguridad de PHP del 19 de noviembre de 2026:** las php7.0, php7.1, php7.3 y php7.4 de focal y las php7.1 y php7.2 de bionic salen
   del código más nuevo del PPA, que la trae (y casi todos los backports de abajo), más solo lo que a ese código aún le
   falta, en `patches/<ubuntu>-<rama>/`: GH-11274, GH-22643, una fuga de sentencias de mysqlnd, el arreglo de la libgd
-  interna (7.0/7.1), el de Xdebug (7.3) y una comprobación de longitud de mysqlnd que faltaba (7.2). El código nuevo trae
+  interna (7.0/7.1), el de Xdebug (7.3/7.4) y una comprobación de longitud de mysqlnd que faltaba (7.2). El código nuevo trae
   además **CVE-2023-0662** (DoS con una petición multipart de demasiadas partes, `max_multipart_body_parts`), que les
   faltaba a las php7.0 y php7.1 anteriores de aquí. La php5.6 de focal (`+local4`) conserva su base y añade los arreglos
   de la tanda desde los backports de 5.6 del PPA (parches `92NN`). `session.upload_progress.enabled` queda apagado por
-  defecto (mitigación de CVE-2026-115560). Las php7.4 y php8.2 de focal, en camino.
+  defecto (mitigación de CVE-2026-115560). La php8.2 de focal, en camino.
 - **`libgd3`** es la librería GD del sistema: la usan todos los `php*-gd` (y otros programas). Es el paquete de
   Ubuntu con el arreglo de Debian para CVE-2026-9672 (lector GIF); `apt-get upgrade` la instala.
 - Cada carpeta de rama lleva también su `SHA256SUMS` y el registro de compilación comprimido.
