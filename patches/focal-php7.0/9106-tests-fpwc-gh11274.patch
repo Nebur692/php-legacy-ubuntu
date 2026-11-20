@@ -1,0 +1,39 @@
+From fe1b9c1fe5af974439d2eb6d2f58b6ee908774e1 Mon Sep 17 00:00:00 2001
+From: Nebur692 <nebur_692@hotmail.com>
+Date: Fri, 20 Nov 2026 13:07:39 +0100
+Subject: [PATCH] tests: GHSA-fpwc-w8rq-cr92 expects upstream's 307 behaviour
+ again (GH-11274)
+
+The test was adapted for branches without GH-11274, where a 307 redirect
+turns a POST into a GET and drops its body ("fix fpwc test for 7.3 (307
+redirects are followed with GET)"). With the GH-11274 backport the method
+and body are kept, as upstream and 7.4 do, so the expectation goes back to
+upstream's (the same block as in Remi's 7.4.33-32).
+---
+ ext/standard/tests/http/ghsa-fpwc-w8rq-cr92.phpt | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/ext/standard/tests/http/ghsa-fpwc-w8rq-cr92.phpt b/ext/standard/tests/http/ghsa-fpwc-w8rq-cr92.phpt
+index 1a7a0dbf..5f4f9307 100644
+--- a/ext/standard/tests/http/ghsa-fpwc-w8rq-cr92.phpt
++++ b/ext/standard/tests/http/ghsa-fpwc-w8rq-cr92.phpt
+@@ -144,12 +144,14 @@ string(2) "OK"
+   X-Custom: 2
+ string(2) "OK"
+ --- credential header last in the bag (307) ---
+-GET /second HTTP/1.0
++POST /second HTTP/1.0
+ Host: ...
+ Connection: close
++Content-Length: 11
+ X-Custom: keep-me
++Content-Type: application/x-www-form-urlencoded
+ 
+---- malformed header bags ---
++hello=world--- malformed header bags ---
+   folded value        SECRET leaked: 0, X-Custom kept: 1
+   folded value (tab)  SECRET leaked: 0, X-Custom kept: 1
+   lone CR             SECRET leaked: 0, X-Custom kept: 1
+-- 
+2.55.0
+

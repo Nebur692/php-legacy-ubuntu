@@ -1,0 +1,108 @@
+From 72dc0946f15202b02eb0e2eb768d0eccb58e5de3 Mon Sep 17 00:00:00 2001
+From: Nebur692 <nebur_692@hotmail.com>
+Date: Fri, 20 Nov 2026 11:39:18 +0100
+Subject: [PATCH] tests: use SKIPIF instead of EXTENSIONS in the new 5.6 tests
+ (PHP 8.2.36 release)
+
+The 5.6 run-tests resolves --EXTENSIONS-- with "php -n" and loads the extension again
+with -d extension=..., so on an installed PHP whose php.ini already loads it the test
+fails with "Module already loaded". Same conversion as for the previous backports:
+a SKIPIF with extension_loaded(), added to the existing SKIPIF where there is one.
+---
+ ext/mysqli/tests/mysqlnd-ok-message-past-packet.phpt | 4 ++--
+ ext/mysqli/tests/mysqlnd-short-date-length.phpt      | 4 ++--
+ ext/mysqli/tests/mysqlnd-short-datetime-length.phpt  | 4 ++--
+ ext/mysqli/tests/mysqlnd-short-time-length.phpt      | 4 ++--
+ ext/standard/tests/http/ghsa-f6gg-rchx-xw8j.phpt     | 3 +--
+ ext/standard/tests/streams/ghsa-f6gg-rchx-xw8j.phpt  | 3 +--
+ 6 files changed, 10 insertions(+), 12 deletions(-)
+
+diff --git a/ext/mysqli/tests/mysqlnd-ok-message-past-packet.phpt b/ext/mysqli/tests/mysqlnd-ok-message-past-packet.phpt
+index 9c84edd1..3e9a91d9 100644
+--- a/ext/mysqli/tests/mysqlnd-ok-message-past-packet.phpt
++++ b/ext/mysqli/tests/mysqlnd-ok-message-past-packet.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ mysqlnd rejects an OK message whose length exceeds the packet body
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/mysqlnd-short-date-length.phpt b/ext/mysqli/tests/mysqlnd-short-date-length.phpt
+index 94b48a8b..eccd0441 100644
+--- a/ext/mysqli/tests/mysqlnd-short-date-length.phpt
++++ b/ext/mysqli/tests/mysqlnd-short-date-length.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ mysqlnd rejects a binary DATE field whose declared length is too short
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/mysqlnd-short-datetime-length.phpt b/ext/mysqli/tests/mysqlnd-short-datetime-length.phpt
+index e36fff17..2696d37d 100644
+--- a/ext/mysqli/tests/mysqlnd-short-datetime-length.phpt
++++ b/ext/mysqli/tests/mysqlnd-short-datetime-length.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ mysqlnd rejects a binary DATETIME field whose declared length is too short
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/mysqli/tests/mysqlnd-short-time-length.phpt b/ext/mysqli/tests/mysqlnd-short-time-length.phpt
+index f18ae3d9..9ab1f42b 100644
+--- a/ext/mysqli/tests/mysqlnd-short-time-length.phpt
++++ b/ext/mysqli/tests/mysqlnd-short-time-length.phpt
+@@ -1,7 +1,7 @@
+ --TEST--
+ mysqlnd rejects a binary TIME field whose declared length is too short
+---EXTENSIONS--
+-mysqli
++--SKIPIF--
++<?php if (!extension_loaded('mysqli')) die('skip mysqli extension not loaded'); ?>
+ --FILE--
+ <?php
+ require_once 'fake_server.inc';
+diff --git a/ext/standard/tests/http/ghsa-f6gg-rchx-xw8j.phpt b/ext/standard/tests/http/ghsa-f6gg-rchx-xw8j.phpt
+index 461d9a35..72ba6f16 100644
+--- a/ext/standard/tests/http/ghsa-f6gg-rchx-xw8j.phpt
++++ b/ext/standard/tests/http/ghsa-f6gg-rchx-xw8j.phpt
+@@ -1,9 +1,8 @@
+ --TEST--
+ GHSA-f6gg-rchx-xw8j: mixed-case HTTPS URLs must use TLS
+---EXTENSIONS--
+-openssl
+ --SKIPIF--
+ <?php
++if (!extension_loaded('openssl')) die('skip openssl extension not loaded');
+ if (!function_exists('proc_open')) die('skip proc_open() not available');
+ ?>
+ --FILE--
+diff --git a/ext/standard/tests/streams/ghsa-f6gg-rchx-xw8j.phpt b/ext/standard/tests/streams/ghsa-f6gg-rchx-xw8j.phpt
+index 7c8cc7e4..470ad0c3 100644
+--- a/ext/standard/tests/streams/ghsa-f6gg-rchx-xw8j.phpt
++++ b/ext/standard/tests/streams/ghsa-f6gg-rchx-xw8j.phpt
+@@ -1,9 +1,8 @@
+ --TEST--
+ GHSA-f6gg-rchx-xw8j: mixed-case FTPS URLs must enable TLS
+---EXTENSIONS--
+-openssl
+ --SKIPIF--
+ <?php
++if (!extension_loaded('openssl')) die('skip openssl extension not loaded');
+ if (!function_exists('proc_open')) die('skip proc_open() not available');
+ ?>
+ --FILE--
+-- 
+2.55.0
+

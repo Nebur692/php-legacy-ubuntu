@@ -1,20 +1,20 @@
 Architectures: amd64
 Codename: focal
 Components: main
-Date: Fri, 20 Nov 2026 20:11:07 +0000
+Date: Fri, 20 Nov 2026 20:55:43 +0000
 Description: Patched PHP rebuilds for Ubuntu focal
 Label: php-legacy-ubuntu
 Origin: php-legacy-ubuntu
 Suite: focal
 MD5Sum:
- 2a3745e098fcd4f0aa426f3d7b9afdd4           287558 main/binary-amd64/Packages
- ba6c2de36478176facc08bf472df5995            63262 main/binary-amd64/Packages.gz
+ 89cb37d94a05c2a61ccc850eaf088806           287558 main/binary-amd64/Packages
+ 3a63de9bc6253873435f64b176f0e5a5            63248 main/binary-amd64/Packages.gz
 SHA1:
- 52c014c5ab19c68cafc8919db2b738ff5d6d388b           287558 main/binary-amd64/Packages
- 763c7b381dda95ceee19337496b29046ec661a5c            63262 main/binary-amd64/Packages.gz
+ f3c6029ec0b66371663f51b0631dbbc9a1ec1549           287558 main/binary-amd64/Packages
+ 15902e4ed2634e0543b04809519490f7e3dfc55c            63248 main/binary-amd64/Packages.gz
 SHA256:
- 468b6c3ef7dcaec71cbe9e3363592314227ecf2227f0f57a90bdde4c404779be           287558 main/binary-amd64/Packages
- cb0a08a4618b9f44d8e032ff93d880ea0afa9e3e24d12a2dacae94f071d5f678            63262 main/binary-amd64/Packages.gz
+ 9382b2ef8e59a504b13ad23b89a5517ad2e30b7ee233795a332dcbec861dc28f           287558 main/binary-amd64/Packages
+ af5a06b57242801def85b4e535050380a1e273eb51d712681d140ecdf1b41aa4            63248 main/binary-amd64/Packages.gz
 SHA512:
- 68932d0762f428562bc57ef82cdc01fc0cfa106bbf64258871adcc3c4c96cc4e72e8df4358e4d2f3e8d7b511daee9758a32771e231654bdb044a5a75c546bb5e           287558 main/binary-amd64/Packages
- 3a99365dd31ac82f1cc6100501e0c726c7d87c192ac7e2723a3f4a6d6cf1a734406b16695f5bb6888fb66f7d16b42cd4b9e85653f9f2ef9bf26f1b9a6cc6855a            63262 main/binary-amd64/Packages.gz
+ a5044f5d68ea7be5fac998d14a753199e676ef28e7b7cc96f03600400c257159ec85b5b19f1a71765eeebad17f928fc1d16b5a48d20150568c7558ef4a7026fe           287558 main/binary-amd64/Packages
+ 0562aa7181c39fa5f71cfe6a455f6cc5dec96483a4eef930ec3943132a69afd91e0533e3978b3d29b7d2e225a5d2f3b02792f1375ccf5226bfd0b693a546dd50            63248 main/binary-amd64/Packages.gz

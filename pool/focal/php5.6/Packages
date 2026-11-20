@@ -1,21 +1,21 @@
 Package: libapache2-mod-php5.6
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: httpd
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 4286
+Installed-Size: 4294
 Provides: libapache2-mod-php, phpapi-20131226
-Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php5.6-cli, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), php5.6-json, php5.6-opcache, tzdata, ucf, apache2-api-20120211, apache2-bin (>= 2.4.16), libc6 (>= 2.29), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php5.6-cli, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), php5.6-json, php5.6-opcache, tzdata, ucf, apache2-api-20120211, apache2-bin (>= 2.4.16), libc6 (>= 2.29), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
 Recommends: apache2
 Suggests: php-pear
-Filename: ./libapache2-mod-php5.6_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 1218812
-MD5sum: b0ab7fd21ed5fff50ae5ba16e82d3288
-SHA1: a9813783091acc17572ec3e04bee023881060eab
-SHA256: 9907287c3b1b2a190e3ab2edef20991f52b4ffc88973e702fcc026d4d7c9ad96
-SHA512: f1e760d68094b463bfe69c11f76ea10475a74fe541852f592a1a737de15775ccf1d875ed568467cc01acc8655ef4ebdeb9c0d54a368626a1c773291902eaf672
+Filename: ./libapache2-mod-php5.6_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 1220260
+MD5sum: 8df353dc9dc97257bf295d0121bcddc6
+SHA1: f5b149b93a75621e556697a2223648a625073708
+SHA256: c591f735736f9182ed9c9248eb990f6f9f4776c348db176cc47f00d69aed1124
+SHA512: 32656a6f0733c2b36d9ae31594962450f913b3f2175e21a0e37df261d4e320633c5fca126894c9dd44cd0369614df7ccd2e383c4648dcfc754120e8479dd8e64
 Homepage: http://www.php.net/
 Description: server-side, HTML-embedded scripting language (Apache 2 module)
  This package provides the PHP module for the Apache 2 webserver (as
@@ -31,21 +31,21 @@ Description: server-side, HTML-embedded scripting language (Apache 2 module)
 
 Package: libphp5.6-embed
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 4275
+Installed-Size: 4279
 Provides: libphp-embed, phpapi-20131226
-Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php5.6-cli, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), php5.6-json, php5.6-opcache, tzdata, ucf, libc6 (>= 2.29), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php5.6-cli, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), php5.6-json, php5.6-opcache, tzdata, ucf, libc6 (>= 2.29), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
 Suggests: php-pear
-Filename: ./libphp5.6-embed_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 1217248
-MD5sum: 13ffe1c9c80dd7fa53c4aebe4ee41506
-SHA1: dc3774e08ba5976eaa1f86057938a176fd4e965e
-SHA256: f04206aada31a87ef5d05ff2c226e2758b841d1c73fed8d844a8807d229500f9
-SHA512: c9599841ea6557ecc908b1774512c7a2e45fc53dfc7595df7567a5bc3fd2ffeccd864cf95f8ca71ed3ef926bd1a65b578cd976b2dad8f09ea0ee06c75d04d9cd
+Filename: ./libphp5.6-embed_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 1219404
+MD5sum: 9a157bc4945e8e3d2efd1131eab81372
+SHA1: 8dab13bae0f34510235586e9f46c589461a86df7
+SHA256: fa8a57396ae584a378d96a9565457889d1a9fdc989f624993f3041c82cee1d11
+SHA512: 7684d3f6ea31c3a7df771337aaf123c7472955a962d03c32c1a27860799c797267a59f9d4dc8ce84cbf67a4c45ee5b8a58ddaa29b40a5d10a5a011aea09d42f9
 Homepage: http://www.php.net/
 Description: HTML-embedded scripting language (Embedded SAPI library)
  This package provides the library /usr/lib/libphp5.6.so which can
@@ -64,20 +64,20 @@ Description: HTML-embedded scripting language (Embedded SAPI library)
 
 Package: php5.6-bcmath
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 68
 Provides: php-bcmath
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.14)
-Filename: ./php5.6-bcmath_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 14852
-MD5sum: 0688c4cc79f8ec6a75e1db451646b8b9
-SHA1: 4b87c2c755f265072f18d220aa306cfe563c1584
-SHA256: f5aba709e9691871c8c14b34ba6455dfe27044795c218795eef2c47de8adabe7
-SHA512: 5a160b2d2eee8d088222776a5caecda5db6f59c9d9ea0423ed9b8ca75c834829badc8a76c8debeef893c6b29685e7bdf9d75fdd7ddf8dcfbf73f13acf1c28af8
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.14)
+Filename: ./php5.6-bcmath_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 14844
+MD5sum: d813fa6c014ca7c8335b1ecf7c9f1b40
+SHA1: 3bb369cdb7f2f0c5719f63345af3dd91fd8b6a7e
+SHA256: baee8e9e4bdfe75941dc2270958df118d2fd2c2b07943e44b8d348e0336276a8
+SHA512: 17cfbafdbe94b90467cb276734f0a9d8f01aaec5c20ba97f1d2fed845cd3d58f34f6e2736c15d15e37650b9a9ccec9de9f00cd5646d2f03af946f88810b60845
 Homepage: http://www.php.net/
 Description: Bcmath module for PHP
  This package provides the Bcmath module(s) for PHP.
@@ -88,20 +88,20 @@ Description: Bcmath module for PHP
 
 Package: php5.6-bz2
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 60
 Provides: php-bz2
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libbz2-1.0, libc6 (>= 2.14)
-Filename: ./php5.6-bz2_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 10664
-MD5sum: bc984bec0273f5db7e350c98edf3e6f3
-SHA1: 68b51385fefc9573484c87e0cb8a31a07d07be9c
-SHA256: a9e89e42d98581947af9efadbb755b615a24549b46076c70b61ec4bb23de41d2
-SHA512: 6677eda5c7dcb18cb3ab56b478e36cfe6bb49388d5b5e1925f6562cd29b19bf51adfe698793368eaeaf793ac666266f92bd6ee3c3ae1f153e4e6d618b0bfdb50
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libbz2-1.0, libc6 (>= 2.14)
+Filename: ./php5.6-bz2_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 10668
+MD5sum: de6485baf54e846509af3cbde842a310
+SHA1: 642eb3d7ea09c6208bc73f4ff8ecd6b6764f811b
+SHA256: 60b0711acc6e4e5e695ead48446ea054374e0e840c1d53ef1052d88d52db2e2d
+SHA512: b833daa719b93eb660d2e80fa7228c9cbb108ff86db52c21a875020b869a69d4ea4d4e9efbdcd84c6c43a0d1ed5d70e3e9a94b303c44d336bd041423c456ed45
 Homepage: http://www.php.net/
 Description: bzip2 module for PHP
  This package provides the bzip2 module(s) for PHP.
@@ -112,21 +112,21 @@ Description: bzip2 module for PHP
 
 Package: php5.6-cgi
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 8601
+Installed-Size: 8617
 Provides: php-cgi, phpapi-20131226
-Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php5.6-cli, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), php5.6-json, php5.6-opcache, tzdata, ucf, libc6 (>= 2.29), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php5.6-cli, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), php5.6-json, php5.6-opcache, tzdata, ucf, libc6 (>= 2.29), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
 Suggests: php-pear
-Filename: ./php5.6-cgi_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 1234788
-MD5sum: 00b6820bbfd9a990e1bf34083214214d
-SHA1: 2427479784727259238a120db316a8fdec53ac9b
-SHA256: 13b5932a34751d02661397ccfee40589f98839cc2b43f591aeb40845b635a73d
-SHA512: 04ec82fffcc567210ece133c5c3017b54c060e813e2fa1b28016e9f46f48093fa6abca7c2cd9d09ce4cc83715385a50121cdc72134e6f7e293388bef57ef793c
+Filename: ./php5.6-cgi_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 1239204
+MD5sum: 24c8a4af86e90fd94fee6a1567ac4bdb
+SHA1: 5828a0d733e7c10c00431c1d36516f23c6347ac6
+SHA256: d2f54174202ba43d6eb26430231db20145c7374367f614828bdc7ca8ca9e66a4
+SHA512: eeacf2fed4272831e34850b80233d41ed1ba062e8e227f29d3c8bd6fb76567bbb83fa63d64474df3c3194bf044362c7611f277ea55adb4348d837258df5029fd
 Homepage: http://www.php.net/
 Description: server-side, HTML-embedded scripting language (CGI binary)
  This package provides the /usr/lib/cgi-bin/php CGI interpreter built
@@ -143,21 +143,21 @@ Description: server-side, HTML-embedded scripting language (CGI binary)
 
 Package: php5.6-cli
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 4364
+Installed-Size: 4372
 Provides: php-cli, phpapi-20131226
-Depends: libedit2 (>= 2.11-20080614-4), libpcre3 (>= 2:8.35), media-types | mime-support, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), php5.6-json, php5.6-opcache, php5.6-readline, tzdata, ucf, libc6 (>= 2.29), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Depends: libedit2 (>= 2.11-20080614-4), libpcre3 (>= 2:8.35), media-types | mime-support, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), php5.6-json, php5.6-opcache, php5.6-readline, tzdata, ucf, libc6 (>= 2.29), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
 Suggests: php-pear
-Filename: ./php5.6-cli_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 1263332
-MD5sum: e12293681a1f86fc075c516b10071eba
-SHA1: 7ece7f64270a66d2f59e81077467591bbd668d5f
-SHA256: a065f09e6861a2f2c04efa95b29c742a5fc94552f1c5c65d401301f081a0245e
-SHA512: ec18408677850d2e408dc8d60479d65af26cd7150dfe00aff6c64771da4e0d7e1f1a0c9f718a35ffab3c46d7f983a078c7608487343bd015d451c9895893e6ca
+Filename: ./php5.6-cli_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 1264568
+MD5sum: 49d6dd319c1989f5ca3dd7ce16b0aef7
+SHA1: 2e8d7fa0d20035e459457dd9a01959e2d5bc798e
+SHA256: 0ce8f6242ff762e6f8699b5ff06309fcf0b5e9adae328d237046392499804d01
+SHA512: 8e1332e3ae11634d974e075de6a7ba46406cef9eeb14c97995a1e464eabc4404350c733b5876601103d38ce1e32d0f5d71ed2df21c17dc37ca81430766a56116
 Homepage: http://www.php.net/
 Description: command-line interpreter for the PHP scripting language
  This package provides the /usr/bin/php5.6 command interpreter, useful for
@@ -172,7 +172,7 @@ Description: command-line interpreter for the PHP scripting language
 
 Package: php5.6-common
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
@@ -180,12 +180,12 @@ Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 4270
 Provides: php-calendar, php-ctype, php-exif, php-fileinfo, php-ftp, php-iconv, php-pdo, php-phar, php-posix, php-shmop, php-sockets, php-sysvmsg, php-sysvsem, php-sysvshm, php-tokenizer, php5.6-calendar, php5.6-ctype, php5.6-exif, php5.6-fileinfo, php5.6-ftp, php5.6-gettext, php5.6-iconv, php5.6-pdo, php5.6-phar, php5.6-posix, php5.6-shmop, php5.6-sockets, php5.6-sysvmsg, php5.6-sysvsem, php5.6-sysvshm, php5.6-tokenizer
 Depends: php-common (>= 1:81~), ucf, libc6 (>= 2.15), libssl1.1 (>= 1.1.0)
-Filename: ./php5.6-common_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 727908
-MD5sum: 86ab4422dbc7ffa69a1b1c10c9e096c7
-SHA1: 5207775eedf4cf40494022fcb23b611a2b8dcb69
-SHA256: df71556237fc05e7854264f0e8d5b3cd3fd43c4d28c4c3efafc7c416f314ba60
-SHA512: edc593a9d08f56f553e4694e16d816e1c6d7dffa3e2914b43f5c0e75043980268ae7a521837c6bc606f5c65e244330cede83c2388748f5e07fdd08a470a29067
+Filename: ./php5.6-common_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 728084
+MD5sum: c396d8b28a5530b8a852e653f28d42c1
+SHA1: 3b552e1e0efee8344da494d24d362cc31203fd45
+SHA256: 0b9420675a570cbb647666c2b1d18c99bac474c99f8097166b751dbcd46c43b8
+SHA512: b8c328e299fa6dee3e372342673568763320ffdfff60226830748c1ef2dec209cac31d1e7844ab31a341d4511d82bb01d8d644d7db6884603f15b8f2bf9852a6
 Homepage: http://www.php.net/
 Description: documentation, examples and common module for PHP
  This package provides the documentation, examples and common module(s) for PHP.
@@ -196,20 +196,20 @@ Description: documentation, examples and common module for PHP
 
 Package: php5.6-curl
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 120
 Provides: php-curl
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.14), libcurl4 (>= 7.18.0)
-Filename: ./php5.6-curl_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 27200
-MD5sum: dbf64eacd5d08db31c852e39eb74967c
-SHA1: 3b152f9012a208d879b3fc5749a08be5aa0ae1ec
-SHA256: 29c1cc1a65869e20d28e5bf039793929b4bcca8798815752e3abe512b1a394ea
-SHA512: 716373a973da5afe9913e8e45691fd7fc12dd82b0b450bab1935cc6074569064f7431569aa874df68cac994de64c4826953bd499806a3fa8869902ae4269de0a
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.14), libcurl4 (>= 7.18.0)
+Filename: ./php5.6-curl_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 27084
+MD5sum: b18593e330aad07471ffc2aae3cf7497
+SHA1: b68c98654974fb95eecb9b143713f219a2256629
+SHA256: a30596eae14a7b172489a3d07562ca6f1061d720f26b3c78e36a9d460cfee983
+SHA512: 76a506284ec7c1548afa51a25e8aebd2058ca9ba57e3ba3357fddd777409ede1cdd19f9157be3b37ce2d97aa4bfe02a20ccd7a47a0389ffa7d17b9dba8784ba4
 Homepage: http://www.php.net/
 Description: CURL module for PHP
  This package provides the CURL module(s) for PHP.
@@ -220,20 +220,20 @@ Description: CURL module for PHP
 
 Package: php5.6-dba
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 88
 Provides: php-dba
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.14), libdb5.3, libqdbm14 (>= 1.8.74)
-Filename: ./php5.6-dba_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 22192
-MD5sum: 0cc9f797664cc3c751a39bd753db945e
-SHA1: 8b36f8c83fabb10f41a0c2abc7147a8e2454b63f
-SHA256: 06d04cbd87debc9bce67cdcb3b7d90d3e9e77b5b947223c0544c117cb6e37255
-SHA512: 54d53b58f931d199bedaa3d62e340c8ffee72e65a1903e72b7cf1a718cf2358af43a66c23d57fe0f6743bdbbc60e6e83f64efc2634a713abb09f986cc9721cfa
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.14), libdb5.3, libqdbm14 (>= 1.8.74)
+Filename: ./php5.6-dba_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 22164
+MD5sum: 9ee70b2da2461aea805783bb4a933358
+SHA1: 6182d141a6dd68e55906e02e04cf7c1e4df82936
+SHA256: 049026652287d25a016b4c12021099363e2f831c9c18b239e53403372874054c
+SHA512: 6649eee30e066dbf24f4bd20b6cf32777d6be7db6b810383c662f75078440c77743ed7e96cbad34f68243ab9e3e41d72c94498d924d8d557487f659df4a81047
 Homepage: http://www.php.net/
 Description: DBA module for PHP
  This package provides the DBA module(s) for PHP.
@@ -244,21 +244,21 @@ Description: DBA module for PHP
 
 Package: php5.6-dev
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 3682
-Depends: autoconf (>= 2.63), automake (>= 1.11), libpcre3-dev (>= 2:8.35), libssl-dev, php5.6-cli (>= 5.6.40-105+ubuntu20.04.1+local2), php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), pkg-config, shtool, libtool (>= 2.4.6-0.1~)
+Depends: autoconf (>= 2.63), automake (>= 1.11), libpcre3-dev (>= 2:8.35), libssl-dev, php5.6-cli (>= 5.6.40-105+ubuntu20.04.1+local4), php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), pkg-config, shtool, libtool (>= 2.4.6-0.1~)
 Recommends: pkg-php-tools
 Suggests: dh-php
-Filename: ./php5.6-dev_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 359652
-MD5sum: 34c6c061627e02b420405e6eaf84b926
-SHA1: 1f85b962b65205c1b4d1c6754e1cd742ee3d784d
-SHA256: 140f8f6c5e587d4df04325803841f4960fe64e2ce46652785a38c828b0fc8a12
-SHA512: 24efedcb6df79baad094691cfa143c1e8327788a8f0acd605af800e3b8a8a078964e34872b3a2cb3766b455da6f22e675c29dc53f32b90cbf514cd75758d5113
+Filename: ./php5.6-dev_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 359760
+MD5sum: ceaecb41b9d93bc7f019655f8a219940
+SHA1: 752ab32de1606f14d58358e1fa546086b4728558
+SHA256: 1a4d3761058fdde229be7720980fa6e3f6034f1670f96ca6d18830b164cbff17
+SHA512: d7838cfa7a718035ed2474d9ab3f3b578caed92c407b5749b90dfcd9c4fe5eb70e398aca45143deb2dde5fd3472db3f2ac4dba3dedddeff9c83a5711adaa6f03
 Homepage: http://www.php.net/
 Description: Files for PHP5.6 module development
  This package provides the files from the PHP5.6 source needed for compiling
@@ -270,20 +270,20 @@ Description: Files for PHP5.6 module development
 
 Package: php5.6-enchant
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 60
 Provides: php-enchant
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.4), libenchant-2-2 (>= 2.2.3)
-Filename: ./php5.6-enchant_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 8952
-MD5sum: ee84858da077a6e61f2661f1e7f167ee
-SHA1: b71066ec8b10938c177ffd5c884175759213bcb3
-SHA256: 3b0ede3c79c4169b0b86035a81c3fd1cc724cab56e8d08bec86fbfd142f9088c
-SHA512: 4e0d27b938e26ae83da38e051c4defba5698ecf019e5540a7ac66556052c362054372666505075e507ac78ee76ebb6a19614633e629925315bacb4db6764ccf8
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.4), libenchant-2-2 (>= 2.2.3)
+Filename: ./php5.6-enchant_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 8948
+MD5sum: 90301136ab14cf6a95c5892df2be47de
+SHA1: adf7176c3318a04cb862cca61f89b46c51ac5350
+SHA256: 1f3a0a5a3b2304477c208981fed311c68a8ea6eddaea69b5ae04c994e96852d9
+SHA512: 357b2f5a326b2a3f37d2ee5c716f4a763d6b1e700673a839b8476d83b94bfe5466a5435bca01251079b2e037010157fdb8732bc16bdb56de4001b08be05331ee
 Homepage: http://www.php.net/
 Description: Enchant module for PHP
  This package provides the Enchant module(s) for PHP.
@@ -294,21 +294,21 @@ Description: Enchant module for PHP
 
 Package: php5.6-fpm
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 4458
+Installed-Size: 4466
 Provides: php-fpm, phpapi-20131226
-Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php5.6-cli, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), php5.6-json, php5.6-opcache, procps, systemd | systemd-tmpfiles, tzdata, ucf, libacl1 (>= 2.2.23), libapparmor1 (>= 2.7.0~beta1+bzr1772), libc6 (>= 2.29), libssl1.1 (>= 1.1.0), libsystemd0, libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php5.6-cli, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), php5.6-json, php5.6-opcache, procps, systemd | systemd-tmpfiles, tzdata, ucf, libacl1 (>= 2.2.23), libapparmor1 (>= 2.7.0~beta1+bzr1772), libc6 (>= 2.29), libssl1.1 (>= 1.1.0), libsystemd0, libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
 Suggests: php-pear
-Filename: ./php5.6-fpm_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 1279432
-MD5sum: 0fd6bcedb614c9f94292be4b059390a4
-SHA1: 4cb23a6029851c0aca6223378ab52aca7a1e26f8
-SHA256: 67668b18c60ebdeeffe5cf3f29fff2e611eb5d415242fafc6e7690892504faf7
-SHA512: 83142c3cbeb56dad57dae1737f1c3bf41ef027817124f79ab45afcf1609e74bd3b64fd2c4aa731dd4ddc4e25dd65883476cb2e01c5d1ffb21caecfd69d4a0f78
+Filename: ./php5.6-fpm_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 1281228
+MD5sum: 69ce4256c52f4d90f2d4aee6b15ec44a
+SHA1: 337ccae9ad7bc71c28b83c652ab70c28353c9109
+SHA256: 99cf7f33ae027343ed5fd20e3e656df8c5c0c2f3c0d373a61b091cf3ba7757b1
+SHA512: 10ba3dc23c7db39d38b6629f4605f0d17714632460fc9c05cdfddfd403bab47f5625149fc4eb8a6d12dc906237041ab9352f7480af7619e94f3cb8400b51050e
 Homepage: http://www.php.net/
 Description: server-side, HTML-embedded scripting language (FPM-CGI binary)
  This package provides the Fast Process Manager interpreter that runs
@@ -324,20 +324,20 @@ Description: server-side, HTML-embedded scripting language (FPM-CGI binary)
 
 Package: php5.6-gd
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 144
 Provides: php-gd
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.4), libgd3 (>= 2.1.1), libxpm4
-Filename: ./php5.6-gd_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 27432
-MD5sum: f92cb6f8dcdcfeb8e1b394cef9a7a6d5
-SHA1: 552c7a5a37a1f5d3c1bb1ce9608b0154db4a14eb
-SHA256: e7d7cb9e15b004c0336dde3a9daec0196b923d2c35f71b4f61eb91f0c961bb3c
-SHA512: 03e23c6d173250018c5edcef500a9367d6859feaeb812aa6778add43b4b81cb217452125f227cdb42464d6c16d0c395deac65bfad85f50ec217fa08b59107d84
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.4), libgd3 (>= 2.1.1), libxpm4
+Filename: ./php5.6-gd_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 27424
+MD5sum: cf0be9d54f810ff1b85885f99b493234
+SHA1: 82afaf73e13dac9dab30659f742f3744c5dd0f0b
+SHA256: c6d05bac22d96fd757eb69945a1b2d72b5515c3092edb8afac4ee6ddaefe83ec
+SHA512: d97fd00076dd33718cef2dcea2ebb26d47e27955540fd659ebe5ada1a73200cdb1e3f7bfe891baae2ef8726d926f1bea5f49c8bd4e99aed049bad736b65051b9
 Homepage: http://www.php.net/
 Description: GD module for PHP
  This package provides the GD module(s) for PHP.
@@ -348,20 +348,20 @@ Description: GD module for PHP
 
 Package: php5.6-gmp
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 100
 Provides: php-gmp
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.4), libgmp10
-Filename: ./php5.6-gmp_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 21052
-MD5sum: 03bc678b83282582bef37f5c70506c23
-SHA1: 466f87ff7cbddab6eb0f1c295bc21e740bd687ee
-SHA256: b2385a5c8f9d30a049689b71e65ac412a46fe550b8e3fc924c15ad5648a5b7ba
-SHA512: 43bb87eddd75aec422bf1bf14769c477f45e81a135e3993fe848b7ca28a86bf78a89bf0fc0cf2a701a3263b8c6b6dfe0f18ecfc34087161be690711e9d6679b8
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.4), libgmp10
+Filename: ./php5.6-gmp_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 21040
+MD5sum: 889ee772001ac56769ac00e933e54113
+SHA1: 0bb864c7b21ba02fea127905ec7e8d43fa42c920
+SHA256: bbd340f172a18b5951c025ca5848e466e8d91f69171eb86860ee437543a293cc
+SHA512: 4a8173c1f19866cb336364bf6a3342008d6d6f4b5c88b076c30558e2fc79e30adec64eba6761ae6567a64c4ba2ff8e6c5848e0254940a8fadf5d5cbd6a5df92e
 Homepage: http://www.php.net/
 Description: GMP module for PHP
  This package provides the GMP module(s) for PHP.
@@ -372,20 +372,20 @@ Description: GMP module for PHP
 
 Package: php5.6-imap
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 140
 Provides: php-imap
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc-client2007e, libc6 (>= 2.14)
-Filename: ./php5.6-imap_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 31628
-MD5sum: dad7c44a86c95618857cc294c94536a9
-SHA1: 8e25c7867b2ad8815ca2bbc38a6521b1011c5d24
-SHA256: a357720a99062c0fe2468e31621c6ad811b18979e8c55f761c448b677f325a48
-SHA512: 8924bebd2a940e5c72c8fe767d67cca254123a8b609ec3c897d7d3c2f6e9cb0314aa02a40312f613fee51cfab34c058b154adb0c99c7412a2a73bf428452baea
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc-client2007e, libc6 (>= 2.14)
+Filename: ./php5.6-imap_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 31712
+MD5sum: 82c5a4f8104ad7b9cbe1e6554b9b9f02
+SHA1: fdb26d6c476e86a5a34db2b7be342ec426113e24
+SHA256: 223e14902c4bec52a021c85115f4b547e71c63c69460d68d51d67ddef2df08a5
+SHA512: 6d3beafb84648cd436cd07d3300cca386731197481dfec0733fcd55bb1815e94dab978b85168984b704dbe2e82b964152332cea5397c0df4d1416c677f62ce4a
 Homepage: http://www.php.net/
 Description: IMAP module for PHP
  This package provides the IMAP module(s) for PHP.
@@ -396,20 +396,20 @@ Description: IMAP module for PHP
 
 Package: php5.6-interbase
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 164
 Provides: php-interbase, php-pdo-firebird, php5.6-pdo-firebird
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.14), libfbclient2 (>= 2.5.0.25784~ReleaseCandidate1.ds2)
-Filename: ./php5.6-interbase_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 41536
-MD5sum: 9266695916e00c8dd18fc8d667b71f29
-SHA1: 10f82fc59f18996d33da163c22e990a851789c23
-SHA256: 977c55aa8ad3bc4061f7d98d2ac24a4de2f71b31941dc4de6df2491e5906d672
-SHA512: 395716b7bc95f8ac485ad70030055cc0466a12c368ab2f6ce11600cf9873b3546b5199efe13f5d5133d4b2d21fc55095c1bed0f49085ee9a3b71a5f2ff023f2b
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.14), libfbclient2 (>= 2.5.0.25784~ReleaseCandidate1.ds2)
+Filename: ./php5.6-interbase_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 41472
+MD5sum: 843ab26b4467053e28cb69250eb11d5f
+SHA1: 3123b0ab3263a5f77d436dfd60785edd141a937d
+SHA256: e12b3edf996adf9667a846c4f37cc0a9a8167c81e58ae22fa1a2b1d6ba391a80
+SHA512: fc8dfd92cc6e2f7f40a273e815b9bac07ec4a6fe6cefa080c38e4878a2755bcf5e123e8687e42e4885add294e2018daa23033c315068bf9aaf8e7a196fa346ba
 Homepage: http://www.php.net/
 Description: Interbase module for PHP
  This package provides the Interbase module(s) for PHP.
@@ -420,20 +420,20 @@ Description: Interbase module for PHP
 
 Package: php5.6-intl
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 427
 Provides: php-intl
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.14), libgcc-s1 (>= 3.0), libicu66 (>= 66.1-1~)
-Filename: ./php5.6-intl_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 111052
-MD5sum: 214d14be5c72fb7e13c17b3865788bbc
-SHA1: c7ede16f29f26e78ad442b7d275fb5ea00a88885
-SHA256: 605d188b1d68e2164b03dc93e8cf348e3bd63a9a2ff2d03cef02dd77e64c23b9
-SHA512: 0a505a1f07a00ba28783a99025cb9dd3a387948fcbe65b741c3d254f77af4d02d7d6ce5719ad8f214b787cad7742741f399f4e0814bbed1df43ee8d8fec9cccb
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.14), libgcc-s1 (>= 3.0), libicu66 (>= 66.1-1~)
+Filename: ./php5.6-intl_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 111108
+MD5sum: 4a49bb1e8cdc77a3cb47cf3041d4b360
+SHA1: 0f5192073fd330cc021152b8cf07024dd45b4823
+SHA256: 730feb0ca3837fe6588a13ebf3fc6c4583ae8b777ea98bad4210f0b803b5d126
+SHA512: f5a64892b84f3cd2be408a679191ed9d05db31bbcdb0404db59938adb2c41245a0d5cd5dabcc797d9ab326cfc26c570a59bdfe6f9c8fab60dcccdf0aded58e42
 Homepage: http://www.php.net/
 Description: Internationalisation module for PHP
  This package provides the Internationalisation module(s) for PHP.
@@ -444,20 +444,20 @@ Description: Internationalisation module for PHP
 
 Package: php5.6-json
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 84
 Provides: php-json
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.14)
-Filename: ./php5.6-json_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 17932
-MD5sum: 6e4d8320bfdcbff3668e77f417df68f0
-SHA1: 281fd7f63854e920c8179c8ab339330589e419c0
-SHA256: a2a7cc3397e568308f1183a41d385e2a3be746a5f3ba683f7bd2baac50a612ef
-SHA512: c7f1327af78bb6667b3be71b5f742931c174594b6037c90b34cc4809397c9e5aebcc9779db5e3974c3cb8c121a1bc7286b15aa653cf33e252c6212d26a8175b0
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.14)
+Filename: ./php5.6-json_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 17928
+MD5sum: 10952dab9a80e083d607ce95202b4173
+SHA1: b28e6f332cdb37f6b2bf636812e7875b00b52ad1
+SHA256: a594e24d55c400e4c62a6531b0a78f815893a862b80c116c3d7c026aeb121ff7
+SHA512: 624a3a762c6bd28f3bc810b994903f30fdf4a3eb37aab49f803c1f6b98bd2f8d5ce6c3733004265c977588d6156bbf2752f026d95c4a238b1756ee1aabd54ec6
 Homepage: http://www.php.net/
 Description: JSON module for PHP
  This package provides the JSON module(s) for PHP.
@@ -468,20 +468,20 @@ Description: JSON module for PHP
 
 Package: php5.6-ldap
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 100
 Provides: php-ldap
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.4), libldap-2.4-2 (>= 2.4.7)
-Filename: ./php5.6-ldap_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 22068
-MD5sum: b933e007d5eca43b1d7f5caa4305eca3
-SHA1: 39028418e58dfba581eca496d7533553b35a813e
-SHA256: 02bff75df9cea6cfd521b471df36a5392e3588ed3be16e3a78cff5c9c9aed89c
-SHA512: b68d3372514064dedcbc9930969603b93c94cbcbc09e58875bdb58ac1f7b1cf7b82dd6c2cf309379954dccd9db5a521a8fca3132175d1c1969b047b382458a4b
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.4), libldap-2.4-2 (>= 2.4.7)
+Filename: ./php5.6-ldap_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 22004
+MD5sum: d31ad50bdb74510b70c14f5e8b3197f6
+SHA1: 65f02af53bc9c18a2435cdf502ed3e0e3bb439a2
+SHA256: b193be4bf24327fa97e7c7e3918f24e4ea11f3acd14ed92b2cec6bcc3e06144c
+SHA512: 9a4f0e4e1d60ad2030c83047598812aa714cc058edea889ceeeb5761c6f38bc257f3a772d624034c2162f79ef2b9966411734f8f30d5be600bfea87b60b57071
 Homepage: http://www.php.net/
 Description: LDAP module for PHP
  This package provides the LDAP module(s) for PHP.
@@ -492,21 +492,21 @@ Description: LDAP module for PHP
 
 Package: php5.6-litespeed
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 4309
+Installed-Size: 4317
 Provides: php-json, php-litespeed, php5.6-json, phpapi-20131226
-Depends: media-types | mime-support, php5.6-cli, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), procps, systemd | systemd-tmpfiles, tzdata, ucf, libc6 (>= 2.29), libpcre3, libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Depends: media-types | mime-support, php5.6-cli, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), procps, systemd | systemd-tmpfiles, tzdata, ucf, libc6 (>= 2.29), libpcre3, libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
 Suggests: php-pear
-Filename: ./php5.6-litespeed_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 1234800
-MD5sum: aa967f25f410305ecda016b51e6fea28
-SHA1: 35be902a80c36c7cc98ef449c8bb2c092c3e1853
-SHA256: 7d7c8740cc6d80e5ace049c2785db08a4a4dfac9e9c8fa6f346a1ab967a3b1af
-SHA512: 0d01e191fb12edf75e2f990aed0fb39cdae01717d6124672901a866d11aeeb92d17916b230cd74747691433a4e79128a9aac29c192c8c4674d588248787a1999
+Filename: ./php5.6-litespeed_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 1235876
+MD5sum: b50cdd2ec4fd9c2721c135b6fb97420b
+SHA1: 9137f1eda782da32b5395c2f48f252af6225f82c
+SHA256: 8ce29abf5226f97ec7b34a0dd952e44b5a5d4ab0fd801b8937dbdfb86aafea1a
+SHA512: 16ccd0745524fb380de96b11568384dd75813074b7df1308988e55f2d9f6ff7fc5407b71fdc0d5f6232620753742b6625dcb5e119445ce7acf47e4dba116f8c8
 Homepage: http://www.php.net/
 Description: server-side, HTML-embedded scripting language (LiteSpeed binary)
  This package provides the LiteSpeed SAPI module that provides a dedicated
@@ -521,20 +521,20 @@ Description: server-side, HTML-embedded scripting language (LiteSpeed binary)
 
 Package: php5.6-mbstring
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 1415
 Provides: php-mbstring
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.14)
-Filename: ./php5.6-mbstring_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 454084
-MD5sum: 682b8be982b91285fa8857c60da8b97c
-SHA1: 8c0d72a1287d08b74c3400d7de8d232fafc182c6
-SHA256: e5163a3650871f3da2e4aad6a3ce9be2c41f02509d95f5b9c95505fadf28fe5e
-SHA512: 1b1b8b7dfd333487fa481af95f3fc271c9c27b7d06be099f7f41956c0e0490e7018bc84ab99673db76a25320e5a98e7dabe860ac35abc25700a780ca7cd13b7e
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.14)
+Filename: ./php5.6-mbstring_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 452980
+MD5sum: ba230795e55c9ce129be8be170eb25bf
+SHA1: 63894fd7cd87db1fbafd2c46de3125f913c9127c
+SHA256: 352040050669b61175ffe1327c9e7786c4a3a8688ac73d3f2e96c7de4154217b
+SHA512: 9b7fdb3a2c82dfae0291f7598645c4501b14f76cf5618d049cae056992fdb9b40a21895e5fbfc2a442c45e380309dbca206e81168ba0f2029d113ed330b394e1
 Homepage: http://www.php.net/
 Description: MBSTRING module for PHP
  This package provides the MBSTRING module(s) for PHP.
@@ -545,20 +545,20 @@ Description: MBSTRING module for PHP
 
 Package: php5.6-mcrypt
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 80
 Provides: php-mcrypt
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.14), libmcrypt4
-Filename: ./php5.6-mcrypt_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 15176
-MD5sum: 25254cc23a4972f4cfa6a8d30d661946
-SHA1: d0766d4d1ec05cd20cfbb9bcec5984494d961d93
-SHA256: 931599f640eb29e3229808e24eb80c246bfccde52dde1d24b043cae3d09d9bae
-SHA512: 3772a3a18fcd04b9f8c2d09a7190548a7c5d64437f0ddcf3a753c81eed43046d22cf4a43f3ebdfaf8a6c4b3e2db809f7bb52d899314ef3403499041dfb07e028
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.14), libmcrypt4
+Filename: ./php5.6-mcrypt_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 15136
+MD5sum: ba3e1c7c85d14d3c3d1f83e1f9f3a27a
+SHA1: 7a5ad4e90948340770c5809bfabb35cbc82caecb
+SHA256: a77040cb23f2e912513d02315593af95a6859b1e44ade58134b2ecc50ae9c626
+SHA512: 8f6415b1bf2ba619e34fad1e57c0537687811a90dba73eb23dc67217e8a5961f568ee0ef8c8496b757af119f484f577e2435dd66ba413586e2aeaade755da502
 Homepage: http://www.php.net/
 Description: libmcrypt module for PHP
  This package provides the libmcrypt module(s) for PHP.
@@ -569,20 +569,20 @@ Description: libmcrypt module for PHP
 
 Package: php5.6-mysql
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 543
+Installed-Size: 547
 Provides: php-mysql, php-mysqli, php-mysqlnd, php-pdo-mysql, php5.6-mysqli, php5.6-mysqlnd, php5.6-pdo-mysql
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.15)
-Filename: ./php5.6-mysql_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 137872
-MD5sum: 04099458bcca6cb57609fe63ee3418f9
-SHA1: cc3a0a32a3cc813b31a273dee443079b957d6b32
-SHA256: 330e394770a98ff08530271e866ecaa98105902426da51b72f9544ab4daa9bc0
-SHA512: 4ee1da6e9872be02ecdde949b537dcc5a651feec0ba5b22a65dafb34f65257b7868939c450e061acb85760155048254204972177f10ed2d5da3f64145fa50486
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.15)
+Filename: ./php5.6-mysql_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 138208
+MD5sum: 2732be8589c0b3f69296d89bc5a4bb36
+SHA1: 4c404d9bde6e2ece38fcf6be411efe2acfc2cedf
+SHA256: 95696e2482bf0406033af29413838570144f7d1f08008877fe178d61d836c6f8
+SHA512: b5baa90a33fc0b8d87858165e524a94a15040ca38cf2fc3e1a51f2915f0d17d07d8a597d1fdf4b1fc966cc8aab5e4ccf664dffa1907ec7f323572332febb58c2
 Homepage: http://www.php.net/
 Description: MySQL module for PHP
  This package provides the MySQL module(s) for PHP.
@@ -593,20 +593,20 @@ Description: MySQL module for PHP
 
 Package: php5.6-odbc
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 132
 Provides: php-odbc, php-pdo-odbc, php5.6-pdo-odbc
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.14), libodbc1 (>= 2.3.1)
-Filename: ./php5.6-odbc_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 30788
-MD5sum: d9143703e13304901004b767b31fb0b3
-SHA1: adc67ecd077f310fd181f3caef1473e9acc16a50
-SHA256: fa8a066a92fa1e3582a8e841bde815fd28b635954b4f88464f77765b27a22034
-SHA512: 18af1c2194019ee91ca91ada9899db84919cb2786ec209209b866c6e09a61a06674543fc69ed7067adf780fee615dcb54fb41dce4cca922268ff73749129cafd
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.14), libodbc1 (>= 2.3.1)
+Filename: ./php5.6-odbc_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 30856
+MD5sum: 174fd09d3f6dbaaba732bc66812ac0ff
+SHA1: 0471bb54cede93acdc80c1df5d1f096474a66aa4
+SHA256: 6c771a66768dc77340ad010ad596e9659c65539193d9f913375cf67cb68fb6ee
+SHA512: 69758fd112fd6a203e44eba976613546c282cb8800b85e9226b0a13883575f09e6d2fd711582f518b2d738f397081b5c99dfbefe7ec002690549dbb8237d047d
 Homepage: http://www.php.net/
 Description: ODBC module for PHP
  This package provides the ODBC module(s) for PHP.
@@ -617,20 +617,20 @@ Description: ODBC module for PHP
 
 Package: php5.6-opcache
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 188
 Provides: php-opcache
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.27)
-Filename: ./php5.6-opcache_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 62592
-MD5sum: 3254ab720653de984adca6e56ad1b8b3
-SHA1: c6bdc76455a6f87326fea18259d65be4631a24a8
-SHA256: 0ecb0a90a5260744e77777956e639c22bcf16645ced5b1bdfb2d61ab4dcedd75
-SHA512: 3c9de852d88675fa1e99f4009290bcee7fa7739e40acc9076aaa85ff669420dfeabb3581b74212a9b6a1163429cffabcee019c2fde487c1240230d66b6ade26d
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.27)
+Filename: ./php5.6-opcache_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 62504
+MD5sum: d6d3a10f0fa36ca08708174cf3d1faf2
+SHA1: 48c08910da2afc42413d194eeddd9eddb7e3eb41
+SHA256: a60b98e6fcf8e6e4d7bf255eae320c43f650f1364a0e9f5fa2756d08e8fcb6db
+SHA512: 1c70e1907fb769b8aad593a682f7397c6b4e5ddf2dd548d5a5084598d1bb28a4748fe7ac84b7bc5cab0a40190710e9d30302ee13ca1f16fda665d7f696999643
 Homepage: http://www.php.net/
 Description: Zend OpCache module for PHP
  This package provides the Zend OpCache module(s) for PHP.
@@ -641,20 +641,20 @@ Description: Zend OpCache module for PHP
 
 Package: php5.6-pgsql
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 220
 Provides: php-pdo-pgsql, php-pgsql, php5.6-pdo-pgsql
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.14), libpq5 (>= 9.3~)
-Filename: ./php5.6-pgsql_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 56776
-MD5sum: b3fe69f40c983314ad3982bb1a80ca0c
-SHA1: 61475c8c2bbd44a2b6a46df0ac067cfcd00823f0
-SHA256: 896d902421016b8995e1468a41316fb02141d82c099fd66f99121ceb4f4fe444
-SHA512: 5e664b71f8364de43a34269ee0019d46305ab088177cda412e1f1ff5964b79e252c783a0a6bf546dddf2cae1a511daa3783b172e48c5389c94c55fa10b94aafe
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.14), libpq5 (>= 9.3~)
+Filename: ./php5.6-pgsql_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 57524
+MD5sum: acfa7f7c720fa3482a493951c933f3fc
+SHA1: c44b3c6a1f909fab469e655a21d57541e4118744
+SHA256: 7f83b69b82bac0359f73a3a8652203e0e5b60bd41f3232577b1c6733ecd717ec
+SHA512: 01434ad7fd4bc88fdc5edf19b06c55b8835ad970c87a565388af3b8b50dec3b6d94beae8d2d0c1f1e3573b10cc2283a2d76d622e8fb8224a278d2f06c733eb26
 Homepage: http://www.php.net/
 Description: PostgreSQL module for PHP
  This package provides the PostgreSQL module(s) for PHP.
@@ -665,21 +665,21 @@ Description: PostgreSQL module for PHP
 
 Package: php5.6-phpdbg
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 4436
+Installed-Size: 4440
 Provides: php-phpdbg, phpapi-20131226
-Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php5.6-cli, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), php5.6-json, php5.6-opcache, tzdata, ucf, libc6 (>= 2.29), libedit2 (>= 2.11-20080614-0), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php5.6-cli, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), php5.6-json, php5.6-opcache, tzdata, ucf, libc6 (>= 2.29), libedit2 (>= 2.11-20080614-0), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
 Recommends: php-readline
-Filename: ./php5.6-phpdbg_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 1274940
-MD5sum: 1f50e94468a990662a68d41007da1fdc
-SHA1: 0c061df63f5e5831ebd6990cd304a17c514a2315
-SHA256: 51ecdff650885bf85c0e8c3b28e431190e661d55ddabbed7936124ea2d332db4
-SHA512: 32d2129ebce1119871a264c240057842d9b04e13fffc1af45f2e5372502a77b4e38037d661e40149b004e77558799b6993d7230766fbb833d5ee5107f6c74f96
+Filename: ./php5.6-phpdbg_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 1274912
+MD5sum: 57cd3a4e6a832e335962ffdbf3c28060
+SHA1: 3f5898ba82509972cdac956d16a520b443b3c4e4
+SHA256: 9f97a695a3ad824082bc4503ab908049cac1288c007f1bd8bbf5407ff37a36a9
+SHA512: 0b390860c2e682443e2c50672e7ff1ff7d374cf8a4a92052e88f4f3388265e1bc97fb4a62ae6deb1efabc3dad391c10baf6b0e88463f4717b79643d3c4094694
 Homepage: http://www.php.net/
 Description: server-side, HTML-embedded scripting language (PHPDBG binary)
  This package provides the /usr/bin/phpdbg command interpreter, useful for
@@ -694,20 +694,20 @@ Description: server-side, HTML-embedded scripting language (PHPDBG binary)
 
 Package: php5.6-pspell
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 56
 Provides: php-pspell
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libaspell15 (>= 0.60.8), libc6 (>= 2.4)
-Filename: ./php5.6-pspell_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 8384
-MD5sum: 57d761e0c9b93b6d323e547a09fa64b5
-SHA1: 8aff9bec9674cf96486eb420f14ee0b4a66f1807
-SHA256: 54292778b9817258f96fcd6eabe5124cd0d0a6f873fe2f4c7e68e7736f648670
-SHA512: b14574614dfe5802bd77e0b5bbfff00f73949a10ccb08853df92a9bfb8090cc77b109353f38eac5e31dc05d5b8c97ef9793bca6c7d51f136284d285a7f6266b8
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libaspell15 (>= 0.60.8), libc6 (>= 2.4)
+Filename: ./php5.6-pspell_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 8380
+MD5sum: 14dcc16b16fb2697b7518e797dc51e4a
+SHA1: 4d70fd7d926b023c439d6548a6cf25c23b805925
+SHA256: 356962ab94134700c5c2f124a7032318c338ea0cb07ee948a6e8305a79009ffe
+SHA512: 51448338a6d2c0f2132783610c522278f5cf341e41874113f46b55b54d1b95bde6865a907416ed1d0055c10cece5c6f4800a7bb59593f2655175d2465243c8de
 Homepage: http://www.php.net/
 Description: pspell module for PHP
  This package provides the pspell module(s) for PHP.
@@ -718,20 +718,20 @@ Description: pspell module for PHP
 
 Package: php5.6-readline
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 68
 Provides: php-readline
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.14), libedit2 (>= 3.1-20130611-0)
-Filename: ./php5.6-readline_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 12852
-MD5sum: 7d29929266d1342a90a93885d921093f
-SHA1: 826cc5aeb8c1e42808cd414e0358d7729e516dd1
-SHA256: 90ad8e2d8992de312ef79409f2e3a83df3196a4d028387de3220c6f93df799f2
-SHA512: 2d5c12d2a5c2da5df2b73b6f3079d2b446119691513e86fe201feb05cfd7bf879dab896532d5b061f0f4948529888508c6f3aef0cd1d49f4c633dd1db5562842
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.14), libedit2 (>= 3.1-20130611-0)
+Filename: ./php5.6-readline_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 12848
+MD5sum: 1070e281893d7982615b7454cdb87bef
+SHA1: 730120a47626bb75db3a1293af3eb6a18881bcaf
+SHA256: fe665c47f6326705196256bc1142b428a0a0b8147b965368aae659ae851d46b7
+SHA512: 9023757d991c9514f8cda2cae0957688d8b5fe12332e4233b9ba62521594f591876e136788f14c4e374e0a36c0a86d30430b57aea8e473bcba51ca4800e287b4
 Homepage: http://www.php.net/
 Description: readline module for PHP
  This package provides the readline module(s) for PHP.
@@ -742,20 +742,20 @@ Description: readline module for PHP
 
 Package: php5.6-recode
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 44
 Provides: php-recode
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.4), librecode0 (>= 3.6)
-Filename: ./php5.6-recode_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.4), librecode0 (>= 3.6)
+Filename: ./php5.6-recode_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
 Size: 5624
-MD5sum: a99e4682a6797e880fb30148456c5bc5
-SHA1: b4d1717daa3cbc1df43bf7d1b065bf176a6fb4e6
-SHA256: acbbae86bfc32be79a458f2e53c2e4740439aca5dcd977af0e02bea9fe7263e2
-SHA512: 720398781325d54db5e62b711a1c252525d9e83c1eab5f44c97d3e689b0b3fd5a985088d2c16cd3cf4e4e49cdcba4d323559f75f898449027e1925d9c803c41c
+MD5sum: 925fcb24d6461eecc7219691d32ac477
+SHA1: 17c1c5b066ff68d59ddf110684d04ae30dac7419
+SHA256: 72e4f914e4e4f4aed419f60702e54c4e6c14d245a0ec94b889ef4d6408aec7a6
+SHA512: d7171b8440591b5f7356c7e12ca00e92e169fcd8e7903fb34e7c7b30ad143620c731eeb99cd1b4ee892782e5e7410673dc9c42cce5902c51ab2d559e032df3b7
 Homepage: http://www.php.net/
 Description: recode module for PHP
  This package provides the recode module(s) for PHP.
@@ -766,21 +766,21 @@ Description: recode module for PHP
 
 Package: php5.6-snmp
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 88
 Provides: php-snmp
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.4), libsnmp35 (>= 5.8+dfsg)
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.4), libsnmp35 (>= 5.8+dfsg)
 Recommends: snmp
-Filename: ./php5.6-snmp_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 19448
-MD5sum: 51ccafabf68c77c12ecff691e49faeaf
-SHA1: ee689276f63be8190102cf3573fdec7d3c24f43a
-SHA256: 384d73c2c5f115c46bc3f8c3500a5358633ace9c8b070185d5a942fc7e74688c
-SHA512: 6b97f893a8d2151580a14ba6220fa89886912a62ada65f2f179bfb2f7778e03fec7494b25659b23b369f3727b3f4dd35e1efcda75ba4e5b3e6a304c97a6db7fd
+Filename: ./php5.6-snmp_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 19464
+MD5sum: 65f8796e227ae4ab0174b4d980711fb9
+SHA1: 3c60e2c979831f21bd51554a27fbe184123e6e67
+SHA256: 4eaa2b38fcd1957c95de32eb807b9b6b84f433c69764553e44bb9c9a00d57f6a
+SHA512: e7c9f3c8219c4d24b85e5f999022144a5a471e97b4d96e62fc481d515bf23a8a3920886a71afabf2cfd2087ccf296cb960f2830275f808e29449ec011c8e71d3
 Homepage: http://www.php.net/
 Description: SNMP module for PHP
  This package provides the SNMP module(s) for PHP.
@@ -791,20 +791,20 @@ Description: SNMP module for PHP
 
 Package: php5.6-soap
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 396
+Installed-Size: 400
 Provides: php-soap
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.14), libxml2 (>= 2.7.4)
-Filename: ./php5.6-soap_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 129528
-MD5sum: e248329387b4ebdb83e367f73dd9a905
-SHA1: 36b2c72170a2ed8cc7f6aa47253a01bf66af1a98
-SHA256: f80b240ac871f4f03e6f217fbdf8c7ec9c87ac871e287fc485724025209d824e
-SHA512: 72219be7d81d63b13b5b3aad5a17ca824f4f94260a6f4381046d2fa015c5d3b4684be2fea1427acdc5b70c4d23227c1c4d750e7ac0b71cdddaa32728d5526707
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.14), libxml2 (>= 2.7.4)
+Filename: ./php5.6-soap_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 129820
+MD5sum: 688c0c468921909e7ac10ed96a11d757
+SHA1: 5dafe1b9cf827de8939fad792dc99a8328a3be24
+SHA256: 1bb3a271fa4c3e6b4a27b4abfc8b3705ac00a76ef51fc217a0c572ae0b1b5967
+SHA512: 3dfb8bc611ab16536fa3c1c5a72b9c8e38c7ff97674cfb1eb50c78b77c4b654dea5a5a5d4eac050962d6ad26ef1e7279787b4f5a6a573cbe4aa8074137fdadbf
 Homepage: http://www.php.net/
 Description: SOAP module for PHP
  This package provides the SOAP module(s) for PHP.
@@ -815,20 +815,20 @@ Description: SOAP module for PHP
 
 Package: php5.6-sqlite3
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 125
 Provides: php-pdo-sqlite, php-sqlite3, php5.6-pdo-sqlite
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.4), libsqlite3-0 (>= 3.7.4)
-Filename: ./php5.6-sqlite3_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 24524
-MD5sum: f9cb36a3d804197d9af6db3fb5d6cf90
-SHA1: 6a505e38eb36d354649bae02f47cfd21e7ea4280
-SHA256: 845bc524cb503444e9992929dd9a07bace6af7cbe1db3d6a6f42ba1a161db80d
-SHA512: 8b8065bf89fd041db03e56549102844386c921d61f5b552a7688e2f115b5bba18fb8dae85c7136997e658af0961b2ccf4f183092af30648694c92a9947628da4
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.4), libsqlite3-0 (>= 3.7.4)
+Filename: ./php5.6-sqlite3_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 24616
+MD5sum: 72586c9c714648e8566d4a27419e5979
+SHA1: 7121bd8c99b34f119ac7e1d368c1f16a0a631620
+SHA256: c71832bd968ce3819c543a6404f36251ee634420218fcf77daa2e88b3b37ef82
+SHA512: 7613644f55dfb1385e3dfaea763d18243b5df2304e043121a66ef6871fb529ec815148faa1045f798f60dcefbf705a284f36adf7c969cff5c456bb4ce17f65e9
 Homepage: http://www.php.net/
 Description: SQLite3 module for PHP
  This package provides the SQLite3 module(s) for PHP.
@@ -839,20 +839,20 @@ Description: SQLite3 module for PHP
 
 Package: php5.6-sybase
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 116
 Provides: php-mssql, php-pdo-dblib, php5.6-mssql, php5.6-pdo-dblib
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.14), libsybdb5 (>= 0.63)
-Filename: ./php5.6-sybase_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 23692
-MD5sum: 7b4defa6827b77704f0158a260bc2d62
-SHA1: 6a19b71a37e502d3adb0bc4af4cd7918056cffab
-SHA256: 8a0ab949c63726d0b11040bec302cd75a7aaaebfcaa31fe321a79e6dd7077f8c
-SHA512: 4b8e4b90074a2c026ed017e0c468ac216e43e1b3e89ee825498de76d1b543847eb6fe4327e08ad53d589aafe201b137a4e560f7e162764f83088dae35fe3555e
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.14), libsybdb5 (>= 0.63)
+Filename: ./php5.6-sybase_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 23824
+MD5sum: d663c4d5dd68f0375347ba2677571830
+SHA1: 29eb5cfaf4b893f508bdf019964855e65f1d3466
+SHA256: 85675a1cb3cd0e9c8d87e73ef97c9df85ab8a6e1e889ebdcbcbfe6012be2c7a2
+SHA512: 0fff9e3aac6630e2f37586668d1ade8758f8b4a1255bf237ebd13e70bddc2f866b09677101386216daab962bc94850687e55679efdff048b6f8eac516cea6e97
 Homepage: http://www.php.net/
 Description: Sybase module for PHP
  This package provides the Sybase module(s) for PHP.
@@ -863,20 +863,20 @@ Description: Sybase module for PHP
 
 Package: php5.6-tidy
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 92
 Provides: php-tidy
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.4), libtidy5deb1 (>= 1:5.2.0)
-Filename: ./php5.6-tidy_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 16996
-MD5sum: 71c15f4b75c7f7afafc7c0315c2704f5
-SHA1: 773d30dee2c90e910d5ef0b3b577140f21ab8409
-SHA256: 60fd9ad959a26b3f6eaecaa762d257778396778800950faa0974a68179dd034b
-SHA512: 73032531c7f91f4b2543c793beb9f3c4bebb64d19038fc52c5707c0970ac819f3eadd272f3212e2536e8d024bd3fd3fd70fcd5f11702b4ba367582de2884cc4a
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.4), libtidy5deb1 (>= 1:5.2.0)
+Filename: ./php5.6-tidy_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 17012
+MD5sum: 71a1d8900fb37347bf5b5c3b8f0a9b0f
+SHA1: e56e278214345d8afc420694352c736bd54aa8f7
+SHA256: 74d46294c3384ca86132e978189011e69841b91a0e0d03bfb6d3cb59671d9bef
+SHA512: e7fefbcc80bdf464de464fcc01fcc01726d441ea98da8f9b39fe5743a7b32d052993f0950e2f675da84aa57cf86fe6fe16139b4526afde1ab5fd6d5c0a2ccfdd
 Homepage: http://www.php.net/
 Description: tidy module for PHP
  This package provides the tidy module(s) for PHP.
@@ -887,22 +887,22 @@ Description: tidy module for PHP
 
 Package: php5.6-xml
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 509
 Provides: php-dom, php-simplexml, php-wddx, php-xml, php-xmlreader, php-xmlwriter, php-xsl, php5.6-dom, php5.6-simplexml, php5.6-wddx, php5.6-xmlreader, php5.6-xmlwriter, php5.6-xsl
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.14), libxml2 (>= 2.9.0), libxslt1.1 (>= 1.1.25)
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.14), libxml2 (>= 2.9.0), libxslt1.1 (>= 1.1.25)
 Breaks: php5.6-xsl (<< 5.6.18+dfsg-5~)
 Replaces: php5.6-xsl (<< 5.6.18+dfsg-5~)
-Filename: ./php5.6-xml_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 112972
-MD5sum: 4f7478aa8b3e5f448c451e4675b42670
-SHA1: aeb0216ccd2e0cc19f00f62bec037c580ac7802b
-SHA256: e7630e072b0e422e838c8c66670c008df601fe25cb1a66ce8c6d677d85e8c182
-SHA512: 5ac335b41aa15713e495cf352f7f88c359b8e674cfa3b5e1cedf196b56f861cf6f376d2a105737f15a06dfc6544ec0c5a2b2d310d73ad5c1bfdd09049a57253f
+Filename: ./php5.6-xml_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 112788
+MD5sum: 164594860d70536fcce74875864cbcb6
+SHA1: 64692ae8217ce6c23b5a04ad49f4104ddc2b82bf
+SHA256: b17ee2f6cc5cb11900fb5638d91bfccc08b9e138582b6ccaaf591c9f006bb138
+SHA512: 86b8177b39ad5678162006b8cee1fd27db81ce5bf45d8d6c6466f1ab79f5c2846ad211fcbdd247d2e6319789ab61258e95e1824decd8673433058ee657532dcb
 Homepage: http://www.php.net/
 Description: DOM, SimpleXML, WDDX, XML, and XSL module for PHP
  This package provides the DOM, SimpleXML, WDDX, XML, and XSL module(s) for PHP.
@@ -913,20 +913,20 @@ Description: DOM, SimpleXML, WDDX, XML, and XSL module for PHP
 
 Package: php5.6-xmlrpc
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 68
 Provides: php-xmlrpc
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.4), libxmlrpc-epi0
-Filename: ./php5.6-xmlrpc_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 13516
-MD5sum: 4dc6b5479bce43ca50cae52ec0e9944e
-SHA1: 469b6d44545674ab05fcb9685b3965c3c56206fd
-SHA256: 3df3cec0d1081181ead5e24e39bada271aaf4d0ddd891b55c98677b95b3a8eed
-SHA512: 8eef11d3dacf4dd4b88e5dba693b24f3aee76b02b6661a40bdd53413a4a08bc4c2746a57eff7a164906741002b8417bd4691921eee740a3f2a2b24684e3bb39c
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.4), libxmlrpc-epi0
+Filename: ./php5.6-xmlrpc_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 13504
+MD5sum: 6ef623a0a51597b77907eb5087594f36
+SHA1: e3e74ffb1c5e318726b5def1fa31e360be637b0b
+SHA256: 16f2ef1528b295097bf8b18206484064fc76ac866f64e39ccc63f57e8e0e28e2
+SHA512: 97b999aabf5b1c6dfea2d80ddc6bd03358ee9098efbc4e5d248c635f4530e43691972aa6678e87efcf6b80fbd39cf2b1523d84918da1c6b3b93e3d33ba94670f
 Homepage: http://www.php.net/
 Description: XMLRPC-EPI module for PHP
  This package provides the XMLRPC-EPI module(s) for PHP.
@@ -937,19 +937,19 @@ Description: XMLRPC-EPI module for PHP
 
 Package: php5.6-xsl
 Architecture: all
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 289
 Depends: php5.6-common, php5.6-xml
-Filename: ./php5.6-xsl_5.6.40-105+ubuntu20.04.1+local2_all.deb
-Size: 273580
-MD5sum: 326e4da324a2a4f50a3ee016bfcb419b
-SHA1: 54684b25fb294bc40dc97b62e8dd571f79240a13
-SHA256: a4d7abb2f3eea0bc7d00a2d8b6f8d2622308783213d748d648871be60b86d9cc
-SHA512: 9591276ce02098832cc182e73ebd4bf8a8dd4074033ab977e58091d15e8d8bf54dcaa4f4b6f70aafb163aac95ab2e0e5aabd6bdf6d2e693382a21da3c12a38bd
+Filename: ./php5.6-xsl_5.6.40-105+ubuntu20.04.1+local4_all.deb
+Size: 273712
+MD5sum: e230b80be8b07e31b3f3eec2cf50acc8
+SHA1: 9852f9733909d8958572234c84090be0f3fddbe4
+SHA256: 53bdfa43836fef093ebb81c39ce5daf13effcf5e430c60160263b90d6c103365
+SHA512: d343d814b392d1928c4190cad6f11a75a20aadcd251478ccf270b354e74ecd246adb24666176b3a59c3e06c3bacd527c6e9d7c787e2df49ce281c4ce50a06f85
 Homepage: http://www.php.net/
 Description: XSL module for PHP (dummy)
  This package is a transitional dummy package and can be safely
@@ -957,20 +957,20 @@ Description: XSL module for PHP (dummy)
 
 Package: php5.6-zip
 Architecture: amd64
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Source: php5.6
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 92
 Provides: php-zip
-Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local2), libc6 (>= 2.27), libzip5 (>= 0.11.2)
-Filename: ./php5.6-zip_5.6.40-105+ubuntu20.04.1+local2_amd64.deb
-Size: 20364
-MD5sum: 452a617b15b8f376256444a245895a22
-SHA1: 772d06cd1045fc4c3360bdc621cc69df011307bf
-SHA256: dedb415d25b3608a4e6c4c8cf249352938f93a3d860ee8977cd1889562dffbc7
-SHA512: 1cf897076734b9561047f4c5e71edaa5a3fa26688bb5c790e1e3ea490a270f39fb1e4ff82aba73d9a7b0322ca378541c7dec2fdf87ededb636cfb68877456d43
+Depends: php-common (>= 1:81~), ucf, php5.6-common (= 5.6.40-105+ubuntu20.04.1+local4), libc6 (>= 2.27), libzip5 (>= 0.11.2)
+Filename: ./php5.6-zip_5.6.40-105+ubuntu20.04.1+local4_amd64.deb
+Size: 20256
+MD5sum: c1ec709d04a37446c175654a3b96c325
+SHA1: f997aca8d5ad6081b786af5e87de8832712eb61e
+SHA256: 88aa3c592e34609b32b45a55b9ee1989bb6f931979cd487d300554e838f153de
+SHA512: 2f1504acf5f47e9781972cad2090d05cbce19e963d43b79ae20bd9b88f830d3c9c0970f1ee06f6a0e6f6edfa4b319da2802a331d3e6653f28c439da0006a5250
 Homepage: http://www.php.net/
 Description: Zip module for PHP
  This package provides the Zip module(s) for PHP.
@@ -981,19 +981,19 @@ Description: Zip module for PHP
 
 Package: php5.6
 Architecture: all
-Version: 5.6.40-105+ubuntu20.04.1+local2
+Version: 5.6.40-105+ubuntu20.04.1+local4
 Priority: optional
 Section: php
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 292
 Provides: php
 Depends: libapache2-mod-php5.6 | php5.6-fpm | php5.6-cgi, php5.6-common
-Filename: ./php5.6_5.6.40-105+ubuntu20.04.1+local2_all.deb
-Size: 273932
-MD5sum: 32c9b7b73e672de9ef05438e871e9a16
-SHA1: 31968fa037134f895471fe9fa2a5bfaf6b01c24b
-SHA256: 6dc19f34aa92e77100df25f6567c6f7eda0934e97b81d44969a763667160b0e9
-SHA512: b6cfec6df929796d6c1c8ba612d1cb2b25cea804ba65de93c835e846465a26c869c153dbe6b8dcb21254ef0aad93ebe2a78f23464b42400c9cbc3acac87ace85
+Filename: ./php5.6_5.6.40-105+ubuntu20.04.1+local4_all.deb
+Size: 274060
+MD5sum: 3895088782f5b9083e7c860634da5116
+SHA1: 95a7e0479cbba95dddbee9c1c1e75623b55e5e55
+SHA256: 1d7d25244f96bf1121897a8489062876a99851b184d641d6ef75103e52dcc2bb
+SHA512: 4e1b0bde758850834d968847139df2eeed7e80657687394504b2cb09c292c8bedd7ca76a473ea843495ca00fbdc3bdfbeccc187ed77def5c54dc02432c705f14
 Homepage: http://www.php.net/
 Description: server-side, HTML-embedded scripting language (metapackage)
  This package is a metapackage that, when installed, guarantees that you

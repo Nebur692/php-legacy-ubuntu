@@ -1,0 +1,289 @@
+From 3ecc90f82d2652cbb04e9986a82a123c1928acd3 Mon Sep 17 00:00:00 2001
+From: Nebur692 <nebur_692@hotmail.com>
+Date: Fri, 20 Nov 2026 10:19:46 +0100
+Subject: [PATCH] Fix GHSA-mmf9-xm3v-hg2x: quadratic folded header
+ concatenation [backport to PHP 5.6]
+
+Each folded response header line was concatenated with the whole
+accumulated header value into a newly allocated string. That made
+parsing of a header split into many continuation lines quadratic, so a
+malicious server could stall the client for a long time with a few MB
+of headers. Accumulate the last header line in a smart_str instead.
+
+Origin: php-src a303f697268d42f6671c9d4c479ff90bbf301db1 (Jakub Zelenka),
+PHP 8.2.36 security release. Upstream 5.6 never folded response
+headers, so Sury's 5.6 has no such code; this tree does, from our
+CVE-2025-1217 (GHSA-v8xr-gpvj-cx9g) backport, with the same quadratic
+copy.
+Adaptation: PHP 5 smart_str (c/len/a) instead of zend_string; the
+function keeps working on a char * taken out of the smart_str, which
+still becomes the zval string without a copy. Our extra path that drops
+an over-long header line parses the pending header through the same
+function, which now clears the smart_str itself.
+Upstream adds no test; ghsa-mmf9-xm3v-hg2x.phpt folds one header over
+200000 lines: minutes with the old code, a fraction of a second now.
+---
+ ext/standard/http_fopen_wrapper.c             | 80 +++++++++----------
+ .../tests/http/ghsa-mmf9-xm3v-hg2x.phpt       | 48 +++++++++++
+ 2 files changed, 88 insertions(+), 40 deletions(-)
+ create mode 100644 ext/standard/tests/http/ghsa-mmf9-xm3v-hg2x.phpt
+
+diff --git a/ext/standard/http_fopen_wrapper.c b/ext/standard/http_fopen_wrapper.c
+index d61635d9..5353a5d9 100644
+--- a/ext/standard/http_fopen_wrapper.c
++++ b/ext/standard/http_fopen_wrapper.c
+@@ -213,16 +213,18 @@ static zend_bool php_stream_http_response_header_trim(char *http_header_line,
+ }
+ 
+ /* Process folding headers of the current line and if there are none, parse last full response
+- * header line. It returns NULL if the last header is finished, otherwise it returns updated
+- * last header line.  */
+-static char *php_stream_http_response_headers_parse(php_stream_wrapper *wrapper,
+-		php_stream *stream, php_stream_context *context, int options, char *last_header_line,
+-		size_t *last_header_line_length, char *header_line, size_t *header_line_length,
++ * header line. It returns 1 if the current line was folded into the last header line,
++ * otherwise 0.  */
++static zend_bool php_stream_http_response_headers_parse(php_stream_wrapper *wrapper,
++		php_stream *stream, php_stream_context *context, int options, smart_str *last_header,
++		char *header_line, size_t *header_line_length,
+ 		int response_code, zval *response_header,
+ 		php_stream_http_response_header_info *header_info TSRMLS_DC)
+ {
+ 	zend_bool store_header = 1;
+ 	zval **tmpzval = NULL;
++	char *last_header_line;
++	size_t last_header_line_length;
+ 	char *last_header_value;
+ 	size_t last_header_value_len;
+ 
+@@ -232,15 +234,13 @@ static char *php_stream_http_response_headers_parse(php_stream_wrapper *wrapper,
+ 		if (php_stream_http_response_header_trim(header_line, header_line_length) &&
+ 				*header_line_length == 0) {
+ 			/* Only spaces so treat as an empty folding header. */
+-			return last_header_line;
++			return 1;
+ 		}
+ 
+ 		/* Process folding headers if starting with a space or a tab. */
+ 		if (header_line && (*header_line == ' ' || *header_line == '\t')) {
+ 			char *http_folded_header_line = header_line;
+ 			size_t http_folded_header_line_length = *header_line_length;
+-			char *extended_header_line;
+-			size_t extended_header_line_length;
+ 			/* Remove the leading white spaces. */
+ 			while (*http_folded_header_line == ' ' || *http_folded_header_line == '\t') {
+ 				http_folded_header_line++;
+@@ -249,22 +249,23 @@ static char *php_stream_http_response_headers_parse(php_stream_wrapper *wrapper,
+ 			/* It has to have some characters because it would get returned after the call
+ 			 * php_stream_http_response_header_trim above. */
+ 			ZEND_ASSERT(http_folded_header_line_length > 0);
+-			/* Concatenate last header line, space and current header line. */
+-			extended_header_line_length = *last_header_line_length + 1 + http_folded_header_line_length;
+-			extended_header_line = emalloc(extended_header_line_length + 1);
+-			memcpy(extended_header_line, last_header_line, *last_header_line_length);
+-			extended_header_line[*last_header_line_length] = ' ';
+-			memcpy(extended_header_line + *last_header_line_length + 1, http_folded_header_line, http_folded_header_line_length);
+-			extended_header_line[extended_header_line_length] = '\0';
+-			efree(last_header_line);
+-			*last_header_line_length = extended_header_line_length;
+-			/* Return new header line. */
+-			return extended_header_line;
++			/* Append space and current header line to the last header line. */
++			smart_str_appendc(last_header, ' ');
++			smart_str_appendl(last_header, http_folded_header_line, http_folded_header_line_length);
++			return 1;
+ 		}
+ 	}
+ 
++	/* Take the finished header line out of the smart_str. */
++	smart_str_0(last_header);
++	last_header_line = last_header->c;
++	last_header_line_length = last_header->len;
++	last_header->c = NULL;
++	last_header->len = 0;
++	last_header->a = 0;
++
+ 	/* Find header separator position. */
+-	last_header_value = memchr(last_header_line, ':', *last_header_line_length);
++	last_header_value = memchr(last_header_line, ':', last_header_line_length);
+ 	if (last_header_value) {
+ 		/* Verify there is no space in header name */
+ 		char *last_header_name = last_header_line + 1;
+@@ -274,7 +275,7 @@ static char *php_stream_http_response_headers_parse(php_stream_wrapper *wrapper,
+ 				php_stream_wrapper_log_error(wrapper, options TSRMLS_CC,
+ 					"HTTP invalid response format (space in header name)!");
+ 				efree(last_header_line);
+-				return NULL;
++				return 0;
+ 			}
+ 			++last_header_name;
+ 		}
+@@ -284,7 +285,7 @@ static char *php_stream_http_response_headers_parse(php_stream_wrapper *wrapper,
+ 		php_stream_wrapper_log_error(wrapper, options TSRMLS_CC,
+ 				"HTTP invalid response format (no colon in header line)!");
+ 		efree(last_header_line);
+-		return NULL;
++		return 0;
+ 	}
+ 
+ 	if (!strncasecmp(last_header_line, "Location: ", 10)) {
+@@ -307,7 +308,7 @@ static char *php_stream_http_response_headers_parse(php_stream_wrapper *wrapper,
+ 					"HTTP Location header size is over the limit of %d bytes",
+ 					HTTP_HEADER_MAX_LOCATION_SIZE);
+ 			efree(last_header_line);
+-			return NULL;
++			return 0;
+ 		}
+ 		if (header_info->location_len == 0) {
+ 			header_info->location = emalloc(last_header_value_len + 1);
+@@ -349,13 +350,13 @@ static char *php_stream_http_response_headers_parse(php_stream_wrapper *wrapper,
+ 	if (store_header) {
+ 		zval *http_header;
+ 		MAKE_STD_ZVAL(http_header);
+-		ZVAL_STRINGL(http_header, last_header_line, *last_header_line_length, 0);
++		ZVAL_STRINGL(http_header, last_header_line, last_header_line_length, 0);
+ 		zend_hash_next_index_insert(Z_ARRVAL_P(response_header), &http_header, sizeof(zval *), NULL);
+ 	} else {
+ 		efree(last_header_line);
+ 	}
+ 
+-	return NULL;
++	return 0;
+ }
+ 
+ php_stream *php_stream_url_wrap_http_ex(php_stream_wrapper *wrapper, 
+@@ -374,8 +375,7 @@ php_stream *php_stream_url_wrap_http_ex(php_stream_wrapper *wrapper,
+ 	zval *response_header = NULL;
+ 	int reqok = 0;
+ 	char *http_header_line = NULL;
+-	char *last_header_line = NULL;
+-	size_t last_header_line_length = 0;
++	smart_str last_header = {0};
+ 	php_stream_http_response_header_info header_info;
+ 	zend_bool skip_folded_lines = 0;
+ 	char tmp_line[128];
+@@ -1038,11 +1038,10 @@ finish:
+ 				/* Header lines that do not fit in the buffer are dropped, as before. The pending
+ 				 * header is complete at this point, and folded lines continuing the dropped one
+ 				 * must not be appended to it. */
+-				if (last_header_line != NULL) {
++				if (last_header.c != NULL) {
+ 					php_stream_http_response_headers_parse(wrapper, stream, context, options,
+-							last_header_line, &last_header_line_length, NULL, NULL, response_code,
++							&last_header, NULL, NULL, response_code,
+ 							response_header, &header_info TSRMLS_CC);
+-					last_header_line = NULL;
+ 					if (UNEXPECTED(header_info.error)) {
+ 						php_stream_close(stream);
+ 						stream = NULL;
+@@ -1068,13 +1067,13 @@ finish:
+ 				skip_folded_lines = 0;
+ 			}
+ 
+-			if (last_header_line != NULL) {
++			if (last_header.c != NULL) {
+ 				/* Parse last header line. */
+-				last_header_line = php_stream_http_response_headers_parse(wrapper, stream,
+-						context, options, last_header_line, &last_header_line_length,
++				zend_bool folded = php_stream_http_response_headers_parse(wrapper, stream,
++						context, options, &last_header,
+ 						http_header_line, &http_header_line_length, response_code, response_header,
+ 						&header_info TSRMLS_CC);
+-				if (EXPECTED(last_header_line == NULL)) {
++				if (EXPECTED(!folded)) {
+ 					if (UNEXPECTED(header_info.error)) {
+ 						php_stream_close(stream);
+ 						stream = NULL;
+@@ -1098,21 +1097,20 @@ finish:
+ 			}
+ 			if (last_line) {
+ 				/* For the last line the last header line must be NULL. */
+-				ZEND_ASSERT(last_header_line == NULL);
++				ZEND_ASSERT(last_header.c == NULL);
+ 				break;
+ 			}
+ 			/* Save current line as the last line so it gets parsed in the next round. */
+-			last_header_line = estrndup(http_header_line, http_header_line_length);
+-			last_header_line_length = http_header_line_length;
++			smart_str_appendl(&last_header, http_header_line, http_header_line_length);
+ 		} else {
+ 			break;
+ 		}
+ 	}
+ 
+ 	/* If the stream was closed early, we still want to process the last line to keep BC. */
+-	if (last_header_line != NULL) {
+-		php_stream_http_response_headers_parse(wrapper, stream, context, options, last_header_line,
+-				&last_header_line_length, NULL, NULL, response_code, response_header,
++	if (last_header.c != NULL) {
++		php_stream_http_response_headers_parse(wrapper, stream, context, options, &last_header,
++				NULL, NULL, response_code, response_header,
+ 				&header_info TSRMLS_CC);
+ 	}
+ 
+@@ -1245,6 +1243,8 @@ out:
+ 		efree(protocol_version);
+ 	}
+ 
++	smart_str_free(&last_header);
++
+ 	if (http_header_line) {
+ 		efree(http_header_line);
+ 	}
+diff --git a/ext/standard/tests/http/ghsa-mmf9-xm3v-hg2x.phpt b/ext/standard/tests/http/ghsa-mmf9-xm3v-hg2x.phpt
+new file mode 100644
+index 00000000..65516479
+--- /dev/null
++++ b/ext/standard/tests/http/ghsa-mmf9-xm3v-hg2x.phpt
+@@ -0,0 +1,48 @@
++--TEST--
++GHSA-mmf9-xm3v-hg2x: folded response header lines are concatenated in linear time
++--FILE--
++<?php
++$serverCode = <<<'CODE'
++   $ctxt = stream_context_create([
++        "socket" => [
++            "tcp_nodelay" => true
++        ]
++    ]);
++
++    $server = stream_socket_server(
++        "tcp://127.0.0.1:0", $errno, $errstr, STREAM_SERVER_BIND | STREAM_SERVER_LISTEN, $ctxt);
++    phpt_notify_server_start($server);
++
++    $conn = stream_socket_accept($server);
++ /* Read the whole request before answering: the 5.6 client sends the final "\r\n" apart, and closing
++  * before it arrives resets the connection ("send of 2 bytes failed ... Connection reset by peer"). */
++ $req = ''; while (strpos($req, "\r\n\r\n") === false && !feof($conn) && ($b = fread($conn, 1024)) !== false && $b !== '') { $req .= $b; }
++
++    phpt_notify(WORKER_DEFAULT_NAME, "server-accepted");
++
++    /* One header folded over 200000 continuation lines: with the old copy of the whole
++     * header for every line this takes minutes, appending takes a fraction of a second. */
++    fwrite($conn, "HTTP/1.0 200 Ok\r\nX-Folded: a" . str_repeat("\r\n b", 200000) . "\r\nContent-Type: text/plain\r\n\r\nbody\r\n");
++CODE;
++
++$clientCode = <<<'CODE'
++    $start = microtime(true);
++    var_dump(trim(file_get_contents("http://{{ ADDR }}")));
++    $elapsed = microtime(true) - $start;
++    var_dump(count($http_response_header));
++    var_dump(strlen($http_response_header[1]));
++    var_dump(substr($http_response_header[1], 0, 16));
++    var_dump($http_response_header[2]);
++    echo $elapsed < 10 ? "linear\n" : "too slow: $elapsed s\n";
++CODE;
++
++include sprintf("%s/../../../openssl/tests/ServerClientTestCase.inc", __DIR__);
++ServerClientTestCase::getInstance()->run($clientCode, $serverCode);
++?>
++--EXPECT--
++string(4) "body"
++int(3)
++int(400011)
++string(16) "X-Folded: a b b "
++string(24) "Content-Type: text/plain"
++linear
+-- 
+2.55.0
+

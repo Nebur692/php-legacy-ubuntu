@@ -1,0 +1,33 @@
+From 5918fd0a6ddd1fbdbc35a06b200da0742c92a4a2 Mon Sep 17 00:00:00 2001
+From: Nebur692 <nebur_692@hotmail.com>
+Date: Fri, 20 Nov 2026 16:59:45 +0100
+Subject: [PATCH] tests: GHSA-r6x9-5r99-36j7 stmt-response-field-len-premature,
+ upstream's check order
+
+This source checks that the fixed-length field metadata (length byte plus
+12 bytes) is in the packet BEFORE testing the length byte, as upstream 8.x
+does (BAIL_IF_NOT_ENOUGH_DATA_EX(1 + 2 + 4 + 1 + 2 + 1 + 2)). Our test was
+written for the older order (7.3/7.4), where the "Protocol error. Server
+sent false length. Expected 12" warning comes first. The packet is still
+rejected with "Premature end of data" and nothing is read past the
+buffer; only that warning is gone, so the expectation drops it.
+---
+ .../ghsa-r6x9-5r99-36j7-stmt-response-field-len-premature.phpt  | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-response-field-len-premature.phpt b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-response-field-len-premature.phpt
+index 59e2cb80..42c03b0d 100644
+--- a/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-response-field-len-premature.phpt
++++ b/ext/mysqli/tests/ghsa-r6x9-5r99-36j7-stmt-response-field-len-premature.phpt
+@@ -34,8 +34,6 @@ print "done!";
+ [*] Received: 170000001653454c454354206974656d2046524f4d206974656d73
+ [*] Sending - Malicious Stmt Prepare items [Field length over-read]: 0c0000010001000000010000000000003000000203646566087068705f74657374056974656d73056974656d73046974656d0c6974656d0ce000c8000000fd011000000005000003fe00000200
+ 
+-Warning: mysqli::prepare(): Protocol error. Server sent false length. Expected 12 in %s on line %d
+-
+ Warning: mysqli::prepare(): Premature end of data (mysqlnd_wireprotocol.c:%d) in %s on line %d
+ 
+ Warning: mysqli::prepare(): Result set field packet shorter than expected in %s on line %d
+-- 
+2.55.0
+

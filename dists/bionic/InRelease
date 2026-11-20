@@ -4,7 +4,7 @@ Hash: SHA512
 Architectures: amd64
 Codename: bionic
 Components: main
-Date: Fri, 20 Nov 2026 20:11:06 +0000
+Date: Fri, 20 Nov 2026 20:55:42 +0000
 Description: Patched PHP rebuilds for Ubuntu bionic
 Label: php-legacy-ubuntu
 Origin: php-legacy-ubuntu
@@ -23,17 +23,17 @@ SHA512:
  8a88291a9d30f6dd29aa98d6d92d059f4de432cf273bed0f9525b55d041fa0c7ab1f1f062481309220c13b4edb51b79428987946ec0af59a305fd7f45133f2b0            23137 main/binary-amd64/Packages.gz
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEE/V3pK4hvgRROyxTShcyiTJiQ1ScFAmsAqVoACgkQhcyiTJiQ
-1ScojBAAnXm3CwIAQzuQQjlzZPOxTP5R9JAjSC9C2oMIDVPVTwr8Fg4e/7muMZ1N
-4AiRmxrOwvYPTOh6Qizh3DlM5fD3xeQdsZ+WHyMOIq87loGHOPuCn5tlz+8uzBrV
-9PsVjYXmA4+sY8agbgGVcAeqei9l8+vDMr4oXGAInNhLi3vg8kXnSqsSFxjNrFnO
-H2io22G/cW8oi07Z2bAyxNqBJcTf8n/IeS/ip97hhs3ykirenqSUzT7ARm6C3Fzm
-rMuJwqhn/dKOoKAlzPvVaq6v2JXjeah54wrIALjt+WifZ10fh6l7hReQ6mttsDG7
-JXsLnW4HB0dy7DrBUQNbl6kK/xeqkgtvvPtvBAKBhQMDPNh/MEcwNSFgb2XFH4YP
-cdhMfxrrJ2FRmCXjDIGOBAi/rfXOF5NTgjBfZ+IFTT2BM+U3cMpKXyAK1Tg+tjHW
-xQi3Rd6CVCSq7RnGmCpzboMIAYyyfHCAnPDD/TzagXCetv1lV4ttqKVK2Wpd8uzA
-BQIl0sQlz2Ltjynk6Chc4tYQkmAdNrv14lOLqAZEiku7sqEWI8usuLXkmiBKFi3x
-X+yoaAGd+AaytXHh+GcLBp/0y/Xr5ioNYDdP/A/Wg1Ivr9c+j63I/g0hkDscHLWi
-930IjtaKOuA+FbbfE+cDVmif5d/9ySayih5k/Lr7uBDKW6bOuWo=
-=viGr
+iQIzBAEBCgAdFiEE/V3pK4hvgRROyxTShcyiTJiQ1ScFAmsAs84ACgkQhcyiTJiQ
+1Sd5oA/+MPvMob3gShV4aPnDcOi4yUwGlUkLgGw+4EmLfidcG/q5G1izkqQMxk8a
+0erkKGMky/lebKGsE/6R1XUQPRE9KCPrFVnSMYZLG3FhBEn2Gz/XYDB35GG7THO+
+fo33q7gClpBUwFLNeKaMCA9hQAAY4uw4abYI1DNqjAN/zmb0MbJbY8C+jxjlrz2W
+JkuVQY9CQjeJXQ/fxO41lzuD4SqARzm+t90mzlK+369+Miyh/IApwNPp8LH4C8Vk
+UsUfVWQ5kTtx6JTUutbHOml+UddV6tk9sokCRYhM9fXI5t2W8pQ6bW0on+pX/rcN
+Rso7f/hn9H/PzSbwrtssm8noiQZk4Lt1hAu3cSQPAqrs8QvbElK19qdkPaaIjHKc
+a502AlY5NrFjfihadzTo4SROXTvHB8NwhbS2V1w/CzZMNrz1r86zpMv14bZWgV5O
+RhGSvWTrKPImwQlYujJgc6QK7tSe9XslL7pT9QhZgCBPEPCGgbdtMGB/pgs2435r
+NOTtYvG3r3HY3yfv12Tt0pjjr+SXx+tyUT98M3mgtotK9anAfhpa5QbmiEUzimHa
+L2HdONkmcD3aHoVFKBlxiKmNhMp1nEdvQueNFcREF4PtCLy/nw4Wq5/uLHNsPQiO
+rOd5H07/z93freiPl+u/kGB+RypVtRyMebZinavhzRUaoquyhKI=
+=Lg6J
 -----END PGP SIGNATURE-----
