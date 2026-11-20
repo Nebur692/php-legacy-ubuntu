@@ -4,7 +4,7 @@ Hash: SHA512
 Architectures: amd64
 Codename: focal
 Components: main
-Date: Fri, 20 Nov 2026 20:55:43 +0000
+Date: Fri, 20 Nov 2026 21:11:31 +0000
 Description: Patched PHP rebuilds for Ubuntu focal
 Label: php-legacy-ubuntu
 Origin: php-legacy-ubuntu
@@ -23,17 +23,17 @@ SHA512:
  0562aa7181c39fa5f71cfe6a455f6cc5dec96483a4eef930ec3943132a69afd91e0533e3978b3d29b7d2e225a5d2f3b02792f1375ccf5226bfd0b693a546dd50            63248 main/binary-amd64/Packages.gz
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEE/V3pK4hvgRROyxTShcyiTJiQ1ScFAmsAs88ACgkQhcyiTJiQ
-1ScRuBAAsyX6sj7yiVoe+r91Ic3MQcyeLUMbOd1Mvt0Ji1Y/upozlpXLgIuSnF7B
-6pYljFBN/Kfzp7JBJF1ZOjMb05t/rD+NueY5UMsS1MijT3eCiUftGDLQnNWUC9bH
-3y3JZyGPgd4/Qp2as0Rsr/UyoN25SDdZwgZBdylQdAJPyDetqeEkZ5nDT9an1KT8
-RZIkiqR4DggcjgxNDAIq3mYHNgWYJE5VwCXd+b9NOerh27wU1gniAjERfoiQp3KN
-yT3uOE1XxSfY8xHpSf4VxVGCxw7TxxmAbHEZAACOya6z2oIrHHangKL2hKS74sxA
-DZNg+AFGoJcuMQP0UAo+NMN3IbnJn60amDxm4nhww5Fbfjd0H+I5L4zoI2nJnx25
-sQZSgyIpS33PJhTV69jYh6risWmQjmV6OeoMzRQpVhggliyGq0B1vxMrizAIh2dU
-PQoQEeY0i5N98A2ldL7gsqGeMqH+ovKhkk7inX6VvzejHOhxzlzQ/Wg3/kF+p4l5
-IY+BZVwHSenI3/e4IKxtjX8IIzEPDz6xUYQXcmulknnBgGBk1ZNGIqtRlA9tR6kr
-kjIjAkD8g+0TVo/3Z0fJLV1ENUk0QFlta4xZYbdTDcCUjOW001nwjIDR15Vt7Bdi
-BYSRpfRFMebHMcXE19+6GY6pu1k6EWLD+b3g/kpbYotNQT1wywU=
-=g5vk
+iQIzBAEBCgAdFiEE/V3pK4hvgRROyxTShcyiTJiQ1ScFAmsAt4MACgkQhcyiTJiQ
+1SfoqBAAmbQlZXFuVIWpFgqNWunLpppHxUc4S7NIMwqFZqZrlh4Nt4VnRoN8Uqsx
+rVrh80EElodxg9B44T8Tpg71/TB3Bj4abyXhEaS/Qi1sfDjUMBbuGx4fUJ3esLZ2
+TTiVuI3eLAYHRYMon10QpaCHQLMSvFqrasVLlyuO15k9afxQiW5v2Vvt1vQb4wmQ
+g/AGs5R8Mh6tGXKVihnCicJ61Lk/TUW91RwgJpUrRazWy5dG1laItFUBrELxwV50
+rVn4xhWFBgYHUb62fCcdaS78T5c55QpCf/ukwBG3wgsgk+3580c4mIP4fyCm9Tc0
+Bityy3Qk1HfpZWBSgX4QP9f1ZuNv6sWpQiMu1q7weMJEGS3Rr+5d7YaVWrEOOk7m
+1LGKWAA/2JKvrVlXN+YaggFjGHkGkMoWljrzbMfrU6vis8B+zSPKxHqr+9eR9CXj
+q/itgoIJsSFDavJo8XZmQIbSUrt+stywdJJm6AIaMCeq9tdYyIOeDyGKBX2v2Its
+kTytdVYkSHh9xyniE86hQ8Ff+jqEpGdMZ8guC+zD2+39Qxt3zWvM5zOhBfdGizzJ
+x93ASPiCt/wZVvMJUs5EIQXP7F14Q/mQcEu9kz291I7PS965xt/zRh6oyRDSCdr9
+qGC/gaVlDyxkqsd/fpaUvQOPIFm/C/INQtGH0LjVs4RUmkcXHE8=
+=nUdE
 -----END PGP SIGNATURE-----

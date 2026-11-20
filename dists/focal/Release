@@ -1,7 +1,7 @@
 Architectures: amd64
 Codename: focal
 Components: main
-Date: Fri, 20 Nov 2026 20:55:43 +0000
+Date: Fri, 20 Nov 2026 21:11:31 +0000
 Description: Patched PHP rebuilds for Ubuntu focal
 Label: php-legacy-ubuntu
 Origin: php-legacy-ubuntu
