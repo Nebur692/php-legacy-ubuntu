@@ -179,14 +179,14 @@ the missing fixes added, or Remi's latest builds unchanged where they already ha
 |---|---|---|
 | `php73-php-*` (SCL, `/opt/remi/php73`) | `7.3.33-24.2.el8.legacy` | Remi's 7.3.33-24 plus 24 backported fixes and the Xdebug 3.1 crash fix (see Ubuntu's php7.3/php7.4 `+local2`) (pgsql, phar, soap, openssl, mysqlnd, sockets, http, libxml, filters, ctype…) |
 | `php72-php-*`, `php71-php-*`, `php70-php-*`, `php56-php-*` (SCL) | `7.2.34-31.1`, `7.1.33-34.1`, `7.0.33-47.1`, `5.6.40-47.1` (`.el8.legacy`) | Remi's last build of each branch plus 28-32 backported fixes: the same as php73, plus mysqlnd (CVE-2024-8929) and, in 7.1/7.0/5.6, PHP2Shell (CVE-2026-109618/109619), pgsql and phar (5.6 also soap) |
-| `php74-php-*` (SCL) | `7.4.33-31.1.el8.legacy` | Remi's 7.4.33-31 (it already had every other fix) plus the Xdebug 3.1 crash fix, built against ICU 74 like Remi's |
+| `php74-php-*` (SCL) | `7.4.33-32.1.el8.legacy` | Remi's 7.4.33-32 (it already has every other fix, including the PHP release of 19 November 2026) plus the Xdebug 3.1 crash fix, built against ICU 78 like Remi's (`libicu78`) |
 | `php82-php-*` (SCL) | `8.2.36-1.el8.remi` | Remi's build, unchanged |
-| `php-*` from the `php:remi-7.2`, `php:remi-7.3`, `php:remi-7.4` **modules** (`/usr/bin/php`, `php-fpm`) | `7.2.34-31.1`, `7.3.33-24.2`, `7.4.33-31.1` (`.module_php.7.X.el8.legacy`) | the same sources and fixes as `php72`, `php73` and `php74` above, built as Remi's module packages |
+| `php-*` from the `php:remi-7.2`, `php:remi-7.3`, `php:remi-7.4` **modules** (`/usr/bin/php`, `php-fpm`) | `7.2.34-31.1`, `7.3.33-24.2`, `7.4.33-32.1` (`.module_php.7.X.el8.legacy`) | the same sources and fixes as `php72`, `php73` and `php74` above, built as Remi's module packages |
 | `gd3php` | `2.3.3-8.1.el8.legacy` | the GD library that every `php-gd` from Remi uses (SCL **and** the `php:remi-*` modules), with the fix for CVE-2026-9672 (GIF reader) |
 | `libicu69`, `libicu74`, `libicu78`, `oniguruma5php`, `qdbm` | Remi's | libraries the branches above need |
 
 - **PHP security release of 19 November 2026** (CVE-2026-129289, CVE-2026-115560, CVE-2026-126714, CVE-2026-129496,
-  CVE-2026-129538 and seven more): `php82` already has it; the other branches are on the way. With it,
+  CVE-2026-129538 and seven more): `php82` and `php74` (SCL and module) already have it; the other branches are on the way. With it,
   `session.upload_progress.enabled` is **off by default** (the same mitigation Remi and Sury ship for CVE-2026-115560):
   set it to `On` in `php.ini` only if an application needs the upload progress.
 - Every package is **signed** with the same key as the apt repository, and so is the metadata.
@@ -460,14 +460,14 @@ cuando ya los tienen todos.
 |---|---|---|
 | `php73-php-*` (SCL, `/opt/remi/php73`) | `7.3.33-24.2.el8.legacy` | el 7.3.33-24 de Remi con 24 arreglos portados y el de la caída con Xdebug 3.1 (ver las php7.3/php7.4 `+local2` de Ubuntu) (pgsql, phar, soap, openssl, mysqlnd, sockets, http, libxml, filtros, ctype…) |
 | `php72-php-*`, `php71-php-*`, `php70-php-*`, `php56-php-*` (SCL) | `7.2.34-31.1`, `7.1.33-34.1`, `7.0.33-47.1`, `5.6.40-47.1` (`.el8.legacy`) | la última compilación de Remi de cada rama con 28-32 arreglos portados: los mismos que php73, más mysqlnd (CVE-2024-8929) y, en 7.1/7.0/5.6, PHP2Shell (CVE-2026-109618/109619), pgsql y phar (5.6, también soap) |
-| `php74-php-*` (SCL) | `7.4.33-31.1.el8.legacy` | el 7.4.33-31 de Remi (que ya traía todos los demás arreglos) con el de la caída con Xdebug 3.1, enlazado con ICU 74 como el de Remi |
+| `php74-php-*` (SCL) | `7.4.33-32.1.el8.legacy` | el 7.4.33-32 de Remi (que ya trae todos los demás arreglos, también los de la tanda del 19 de noviembre de 2026) con el de la caída con Xdebug 3.1, enlazado con ICU 78 como el de Remi (`libicu78`) |
 | `php82-php-*` (SCL) | `8.2.36-1.el8.remi` | la compilación de Remi, sin tocar |
-| `php-*` de los **módulos** `php:remi-7.2`, `php:remi-7.3`, `php:remi-7.4` (`/usr/bin/php`, `php-fpm`) | `7.2.34-31.1`, `7.3.33-24.2`, `7.4.33-31.1` (`.module_php.7.X.el8.legacy`) | el mismo código y los mismos arreglos que `php72`, `php73` y `php74` de arriba, compilados como los paquetes del módulo de Remi |
+| `php-*` de los **módulos** `php:remi-7.2`, `php:remi-7.3`, `php:remi-7.4` (`/usr/bin/php`, `php-fpm`) | `7.2.34-31.1`, `7.3.33-24.2`, `7.4.33-32.1` (`.module_php.7.X.el8.legacy`) | el mismo código y los mismos arreglos que `php72`, `php73` y `php74` de arriba, compilados como los paquetes del módulo de Remi |
 | `gd3php` | `2.3.3-8.1.el8.legacy` | la librería GD que usan todos los `php-gd` de Remi (los SCL **y** los módulos `php:remi-*`), con el arreglo de CVE-2026-9672 (lector GIF) |
 | `libicu69`, `libicu74`, `libicu78`, `oniguruma5php`, `qdbm` | las de Remi | librerías que necesitan las ramas de arriba |
 
 - **Tanda de seguridad de PHP del 19 de noviembre de 2026** (CVE-2026-129289, CVE-2026-115560, CVE-2026-126714,
-  CVE-2026-129496, CVE-2026-129538 y siete más): `php82` ya la tiene; las demás ramas, en camino. Con ella,
+  CVE-2026-129496, CVE-2026-129538 y siete más): `php82` y `php74` (SCL y módulo) ya la tienen; las demás ramas, en camino. Con ella,
   `session.upload_progress.enabled` queda **apagado por defecto** (la misma mitigación que publican Remi y Sury para
   CVE-2026-115560): ponlo a `On` en `php.ini` solo si alguna aplicación necesita el progreso de subida.
 - Todos los paquetes están **firmados** con la misma clave que el repositorio apt, y los metadatos también.
