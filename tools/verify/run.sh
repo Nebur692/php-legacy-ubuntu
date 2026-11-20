@@ -9,6 +9,8 @@
 #     Env: OUT (default ./verify-out), TESTS="ext/pgsql ext/soap" (subset), SKIP_SUITE=1, SKIP_WEB=1, JOBS (8), CPUS (8),
 #     WORK (host dir for the test trees, instead of the container layer; on a disk, see work-en-disco.sh), PATCHES (a patches/<release>-<branch> dir:
 #     applied to the test tree of BOTH refs, so the fixes' own tests show up as FAIL -> PASS).
+#     CPUSET / CPUSET_MEMS / CPU_SHARES: pin the containers to those host CPUs / NUMA node and lower their CPU weight
+#     (as Unraid's CPU pinning does); SERIE=1 runs the two suites one after the other.
 #     Exit 0 = identical; 1 = differences listed above (a fix's own tests may change on purpose: check each one,
 #     and rerun anything unexpected with repeat.sh on both refs); 2 = a step failed or is incomplete.
 # ES: Comprueba que una rama recompilada se comporta exactamente igual que la anterior. Todo corre en
@@ -21,6 +23,8 @@
 #     CPUS (8), WORK (carpeta del host para los árboles de pruebas, en vez de la capa del contenedor; en un disco,
 #     ver work-en-disco.sh), PATCHES (una carpeta
 #     patches/<serie>-<rama>: se aplica al árbol de pruebas de LAS DOS refs, y las pruebas de cada arreglo salen FAIL -> PASS).
+#     CPUSET / CPUSET_MEMS / CPU_SHARES: fija los contenedores a esas CPU / ese nodo NUMA y les baja el peso de CPU
+#     (como el CPU pinning de Unraid); SERIE=1 pasa las dos suites una tras otra.
 #     Sale 0 = idéntico; 1 = diferencias, listadas arriba (las pruebas de un arreglo pueden cambiar a propósito:
 #     revisar cada una y repetir lo inesperado con repeat.sh en las dos refs); 2 = un paso falló o está incompleto.
 set -uo pipefail
@@ -33,7 +37,7 @@ PMA=phpMyAdmin-4.9.11-english.tar.xz
 PMA_SHA=b20ea93022cba7735481c543faad573610d958daebbc0c3952d864e7cfa8acbf
 corre() { # name, extra docker args..., -- , command / nombre, args de docker..., --, orden
   local n=$1; shift; local args=(); while [ "$1" != -- ]; do args+=("$1"); shift; done; shift
-  docker run --rm --name "verify-$$-$n" --cpus "${C:-2}" --memory "${M:-2g}" -e REPO_RAW -e TESTS -e JOBS -v "$H":/v:ro -v "$OUT":/out "${args[@]}" "$IMG" "$@"
+  docker run --rm --name "verify-$$-$n" --cpus "${C:-2}" ${CPUSET:+--cpuset-cpus "$CPUSET"} ${CPUSET_MEMS:+--cpuset-mems "$CPUSET_MEMS"} ${CPU_SHARES:+--cpu-shares "$CPU_SHARES"} --memory "${M:-2g}" -e REPO_RAW -e TESTS -e JOBS -v "$H":/v:ro -v "$OUT":/out "${args[@]}" "$IMG" "$@"
 }
 mal=0; roto=0
 
@@ -44,6 +48,7 @@ if [ "${SKIP_SUITE:-}" != 1 ]; then
     t=(); [ -n "${WORK:-}" ] && { mkdir -p "$WORK/suite-$ref"; t=(-v "$(realpath "$WORK")/suite-$ref":/t); }
     [ -n "${PATCHES:-}" ] && t+=(-v "$(realpath "$PATCHES")":/p:ro)
     C=${CPUS:-8} M=4g corre suite-$ref -v "$H/suite.sh":/i.sh:ro "${t[@]}" -- bash /i.sh "$ref" "$R" > "$OUT/$CN-$R-$ref.run.txt" 2>&1 &
+    [ "${SERIE:-}" = 1 ] && wait
   done; wait
   for ref in "$A" "$D"; do sed "s/^/  /" "$OUT/$CN-$R-$ref.run.txt"; grep -q '^MAL' "$OUT/$CN-$R-$ref.run.txt" && roto=1; done
   if [ $roto = 0 ]; then

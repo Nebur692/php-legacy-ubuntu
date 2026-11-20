@@ -1,20 +1,21 @@
 Package: libapache2-mod-php7.2
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: httpd
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 4690
-Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.2-cli, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), php7.2-json, php7.2-opcache, tzdata, ucf, apache2-api-20120211, apache2-bin (>= 2.4.16), libargon2-0 (>= 0~20160406~), libc6 (>= 2.27), libsodium23 (>= 1.0.14), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Installed-Size: 4694
+Provides: libapache2-mod-php, phpapi-20170718
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.2-cli, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), php7.2-json, php7.2-opcache, tzdata, ucf, apache2-api-20120211, apache2-bin (>= 2.4.16), libargon2-0 (>= 0~20160406~), libc6 (>= 2.27), libsodium23 (>= 1.0.14), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
 Recommends: apache2
 Suggests: php-pear
-Provides: libapache2-mod-php, phpapi-20170718
-Filename: ./libapache2-mod-php7.2_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 1351844
-MD5sum: 4585541d88d00bbbde8ab766abdda5a7
-SHA1: a600b380bb7f1c14b709b77033a693c3cc99a59b
-SHA256: d5533183a810631c865f62f438598d8eaeb13aa5f39bfd86d7ad027ddd82fb20
-Section: httpd
-Priority: optional
+Filename: ./libapache2-mod-php7.2_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 1355000
+MD5sum: 99638793184566e0a55f359d61d4be4a
+SHA1: 580801e7c7f962268dcd34c8c5996f841c12c41b
+SHA256: 0f1767c37d870a1ba391451782cf338466c60efb07dff0879685b2857726997f
+SHA512: 74ed05a8f3dd2e8b7a33d8e6779c8855248371256e4c151936621a2cf45849ff79db8bf3d298c35603cd016aa4bbb95f1d0b66b977c33c57ce513ae815730af4
 Homepage: http://www.php.net/
 Description: server-side, HTML-embedded scripting language (Apache 2 module)
  This package provides the PHP module for the Apache 2 webserver (as
@@ -29,21 +30,22 @@ Description: server-side, HTML-embedded scripting language (Apache 2 module)
  for web development and can be embedded into HTML.
 
 Package: libphp7.2-embed
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
-Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 4679
-Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.2-cli, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), php7.2-json, php7.2-opcache, tzdata, ucf, libargon2-0 (>= 0~20160406~), libc6 (>= 2.27), libsodium23 (>= 1.0.14), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
-Suggests: php-pear
-Provides: libphp-embed, phpapi-20170718
-Filename: ./libphp7.2-embed_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 1351460
-MD5sum: 04a898dca7747c67de3fea537be68e08
-SHA1: 9041411d3f01a79c49e9ae6e8351265cecf883bd
-SHA256: a268c2e01dbf835e6a85d438ac8c806463855bc257d8b1d0f0cd838b3fb449a8
-Section: php
+Version: 7.2.34-70+ubuntu18.04.1+local1
 Priority: optional
+Section: php
+Source: php7.2
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 4683
+Provides: libphp-embed, phpapi-20170718
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.2-cli, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), php7.2-json, php7.2-opcache, tzdata, ucf, libargon2-0 (>= 0~20160406~), libc6 (>= 2.27), libsodium23 (>= 1.0.14), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Suggests: php-pear
+Filename: ./libphp7.2-embed_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 1353492
+MD5sum: aec8ab03c9624993377ed2b67c8dfd55
+SHA1: cfc961862eb27a4be3deb0e2a372322b082e1723
+SHA256: aa33e8e1a99aae7591da3ebfad671e329676cd40eaa0fcccd5a7754c40fbc7a1
+SHA512: b0d0f95900543821a6c2c333dfb5b04d1fd92779843684458ff793f62097b56b99e6894c082c6720cca885fb7cc51c4c0f4b9910ca51bb6948a111a3c6373776
 Homepage: http://www.php.net/
 Description: HTML-embedded scripting language (Embedded SAPI library)
  This package provides the library /usr/lib/libphp7.2.so which can
@@ -60,46 +62,22 @@ Description: HTML-embedded scripting language (Embedded SAPI library)
  the API/ABI will be kept compatible even between minor releases.  You
  have been warned.
 
-Package: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
-Architecture: all
-Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 95
-Depends: libapache2-mod-php7.2 | php7.2-fpm | php7.2-cgi, php7.2-common
-Provides: php
-Filename: ./php7.2_7.2.34-66+ubuntu18.04.1+local1_all.deb
-Size: 61972
-MD5sum: 2f7ccb2dab0320f1eeb5b7ce52e2d5bf
-SHA1: abaa0231fbe0721c0878e254bde7da4579789bd9
-SHA256: d6400583da291ecb7b15e481b86bd46045810fc495f41ba9b68f56afbf69cd1b
-Section: php
-Priority: optional
-Homepage: http://www.php.net/
-Description: server-side, HTML-embedded scripting language (metapackage)
- This package is a metapackage that, when installed, guarantees that you
- have at least one of the four server-side versions of the PHP interpreter
- installed. Removing this package won't remove PHP from your system, however
- it may remove other packages that depend on this one.
- .
- PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
- open source general-purpose scripting language that is especially suited
- for web development and can be embedded into HTML.
-
 Package: php7.2-bcmath
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 64
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.14)
 Provides: php-bcmath
-Filename: ./php7.2-bcmath_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 15316
-MD5sum: 978436d83c222de506ea0a4f15909839
-SHA1: 85faa3b7ab18697870fff6f42ffeba9866a8612f
-SHA256: 5e5d13ddd639aa4b3db356d557075cfbd3964876a58b3ea5286292dfc7bafcc4
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.14)
+Filename: ./php7.2-bcmath_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 15312
+MD5sum: 20cec6b831bac9c220622bc369fac12b
+SHA1: baca7079580923bc01f2f5c570f77c04c5d9fd78
+SHA256: 0fe767d8df1c43e3c09d09ebb9c26f9a216df2867d8b7eafa421a4fca7ac2a86
+SHA512: a077030faf4f3e83107926f11205248d7fbf22a650589d37196439df6ecda79b3172fd5c124040914d2dbe1bd7ca2e86dad465b7dc4b685edad9ff3df6089077
 Homepage: http://www.php.net/
 Description: Bcmath module for PHP
  This package provides the Bcmath module(s) for PHP.
@@ -109,20 +87,21 @@ Description: Bcmath module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-bz2
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 52
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libbz2-1.0, libc6 (>= 2.14)
 Provides: php-bz2
-Filename: ./php7.2-bz2_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 10256
-MD5sum: b103c76724a2a98ba1bde1a73c8468e0
-SHA1: b325f5c18986ef4ee8f4c9ce9a99ca4f0fbbd668
-SHA256: 6b0b97dd983da5dea09ff5464216fbc99257e8548c87351b72e3fd9589e14878
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libbz2-1.0, libc6 (>= 2.14)
+Filename: ./php7.2-bz2_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 10252
+MD5sum: 994650680f41839c47e7fb8a86ed976f
+SHA1: f1752559e5bbdf421c6427a2be84586003eb86a4
+SHA256: 99a4374181b2804c8f978570b35cd9f7f3d2d4aba53d5f8800c868dc674c6e34
+SHA512: a33b742ca7aa03e12d31b3e0498208e4a830922b8c436682c9f07b1bcb758e2f4e9bda1f47d0f61f35f9e44ae7126779268f4de44aa006d9338ba4cd19e3ea84
 Homepage: http://www.php.net/
 Description: bzip2 module for PHP
  This package provides the bzip2 module(s) for PHP.
@@ -132,21 +111,22 @@ Description: bzip2 module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-cgi
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
-Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 9411
-Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.2-cli, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), php7.2-json, php7.2-opcache, tzdata, ucf, libargon2-0 (>= 0~20160406~), libc6 (>= 2.27), libsodium23 (>= 1.0.14), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
-Suggests: php-pear
-Provides: php-cgi, phpapi-20170718
-Filename: ./php7.2-cgi_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 1369940
-MD5sum: 366d4e900871e785751f4045e7694f5f
-SHA1: 47aecd06e0eff02804c54c2074a6ca431b63e530
-SHA256: 9a2d72faa911f8c0f5a4703d9d28098e647894e7864daf19512840362a36969e
-Section: php
+Version: 7.2.34-70+ubuntu18.04.1+local1
 Priority: optional
+Section: php
+Source: php7.2
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 9427
+Provides: php-cgi, phpapi-20170718
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.2-cli, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), php7.2-json, php7.2-opcache, tzdata, ucf, libargon2-0 (>= 0~20160406~), libc6 (>= 2.27), libsodium23 (>= 1.0.14), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Suggests: php-pear
+Filename: ./php7.2-cgi_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 1372332
+MD5sum: e31138f177cdb0aa162dd69eb580b534
+SHA1: cb0dbf27be585955a9304a07807b8d8aec41316d
+SHA256: cf80161d29d61ace4e0327a54a05589412dfdde15220f6adc943b597ace37e8b
+SHA512: c8281ddba4c73f7824522bc5f82f7ee27e5a85f07df881e6ff702c108f602022584a140dd877d0346a624207771dad14afba848f5c08ac2cc2ebf48a5edb2f47
 Homepage: http://www.php.net/
 Description: server-side, HTML-embedded scripting language (CGI binary)
  This package provides the /usr/lib/cgi-bin/php CGI interpreter built
@@ -162,21 +142,22 @@ Description: server-side, HTML-embedded scripting language (CGI binary)
  for web development and can be embedded into HTML.
 
 Package: php7.2-cli
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
-Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 4847
-Depends: libedit2 (>= 2.11-20080614-4), libpcre3 (>= 2:8.35), media-types | mime-support, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), php7.2-json, php7.2-opcache, php7.2-readline, tzdata, ucf, libargon2-0 (>= 0~20160406~), libc6 (>= 2.27), libsodium23 (>= 1.0.14), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
-Suggests: php-pear
-Provides: php-cli, phpapi-20170718
-Filename: ./php7.2-cli_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 1409692
-MD5sum: 4acba0af570355536f76faa7932699dd
-SHA1: 7b4f7305d9cdc8386ecbfa5c3009dfdbc6dce5b5
-SHA256: 59094dc70c09a6863d34119c8b18062c89308f0b10d291182e8d37961ee69eef
-Section: php
+Version: 7.2.34-70+ubuntu18.04.1+local1
 Priority: optional
+Section: php
+Source: php7.2
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 4851
+Provides: php-cli, phpapi-20170718
+Depends: libedit2 (>= 2.11-20080614-4), libpcre3 (>= 2:8.35), media-types | mime-support, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), php7.2-json, php7.2-opcache, php7.2-readline, tzdata, ucf, libargon2-0 (>= 0~20160406~), libc6 (>= 2.27), libsodium23 (>= 1.0.14), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Suggests: php-pear
+Filename: ./php7.2-cli_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 1413736
+MD5sum: 682131bbe34a36be22e7032f265cf6fd
+SHA1: a3bd64a1ca94b743ab26d92a898e7aa6825293ee
+SHA256: 3c8927ee761514c83a4b0beeb1f25e63cdcf5fe0093ec22b980909d600418177
+SHA512: 4bfac3cc896d2daea6cbddadfe19f214787d98c1ec96b3fad3fe237df3172703926454acc4716cc44f6cc274a6d02d57d9d08b5b0452357155625f10dbc6b879
 Homepage: http://www.php.net/
 Description: command-line interpreter for the PHP scripting language
  This package provides the /usr/bin/php7.2 command interpreter, useful for
@@ -190,21 +171,22 @@ Description: command-line interpreter for the PHP scripting language
  for web development and can be embedded into HTML.
 
 Package: php7.2-common
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 6128
+Installed-Size: 6132
+Provides: php-calendar, php-ctype, php-exif, php-fileinfo, php-ftp, php-iconv, php-pdo, php-phar, php-posix, php-shmop, php-sockets, php-sysvmsg, php-sysvsem, php-sysvshm, php-tokenizer, php7.2-calendar, php7.2-ctype, php7.2-exif, php7.2-fileinfo, php7.2-ftp, php7.2-gettext, php7.2-iconv, php7.2-pdo, php7.2-phar, php7.2-posix, php7.2-shmop, php7.2-sockets, php7.2-sysvmsg, php7.2-sysvsem, php7.2-sysvshm, php7.2-tokenizer
 Depends: php-common (>= 1:81~), ucf, libc6 (>= 2.15), libssl1.1 (>= 1.1.0)
 Breaks: php7.2-sodium
-Provides: php-calendar, php-ctype, php-exif, php-fileinfo, php-ftp, php-iconv, php-pdo, php-phar, php-posix, php-shmop, php-sockets, php-sysvmsg, php-sysvsem, php-sysvshm, php-tokenizer, php7.2-calendar, php7.2-ctype, php7.2-exif, php7.2-fileinfo, php7.2-ftp, php7.2-gettext, php7.2-iconv, php7.2-pdo, php7.2-phar, php7.2-posix, php7.2-shmop, php7.2-sockets, php7.2-sysvmsg, php7.2-sysvsem, php7.2-sysvshm, php7.2-tokenizer
-Filename: ./php7.2-common_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 568848
-MD5sum: 75ee7dd0b6790ea480896a494ff6c8e2
-SHA1: 467b89ddef2fdd54bb84f64e153f28e34b7d2b36
-SHA256: 511cdac7c134f2c67b28bfd846c6a1d1623042430a0d6be3022d1ea49907f466
-Section: php
-Priority: optional
+Filename: ./php7.2-common_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 572796
+MD5sum: e1355a552efadeec75c018086ee3c3db
+SHA1: 07b0def8aa20a8b2bfb1c117db4422c458156e90
+SHA256: a474ac367d32822d9c498a7e03f3a0e5b2768ac8bd6d1de4740c118463e7a5cf
+SHA512: bdf1ccb5de7d91a014ac11bc36b0240e88d7f0f3a7110fc23757a8687c745a6add58806fad1235b9389b3c6594ff026bce5332887a5fce675aef465c1a0e4e49
 Homepage: http://www.php.net/
 Description: documentation, examples and common module for PHP
  This package provides the documentation, examples and common module(s) for PHP.
@@ -214,20 +196,21 @@ Description: documentation, examples and common module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-curl
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 116
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.14), libcurl4 (>= 7.44.0)
 Provides: php-curl
-Filename: ./php7.2-curl_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 28904
-MD5sum: adc99aa18293dff211c2018acd307586
-SHA1: c574d732098f929f9674c7fab5ab7e6bf7b1e746
-SHA256: d73173e31f1a8da9d9419ba01d5639bcaf227ea5df568a9f1ccd1182e50f003a
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.14), libcurl4 (>= 7.44.0)
+Filename: ./php7.2-curl_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 28916
+MD5sum: 9912230e8193d4484fa120387f185531
+SHA1: e79ccc7c73db7592d0dd8175f79ee137c7b00c80
+SHA256: 8c66f55018ff4188659cf69887004363f62cfe95e43b58a4338aa9d12cdc72ea
+SHA512: a16dff3846787859f1f2df59ea82f0495a46d0069ff24a61ec3aa854d3c1b677c435f399afcc0f9d302d2a5e7fe2b872305027d52c98b2a03455c116d4442917
 Homepage: http://www.php.net/
 Description: CURL module for PHP
  This package provides the CURL module(s) for PHP.
@@ -237,20 +220,21 @@ Description: CURL module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-dba
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 88
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.14), libdb5.3, liblmdb0 (>= 0.9.7), libqdbm14 (>= 1.8.74)
 Provides: php-dba
-Filename: ./php7.2-dba_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 23236
-MD5sum: 87f248d25955b81d23f474b6a8ef4760
-SHA1: a76b4eb7c065ec137207de5760dc50863f2251fb
-SHA256: 34afefd0bebc98660281aa66c71eacca4a8559bb0becee5ef155203263441185
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.14), libdb5.3, liblmdb0 (>= 0.9.7), libqdbm14 (>= 1.8.74)
+Filename: ./php7.2-dba_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 23248
+MD5sum: b0ab4fe0824c66d9cd367cecf7616a33
+SHA1: 2ab321c63fb0e2531b32ab7374f70aeefd2026a7
+SHA256: f7723c720e4f1113d4d9716643329e61c203d74698a4f286466381f069f0f0de
+SHA512: 79d4b2aa6012139c5fcf4c7147ad2831dc5ec20fa2d58903280eb97d54d94eb18b063dbd2c4d5ac3483ea56b4152475e1be69260309a597171ebfcf2e816ef38
 Homepage: http://www.php.net/
 Description: DBA module for PHP
  This package provides the DBA module(s) for PHP.
@@ -260,21 +244,22 @@ Description: DBA module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-dev
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 4871
-Depends: autoconf (>= 2.63), automake (>= 1.11), libpcre3-dev (>= 2:8.35), libssl-dev, php7.2-cli (>= 7.2.34-66+ubuntu18.04.1+local1), php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), pkg-config, shtool, libtool (>= 2.4.6-0.1~)
+Installed-Size: 4879
+Depends: autoconf (>= 2.63), automake (>= 1.11), libpcre3-dev (>= 2:8.35), libssl-dev, php7.2-cli (>= 7.2.34-70+ubuntu18.04.1+local1), php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), pkg-config, shtool, libtool (>= 2.4.6-0.1~)
 Recommends: pkg-php-tools
 Suggests: dh-php
-Filename: ./php7.2-dev_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 423152
-MD5sum: f7f5e47a9f780f6f6fff495428a26189
-SHA1: 879018d0fdec4f15736e4d8e49fb9a124ce17908
-SHA256: 78458a9631edbd91d480f7961b8364cd826862da61d914b84765091704fa18ff
-Section: php
-Priority: optional
+Filename: ./php7.2-dev_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 424588
+MD5sum: 80aed4da983ead502d578255bfde8c9f
+SHA1: 2036bd286e6a67cc011595f775132f0a5ba4a964
+SHA256: d3a6ee6135d46c74e061eccb75e3884cd53e4aea983828c79a4a15f7b1bd8c45
+SHA512: 558523c32e7b9e96afde632de4d31d027ca8fb93a71180107a3e9d553f3e870c4739422ade119bcb8f9ec37ef4e96ac9d8d556138402ed362c839e2668bfaa66
 Homepage: http://www.php.net/
 Description: Files for PHP7.2 module development
  This package provides the files from the PHP7.2 source needed for compiling
@@ -285,20 +270,21 @@ Description: Files for PHP7.2 module development
  for web development and can be embedded into HTML.
 
 Package: php7.2-enchant
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 52
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.14), libenchant1c2a (>= 1.6.0)
 Provides: php-enchant
-Filename: ./php7.2-enchant_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 9160
-MD5sum: d44c6d6737016bfd83282d41a37c2426
-SHA1: d63ee6b9e1d57688e482683c98442e46cc4830c5
-SHA256: 568ca50f348c740a8ab4213e8ccd5d35cad3663a112f42ac137d5afe1100a677
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.14), libenchant1c2a (>= 1.6.0)
+Filename: ./php7.2-enchant_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 9180
+MD5sum: 7de6d1a1e83dc931a5d5b5f8986c4a91
+SHA1: 07b7c27687d381a684169246150496babea3eb74
+SHA256: c7d84f98e82f8f68375cdb22fe5cbd50df7c32ea842dce64b5cefa0d0f74bd8d
+SHA512: 96f4269cfd0a91051365cbc9213c68fc7f3c9034ffce2c1f35e9ae11751ee178194c78e24af045690c6af85be038fba0660699af49c7b490afdfc0b536d76300
 Homepage: http://www.php.net/
 Description: Enchant module for PHP
  This package provides the Enchant module(s) for PHP.
@@ -308,21 +294,22 @@ Description: Enchant module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-fpm
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
-Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 4869
-Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.2-cli, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), php7.2-json, php7.2-opcache, procps, systemd | systemd-tmpfiles, tzdata, ucf, libacl1 (>= 2.2.51-8), libapparmor1 (>= 2.7.0~beta1+bzr1772), libargon2-0 (>= 0~20160406~), libc6 (>= 2.27), libsodium23 (>= 1.0.14), libssl1.1 (>= 1.1.0), libsystemd0, libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
-Suggests: php-pear
-Provides: php-fpm, phpapi-20170718
-Filename: ./php7.2-fpm_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 1416116
-MD5sum: fb1b210dd5ac44e6c59f9d3d900b3281
-SHA1: 370c367c7d928353bcc57de77a3f50795e29ad07
-SHA256: 16c09106424a28a9d80a550951ab84bb766f552bc5bbb79421ac248adf86e66f
-Section: php
+Version: 7.2.34-70+ubuntu18.04.1+local1
 Priority: optional
+Section: php
+Source: php7.2
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 4877
+Provides: php-fpm, phpapi-20170718
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.2-cli, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), php7.2-json, php7.2-opcache, procps, systemd | systemd-tmpfiles, tzdata, ucf, libacl1 (>= 2.2.51-8), libapparmor1 (>= 2.7.0~beta1+bzr1772), libargon2-0 (>= 0~20160406~), libc6 (>= 2.27), libsodium23 (>= 1.0.14), libssl1.1 (>= 1.1.0), libsystemd0, libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Suggests: php-pear
+Filename: ./php7.2-fpm_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 1417972
+MD5sum: 87c7a35626bde0de82de7f6cb2c56604
+SHA1: de05215f94076a8ed21e57ce1b621561f7fa9c5f
+SHA256: fd38f65b29a7aecd273e8c8bc5350bfa28f99589f02b71062014725344a7e02f
+SHA512: 784eb567c41709d8c5225da0eaa71ecd6581cba6a2e8d7c7fa079b090e1e50f3f4d3ed1a90863f883dcd434503a1dd7b95705a73de5764ac99e6d4479bb6d022
 Homepage: http://www.php.net/
 Description: server-side, HTML-embedded scripting language (FPM-CGI binary)
  This package provides the Fast Process Manager interpreter that runs
@@ -337,20 +324,21 @@ Description: server-side, HTML-embedded scripting language (FPM-CGI binary)
  for web development and can be embedded into HTML.
 
 Package: php7.2-gd
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 132
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.4), libgd3 (>= 2.1.1), libxpm4
 Provides: php-gd
-Filename: ./php7.2-gd_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 27248
-MD5sum: 143ae9c56817d062dfc8fc9307e4780a
-SHA1: a73894804b25004dbe60717d80fe350a086e7076
-SHA256: 5bef9e38dcf4e418eedec1c78cd1a5d2e0bdc839e0eeec619807ca2b37eca4a5
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.4), libgd3 (>= 2.1.1), libxpm4
+Filename: ./php7.2-gd_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 27152
+MD5sum: 6396bc1c5024b048647416d8ac1a72e7
+SHA1: 52a0853aea449b1c30534f433142fff8fb2aef71
+SHA256: a27c08f0eec6c00edb9f9d9c38e7a716f606c5eb252815d354e505a089e6ffca
+SHA512: 9e407942200a5fbddf5843d20a93bbeda0a68f70dc470751112eb9448da37612f68707b104e9bcbdd94f77f74404c94ad4267a2633f568b4ca6c0f05ed6b4258
 Homepage: http://www.php.net/
 Description: GD module for PHP
  This package provides the GD module(s) for PHP.
@@ -360,20 +348,21 @@ Description: GD module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-gmp
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 96
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.4), libgmp10
 Provides: php-gmp
-Filename: ./php7.2-gmp_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 20160
-MD5sum: 871cc16bf1485bc68a4add2d9651e2a9
-SHA1: c500e411d3bb4654eadf05b3cc39b3ce586a2c5b
-SHA256: 06ecbc3f7ca304cfc131b45ae9965d392e0220cd978dcf5a825898d1ac30d19e
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.4), libgmp10
+Filename: ./php7.2-gmp_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 20176
+MD5sum: ce1e5aae4ad28e684ee13790eb643275
+SHA1: 2ac3e282a79f579ef1c7aa24365d4fdfa1693f5f
+SHA256: 029b21c815478115c45837c48ae9b8378ec45ad241c69617a72b09ba04a68dd7
+SHA512: 3530fb1437f55b414dd48d605088e4470f3d32b4a1b44750a8b256b851d7c6d0f28be2235e7d1ae26cb72f7a9c01f66d5f7dd25777c5db8fe768230ca5828ed9
 Homepage: http://www.php.net/
 Description: GMP module for PHP
  This package provides the GMP module(s) for PHP.
@@ -383,20 +372,21 @@ Description: GMP module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-imap
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 120
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc-client2007e, libc6 (>= 2.14)
 Provides: php-imap
-Filename: ./php7.2-imap_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 29520
-MD5sum: bb9b911a5b8c30c1754a8551dbb4a574
-SHA1: e1ba60739c325d70aa6d661f37af951b282ce082
-SHA256: 290be5103ad48e1ab01fe7aa53fdffe2f559cdd369e412a9f9f301f9eafd1e97
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc-client2007e, libc6 (>= 2.14)
+Filename: ./php7.2-imap_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 29616
+MD5sum: 3b589c5c01fb45a07b62a3d4f90922cf
+SHA1: 358278ea14bd471e0ea020454349f5d70cd533a2
+SHA256: bac81fca0ac31169357c0cf69e275ef46b77cd1f21d1a6c6c7c03672803e1800
+SHA512: 91aa02e0949a2621e0144448113e58acf68ca850d2322064cad4e2350556c05e07035a4b30507d79f5f56c0c042953b0771edeb05a824376621dae81a7460d99
 Homepage: http://www.php.net/
 Description: IMAP module for PHP
  This package provides the IMAP module(s) for PHP.
@@ -406,20 +396,21 @@ Description: IMAP module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-interbase
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 148
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.14), libfbclient2 (>= 2.5.0.25784~ReleaseCandidate1.ds2)
 Provides: php-interbase, php-pdo-firebird, php7.2-pdo-firebird
-Filename: ./php7.2-interbase_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 40204
-MD5sum: 0b971f9932ae87a31b838a918af2fc3d
-SHA1: ae81160557686966f40a1feb7246d33dffb8036b
-SHA256: f5d226cdb5f7a40161f486ec54ec4099c9807283d907fe76db6a741e8e95eed0
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.14), libfbclient2 (>= 2.5.0.25784~ReleaseCandidate1.ds2)
+Filename: ./php7.2-interbase_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 40128
+MD5sum: 0dbb739811dc939391d8448a89c59223
+SHA1: c415a6dc77c74cefb8bf019171dbe1b1b89d9ae6
+SHA256: 7d97946e796f3afcfa55c953d1936bc965c922749764bb637fa6842eea847e02
+SHA512: 831585b7562783a88b078c180281bd6e706405acc87c86a7c8b228abf1725bb8574415e490b522cfda9fb28b4e4bcd7c626e190cbc30f1bd13aa113540a48d6d
 Homepage: http://www.php.net/
 Description: Interbase module for PHP
  This package provides the Interbase module(s) for PHP.
@@ -429,20 +420,21 @@ Description: Interbase module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-intl
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 501
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.14), libgcc1 (>= 1:3.0), libicu60 (>= 60.1-1~), libstdc++6 (>= 4.9)
 Provides: php-intl
-Filename: ./php7.2-intl_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 124464
-MD5sum: 3a2c81c9f42648f2bfd074fd359c4273
-SHA1: 469b26bad33ca63d400982892c441625debdb637
-SHA256: ac9f3d3db8be50824098a4d225866d63f111bb2e12970875834ded7729c776d9
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.14), libgcc1 (>= 1:3.0), libicu60 (>= 60.1-1~), libstdc++6 (>= 4.9)
+Filename: ./php7.2-intl_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 124444
+MD5sum: 6c06f81324ea5b33b5eab50b287530c4
+SHA1: 5ede1815d98cef9cbe8436c67451da59c5bdc7fb
+SHA256: 880df46bdbf03901b0cadc7089f6da3de62c2fd7d88d5b4a1f7d72f27cc9edc2
+SHA512: 75df4d50f3025260e238090d88b7d5574ec35e99eff93328e212fb7d83f39daee8babca79ad0e8562354288066d226997b1fd044f1a0c9080d32bdee091f8352
 Homepage: http://www.php.net/
 Description: Internationalisation module for PHP
  This package provides the Internationalisation module(s) for PHP.
@@ -452,20 +444,21 @@ Description: Internationalisation module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-json
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 72
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.14)
 Provides: php-json
-Filename: ./php7.2-json_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 18924
-MD5sum: 35503159adda9653ae3f928888addf33
-SHA1: 5ba02693a6967ec68ad042c23489ef51732554bd
-SHA256: a1e4d1291d2cd40145719b5b45285acbdd7335a59dc8b0344cd040a8ce9981c4
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.14)
+Filename: ./php7.2-json_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 18916
+MD5sum: ea1fd7400a4b0be1e92dfc8fc449236e
+SHA1: 7d422ef8e16d8a8d8d4505c2879c70089e36ac06
+SHA256: 6f87716d8fb0b5c248ae91b98fd9172f5204cbccea3a2043e2dca99c482d9f20
+SHA512: d2a660759cbe2acbc98816f8554e39a05358a42ef4f5defb170104be2b268740563259201b7158e7e14166db9b2ddbada8009d2f9499bbdb371401448ca53279
 Homepage: http://www.php.net/
 Description: JSON module for PHP
  This package provides the JSON module(s) for PHP.
@@ -475,20 +468,21 @@ Description: JSON module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-ldap
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 100
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.14), libldap-2.4-2 (>= 2.4.7)
 Provides: php-ldap
-Filename: ./php7.2-ldap_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 23732
-MD5sum: 3e543eaf9078f669ee24c0e3f747b853
-SHA1: 22625a33dc56f4336b8f94e6891f805830043590
-SHA256: 4881e22ad9d824a03a4b416f7387590594673da7c027687928f1be3033cef2dd
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.14), libldap-2.4-2 (>= 2.4.7)
+Filename: ./php7.2-ldap_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 23696
+MD5sum: d5f236be7c6ecef54fcc0afd263d2b73
+SHA1: 94d104d95f30cbc433db03819bfb67ce709effac
+SHA256: 2dcf0608e8b0afd40daeb35892750295e0060c691401b2ebc3aeb23e8f8c75ca
+SHA512: 20894b9d3de7ce7082791b8c11d72aba7cc5f9e50516036649c13b8c3bf559caf23036423785ad03f6f3ea9438a2cbde92d20451b9d9ec07f3c19ccdd3dbd83e
 Homepage: http://www.php.net/
 Description: LDAP module for PHP
  This package provides the LDAP module(s) for PHP.
@@ -498,21 +492,22 @@ Description: LDAP module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-litespeed
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
-Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 4727
-Depends: media-types | mime-support, php7.2-cli, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), procps, systemd | systemd-tmpfiles, tzdata, ucf, libargon2-0 (>= 0~20160406~), libc6 (>= 2.27), libpcre3, libsodium23 (>= 1.0.14), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
-Suggests: php-pear
-Provides: php-json, php-litespeed, php7.2-json, phpapi-20170718
-Filename: ./php7.2-litespeed_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 1372908
-MD5sum: 576f3bb0a2c4954f1c809f9011fc0ea1
-SHA1: fa87cea51b8599e5e26c50a027e765ea6a701ad4
-SHA256: 8e95e6f70b8c254da64629fda8aa350498cd8a832acd4322b8d03a380991c0f4
-Section: php
+Version: 7.2.34-70+ubuntu18.04.1+local1
 Priority: optional
+Section: php
+Source: php7.2
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 4731
+Provides: php-json, php-litespeed, php7.2-json, phpapi-20170718
+Depends: media-types | mime-support, php7.2-cli, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), procps, systemd | systemd-tmpfiles, tzdata, ucf, libargon2-0 (>= 0~20160406~), libc6 (>= 2.27), libpcre3, libsodium23 (>= 1.0.14), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Suggests: php-pear
+Filename: ./php7.2-litespeed_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 1375876
+MD5sum: b91e5fd3c29512d52094aaaad797bff5
+SHA1: d606b69ee1eb4afd8020b8f9b398d218d2dc4162
+SHA256: f62068371a582174ce6b2ccd21189946f95ca25b42f15bbc8372fefeb6883e4b
+SHA512: 3097efbe7200ed6f6e0689605b684bd884c96270edbefc801e3853d9276a6f75ed30da79db7e72ef63f45180bc1bd8cd7f730f4ad66b2416b2c5804c8fc6bf4c
 Homepage: http://www.php.net/
 Description: server-side, HTML-embedded scripting language (LiteSpeed binary)
  This package provides the LiteSpeed SAPI module that provides a dedicated
@@ -526,20 +521,21 @@ Description: server-side, HTML-embedded scripting language (LiteSpeed binary)
  for web development and can be embedded into HTML.
 
 Package: php7.2-mbstring
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 1672
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.14)
 Provides: php-mbstring
-Filename: ./php7.2-mbstring_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 483308
-MD5sum: 76acbfdbe981476f0f187814704529d0
-SHA1: 887bc61f29db1f6bbe735f31e1b72fdf004e3fbf
-SHA256: 459280f2fa88542bb75c51ae543244a297aec5a5b8cc48765dec1bee7ab82389
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.14)
+Filename: ./php7.2-mbstring_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 482828
+MD5sum: 3887541c087f00a45d4e59626b2bb9ed
+SHA1: a1d3be42916f67834bffa3f7e196ba2414522a5d
+SHA256: ce4ab69aae3db63e9a4a7e3acf846a3e5e4fec5d78c8b1dbea3674420a502d93
+SHA512: eb2aa56baad519c76a47b8e311bdb9698eff9b161ad89fcb6c4aed206482ca10f9fc9efbeea8ca0319a78060dab9218e969bc9c058702e0ed119f69b8dc1d145
 Homepage: http://www.php.net/
 Description: MBSTRING module for PHP
  This package provides the MBSTRING module(s) for PHP.
@@ -549,20 +545,21 @@ Description: MBSTRING module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-mysql
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 439
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.15)
 Provides: php-mysqli, php-mysqlnd, php-pdo-mysql, php7.2-mysqli, php7.2-mysqlnd, php7.2-pdo-mysql
-Filename: ./php7.2-mysql_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 117112
-MD5sum: b2c1581dae94eb380f9a7f5a9c00013d
-SHA1: 78460f978aedeaa436e8e4848097a89ce5de52af
-SHA256: 1cc51554ba5a1eab44aca7955334713c388bf866548e8c347afbc7b15e6de723
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.15)
+Filename: ./php7.2-mysql_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 117716
+MD5sum: b6061edbbdae82f4a8193d300b6e0ac4
+SHA1: 19502a536aa374403bc82044512356a8b74139c8
+SHA256: 427a27746d0fe8b68b84a9e11e2bda5bb23dd833c33adcf252088ff9e7a3e199
+SHA512: 7ec920be35cf3374624879f1aeebf7108c78aeaee7fd9c0f7e3596c5b4f3667d88380e95d1c79f4efa867d9d75df6457a383fa42f5d444ec80c347ebfeed38cf
 Homepage: http://www.php.net/
 Description: MySQL module for PHP
  This package provides the MySQL module(s) for PHP.
@@ -572,20 +569,21 @@ Description: MySQL module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-odbc
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 124
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.14), libodbc1 (>= 2.3.1)
 Provides: php-odbc, php-pdo-odbc, php7.2-pdo-odbc
-Filename: ./php7.2-odbc_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 30440
-MD5sum: 315fb59e25481a9724ca54df22490240
-SHA1: 5f6169ef67e67cc352d64acffa8913499a159f42
-SHA256: 66e6bf4acad4b710430fb238eb02cdfb12296ad9e18806907688d5249b39c024
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.14), libodbc1 (>= 2.3.1)
+Filename: ./php7.2-odbc_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 30392
+MD5sum: fd6195dbe70e477c85ab1836d103d3ae
+SHA1: 101e8e0db2f68fd1f01db0dc07fba34cebd3719e
+SHA256: b10a0286d9a336a08d37241a1a7b1cb51efc218945d5c15dcb443a56a54ee7e5
+SHA512: 438c6e39926c04626e7dce651cabac04105a09316bd85fc8fc36b6556a78e3481b567b501adbcb85a883261ecc76b7ea5e3565553f28a09343e2bdeb05dd1adc
 Homepage: http://www.php.net/
 Description: ODBC module for PHP
  This package provides the ODBC module(s) for PHP.
@@ -595,20 +593,21 @@ Description: ODBC module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-opcache
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 464
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.27)
 Provides: php-opcache
-Filename: ./php7.2-opcache_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 165304
-MD5sum: 120b458b0b6b230db102f6d0d9029568
-SHA1: 19117c73b9adb343910ebeb4656fe2b0b8113962
-SHA256: 608736470937ec73f6a41ba74add8a33c03aaca508df1504029b1b165e6f3c7c
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.27)
+Filename: ./php7.2-opcache_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 165612
+MD5sum: fd9b7efc79c53a60c98503faae732103
+SHA1: 46b3f9f54735cacd48800d57579e80ea26834363
+SHA256: 90cd70d8f08be4cd621d782b2c10d3ecaa322837b3091e3d284f7a59a7a5dc77
+SHA512: 829e4f32dc4b8f8be47b19b3701a16891f7a4b6fb71a1b9dffc61c175dc260fa24ac38dfb1baffe8a6d024fe3a0e50f61ac342ed503053b499a793a2e369e2b9
 Homepage: http://www.php.net/
 Description: Zend OpCache module for PHP
  This package provides the Zend OpCache module(s) for PHP.
@@ -618,20 +617,21 @@ Description: Zend OpCache module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-pgsql
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 208
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.14), libpq5 (>= 9.3~)
 Provides: php-pdo-pgsql, php-pgsql, php7.2-pdo-pgsql
-Filename: ./php7.2-pgsql_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 55916
-MD5sum: 03c79127fdfaed177aac186eb4455722
-SHA1: 6017ca991fc7f4aaff87fe2ac5bbdf22d523d227
-SHA256: 76c22ebac5256de4f2b683778cf7ccc8c656f56ad30e9de97b5f620c198f02dc
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.14), libpq5 (>= 9.3~)
+Filename: ./php7.2-pgsql_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 56592
+MD5sum: 1d85f1a5437ed7fae10ee7a888fb04b1
+SHA1: 14bb8237b880ba1fa9ca5a779d7803eb46f8cf83
+SHA256: 8b9ca140b19b1f3762c9bbd148ebcb36cb86550e25e752b93b3f9d3c344e2030
+SHA512: 116f73b26cd6d0e09584ccf44bb8326847aa92fb8c5a2584b9fb8955e7571163994b513bb750ec8fa15fe77d0d90a40ebc4251f6cd268a2b65d97eeb48792fb0
 Homepage: http://www.php.net/
 Description: PostgreSQL module for PHP
  This package provides the PostgreSQL module(s) for PHP.
@@ -641,21 +641,22 @@ Description: PostgreSQL module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-phpdbg
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
-Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 4949
-Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.2-cli, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), php7.2-json, php7.2-opcache, tzdata, ucf, libargon2-0 (>= 0~20160406~), libc6 (>= 2.27), libsodium23 (>= 1.0.14), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
-Recommends: php-readline
-Provides: php-phpdbg, phpapi-20170718
-Filename: ./php7.2-phpdbg_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 1450564
-MD5sum: 63e5f3b7b87fe38a636792dc2822b8e9
-SHA1: 112ca7c21665d9139689ff3df48fb35ccffec148
-SHA256: 2915a1e7264256c2325fc621695b3306c62344d66fdf17640922509793a2d595
-Section: php
+Version: 7.2.34-70+ubuntu18.04.1+local1
 Priority: optional
+Section: php
+Source: php7.2
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 4953
+Provides: php-phpdbg, phpapi-20170718
+Depends: libpcre3 (>= 2:8.35), media-types | mime-support, php7.2-cli, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), php7.2-json, php7.2-opcache, tzdata, ucf, libargon2-0 (>= 0~20160406~), libc6 (>= 2.27), libsodium23 (>= 1.0.14), libssl1.1 (>= 1.1.0), libxml2 (>= 2.8.0), zlib1g (>= 1:1.1.4)
+Recommends: php-readline
+Filename: ./php7.2-phpdbg_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 1452972
+MD5sum: d27a38962ba562f109110b39da02d1ea
+SHA1: 4457954f75169542230017694d12ce1fb2db96bb
+SHA256: 8f4a3529ddec6b4d2008d5dae8ffbeac5c530099ac5e1a5ff150e0b5c4a9d6ee
+SHA512: 0a8b11ae933d53c2f26bb0b511f44bb1533e10f6f8975b90b22d4c87a3b5b70c53a037f05860ec2e83db0e8ee6a15f172d98f1597793801adc7ac0dbf288f141
 Homepage: http://www.php.net/
 Description: server-side, HTML-embedded scripting language (PHPDBG binary)
  This package provides the /usr/bin/phpdbg command interpreter, useful for
@@ -669,20 +670,21 @@ Description: server-side, HTML-embedded scripting language (PHPDBG binary)
  for web development and can be embedded into HTML.
 
 Package: php7.2-pspell
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 52
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libaspell15 (>= 0.60.7~20110707), libc6 (>= 2.4)
 Provides: php-pspell
-Filename: ./php7.2-pspell_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 8492
-MD5sum: 1a473faa9ed57311ec4d8dae7ace7ccb
-SHA1: f3bdee95ca0839b3db7237e0b390cdd838c33b19
-SHA256: 00a6529d90e6bf647a9088fbe99260e7c61847485fc297507daaa800f21455c8
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libaspell15 (>= 0.60.7~20110707), libc6 (>= 2.4)
+Filename: ./php7.2-pspell_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 8484
+MD5sum: 242c703de301c1d209577e05f3ba71c3
+SHA1: b5a7d79aa7ac0e38536046682732b24632ff9730
+SHA256: a2abf7d223ccbc7be6b29c9fd63fbf16d50334a94100cc2b01e1a4f52e90cfb7
+SHA512: 80e3ed7b009a1f4d78afec4909f71b29eaaf487df9a79347e67930c38baa35e2576d32135db28858ff254b90072cb838941653f5fe5e5c5ca8eca44553ef09c3
 Homepage: http://www.php.net/
 Description: pspell module for PHP
  This package provides the pspell module(s) for PHP.
@@ -692,20 +694,21 @@ Description: pspell module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-readline
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 60
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.14), libedit2 (>= 3.1-20130611)
 Provides: php-readline
-Filename: ./php7.2-readline_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 12200
-MD5sum: ed9dd61632bcbef2a2a923ddf8dda387
-SHA1: 48e664a760cad943f73a0c48f4847762f3ca323a
-SHA256: dc11fea659e2a43b9b878702c6366d3e6f6236d4a0a811dba4a0f045428e4593
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.14), libedit2 (>= 3.1-20130611)
+Filename: ./php7.2-readline_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 12188
+MD5sum: 87b809f492b564ea5756162aa1198c41
+SHA1: 3d5b771c5a07ddbe23796bc968d6204a4b87829f
+SHA256: d0e038c49e7cb1ab1f5183acb7a40963a83477ecf91423f159d18cee6ca06725
+SHA512: 5f48cd4057bad692366c2f9eb66ead2a020b282179590bd273c358dfdee7b658ef897aa0d2eec1c6465f6e9bc015b2fd23a576eb2508b9cf68f94988b5e36d93
 Homepage: http://www.php.net/
 Description: readline module for PHP
  This package provides the readline module(s) for PHP.
@@ -715,20 +718,21 @@ Description: readline module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-recode
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 40
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.14), librecode0 (>= 3.6)
 Provides: php-recode
-Filename: ./php7.2-recode_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.14), librecode0 (>= 3.6)
+Filename: ./php7.2-recode_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
 Size: 5644
-MD5sum: febb0507116dc44ffe5fdf5a64ae3569
-SHA1: 48746732ca26032f8561e0b36cb47fe4380729e7
-SHA256: 31f48c866038fa0ac3f8939a685082d272d6125ae0c9d5235c91078188c30406
-Section: php
-Priority: optional
+MD5sum: 5e587a514aa5472741f6996cfcd2195e
+SHA1: 0d9a8282e831e7437d0058725fb8b9eb88f0bced
+SHA256: 2034153c9eedf71cc64e6224a8727b51baca6a65cb7118f4bad0e10890531a77
+SHA512: 5cd2f3c3b6a5a4af934824c3158e8bacf931df73d2fa113305f070bcb6d8a9ef0463cacbc60600d7b225cc0ff643845d2e28b9891ec4e77d82505bb13461efd5
 Homepage: http://www.php.net/
 Description: recode module for PHP
  This package provides the recode module(s) for PHP.
@@ -738,21 +742,22 @@ Description: recode module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-snmp
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 80
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.14), libsnmp30 (>= 5.7.3+dfsg-1.8ubuntu3.8~dfsg)
-Recommends: snmp
 Provides: php-snmp
-Filename: ./php7.2-snmp_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 18532
-MD5sum: 8246a79f31532092e56269f8cdee39da
-SHA1: 163b81f5393c7c93e05986e679652f82cc3084a2
-SHA256: ac62281df6ffba046930d9aa2a4a53b4264774af49939997c6aae2ae9a31a4b1
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.14), libsnmp30 (>= 5.7.3+dfsg-1.8ubuntu3.8~dfsg)
+Recommends: snmp
+Filename: ./php7.2-snmp_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 18544
+MD5sum: fbd031a81d44ff5d9dcd93d9c300ae48
+SHA1: 6dca9d46ab9461907656be6a4702a284581ed566
+SHA256: 88c27e22f6ee139845697a79b69a280baeaae0c816af1312654b97df2c10fcd2
+SHA512: 28b2a1d7cf06c327687649fd4545dc7b9acd1df494373a2292aa2eb1f902a81b3bb120270dcf216d7a38bbfcb4ee3cd31e5b7204f6dd91def3269cbbdf3b7819
 Homepage: http://www.php.net/
 Description: SNMP module for PHP
  This package provides the SNMP module(s) for PHP.
@@ -762,20 +767,21 @@ Description: SNMP module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-soap
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 332
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.14), libxml2 (>= 2.7.4)
 Provides: php-soap
-Filename: ./php7.2-soap_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 113592
-MD5sum: 304eaa2ddbdae550820b86a9764ae2fe
-SHA1: 0399411df5587ae3b41bcf91008b90b939e057f9
-SHA256: afa487883c6cbc2aaaed2cf1b469489d34f2da422de762187798cd19db96fbde
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.14), libxml2 (>= 2.7.4)
+Filename: ./php7.2-soap_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 113688
+MD5sum: f1753332441098a98dcb4028f48803c5
+SHA1: b102a0ff8345b4623c83992cd8b08fb812a01a9d
+SHA256: ea4e27a2ff90977a7069738317c9ae770f3f9a882535ca8b423241a74365924c
+SHA512: a5a0239d927c1a0af3cae735d6d253d059720ee3f9225165248673cb5a1f59ac202c9ea958690bf9460acadedb36524a98570149ffc2cd067ab617fbe37d2307
 Homepage: http://www.php.net/
 Description: SOAP module for PHP
  This package provides the SOAP module(s) for PHP.
@@ -785,20 +791,21 @@ Description: SOAP module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-sqlite3
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 113
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.14), libsqlite3-0 (>= 3.7.15)
 Provides: php-pdo-sqlite, php-sqlite3, php7.2-pdo-sqlite
-Filename: ./php7.2-sqlite3_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 25788
-MD5sum: f5c7f6c434626ed648aa91f81d827776
-SHA1: cfedae92e9e7f8e41948582b756fb57389fb7819
-SHA256: fd5c0b5770819857e86ad1eeed113523bd26c04294dc6bc423ec5d6e1cc33b4a
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.14), libsqlite3-0 (>= 3.7.15)
+Filename: ./php7.2-sqlite3_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 25736
+MD5sum: f411cf034e999b2ed44d9ea233abae74
+SHA1: e90d065a369db99eb028d6b934c491d259a7808f
+SHA256: 804eb591a2244aab1636bf790079f73dab6b62ca220de67eb8091bf8ed01c343
+SHA512: 7c738ce77ecfe54ffaf0f60dda26d574aa1f16f1efb62605c0552c22f659d8e53ab701775a97c9e84ae11cde23a64c4434cec8a8b2c1a29a86cc054553d810b7
 Homepage: http://www.php.net/
 Description: SQLite3 module for PHP
  This package provides the SQLite3 module(s) for PHP.
@@ -808,20 +815,21 @@ Description: SQLite3 module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-sybase
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 56
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.14), libsybdb5 (>= 0.63)
 Provides: php-pdo-dblib, php7.2-pdo-dblib
-Filename: ./php7.2-sybase_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 11372
-MD5sum: c0dae573baab1bdd2d7a0f39ee5f602e
-SHA1: 240ca0ae76e30059da984874156e2c01d2f57199
-SHA256: 77dec7015ef352c736c0ffb00faf7fef7b9ffb8ddcc3c182adabad98b4cc47ed
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.14), libsybdb5 (>= 0.63)
+Filename: ./php7.2-sybase_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 11364
+MD5sum: e11eaba95f6538685091c5f96de164e2
+SHA1: c6fe7a39187e7ed09b66a10b58ff8ff6beeb7c4c
+SHA256: 2c93839eacb274dd6634195925aff7f9053af89b6f5fe3e3a3110d0950353b23
+SHA512: 606308996efbe3b09f345098f192f3c728ced73aadff47a92025d4464b96e6d760cebfcff7abe150248bdba373afb6446359b48be6ed3301d2f71b3c0b5f576c
 Homepage: http://www.php.net/
 Description: Sybase module for PHP
  This package provides the Sybase module(s) for PHP.
@@ -831,20 +839,21 @@ Description: Sybase module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-tidy
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 80
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.14), libtidy5 (>= 5.2.0)
 Provides: php-tidy
-Filename: ./php7.2-tidy_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 16900
-MD5sum: 34f39bbc660743943f4d693f28fb0a15
-SHA1: a24498df547a683a3106f81b30bc5ee6e7478a6a
-SHA256: e38df2a9a0bc94713fa04d35a497e61d86ad0875b8eb8cab7950198abbb3818c
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.14), libtidy5 (>= 5.2.0)
+Filename: ./php7.2-tidy_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 16940
+MD5sum: c4e9bee4c8a5cb8eeac721ee0a7af5a2
+SHA1: 502f330da4b074abb6797b8c2dc67522f68488fe
+SHA256: 8410de52ee780dadea8d6d2b19792827cb71f8685057b0527133944df3e5e007
+SHA512: 3f910477789c959e635b385d824662cf24e4e5e304901a7dfb00743c82f04324563fa98fc7be7857577ff5331eb4244d8646e17cfe801746c77008546abd4bb2
 Homepage: http://www.php.net/
 Description: tidy module for PHP
  This package provides the tidy module(s) for PHP.
@@ -854,22 +863,23 @@ Description: tidy module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-xml
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 453
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.14), libxml2 (>= 2.9.0), libxslt1.1 (>= 1.1.25)
+Provides: php-dom, php-simplexml, php-wddx, php-xml, php-xmlreader, php-xmlwriter, php-xsl, php7.2-dom, php7.2-simplexml, php7.2-wddx, php7.2-xmlreader, php7.2-xmlwriter, php7.2-xsl
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.14), libxml2 (>= 2.9.0), libxslt1.1 (>= 1.1.25)
 Breaks: php7.2-xsl (<< 7.0.3-6~)
 Replaces: php7.2-xsl (<< 7.0.3-6~)
-Provides: php-dom, php-simplexml, php-wddx, php-xml, php-xmlreader, php-xmlwriter, php-xsl, php7.2-dom, php7.2-simplexml, php7.2-wddx, php7.2-xmlreader, php7.2-xmlwriter, php7.2-xsl
-Filename: ./php7.2-xml_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 109016
-MD5sum: 7ca3becf0133a06035c5d8a6b9e7f8d5
-SHA1: 112804f73880178f416a5f72b0c557b64d175229
-SHA256: 6436a46014c182761fbeeba67be61696dcc275644e4a08225c93862112183b9d
-Section: php
-Priority: optional
+Filename: ./php7.2-xml_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 108916
+MD5sum: 760421dec9f4a88dfcb2ff33b5ede43f
+SHA1: 5bff3c9609a27aa5d7c0146deaff01c716b3e226
+SHA256: f76b3fa3d71d0a5845557c95716ff80dd9e04f489bcdfb036ca7bcf65499336b
+SHA512: 6013e4390925d29c360a7ded1918e9c0d89631dbf532783fde63fb850f45e806352599d76c5290af4a7d57f774319e8d6a4a4d927282229d4eb1139702f41d29
 Homepage: http://www.php.net/
 Description: DOM, SimpleXML, WDDX, XML, and XSL module for PHP
  This package provides the DOM, SimpleXML, WDDX, XML, and XSL module(s) for PHP.
@@ -879,20 +889,21 @@ Description: DOM, SimpleXML, WDDX, XML, and XSL module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-xmlrpc
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 60
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.14), libxmlrpc-epi0
 Provides: php-xmlrpc
-Filename: ./php7.2-xmlrpc_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 12844
-MD5sum: d87419ce497f519b7887508ab34e2137
-SHA1: 60b82d98155524aaf6023d1a5ebdaed5c34fe28d
-SHA256: 06ca84f7c12cf2686998b08bce6b7925e64dc0e31b50bba7512412293672e976
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.14), libxmlrpc-epi0
+Filename: ./php7.2-xmlrpc_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 12824
+MD5sum: 03ff03767b0804cd78ebe3b34895f1da
+SHA1: 4736ce8aae62b12dba4ed8936b89bd119047f1fe
+SHA256: 6d246e09022e29abdef8825500e28fb55be733695ce23e32a0b7a3d92c80f2d2
+SHA512: 0230edc0b0b1b8dd26219ee19e86a73f01acad3c251c69c26c06e61d0686efaf67ce00bfa773e194385df7cbd4f1fa6c46c98eedc206dd74900ce5f2495aa22b
 Homepage: http://www.php.net/
 Description: XMLRPC-EPI module for PHP
  This package provides the XMLRPC-EPI module(s) for PHP.
@@ -902,42 +913,70 @@ Description: XMLRPC-EPI module for PHP
  for web development and can be embedded into HTML.
 
 Package: php7.2-xsl
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: all
-Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
-Installed-Size: 92
-Depends: php7.2-common, php7.2-xml
-Filename: ./php7.2-xsl_7.2.34-66+ubuntu18.04.1+local1_all.deb
-Size: 61620
-MD5sum: 789c1a91ca6b9b763f169739b4e12529
-SHA1: 28b34549e467dd5260a5df11ca1b37f2cba712f1
-SHA256: b5f5d92e7107998a4a561a65f58384df10eeb7d37b83cb3907b02c5f0684e44e
-Section: php
+Version: 7.2.34-70+ubuntu18.04.1+local1
 Priority: optional
+Section: php
+Source: php7.2
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 96
+Depends: php7.2-common, php7.2-xml
+Filename: ./php7.2-xsl_7.2.34-70+ubuntu18.04.1+local1_all.deb
+Size: 65204
+MD5sum: 6742c803dbab6d9dfbc9bc9f6d28ff7c
+SHA1: a42b2f4bc45aa7a97fe05400aa0f819b3da3a052
+SHA256: 2c68fa7d67cb9cdbc8e217d8e7a722f3885bd082bc7fd77a618a00883e2cd5e5
+SHA512: bc679762e036edb89a7f63f5c845930f6bae3db91f890697c24e9a866e23e6c81618c49c863790d56a2d2d3941db610d85bbb5f1fbaf6a64577db31b8d837fae
 Homepage: http://www.php.net/
 Description: XSL module for PHP (dummy)
  This package is a transitional dummy package and can be safely
  removed.
 
 Package: php7.2-zip
-Source: php7.2
-Version: 7.2.34-66+ubuntu18.04.1+local1
 Architecture: amd64
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Source: php7.2
 Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
 Installed-Size: 88
-Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-66+ubuntu18.04.1+local1), libc6 (>= 2.27), libzip4 (>= 1.0)
 Provides: php-zip
-Filename: ./php7.2-zip_7.2.34-66+ubuntu18.04.1+local1_amd64.deb
-Size: 20400
-MD5sum: 8f850a0d24ecbd91469e038cf69ff22f
-SHA1: 3d6d273120c3abb6ccadeedc4eb585b1b7638397
-SHA256: 6ec23f6eddaf5ab18eb6033ee5c888ed93d0480f92c2f1c8e14c7a1919c1134a
-Section: php
-Priority: optional
+Depends: php-common (>= 1:81~), ucf, php7.2-common (= 7.2.34-70+ubuntu18.04.1+local1), libc6 (>= 2.27), libzip4 (>= 1.0)
+Filename: ./php7.2-zip_7.2.34-70+ubuntu18.04.1+local1_amd64.deb
+Size: 20340
+MD5sum: 77d153602f1c3ceabe8c86cc4825f884
+SHA1: 179f7f0bfd817497da4196aa9615dfdebd0aecbe
+SHA256: b0e83b84a75b3261762c28deef22f08db58eccb6bf32463aed9b02bcb3d81571
+SHA512: 9a23807ffe45e2b0f92f1c74ab084aad5117be655057d1fabd7e7f2945049778a0f57404746400a792c03dafd3557985a505131cdf50760f4c52dd02e0fa2ccf
 Homepage: http://www.php.net/
 Description: Zip module for PHP
  This package provides the Zip module(s) for PHP.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+
+Package: php7.2
+Architecture: all
+Version: 7.2.34-70+ubuntu18.04.1+local1
+Priority: optional
+Section: php
+Maintainer: Debian PHP Maintainers <team+pkg-php@tracker.debian.org>
+Installed-Size: 99
+Provides: php
+Depends: libapache2-mod-php7.2 | php7.2-fpm | php7.2-cgi, php7.2-common
+Filename: ./php7.2_7.2.34-70+ubuntu18.04.1+local1_all.deb
+Size: 65552
+MD5sum: 618a549d366908a92ace8a216280fefa
+SHA1: be7363070ba90f2a4a9f43ea4d198f9028d897a2
+SHA256: 6c4b4c9cec8c97932f06e8496caf9190ce757bbd275ba7e5b999af4b5b99886d
+SHA512: 0fd7f29a409e08bef2e437ff41be58b01643fe102ebca13e107f533f03bfebb1bb3e33c55eba8d936ca821fa0fc1fbda8e1f66e42956b60537c506da2f1dec96
+Homepage: http://www.php.net/
+Description: server-side, HTML-embedded scripting language (metapackage)
+ This package is a metapackage that, when installed, guarantees that you
+ have at least one of the four server-side versions of the PHP interpreter
+ installed. Removing this package won't remove PHP from your system, however
+ it may remove other packages that depend on this one.
  .
  PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
  open source general-purpose scripting language that is especially suited

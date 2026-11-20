@@ -1,0 +1,242 @@
+From 739b73a9960b48ee8cd05cbc5664de827c18f466 Mon Sep 17 00:00:00 2001
+From: Nebur692 <nebur_692@hotmail.com>
+Date: Fri, 20 Nov 2026 09:57:12 +0100
+Subject: [PATCH] Tests: keep the backport tests that Remi's 7.3.33-25 lacks
+
+Remi's 7.3.33-25 now carries the fixes this package used to backport on its
+own (CVE-2025-1218, CVE-2025-1735, GH-11274...), but not all of their tests.
+These are the tests of the previous php73-php-7.3.33-24.2.el8.legacy that
+are missing from Remi's tree: GHSA-hrwm-9436-5mv3 for pgsql and pdo_pgsql,
+GH-11274 and the xml_parse_into_struct() bounds test of GHSA-wg4p-4hqh-c3g9. They prove that Remi's fixes behave
+like ours.
+---
+ .../ghsa-hrwm-9436-5mv3-incomplete-mb.phpt    | 28 ++++++++
+ .../ghsa-hrwm-9436-5mv3-incomplete-mb.phpt    | 69 +++++++++++++++++++
+ ext/standard/tests/http/gh11274.phpt          | 62 +++++++++++++++++
+ ext/xml/tests/toffset_bounds_index.phpt       | 34 +++++++++
+ 4 files changed, 193 insertions(+)
+ create mode 100644 ext/pdo_pgsql/tests/ghsa-hrwm-9436-5mv3-incomplete-mb.phpt
+ create mode 100644 ext/pgsql/tests/ghsa-hrwm-9436-5mv3-incomplete-mb.phpt
+ create mode 100644 ext/standard/tests/http/gh11274.phpt
+ create mode 100644 ext/xml/tests/toffset_bounds_index.phpt
+
+diff --git a/ext/pdo_pgsql/tests/ghsa-hrwm-9436-5mv3-incomplete-mb.phpt b/ext/pdo_pgsql/tests/ghsa-hrwm-9436-5mv3-incomplete-mb.phpt
+new file mode 100644
+index 00000000..3092befa
+--- /dev/null
++++ b/ext/pdo_pgsql/tests/ghsa-hrwm-9436-5mv3-incomplete-mb.phpt
+@@ -0,0 +1,28 @@
++--TEST--
++#GHSA-hrwm-9436-5mv3: pdo_pgsql quote() with an incomplete multibyte character
++--DESCRIPTION--
++Same check as ghsa-hrwm-9436-5mv3.phpt, but with a string that ends in an
++incomplete UTF-8 sequence, which every libpq version reports as an escaping
++error (the upstream test needs a libpq that validates the whole sequence).
++--SKIPIF--
++<?php
++if (!extension_loaded('pdo') || !extension_loaded('pdo_pgsql')) die('skip not loaded');
++require_once dirname(__FILE__) . '/../../../ext/pdo/tests/pdo_test.inc';
++require_once dirname(__FILE__) . '/config.inc';
++PDOTest::skip();
++?>
++--FILE--
++<?php
++require_once dirname(__FILE__) . '/../../../ext/pdo/tests/pdo_test.inc';
++require_once dirname(__FILE__) . '/config.inc';
++$db = PDOTest::test_factory(dirname(__FILE__) . '/common.phpt');
++$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
++$db->exec("SET client_encoding TO 'UTF8'");
++
++var_dump($db->quote("ABC\xe3\x81"));
++var_dump($db->quote("ABC\xe3\x81", PDO::PARAM_LOB) !== false);
++
++?>
++--EXPECT--
++bool(false)
++bool(true)
+diff --git a/ext/pgsql/tests/ghsa-hrwm-9436-5mv3-incomplete-mb.phpt b/ext/pgsql/tests/ghsa-hrwm-9436-5mv3-incomplete-mb.phpt
+new file mode 100644
+index 00000000..b030cd4d
+--- /dev/null
++++ b/ext/pgsql/tests/ghsa-hrwm-9436-5mv3-incomplete-mb.phpt
+@@ -0,0 +1,69 @@
++--TEST--
++#GHSA-hrwm-9436-5mv3: pgsql escaping errors with an incomplete multibyte character
++--DESCRIPTION--
++Same checks as ghsa-hrwm-9436-5mv3.phpt, but with a string that ends in an
++incomplete UTF-8 sequence, which every libpq version reports as an escaping
++error (the upstream test needs a libpq that validates the whole sequence).
++--SKIPIF--
++<?php include("skipif.inc"); ?>
++--FILE--
++<?php
++
++include 'config.inc';
++
++$db = pg_connect($conn_str);
++pg_set_client_encoding($db, "UTF8");
++pg_query($db, "DROP TABLE IF EXISTS ghsa_hrmw_9436_5mv3_mb");
++pg_query($db, "CREATE TABLE ghsa_hrmw_9436_5mv3_mb (bar text);");
++
++$invalid = "ABC\xe3\x81";
++$flags = PGSQL_DML_NO_CONV | PGSQL_DML_ESCAPE;
++
++var_dump(pg_insert($db, $invalid, array('bar' => 'test'))); // table name str escape in php_pgsql_meta_data
++var_dump(pg_insert($db, "tbl.$invalid", array('bar' => 'test'))); // table name after the schema in php_pgsql_meta_data
++var_dump(pg_insert($db, 'ghsa_hrmw_9436_5mv3_mb', array('bar' => $invalid))); // converted value str escape in php_pgsql_convert
++var_dump(pg_insert($db, $invalid, array())); // ident escape in build_tablename
++var_dump(pg_insert($db, 'ghsa_hrmw_9436_5mv3_mb', array($invalid => 'foo'), $flags)); // ident escape for field php_pgsql_insert
++var_dump(pg_insert($db, 'ghsa_hrmw_9436_5mv3_mb', array('bar' => $invalid), $flags)); // str escape for field value in php_pgsql_insert
++var_dump(pg_update($db, 'ghsa_hrmw_9436_5mv3_mb', array('bar' => 'val'), array($invalid => 'test'), $flags)); // ident escape in build_assignment_string
++var_dump(pg_update($db, 'ghsa_hrmw_9436_5mv3_mb', array('bar' => 'val'), array('bar' => $invalid), $flags)); // invalid str escape in build_assignment_string
++try {
++    var_dump(pg_escape_string($db, $invalid));
++} catch (Exception $e) {
++    echo $e->getMessage(), "\n";
++}
++var_dump(pg_num_rows(pg_query($db, "SELECT * FROM ghsa_hrmw_9436_5mv3_mb")));
++
++?>
++--CLEAN--
++<?php
++include 'config.inc';
++$db = pg_connect($conn_str);
++pg_query($db, "DROP TABLE IF EXISTS ghsa_hrmw_9436_5mv3_mb");
++?>
++--EXPECTF--
++Warning: pg_insert(): Escaping table name 'ABC%s' failed in %s on line %d
++bool(false)
++
++Warning: pg_insert(): Escaping table name 'tbl.ABC%s' failed in %s on line %d
++bool(false)
++
++Notice: pg_insert(): String value escaping failed for PostgreSQL 'text' (bar) in %s on line %d
++bool(false)
++
++Notice: pg_insert(): Failed to escape table name 'ABC%s' in %s on line %d
++bool(false)
++
++Notice: pg_insert(): Failed to escape field 'ABC%s' in %s on line %d
++bool(false)
++
++Notice: pg_insert(): Failed to escape field 'bar' value in %s on line %d
++bool(false)
++
++Notice: pg_update(): Failed to escape field 'ABC%s' in %s on line %d
++bool(false)
++
++Notice: pg_update(): Failed to escape field 'bar' value in %s on line %d
++bool(false)
++Escaping string failed
++int(0)
+diff --git a/ext/standard/tests/http/gh11274.phpt b/ext/standard/tests/http/gh11274.phpt
+new file mode 100644
+index 00000000..25f9bdee
+--- /dev/null
++++ b/ext/standard/tests/http/gh11274.phpt
+@@ -0,0 +1,62 @@
++--TEST--
++GH-11274 (POST/PATCH request via file_get_contents + stream_context_create switches to GET after a HTTP 308 redirect)
++--INI--
++allow_url_fopen=1
++--CONFLICTS--
++server
++--FILE--
++<?php
++$serverCode = <<<'CODE'
++$uri = $_SERVER['REQUEST_URI'];
++if (isset($_GET["desired_status"]) && $uri[strlen($uri) - 1] !== '/') {
++    $desired_status = (int) $_GET["desired_status"];
++    http_response_code($desired_status);
++    header("Location: $uri/");
++    exit;
++}
++
++echo "method: ", $_SERVER['REQUEST_METHOD'], "; body: ", file_get_contents('php://input'), "\n";
++CODE;
++
++include __DIR__."/../../../../sapi/cli/tests/php_cli_server.inc";
++php_cli_server_start($serverCode, null);
++
++foreach ([null, 301, 302, 307, 308] as $status) {
++    if (is_null($status)) {
++        echo "-- Testing unredirected request --\n";
++    } else {
++        echo "-- Testing redirect status code $status --\n";
++    }
++    $suffix = $status ? "?desired_status=$status" : "";
++    echo file_get_contents("http://" . PHP_CLI_SERVER_ADDRESS . "/test$suffix", false, stream_context_create(['http' => ['method' => 'POST', 'header' => 'Content-type: application/x-www-form-urlencoded', 'content' => http_build_query(['hello' => 'world'])]]));
++    echo file_get_contents("http://" . PHP_CLI_SERVER_ADDRESS . "/test$suffix", false, stream_context_create(['http' => ['method' => 'PATCH', 'header' => 'Content-type: application/x-www-form-urlencoded', 'content' => http_build_query(['hello' => 'world'])]]));
++    echo file_get_contents("http://" . PHP_CLI_SERVER_ADDRESS . "/test/$suffix", false, stream_context_create(['http' => ['method' => 'POST', 'header' => 'Content-type: application/x-www-form-urlencoded', 'content' => http_build_query(['hello' => 'world'])]]));
++    echo file_get_contents("http://" . PHP_CLI_SERVER_ADDRESS . "/test/$suffix", false, stream_context_create(['http' => ['method' => 'PATCH', 'header' => 'Content-type: application/x-www-form-urlencoded', 'content' => http_build_query(['hello' => 'world'])]]));
++}
++?>
++--EXPECT--
++-- Testing unredirected request --
++method: POST; body: hello=world
++method: PATCH; body: hello=world
++method: POST; body: hello=world
++method: PATCH; body: hello=world
++-- Testing redirect status code 301 --
++method: GET; body: 
++method: GET; body: 
++method: GET; body: 
++method: GET; body: 
++-- Testing redirect status code 302 --
++method: GET; body: 
++method: GET; body: 
++method: GET; body: 
++method: GET; body: 
++-- Testing redirect status code 307 --
++method: POST; body: hello=world
++method: PATCH; body: hello=world
++method: POST; body: hello=world
++method: PATCH; body: hello=world
++-- Testing redirect status code 308 --
++method: POST; body: hello=world
++method: PATCH; body: hello=world
++method: POST; body: hello=world
++method: PATCH; body: hello=world
+diff --git a/ext/xml/tests/toffset_bounds_index.phpt b/ext/xml/tests/toffset_bounds_index.phpt
+new file mode 100644
+index 00000000..b64beb87
+--- /dev/null
++++ b/ext/xml/tests/toffset_bounds_index.phpt
+@@ -0,0 +1,34 @@
++--TEST--
++XML_OPTION_SKIP_TAGSTART bounds (index array keys)
++--SKIPIF--
++<?php
++if (!extension_loaded('xml')) die('skip xml extension not available');
++?>
++--FILE--
++<?php
++/* Fill the small string slots so that an out-of-bounds read past a tag
++ * name lands on non-zero bytes. */
++$fill = array();
++for ($i = 0; $i < 4096; $i++) {
++    $fill[] = str_repeat("A", 7);
++}
++for ($i = 0; $i < 4096; $i += 2) {
++    unset($fill[$i]);
++}
++$sample = "<?xml version=\"1.0\"?><test><child/></test>";
++$bad = array();
++for ($off = 5; $off <= 128; $off++) {
++    $parser = xml_parser_create();
++    xml_parser_set_option($parser, XML_OPTION_SKIP_TAGSTART, $off);
++    xml_parse_into_struct($parser, $sample, $vals, $index);
++    foreach (array_keys($index) as $key) {
++        if ($key !== "") {
++            $bad[] = $off;
++        }
++    }
++    xml_parser_free($parser);
++}
++var_dump(count($bad));
++?>
++--EXPECT--
++int(0)
+-- 
+2.55.0
+
