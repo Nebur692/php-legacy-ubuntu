@@ -4,7 +4,7 @@ version: 2
 data:
   name: php
   stream: remi-7.3
-  version: 20261110190000
+  version: 20261120120000
   context: 00000000
   arch: x86_64
   summary: PHP scripting language
