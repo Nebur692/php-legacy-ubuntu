@@ -4,7 +4,7 @@ Hash: SHA512
 Architectures: amd64
 Codename: bionic
 Components: main
-Date: Fri, 20 Nov 2026 22:12:23 +0000
+Date: Fri, 20 Nov 2026 23:45:01 +0000
 Description: Patched PHP rebuilds for Ubuntu bionic
 Label: php-legacy-ubuntu
 Origin: php-legacy-ubuntu
@@ -23,17 +23,17 @@ SHA512:
  cf831e25f6f60fe30403f84cfa637e6fc3222beea11713dab228950953b8ecb95dacfa6a4faa49834f75d25eb978e2a1b6939dae09f6316b5434fb8d81da218d            23127 main/binary-amd64/Packages.gz
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEE/V3pK4hvgRROyxTShcyiTJiQ1ScFAmsAxccACgkQhcyiTJiQ
-1SfLag//RWEIcpWnd90zIg9KPK1fMkDsGNdBFKZE4CqK5gYxtwXT8ByUBOYla7d5
-ufLob899n7OVeobZAfKnNL2NlU92gZWzCPTsjucOn7X59H3ceFy9g3REzWLSPBd5
-fHL3823iWTZ6t1yBbjfrR2NcsNS8+hkAXJeHcv5NBzNAEAI/MUFEAVSzQ5Io9zOu
-+lj/07rwLvaPsOprU0ttV38T/V7OpPKvkp7327R8ewuPk1udSNjP8U8IBg6GFqF3
-9BN0y5TmwNV466B4Lnarln4t4JGg6+HQb63SwoeYuuK5ugfkWjp79gagU+6nkzyF
-HU/304n6UqPENonUCpSqTF1hkrGF+Zycc96A8S7L0+72nYPX87pC8OO478umI2XQ
-xH8Gi87y9hnrGiEyplOM7gm59lqwwyN/tvy5DU7FlHPAQLuTMe2ZrMb6t42sK1x+
-qPoO9AQPuKDmem7rTOk5R4GkqTps70Au+3Y9/Jo+HICN239LpTswpNpSWk+Oaldq
-mMsm1HuYvzhATI+C1xogm+w24S1UG1pRgL78tyThZfyrh0c0ox7cUCnNUlSHwqBZ
-7UoV3QBcm/fUdwFff2QxRkABRfcuP/EFoXDnYcqaNiUQ0BkOY8XbdPcuRxdEClMb
-Tyjs7ZLTwUG6IVxjTCPeaeubir0aeN4lJdWJcXDaK/Qj6VHa7o8=
-=1ZwQ
+iQIzBAEBCgAdFiEE/V3pK4hvgRROyxTShcyiTJiQ1ScFAmsA230ACgkQhcyiTJiQ
+1SeVQA//UOczA1cpqoGF7f8hbPkFUzqc7zxjmOR3TSpUz7/dqyNn63wSkUGN8g8c
+Y4ya+O04PY6shLPftBB4aA6A9iAC5n2fpY9q4ET+9EB5kLIwnwpBnRUtPmeZz3A3
+sLJZWce1xmAA0EAlYSQyI+dyz+AKfJs1jDK9Dpqm9bJscIUEBte577i4xCOqnyfg
+02S+E/xkubhaJ/fPYszfDr7D2gbFXogCISi5dgL+sb1H3KqosxbWvJphFV7pDiY4
+aJ+S+kTuntS1KTpJzQWvrIVuOgq5VW8Dn3ZvbZgiiOQmbTYOHlzOhOzrN8MXjgzW
+DBsdFBGQ3BHhNK/8rtiqKEO2DWbIEXSVivTpd14vzYU3X7Sa5Q7LV+5cqeu4NAv9
+id/uuj0hOyqjLh2iMlRnqPtMCJZYoVh9LSgPNpMOh9TdQjdwAXKp/Y9tiAQL4xoy
+DPIt0kUMRfmCxya1TyidIky8HYWjyUtrJ5VcqA7F9p5GN53xZUqXzFA0Etxoqp8E
+0UzHM8TTRnYfyUjeq7b4uwwkWdTMSEJe7dfNgBj6VGbHsBonLXobYWI/Fi+7aEfG
+Gi6o0hjXgH1w6m1/zUcX5naq7VRXMLYijjFbbmpPsYuwtk77z8Ji9MCg8aDDFPa9
+GolN92m0vMK/NvXXll7ezNSotfkcJynyEAHmoEhpZwHQ1ruxVv4=
+=TIS5
 -----END PGP SIGNATURE-----

@@ -32,7 +32,7 @@ still run them can get the latest fixes, including **PHP2Shell (CVE-2026-109618 
 | 20.04 focal | php7.1 | `7.1.33-85+ubuntu20.04.1+local1` |
 | 20.04 focal | php7.3 | `7.3.33-41+ubuntu20.04.1+local1` |
 | 20.04 focal | php7.4 | `1:7.4.33-37+ubuntu20.04.1+local1` (replaces Ubuntu's own 7.4.3, see below) |
-| 20.04 focal | php8.2 | `8.2.35-1+ubuntu20.04.1+local1` (with `php8.2-imagick` 3.8.1) |
+| 20.04 focal | php8.2 | `8.2.36-2+ubuntu20.04.1+local1` (with `php8.2-imagick` 3.8.1) |
 | 20.04 focal | libgd3 | `2.2.5-5.2ubuntu2.4+local1` |
 
 - The source is the PPA's: the `.dsc`, `.orig` and `.debian.tar.xz` files sit next to each build in
@@ -55,7 +55,7 @@ still run them can get the latest fixes, including **PHP2Shell (CVE-2026-109618 
   (DoS through a multipart request with too many parts, `max_multipart_body_parts`), which the previous php7.0 and
   php7.1 builds here lacked. focal php5.6 (`+local4`) keeps its previous base and adds the release's fixes from the
   PPA's 5.6 backports (`92NN` patches). `session.upload_progress.enabled` is off by default now (CVE-2026-115560
-  mitigation). php8.2 for focal follows.
+  mitigation). php8.2 for focal is the PPA's 8.2.36 source rebuilt unchanged.
 - **`libgd3`** is the system GD library: every `php*-gd` uses it (and so do other programs). It is
   Ubuntu's own package with Debian's fix for CVE-2026-9672 (GIF reader) added; `apt-get upgrade` installs it.
 - Each branch folder also has its `SHA256SUMS` and the gzipped build log.
@@ -195,7 +195,7 @@ the missing fixes added, or Remi's latest builds unchanged where they already ha
 | `libicu69`, `libicu74`, `libicu78`, `oniguruma5php`, `qdbm` | Remi's | libraries the branches above need |
 
 - **PHP security release of 19 November 2026** (CVE-2026-129289, CVE-2026-115560, CVE-2026-126714, CVE-2026-129496,
-  CVE-2026-129538 and seven more): every CentOS 8 branch here already has it (`php82`, `php74`, `php73`, `php72`, `php71`, `php70`, `php56`); the Ubuntu builds are on the way. With it,
+  CVE-2026-129538 and seven more): every CentOS 8 branch here already has it (`php82`, `php74`, `php73`, `php72`, `php71`, `php70`, `php56`); so does every Ubuntu build here (see above). With it,
   `session.upload_progress.enabled` is **off by default** (the same mitigation Remi and Sury ship for CVE-2026-115560):
   set it to `On` in `php.ini` only if an application needs the upload progress.
 - Every package is **signed** with the same key as the apt repository, and so is the metadata.
@@ -318,7 +318,7 @@ CVE-2026-109619)**.
 | 20.04 focal | php7.1 | `7.1.33-85+ubuntu20.04.1+local1` |
 | 20.04 focal | php7.3 | `7.3.33-41+ubuntu20.04.1+local1` |
 | 20.04 focal | php7.4 | `1:7.4.33-37+ubuntu20.04.1+local1` (sustituye a la 7.4.3 del propio Ubuntu, ver abajo) |
-| 20.04 focal | php8.2 | `8.2.35-1+ubuntu20.04.1+local1` (con `php8.2-imagick` 3.8.1) |
+| 20.04 focal | php8.2 | `8.2.36-2+ubuntu20.04.1+local1` (con `php8.2-imagick` 3.8.1) |
 | 20.04 focal | libgd3 | `2.2.5-5.2ubuntu2.4+local1` |
 
 - El código es el del PPA: los `.dsc`, `.orig` y `.debian.tar.xz` están junto a cada compilación en
@@ -343,7 +343,7 @@ CVE-2026-109619)**.
   además **CVE-2023-0662** (DoS con una petición multipart de demasiadas partes, `max_multipart_body_parts`), que les
   faltaba a las php7.0 y php7.1 anteriores de aquí. La php5.6 de focal (`+local4`) conserva su base y añade los arreglos
   de la tanda desde los backports de 5.6 del PPA (parches `92NN`). `session.upload_progress.enabled` queda apagado por
-  defecto (mitigación de CVE-2026-115560). La php8.2 de focal, en camino.
+  defecto (mitigación de CVE-2026-115560). La php8.2 de focal es el código 8.2.36 del PPA recompilado sin cambios.
 - **`libgd3`** es la librería GD del sistema: la usan todos los `php*-gd` (y otros programas). Es el paquete de
   Ubuntu con el arreglo de Debian para CVE-2026-9672 (lector GIF); `apt-get upgrade` la instala.
 - Cada carpeta de rama lleva también su `SHA256SUMS` y el registro de compilación comprimido.
@@ -485,7 +485,7 @@ cuando ya los tienen todos.
 | `libicu69`, `libicu74`, `libicu78`, `oniguruma5php`, `qdbm` | las de Remi | librerías que necesitan las ramas de arriba |
 
 - **Tanda de seguridad de PHP del 19 de noviembre de 2026** (CVE-2026-129289, CVE-2026-115560, CVE-2026-126714,
-  CVE-2026-129496, CVE-2026-129538 y siete más): todas las ramas de CentOS 8 de aquí ya la tienen (`php82`, `php74`, `php73`, `php72`, `php71`, `php70`, `php56`); las de Ubuntu, en camino. Con ella,
+  CVE-2026-129496, CVE-2026-129538 y siete más): todas las ramas de CentOS 8 de aquí ya la tienen (`php82`, `php74`, `php73`, `php72`, `php71`, `php70`, `php56`); y todas las de Ubuntu de aquí también (ver arriba). Con ella,
   `session.upload_progress.enabled` queda **apagado por defecto** (la misma mitigación que publican Remi y Sury para
   CVE-2026-115560): ponlo a `On` en `php.ini` solo si alguna aplicación necesita el progreso de subida.
 - Todos los paquetes están **firmados** con la misma clave que el repositorio apt, y los metadatos también.

@@ -22,7 +22,9 @@ printf 'Package: php-common\nPin: release o=php-legacy-ubuntu\nPin-Priority: 99\
 apt-get update -qq >/dev/null 2>&1
 [ "$CN" = bionic ] && apt-get install -y -qq php-common=2:101~+ubuntu22.04.1+deb.sury.org+1 >/dev/null 2>&1
 P="$R-cli $R-mysql $R-mbstring $R-xml $R-zip $R-gd $R-bz2 $R-curl $R-intl $R-bcmath $R-opcache"
-for x in mcrypt json; do apt-cache show $R-$x >/dev/null 2>&1 && P="$P $R-$x"; done
+# EN: only when apt has a real package for it: in PHP 8 json is built in and php8.x-json is only a virtual name
+# ES: solo si apt tiene un paquete de verdad: en PHP 8 json va dentro y php8.x-json es solo un nombre virtual
+for x in mcrypt json; do apt-cache policy $R-$x 2>/dev/null | grep -q "Candidate: [0-9]" && P="$P $R-$x"; done
 [ $SAPI = modphp ] && P="$P libapache2-mod-$R" || P="$P $R-fpm"
 apt-get install -y -qq --no-install-recommends $P >/tmp/i 2>&1 || { tail -5 /tmp/i; mal "instalar $P"; }
 echo "[$CN $R $REF $SAPI] $(dpkg-query -W -f='${Version}' $R-cli); libgd3 $(dpkg-query -W -f='${Version}' libgd3)" | tee $O/version
