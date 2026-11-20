@@ -7,6 +7,8 @@
 #     Env: OUT (./verify-out), JOBS (8 run-tests processes per side), CPUS (8 per side), MEM (4g per side), TESTS (subset),
 #     WORK (host dir for the test trees, instead of the container layer; on a disk, see work-en-disco.sh),
 #     SERIE=1 (one side after the other).
+#     CPUSET / CPUSET_MEMS: pin each side to those host CPUs / NUMA node (as Unraid's CPU pinning does).
+#     CPU_SHARES (e.g. 256): lower CPU weight than the host's other containers.
 #     Checking the split itself: run-el8.sh DIR DIR <scl> with JOBS_BEFORE=1 must be identical (serial vs split).
 #     Exit 0 = identical; 1 = differences (a fix's own tests may change on purpose: check each one); 2 = a step failed.
 # ES: Comprueba que una rama de EL8 recompilada se comporta como la compilación anterior. Cada carpeta tiene la
@@ -16,6 +18,8 @@
 #     Entorno: OUT (./verify-out), JOBS (8 procesos de run-tests por lado), CPUS (8 por lado), MEM (4g por lado), TESTS (una parte),
 #     WORK (carpeta del host para los árboles de pruebas, en vez de la capa del contenedor; en un disco, ver
 #     work-en-disco.sh), SERIE=1 (un lado tras otro).
+#     CPUSET / CPUSET_MEMS: fija cada lado a esas CPU / ese nodo NUMA del anfitrión (como el CPU pinning de Unraid).
+#     CPU_SHARES (p. ej. 256): menos peso de CPU que el resto de contenedores del anfitrión.
 #     Para comprobar el propio reparto: run-el8.sh DIR DIR <scl> con JOBS_BEFORE=1 tiene que salir idéntico (serie frente a reparto).
 #     Sale 0 = idéntico; 1 = diferencias (las pruebas de un arreglo pueden cambiar a propósito: revisar cada una);
 #     2 = un paso falló.
@@ -29,7 +33,7 @@ for x in "$na:$A" "$nd:$D"; do
   n=${x%%:*}; dir=${x#*:}; j=${JOBS:-8}; [ "$n" = "$na" ] && j=${JOBS_BEFORE:-$j}
   # EN: WORK=<host dir>: the test tree goes there, not into the container layer / ES: el árbol de pruebas va ahí, no a la capa
   t=(); [ -n "${WORK:-}" ] && { mkdir -p "$WORK/$n"; t=(-v "$(realpath "$WORK")/$n":/t); }
-  docker run --rm --name "verify-el8-$$-$n" --cpus "${CPUS:-8}" --memory "${MEM:-4g}" -e JOBS="$j" -e TESTS \
+  docker run --rm --name "verify-el8-$$-$n" --cpus "${CPUS:-8}" ${CPUSET:+--cpuset-cpus "$CPUSET"} ${CPUSET_MEMS:+--cpuset-mems "$CPUSET_MEMS"} ${CPU_SHARES:+--cpu-shares "$CPU_SHARES"} --memory "${MEM:-4g}" -e JOBS="$j" -e TESTS \
     -e EXCLUDE=/v/el8-exclude.txt -v "$dir":/rpms:ro -v "$H":/v:ro -v "$OUT":/out "${t[@]}" centos:8 \
     bash /v/suite-el8.sh "$n" "$SCL" > "$OUT/$n.run.txt" 2>&1 &
   [ "${SERIE:-}" = 1 ] && wait

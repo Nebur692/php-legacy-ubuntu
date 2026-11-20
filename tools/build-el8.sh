@@ -10,6 +10,9 @@
 #     libicu74-devel so that php74 links against the same ICU as Remi's build and not the newest one), MOD (module
 #     stream enabled before builddep, e.g. php:remi-7.3 for the modular build, with scl "-"), DIST (default .el8.legacy;
 #     .module_php.7.3.el8.legacy for the modular build, like Remi's .module_php.7.3.el8.remi).
+#     CPUSET (e.g. 3,4,5,7,27,28,29,31) pins the container to those host CPUs, as Unraid's CPU pinning does, and
+#     CPUSET_MEMS (e.g. 0) to their NUMA node: on a hot or shared host this keeps the build off the other cores.
+#     CPU_SHARES (e.g. 256, Docker's default is 1024) gives the build a lower CPU weight than the host's other containers.
 # ES: Recompila un SRPM de Remi para CentOS 8.5 en un contenedor de usar y tirar: los RPM (sin debuginfo) van a
 #     <carpeta-salida>, el registro a <carpeta-salida>/build.log y el árbol de código preparado (para la suite)
 #     a <carpeta-salida>/src.tar.gz. El %check de Remi se salta (--nocheck): solo prueba la compilación mínima de
@@ -20,6 +23,9 @@
 #     antes de builddep, p. ej. libicu74-devel para que php74 enlace con la misma ICU que Remi y no con la más nueva),
 #     MOD (flujo de módulo que se activa antes de builddep, p. ej. php:remi-7.3 para la compilación modular, con scl
 #     "-"), DIST (por defecto .el8.legacy; .module_php.7.3.el8.legacy para la modular, como .module_php.7.3.el8.remi).
+#     CPUSET (p. ej. 3,4,5,7,27,28,29,31) fija el contenedor a esas CPU del anfitrión, como el CPU pinning de Unraid,
+#     y CPUSET_MEMS (p. ej. 0) a su nodo NUMA: en un anfitrión caliente o compartido deja libres los demás núcleos.
+#     CPU_SHARES (p. ej. 256; Docker usa 1024 por defecto) da a la compilación menos peso de CPU que al resto de contenedores.
 set -euo pipefail
 SRPM=$(realpath "${1:?file.src.rpm}"); SCL=${2:?scl|-}; OUT=${3:?out-dir}; CC_DIR=${4:-}
 mkdir -p "$OUT"; OUT=$(realpath "$OUT")
@@ -31,7 +37,7 @@ if [ -n "${WORK:-}" ]; then
   mkdir -p "$WORK/rpmbuild" "$WORK/dnf"; W=$(realpath "$WORK")
   V+=(-v "$W/rpmbuild":/root/rpmbuild -v "$W/dnf":/var/cache/dnf)
 fi
-docker run --rm --name "build-el8-$$" --cpus "${CPUS:-8}" --memory "${MEM:-6g}" --memory-swap "${MEM:-6g}" \
+docker run --rm --name "build-el8-$$" --cpus "${CPUS:-8}" ${CPUSET:+--cpuset-cpus "$CPUSET"} ${CPUSET_MEMS:+--cpuset-mems "$CPUSET_MEMS"} ${CPU_SHARES:+--cpu-shares "$CPU_SHARES"} --memory "${MEM:-6g}" --memory-swap "${MEM:-6g}" \
   -e SCL="$SCL" -e J="${CPUS:-8}" -e PRE="${PRE:-}" -e MOD="${MOD:-}" -e DIST="${DIST:-.el8.legacy}" "${V[@]}" "${IMG:-centos:8}" bash -c '
 set -uo pipefail
 exec > >(tee /out/build.log) 2>&1
