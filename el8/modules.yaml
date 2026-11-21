@@ -4,7 +4,7 @@ version: 2
 data:
   name: php
   stream: remi-7.2
-  version: 20261120120000
+  version: 20261121100000
   context: 00000000
   arch: x86_64
   summary: PHP scripting language
@@ -60,40 +60,40 @@ data:
     - php-fpm
   artifacts:
     rpms:
-    - php-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-bcmath-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-cli-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-common-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-dba-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-dbg-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-devel-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-embedded-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-enchant-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-fpm-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-gd-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-gmp-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-imap-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-interbase-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-intl-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-json-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-ldap-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-litespeed-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-mbstring-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-mysqlnd-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-odbc-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-opcache-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-pdo-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-pdo-dblib-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-pgsql-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-process-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-pspell-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-recode-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-snmp-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-soap-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-sodium-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-tidy-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-xml-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
-    - php-xmlrpc-0:7.2.34-32.1.module_php.7.2.el8.legacy.x86_64
+    - php-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-bcmath-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-cli-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-common-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-dba-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-dbg-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-devel-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-embedded-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-enchant-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-fpm-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-gd-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-gmp-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-imap-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-interbase-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-intl-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-json-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-ldap-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-litespeed-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-mbstring-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-mysqlnd-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-odbc-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-opcache-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-pdo-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-pdo-dblib-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-pgsql-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-process-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-pspell-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-recode-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-snmp-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-soap-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-sodium-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-tidy-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-xml-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
+    - php-xmlrpc-0:7.2.34-32.2.module_php.7.2.el8.legacy.x86_64
 ...
 ---
 document: modulemd
@@ -101,7 +101,7 @@ version: 2
 data:
   name: php
   stream: remi-7.3
-  version: 20261120120000
+  version: 20261121100000
   context: 00000000
   arch: x86_64
   summary: PHP scripting language
@@ -157,40 +157,40 @@ data:
     - php-fpm
   artifacts:
     rpms:
-    - php-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-bcmath-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-cli-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-common-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-dba-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-dbg-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-devel-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-embedded-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-enchant-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-fpm-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-gd-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-gmp-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-imap-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-interbase-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-intl-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-json-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-ldap-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-litespeed-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-mbstring-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-mysqlnd-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-odbc-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-opcache-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-pdo-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-pdo-dblib-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-pgsql-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-process-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-pspell-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-recode-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-snmp-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-soap-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-sodium-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-tidy-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-xml-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
-    - php-xmlrpc-0:7.3.33-25.1.module_php.7.3.el8.legacy.x86_64
+    - php-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-bcmath-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-cli-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-common-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-dba-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-dbg-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-devel-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-embedded-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-enchant-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-fpm-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-gd-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-gmp-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-imap-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-interbase-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-intl-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-json-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-ldap-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-litespeed-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-mbstring-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-mysqlnd-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-odbc-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-opcache-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-pdo-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-pdo-dblib-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-pgsql-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-process-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-pspell-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-recode-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-snmp-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-soap-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-sodium-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-tidy-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-xml-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
+    - php-xmlrpc-0:7.3.33-25.2.module_php.7.3.el8.legacy.x86_64
 ...
 ---
 document: modulemd
