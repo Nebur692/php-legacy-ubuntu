@@ -1,0 +1,82 @@
+From 769bb412c70e63a8b065cf0bc172423f3c56a41f Mon Sep 17 00:00:00 2001
+From: "Christoph M. Becker" <cmbecker69@gmx.de>
+Date: Sat, 21 Nov 2026 07:29:30 +0100
+Subject: [PATCH] Fix #71848: getimagesize with $imageinfo returns false
+ [backport to PHP 5.6]
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+php_read_APP() treated a short read of an APPn segment as success only when
+nothing at all was read; it now requires the whole segment, as upstream.
+
+Origin: upstream fix for bug #71848, as shipped by Ondřej Surý for PHP 5.6
+(debian/patches/0287-Fix-71848-getimagesize-with-imageinfo-returns-false.patch).
+Adapted test: the 699-byte bug71848.jpg is embedded in base64 and written to
+a temporary file, because dpkg-source cannot apply a binary file from a
+patch.
+---
+ ext/standard/image.c                   |  2 +-
+ ext/standard/tests/image/bug71848.phpt | 37 ++++++++++++++++++++++++++
+ 2 files changed, 38 insertions(+), 1 deletion(-)
+ create mode 100644 ext/standard/tests/image/bug71848.phpt
+
+diff --git a/ext/standard/image.c b/ext/standard/image.c
+index db64b3a4..03d45e88 100644
+--- a/ext/standard/image.c
++++ b/ext/standard/image.c
+@@ -440,7 +440,7 @@ static int php_read_APP(php_stream * stream, unsigned int marker, zval *info TSR
+ 
+ 	buffer = emalloc(length);
+ 
+-	if (php_stream_read(stream, buffer, (long) length) <= 0) {
++	if (php_stream_read(stream, buffer, (long) length) != length) {
+ 		efree(buffer);
+ 		return 0;
+ 	}
+diff --git a/ext/standard/tests/image/bug71848.phpt b/ext/standard/tests/image/bug71848.phpt
+new file mode 100644
+index 00000000..25a6218e
+--- /dev/null
++++ b/ext/standard/tests/image/bug71848.phpt
+@@ -0,0 +1,37 @@
++--TEST--
++Bug #71848 (getimagesize with $imageinfo returns false)
++--FILE--
++<?php
++/* The upstream test ships bug71848.jpg; here the same 699-byte image is embedded in base64,
++ * because dpkg-source cannot apply a binary file from a patch. */
++$file = __DIR__ . '/bug71848-tmp.jpg';
++file_put_contents($file, base64_decode('/9j/4AAQSkZJRgABAQAAAQABAAD/5QAC//4APkNSRUFUT1I6IGdkLWpwZWcgdjEuMCAodXNpbmcgSUpHIEpQRUcgdjkwKSwgZGVmYXVsdCBxdWFsaXR5Cv/bAEMACAYGBwYFCAcHBwkJCAoMFA0MCwsMGRITDxQdGh8eHRocHCAkLicgIiwjHBwoNyksMDE0NDQfJzk9ODI8LjM0Mv/bAEMBCQkJDAsMGA0NGDIhHCEyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMv/AABEIAAgACAMBIgACEQEDEQH/xAAfAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgv/xAC1EAACAQMDAgQDBQUEBAAAAX0BAgMABBEFEiExQQYTUWEHInEUMoGRoQgjQrHBFVLR8CQzYnKCCQoWFxgZGiUmJygpKjQ1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4eLj5OXm5+jp6vHy8/T19vf4+fr/xAAfAQADAQEBAQEBAQEBAAAAAAAAAQIDBAUGBwgJCgv/xAC1EQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2gAMAwEAAhEDEQA/APf6KKKAP//Z'));
++var_dump(getimagesize($file, $info));
++var_dump(array_keys($info));
++unlink($file);
++?>
++===DONE===
++--EXPECT--
++array(7) {
++  [0]=>
++  int(8)
++  [1]=>
++  int(8)
++  [2]=>
++  int(2)
++  [3]=>
++  string(20) "width="8" height="8""
++  ["bits"]=>
++  int(8)
++  ["channels"]=>
++  int(3)
++  ["mime"]=>
++  string(10) "image/jpeg"
++}
++array(2) {
++  [0]=>
++  string(4) "APP0"
++  [1]=>
++  string(4) "APP5"
++}
++===DONE===
+-- 
+2.55.0
+

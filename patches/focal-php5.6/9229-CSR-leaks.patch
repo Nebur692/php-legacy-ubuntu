@@ -1,0 +1,129 @@
+From d0cbc9fabf6727c8744762294223abddf3ab6f44 Mon Sep 17 00:00:00 2001
+From: Nikita Popov <nikita.ppv@gmail.com>
+Date: Sat, 21 Nov 2026 07:30:10 +0100
+Subject: [PATCH] Fix CSR leaks in openssl [backport to PHP 5.6]
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+openssl_csr_get_subject() and openssl_csr_get_public_key() never freed a
+CSR they had parsed from a string (not a resource): about 9 kB lost on
+every call (268 MB after 31000 calls of each, measured on the previous
+php70 build; the code is the same here).
+
+Origin: upstream "Fix CSR leaks in openssl", as shipped by Ondřej Surý for
+PHP 5.6 (debian/patches/0385-Fix-CSR-leaks-in-openssl.patch).
+This tree has the OpenSSL 1.1 X509_REQ_dup() code (like 7.0), so it is written like upstream's 7.2 (orig_csr), with PHP 5's check:
+csr_resource == -1 means the CSR was parsed for this call.
+csr_get_leaks.phpt makes the leak visible through the resident set size
+(OpenSSL allocates with malloc, which memory_get_usage() does not see).
+---
+ ext/openssl/openssl.c                | 28 +++++++++++++++++--------
+ ext/openssl/tests/csr_get_leaks.phpt | 31 ++++++++++++++++++++++++++++
+ 2 files changed, 50 insertions(+), 9 deletions(-)
+ create mode 100644 ext/openssl/tests/csr_get_leaks.phpt
+
+diff --git a/ext/openssl/openssl.c b/ext/openssl/openssl.c
+index 55099beb..64e39c29 100644
+--- a/ext/openssl/openssl.c
++++ b/ext/openssl/openssl.c
+@@ -3349,7 +3349,10 @@ PHP_FUNCTION(openssl_csr_get_subject)
+ 
+ 	array_init(return_value);
+ 	add_assoc_name_entry(return_value, NULL, subject, use_shortnames TSRMLS_CC);
+-	return;
++
++	if (csr_resource == -1) {
++		X509_REQ_free(csr);
++	}
+ }
+ /* }}} */
+ 
+@@ -3361,16 +3364,16 @@ PHP_FUNCTION(openssl_csr_get_public_key)
+ 	zend_bool use_shortnames = 1;
+ 	long csr_resource;
+ 
+-	X509_REQ * csr;
++	X509_REQ *orig_csr, *csr;
+ 	EVP_PKEY *tpubkey;
+ 
+ 	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "Z|b", &zcsr, &use_shortnames) == FAILURE) {
+ 		return;
+ 	}
+ 
+-	csr = php_openssl_csr_from_zval(zcsr, 0, &csr_resource TSRMLS_CC);
++	orig_csr = php_openssl_csr_from_zval(zcsr, 0, &csr_resource TSRMLS_CC);
+ 
+-	if (csr == NULL) {
++	if (orig_csr == NULL) {
+ 		RETURN_FALSE;
+ 	}
+ 
+@@ -3380,15 +3383,22 @@ PHP_FUNCTION(openssl_csr_get_public_key)
+ 	 * a private key, it will be returned including the private part.
+ 	 * If we duplicate it, then we get just the public part which is
+ 	 * the same behavior as for OpenSSL 1.0 */
+-	csr = X509_REQ_dup(csr);
++	csr = X509_REQ_dup(orig_csr);
++#else
++	csr = orig_csr;
+ #endif
+ 	/* Retrieve the public key from the CSR */
+ 	tpubkey = X509_REQ_get_pubkey(csr);
+ 
+-#if OPENSSL_VERSION_NUMBER >= 0x10100000L && !defined(LIBRESSL_VERSION_NUMBER)
+-	/* We need to free the CSR as it was duplicated */
+-	X509_REQ_free(csr);
+-#endif
++	if (csr != orig_csr) {
++		/* We need to free the duplicated CSR */
++		X509_REQ_free(csr);
++	}
++
++	if (csr_resource == -1) {
++		/* We also need to free the original CSR if it was freshly created */
++		X509_REQ_free(orig_csr);
++	}
+ 	RETVAL_RESOURCE(zend_list_insert(tpubkey, le_key TSRMLS_CC));
+ 	return;
+ }
+diff --git a/ext/openssl/tests/csr_get_leaks.phpt b/ext/openssl/tests/csr_get_leaks.phpt
+new file mode 100644
+index 00000000..8a7917c8
+--- /dev/null
++++ b/ext/openssl/tests/csr_get_leaks.phpt
+@@ -0,0 +1,31 @@
++--TEST--
++openssl_csr_get_subject() and openssl_csr_get_public_key() free a CSR given as a string
++--SKIPIF--
++<?php
++if (!extension_loaded('openssl')) die('skip openssl extension not loaded');
++if (!is_readable('/proc/self/status')) die('skip needs /proc/self/status');
++?>
++--FILE--
++<?php
++/* The CSR parsed from the string is allocated by OpenSSL (malloc), which
++ * memory_get_usage() does not see: look at the resident set size instead. */
++function rss_kb() {
++    preg_match('/^VmRSS:\s+(\d+) kB/m', file_get_contents('/proc/self/status'), $m);
++    return (int) $m[1];
++}
++$csr = file_get_contents(dirname(__FILE__) . '/cert.csr');
++for ($i = 0; $i < 1000; $i++) {
++    openssl_csr_get_subject($csr);
++    $key = openssl_csr_get_public_key($csr);
++}
++$rss = rss_kb();
++for ($i = 0; $i < 30000; $i++) {
++    openssl_csr_get_subject($csr);
++    $key = openssl_csr_get_public_key($csr);
++}
++$growth = rss_kb() - $rss;
++var_dump($growth < 8192);
++if ($growth >= 8192) echo "grew by $growth kB\n";
++?>
++--EXPECT--
++bool(true)
+-- 
+2.55.0
+

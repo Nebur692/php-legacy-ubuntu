@@ -24,12 +24,12 @@ still run them can get the latest fixes, including **PHP2Shell (CVE-2026-109618 
 
 | Ubuntu | Branch | Version |
 |---|---|---|
-| 18.04 bionic | php7.1 | `7.1.33-85+ubuntu18.04.1+local1` |
+| 18.04 bionic | php7.1 | `7.1.33-85+ubuntu18.04.1+local2` |
 | 18.04 bionic | php7.2 | `7.2.34-70+ubuntu18.04.1+local1` |
 | 18.04 bionic | libgd3 | `2.2.5-4ubuntu0.5+local1` |
-| 20.04 focal | php5.6 | `5.6.40-105+ubuntu20.04.1+local4` |
-| 20.04 focal | php7.0 | `7.0.33-97+ubuntu20.04.1+local1` |
-| 20.04 focal | php7.1 | `7.1.33-85+ubuntu20.04.1+local1` |
+| 20.04 focal | php5.6 | `5.6.40-105+ubuntu20.04.1+local5` |
+| 20.04 focal | php7.0 | `7.0.33-97+ubuntu20.04.1+local2` |
+| 20.04 focal | php7.1 | `7.1.33-85+ubuntu20.04.1+local2` |
 | 20.04 focal | php7.3 | `7.3.33-41+ubuntu20.04.1+local1` |
 | 20.04 focal | php7.4 | `1:7.4.33-37+ubuntu20.04.1+local1` (replaces Ubuntu's own 7.4.3, see below) |
 | 20.04 focal | php8.2 | `8.2.36-2+ubuntu20.04.1+local1` (with `php8.2-imagick` 3.8.1) |
@@ -56,6 +56,13 @@ still run them can get the latest fixes, including **PHP2Shell (CVE-2026-109618 
   php7.1 builds here lacked. focal php5.6 (`+local4`) keeps its previous base and adds the release's fixes from the
   PPA's 5.6 backports (`92NN` patches). `session.upload_progress.enabled` is off by default now (CVE-2026-115560
   mitigation). php8.2 for focal is the PPA's 8.2.36 source rebuilt unchanged.
+- **focal php5.6 `+local5`** adds five crash and leak fixes without a CVE from the PPA's 5.6 backports: undefined
+  behaviour in `round()`, a bailout in SOAP, a segfault in `Locale::filterMatches()` (#78804), `openssl_csr_get_subject()`/
+  `openssl_csr_get_public_key()` leaking a CSR given as a string (ported by hand: the PPA's patch sits on its OpenSSL 3
+  rework) and `getimagesize()` with `$imageinfo` returning false (#71848), patches `9225`-`9229`. The PPA's php7.0 and
+  php7.1 sources already carry them; **focal php7.0/php7.1 and bionic php7.1 `+local2`** only change the
+  GHSA-mmf9-xm3v-hg2x test to take the fastest of three runs (`9110`), so it no longer fails now and then on a busy
+  machine (php5.6: `9230`).
 - **`libgd3`** is the system GD library: every `php*-gd` uses it (and so do other programs). It is
   Ubuntu's own package with Debian's fix for CVE-2026-9672 (GIF reader) added; `apt-get upgrade` installs it.
 - Each branch folder also has its `SHA256SUMS` and the gzipped build log.
@@ -310,12 +317,12 @@ CVE-2026-109619)**.
 
 | Ubuntu | Rama | Versión |
 |---|---|---|
-| 18.04 bionic | php7.1 | `7.1.33-85+ubuntu18.04.1+local1` |
+| 18.04 bionic | php7.1 | `7.1.33-85+ubuntu18.04.1+local2` |
 | 18.04 bionic | php7.2 | `7.2.34-70+ubuntu18.04.1+local1` |
 | 18.04 bionic | libgd3 | `2.2.5-4ubuntu0.5+local1` |
-| 20.04 focal | php5.6 | `5.6.40-105+ubuntu20.04.1+local4` |
-| 20.04 focal | php7.0 | `7.0.33-97+ubuntu20.04.1+local1` |
-| 20.04 focal | php7.1 | `7.1.33-85+ubuntu20.04.1+local1` |
+| 20.04 focal | php5.6 | `5.6.40-105+ubuntu20.04.1+local5` |
+| 20.04 focal | php7.0 | `7.0.33-97+ubuntu20.04.1+local2` |
+| 20.04 focal | php7.1 | `7.1.33-85+ubuntu20.04.1+local2` |
 | 20.04 focal | php7.3 | `7.3.33-41+ubuntu20.04.1+local1` |
 | 20.04 focal | php7.4 | `1:7.4.33-37+ubuntu20.04.1+local1` (sustituye a la 7.4.3 del propio Ubuntu, ver abajo) |
 | 20.04 focal | php8.2 | `8.2.36-2+ubuntu20.04.1+local1` (con `php8.2-imagick` 3.8.1) |
@@ -344,6 +351,13 @@ CVE-2026-109619)**.
   faltaba a las php7.0 y php7.1 anteriores de aquí. La php5.6 de focal (`+local4`) conserva su base y añade los arreglos
   de la tanda desde los backports de 5.6 del PPA (parches `92NN`). `session.upload_progress.enabled` queda apagado por
   defecto (mitigación de CVE-2026-115560). La php8.2 de focal es el código 8.2.36 del PPA recompilado sin cambios.
+- **La php5.6 de focal `+local5`** añade cinco arreglos de caídas y fugas sin CVE de los backports del PPA para la 5.6:
+  comportamiento indefinido en `round()`, una salida abrupta (bailout) en SOAP, un segfault en `Locale::filterMatches()`
+  (#78804), la fuga de `openssl_csr_get_subject()`/`openssl_csr_get_public_key()` con un CSR dado como texto (portado
+  a mano: el parche del PPA va sobre su reforma para OpenSSL 3) y `getimagesize()` con `$imageinfo` que devolvía false
+  (#71848), parches `9225`-`9229`. El código del PPA de php7.0 y php7.1 ya los trae; **las php7.0/php7.1 de focal y la
+  php7.1 de bionic `+local2`** solo cambian la prueba de GHSA-mmf9-xm3v-hg2x para que se quede con la más rápida de tres
+  medidas (`9110`) y no falle de vez en cuando en una máquina cargada (php5.6: `9230`).
 - **`libgd3`** es la librería GD del sistema: la usan todos los `php*-gd` (y otros programas). Es el paquete de
   Ubuntu con el arreglo de Debian para CVE-2026-9672 (lector GIF); `apt-get upgrade` la instala.
 - Cada carpeta de rama lleva también su `SHA256SUMS` y el registro de compilación comprimido.

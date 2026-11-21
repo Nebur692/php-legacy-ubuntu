@@ -1,0 +1,52 @@
+From d2ff05dec9301acdf791908e0e9b65344c858759 Mon Sep 17 00:00:00 2001
+From: Nebur692 <nebur_692@hotmail.com>
+Date: Sat, 21 Nov 2026 07:30:10 +0100
+Subject: [PATCH] tests: GHSA-mmf9-xm3v-hg2x takes the fastest of three runs of
+ each size
+
+On a busy machine one slow run of the big size could make the ratio jump
+and fail on fixed code. Each size is now requested three times and the
+fastest run counts (load only ever makes a run slower). Checked on the 7.0
+build host with two CPU burners on the same cores, 5 runs each: unfixed
+code FAIL 5/5, fixed PASS 5/5.
+---
+ ext/standard/tests/http/ghsa-mmf9-xm3v-hg2x.phpt | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
+
+diff --git a/ext/standard/tests/http/ghsa-mmf9-xm3v-hg2x.phpt b/ext/standard/tests/http/ghsa-mmf9-xm3v-hg2x.phpt
+index 6b5aaf32..5c868aa9 100644
+--- a/ext/standard/tests/http/ghsa-mmf9-xm3v-hg2x.phpt
++++ b/ext/standard/tests/http/ghsa-mmf9-xm3v-hg2x.phpt
+@@ -13,8 +13,8 @@ $serverCode = <<<'CODE'
+         "tcp://127.0.0.1:0", $errno, $errstr, STREAM_SERVER_BIND | STREAM_SERVER_LISTEN, $ctxt);
+     phpt_notify_server_start($server);
+ 
+-    /* Two requests: one header folded over 25000 lines, then over 200000 (8 times more). */
+-    foreach ([25000, 200000] as $lines) {
++    /* Six requests: one header folded over 25000 lines three times, then over 200000 (8 times more) three times. */
++    foreach ([25000, 25000, 25000, 200000, 200000, 200000] as $lines) {
+         $conn = stream_socket_accept($server);
+      /* Read the whole request before answering: the 5.6 client sends the final "\r\n" apart, and closing
+       * before it arrives resets the connection ("send of 2 bytes failed ... Connection reset by peer"). */
+@@ -26,11 +26,15 @@ CODE;
+ 
+ $clientCode = <<<'CODE'
+     $time = [];
+-    foreach ([25000, 200000] as $lines) {
++    foreach ([25000, 25000, 25000, 200000, 200000, 200000] as $i => $lines) {
+         $start = microtime(true);
+         $body = trim(file_get_contents("http://{{ ADDR }}"));
+-        $time[$lines] = microtime(true) - $start;
+-        var_dump($body, count($http_response_header), strlen($http_response_header[1]), $http_response_header[2]);
++        $t = microtime(true) - $start;
++        /* the fastest of three runs: a busy machine only ever makes a run slower */
++        $time[$lines] = isset($time[$lines]) ? min($time[$lines], $t) : $t;
++        if ($i == 0 || $i == 3) {
++            var_dump($body, count($http_response_header), strlen($http_response_header[1]), $http_response_header[2]);
++        }
+     }
+     /* 8 times the lines: about 8 times the time when appending, about 64 times when the whole
+      * header is copied for every line. A ratio is used instead of a fixed time limit, so a slow or
+-- 
+2.55.0
+
